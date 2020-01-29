@@ -1,0 +1,67 @@
+.nav-container {
+  background-color: #f8f8f8;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  align-items: center;
+  color: #333;
+}
+
+.nav-container a {
+  text-decoration: none;
+  color: #333;
+}
+
+.nav-container .left-container {
+  display: flex;
+}
+
+.nav-container .right-container {
+  margin-right: 50px;
+}
+
+.nav-container h1 {
+  font-size: 28px;
+  margin: 0 30px 0 70px;
+  cursor: pointer;
+}
+
+.nav-container ul {
+  list-style: none;
+  display: flex;
+}
+.nav-container li {
+  margin: 0 20px;
+  cursor: pointer;
+  line-height: 32px;
+}
+
+.right-container button {
+  width: 100px;
+  height: 35px;
+  font-size: 12px;
+  background-color: none;
+  border-radius: 100px;
+  font-weight: 400;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.login-btn {
+  background-color: transparent;
+  border: 1px solid #333;
+  color: #333;
+}
+
+.signup-btn {
+  background-color: #ff55a0;
+  color: #fff;
+  border: none;
+}

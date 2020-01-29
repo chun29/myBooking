@@ -1,0 +1,17 @@
+├── src/
+│  ├── containers/              # containers 放置與 Redux 連接的相關元件，單元測試檔案為 `元件名稱.test.js`
+│  ├── components/              # components 放置相關元件，單元測試檔案為 `元件名稱.test.js`
+│  │  └── Root.js               # 路由根目錄
+│  ├── hooks/                   # hooks 相關
+│  ├── middleware/              # 資料處理相關
+│  │  ├── API.js                # axios 的 instance
+│  │  └── redux-api.js          # redux-api
+│  ├── styles/                  # 樣式檔們
+│  ├── index.js                 # 程式入口
+│  ├── serviceWorker.js
+│  └── setupTests.js            # 測試相關設定
+├── .eslintrc                   # ESLint 設定檔(先不做)
+工具設定
+├── package-lock.json
+├── package.json
+└── README.md
