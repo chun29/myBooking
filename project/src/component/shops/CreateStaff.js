@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 
 class CreateStaff extends Component {
   state = {
+    id: this.props.auth.uid,
     name: "",
     content: ""
   };
@@ -15,7 +16,7 @@ class CreateStaff extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.props.createStaff(this.state);
+    this.props.createStaff(this.state, this.state.id);
     console.log(this.state);
   };
   render() {
@@ -23,10 +24,6 @@ class CreateStaff extends Component {
     if (!auth.uid) return <Redirect to="signin" />;
     return (
       <div>
-        <div className="signin-header">
-          <h1>MyBooking</h1>
-          <button className="signup-btn">登入</button>
-        </div>
         <div className="signin-container">
           <h1>新增工作人員</h1>
 
@@ -61,7 +58,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createStaff: staff => dispatch(createStaff(staff))
+    createStaff: (staff, id) => dispatch(createStaff(staff, id))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CreateStaff);

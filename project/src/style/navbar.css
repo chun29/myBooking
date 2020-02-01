@@ -33,9 +33,10 @@
 .nav-container ul {
   list-style: none;
   display: flex;
+  align-items: center;
 }
 .nav-container li {
-  margin: 0 20px;
+  margin: 0 10px;
   cursor: pointer;
   line-height: 32px;
 }

@@ -1,0 +1,84 @@
+/* Working Hours Set time css */
+
+.openingHours-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+.openingHours-wrapper .openingHours-wrapper .right-container {
+  width: 100%;
+  margin: 20px 10px 10px 280px;
+  display: flex;
+  flex-direction: column;
+  min-height: 66px;
+}
+
+.openingHours-wrapper .right-container h1 {
+  border-bottom: 1px solid #dee3e7;
+  text-align: center;
+  padding: 18px 0 14px;
+  line-height: 32px;
+  font-size: 30px;
+}
+
+.openingHours-wrapper .workingHours-form {
+  margin: 0 auto;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+}
+
+.openingHours-wrapper .workingHours-form .workingHours-column {
+  flex: 1;
+}
+
+.workingHours-form label {
+  display: flex;
+  align-items: center;
+}
+
+.workingHours-form .set-container {
+  height: 30px;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  margin-top: 20px;
+}
+
+.workingHours-form h3 {
+  margin: 50px 0 30px 0;
+}
+.workingHours-form .set-container select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 180px;
+  height: 40px;
+  padding-left: 10px;
+  background-color: #f6f7f7;
+  font-size: 16px;
+  border: 1px solid #dee3e7;
+  border-radius: 2px;
+  outline: none;
+  background: url(../img/arrow.png) no-repeat 90% white;
+}
+
+.workingHours-next {
+  position: relative;
+  left: 75%;
+  outline: none;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  width: 120px;
+  height: 45px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 0 #a4adba;
+  border: 1px solid transparent;
+  margin-top: 50px;
+}

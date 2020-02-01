@@ -3,6 +3,7 @@ import "../../style/login.css";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { signUp } from "../../store/actions/authAction";
+import { Link } from "react-router-dom";
 
 class Signup extends Component {
   state = {
@@ -26,13 +27,18 @@ class Signup extends Component {
     return (
       <div>
         <div className="signin-header">
-          <h1>MyBooking</h1>
+          <Link to="/">
+            <h1>MyBooking</h1>
+          </Link>
           <button className="signup-btn">登入</button>
         </div>
         <div className="signin-container">
           <h1>預約管理系統</h1>
           <p>
-            我已經有帳號<span> 登入</span>
+            我已經有帳號
+            <Link to="/signin">
+              <span> 登入</span>
+            </Link>
           </p>
           <form className="signin-input" onSubmit={this.handleSubmit}>
             <input

@@ -1,22 +1,23 @@
-export const createStaff = (staff, id) => {
+const setOpeningHours = (weekday, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async to database
     const firestore = getFirestore();
-    console.log(firestore.collection("sore"));
     firestore
       .collection("store")
       .doc(id)
       .set(
         {
-          staff: staff
+          workday: weekday
         },
         { merge: true }
       )
       .then(() => {
-        dispatch({ type: "CREATE_STAFF", staff });
+        dispatch({ type: "ADD_WORKDAY", weekday });
       })
       .catch(err => {
-        dispatch({ type: "CREATE_STAFF_ERROR", err });
+        dispatch({ type: "ADD_WORKDAY_ERROR", err });
       });
   };
 };
+
+export default setOpeningHours;

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import "./style/home.css";
-import "./style/common.css";
+import Navbar from "../layout/Navbar";
+import "../../style/home.css";
 
 export default class home extends Component {
   render() {
     return (
       <React.Fragment>
+        <Navbar />
         <div className="main-container">
           <div className="main-content">
             <div className="desc">

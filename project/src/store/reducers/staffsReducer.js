@@ -1,8 +1,8 @@
 const initState = {
-  // staffs: [
-  //   { id: 1, name: "June", content: "I am June" },
-  //   { id: 2, name: "May", content: "I am May" }
-  // ]
+  staffs: [
+    { id: 1, name: "June", content: "TEST DATA" },
+    { id: 2, name: "May", content: "TEST DATA" }
+  ]
 };
 const staffsReducer = (state = initState, action) => {
   switch (action.type) {

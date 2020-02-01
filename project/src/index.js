@@ -28,9 +28,3 @@ store.firebaseAuthIsReady.then(() => {
     document.getElementById("root")
   );
 });
-// const rrfProps = {
-//   firebase,
-//   config: fbConfig,
-//   dispatch: store.dispatch,
-//   createFirestoreInstance
-// };

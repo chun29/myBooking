@@ -1,0 +1,44 @@
+.dashboard {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard a {
+  text-decoration: none;
+}
+
+.dashboard .top {
+  width: 100%;
+  height: 100px;
+}
+
+.dashboard .down {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard .down .left-container {
+  width: 250px;
+  height: 100vh;
+  background-color: rgb(26, 38, 58);
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  color: white;
+  font-size: 14px;
+  position: fixed;
+  left: 0;
+  top: 75px;
+}
+
+.dashboard .down .right-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 280px;
+}
+
+.dashboard .down .right-container h1 {
+  font-size: 24px;
+}

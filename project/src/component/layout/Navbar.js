@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 
 const Navbar = props => {
   const { auth } = props;
-  console.log(auth);
   const links = auth.uid ? <SignInLinks /> : <SignedOutLinks />;
   return (
     <React.Fragment>
@@ -27,22 +26,13 @@ const Navbar = props => {
             </ul>
           </nav>
         </div>
-        <div className="right-container">
-          {links}
-          {/* <Link to="signin">
-            <button className="login-btn">登入</button>
-          </Link>
-          <Link to="signup">
-            <button className="signup-btn">註冊</button>
-          </Link> */}
-        </div>
+        <div className="right-container">{links}</div>
       </header>
     </React.Fragment>
   );
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     auth: state.firebase.auth
   };

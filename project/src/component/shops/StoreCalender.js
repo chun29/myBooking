@@ -1,14 +1,10 @@
 import React from "react";
 
-const StoreCalender = ({ staffs }) => {
+const StoreCalender = () => {
   return (
     <div>
-      <p>Owners List</p>
-      <h1>工作人員：</h1>
-      {staffs &&
-        staffs.map((staff, i) => {
-          return <h1 key={i}>{staff.name}</h1>;
-        })}
+      <h1>行事曆</h1>
+      <p>要放行事曆</p>
     </div>
   );
 };
