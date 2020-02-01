@@ -8,6 +8,7 @@ import "../../style/signedinLink.css";
 
 class SignedInLinks extends Component {
   render() {
+    console.log(this.props);
     const { name, auth } = this.props;
     let user = "";
 

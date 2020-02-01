@@ -35,10 +35,16 @@
 
 .dashboard .down .right-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-left: 280px;
+  flex-wrap: wrap;
 }
 
 .dashboard .down .right-container h1 {
   font-size: 24px;
+}
+
+.dashboard .down .right-container .dashboard-item-container {
+  width: 500px;
+  height: 300px;
 }

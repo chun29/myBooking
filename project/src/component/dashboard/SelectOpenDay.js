@@ -5,32 +5,29 @@ import { connect } from "react-redux";
 class SelectOpenDay extends Component {
   state = {
     id: this.props.auth.uid,
-    checked: false,
+    checked: true,
     workday: this.props.storeData
   };
 
   handleOpen = e => {
     const data = { [this.props.name]: e.target.checked };
-    this.setState({
-      checked: e.target.checked,
-      workday: data
-    });
-
-    this.props.setOpeningHours(this.state.workday, this.state.id);
+    this.setState(
+      {
+        checked: e.target.checked,
+        workday: data
+      }
+      // function() {
+      //   this.props.setOpeningHours(this.state.workday, this.state.id);
+      // }
+    );
   };
 
   render() {
     let isOpen = true;
     let day = this.props.name;
-    let openText;
 
     if (this.props.storeData) {
       isOpen = this.props.storeData.workday[day];
-      if (isOpen === true) {
-        openText = "open";
-      } else {
-        openText = "close";
-      }
     }
 
     return (
@@ -44,9 +41,7 @@ class SelectOpenDay extends Component {
             checked={this.state.checked}
             onChange={this.handleOpen}
           />
-          <div className="workday-text">
-            {day},{openText}
-          </div>
+          <div className="workday-text">{day}</div>
         </label>
       </div>
     );

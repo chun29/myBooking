@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../style/dashboardheader.css";
 
-const DashboardHeader = () => {
+const DashboardHeader = ({ userName }) => {
   return (
     <React.Fragment>
       <div className="dashboard-header">
@@ -18,7 +18,7 @@ const DashboardHeader = () => {
             </div>
           </div>
           <div className="bell-img"></div>
-          <div className="user-avatar">J</div>
+          <div className="user-avatar">{userName}</div>
         </div>
       </div>
     </React.Fragment>

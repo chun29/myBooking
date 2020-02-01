@@ -7,15 +7,7 @@
   margin-top: 0;
 }
 
-.openingHours-wrapper .openingHours-wrapper .right-container {
-  width: 100%;
-  margin: 20px 10px 10px 280px;
-  display: flex;
-  flex-direction: column;
-  min-height: 66px;
-}
-
-.openingHours-wrapper .right-container h1 {
+.openingHours-wrapper h1 {
   border-bottom: 1px solid #dee3e7;
   text-align: center;
   padding: 18px 0 14px;

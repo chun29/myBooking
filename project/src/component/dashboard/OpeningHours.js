@@ -12,16 +12,24 @@ class OpeningHours extends Component {
   render() {
     const { store } = this.props;
     let storeData;
-    let useData;
+
     if (store) {
       store.map(data => {
         if (data.id === this.props.auth.uid) {
           storeData = data;
-          useData = storeData.workday;
         }
         return data;
       });
     }
+    const dayList = [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday"
+    ];
 
     return (
       <div className="dashboard">
@@ -44,11 +52,9 @@ class OpeningHours extends Component {
 
                   <div className="workingHours-column workday">
                     <h3>星期</h3>
-                    <SelectOpenDay
-                      storeData={storeData}
-                      name="monday"
-                      useData={useData}
-                    />
+                    {dayList.map((day, i) => (
+                      <SelectOpenDay key={i} storeData={storeData} name={day} />
+                    ))}
                   </div>
 
                   {/* openTime Select */}

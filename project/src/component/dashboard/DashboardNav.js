@@ -17,10 +17,12 @@ const DashboardNav = () => {
             <li>
               <img src={nav} alt="nav" />
             </li>
-            <li className="home">
-              <img src={home} alt="home" />
-              管理介面首頁
-            </li>
+            <Link to="/dashboard">
+              <li className="home">
+                <img src={home} alt="home" />
+                管理介面首頁
+              </li>
+            </Link>
             <li>
               <img src={calendar} alt="calender" />
               行事曆
