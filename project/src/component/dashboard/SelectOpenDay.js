@@ -3,46 +3,25 @@ import setOpeningHours from "../../store/actions/openingHoursAction";
 import { connect } from "react-redux";
 
 class SelectOpenDay extends Component {
-  state = {
-    id: this.props.auth.uid,
-    checked: true,
-    workday: this.props.storeData
-  };
-
-  handleOpen = e => {
-    const data = { [this.props.name]: e.target.checked };
-    this.setState(
-      {
-        checked: e.target.checked,
-        workday: data
-      }
-      // function() {
-      //   this.props.setOpeningHours(this.state.workday, this.state.id);
-      // }
-    );
-  };
-
   render() {
-    let isOpen = true;
-    let day = this.props.name;
-
-    if (this.props.storeData) {
-      isOpen = this.props.storeData.workday[day];
-    }
+    let isOpen = this.props.isSelected;
+    let day = this.props.label;
+    let checkboxChange = this.props.onCheckboxChange;
 
     return (
       <div className="set-container">
-        <label>
-          <input
-            type="checkbox"
-            name="checked"
-            value={isOpen}
-            id={day}
-            checked={this.state.checked}
-            onChange={this.handleOpen}
-          />
-          <div className="workday-text">{day}</div>
-        </label>
+        <div className="form-check">
+          <label>
+            <input
+              type="checkbox"
+              name={day}
+              checked={isOpen}
+              onChange={checkboxChange}
+              className="form-check-input"
+            />
+            {day}
+          </label>
+        </div>
       </div>
     );
   }

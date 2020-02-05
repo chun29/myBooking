@@ -1,14 +1,18 @@
 const path = require("path");
+var moment = require("moment");
+moment().format();
 module.exports = {
   entry: {
     index: "./src/index.js"
   },
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/"
   },
   devServer: {
-    contentBase: "./dist"
+    contentBase: "./dist",
+    historyApiFallback: true
   },
   module: {
     rules: [

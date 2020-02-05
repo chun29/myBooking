@@ -9,6 +9,10 @@ import Signup from "./component/auth/Signup";
 import OpeningHours from "./component/dashboard/OpeningHours";
 import CreateStaff from "./component/shops/CreateStaff";
 import CreateBooking from "./component/shops/CreateBooking";
+import CreateService from "./component/shops/CreateService";
+import Staff from "./component/dashboard/Staff";
+import Service from "./component/dashboard/Service";
+import Calendar from "./component/dashboard/Calendar";
 
 class App extends Component {
   render() {
@@ -23,6 +27,10 @@ class App extends Component {
             <Route path="/createstaff" component={CreateStaff} />
             <Route path="/createbooking" component={CreateBooking} />
             <Route path="/openingHours" component={OpeningHours} />
+            <Route path="/staff" component={Staff} />
+            <Route path="/service" component={Service} />
+            <Route path="/createservice" component={CreateService} />
+            <Route path="/calendar" component={Calendar} />
           </Switch>
         </div>
       </Router>

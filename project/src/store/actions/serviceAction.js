@@ -1,4 +1,4 @@
-export const createStaff = (staff, id) => {
+export const createService = (service, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async to database
     const firestore = getFirestore();
@@ -6,14 +6,14 @@ export const createStaff = (staff, id) => {
     firestore
       .collection("store")
       .doc(id)
-      .collection("staff")
+      .collection("service")
       .doc()
-      .set(staff, { merge: true })
+      .set(service, { merge: true })
       .then(() => {
-        dispatch({ type: "CREATE_STAFF", staff });
+        dispatch({ type: "CREATE_SERVICE", service });
       })
       .catch(err => {
-        dispatch({ type: "CREATE_STAFF_ERROR", err });
+        dispatch({ type: "CREATE_SERVICE_ERROR", err });
       });
   };
 };

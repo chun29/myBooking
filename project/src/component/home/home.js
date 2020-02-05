@@ -4,6 +4,7 @@ import "../../style/home.css";
 
 export default class home extends Component {
   render() {
+    console.log(this.props);
     return (
       <React.Fragment>
         <Navbar />

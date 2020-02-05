@@ -36,17 +36,17 @@
   font-size: 14px;
 }
 
-.main-image {
+/* .main-image {
   margin: 200px 200px 0 70px;
-  background-image: url(../img/main-picture.jpg);
-  background-color: #cccccc;
-  height: 500px;
-  width: 800px;
+  background-image: url(../img/main-picture.png);
+  background-color: transparent;
+  height: 700px;
+  width: 1000px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+
   position: relative;
-}
+} */
 
 .main-desc-section h2 {
   font-size: 52px;

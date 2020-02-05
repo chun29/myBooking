@@ -7,30 +7,113 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import SelectOpenDay from "./SelectOpenDay";
 import SelectOpenTime from "./SelectOpenTime";
+import SelectCloseTime from "./SelectOpenTime";
+import setOpeningHours from "../../store/actions/openingHoursAction";
 
+const WEEK = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday"
+];
 class OpeningHours extends Component {
+  state = {
+    isOpen: WEEK.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: true
+      }),
+      {}
+    ),
+    openTime: WEEK.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: "8"
+      }),
+      {}
+    ),
+    closeTime: WEEK.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: "8"
+      }),
+      {}
+    )
+  };
+
+  handleCheckboxChange = changeEvent => {
+    const { name } = changeEvent.target;
+    this.setState(prevState => ({
+      isOpen: {
+        ...prevState.isOpen,
+        [name]: !prevState.isOpen[name]
+      }
+    }));
+  };
+
+  handleSelectOpenValue = changeEvent => {
+    const time = changeEvent.target.value;
+    const { name } = changeEvent.target;
+    this.setState(prevState => ({
+      openTime: {
+        ...prevState.openTime,
+        [name]: time
+      }
+    }));
+  };
+
+  handleSelectCloseValue = changeEvent => {
+    const time = changeEvent.target.value;
+    const { name } = changeEvent.target;
+    this.setState(prevState => ({
+      closeTime: {
+        ...prevState.closeTime,
+        [name]: time
+      }
+    }));
+  };
+
+  createCheckbox = option => (
+    <SelectOpenDay
+      label={option}
+      isSelected={this.state.isOpen[option]}
+      onCheckboxChange={this.handleCheckboxChange}
+      key={option}
+    />
+  );
+
+  createOpenTime = option => (
+    <SelectOpenTime
+      label={option}
+      value={this.state.openTime[option]}
+      handleSelect={this.handleSelectOpenValue}
+      key={option}
+      disabled={!this.state.isOpen[option]}
+    />
+  );
+
+  createCloseTime = option => (
+    <SelectCloseTime
+      label={option}
+      value={this.state.closeTime[option]}
+      handleSelect={this.handleSelectCloseValue}
+      key={option}
+      disabled={!this.state.isOpen[option]}
+    />
+  );
+
+  createCheckboxes = () => WEEK.map(this.createCheckbox);
+  createOpenTimes = () => WEEK.map(this.createOpenTime);
+  createCloseTimes = () => WEEK.map(this.createCloseTime);
+
+  handleSubmit = () => {
+    console.log(this.state);
+    this.props.setOpeningHours(this.state, this.props.auth.uid);
+  };
   render() {
-    const { store } = this.props;
-    let storeData;
-
-    if (store) {
-      store.map(data => {
-        if (data.id === this.props.auth.uid) {
-          storeData = data;
-        }
-        return data;
-      });
-    }
-    const dayList = [
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday",
-      "saturday",
-      "sunday"
-    ];
-
     return (
       <div className="dashboard">
         <div className="top">
@@ -48,30 +131,30 @@ class OpeningHours extends Component {
               </div>
               <div className="workingHours-container">
                 <form className="workingHours-form">
-                  {/* isOpen Select */}
-
                   <div className="workingHours-column workday">
                     <h3>星期</h3>
-                    {dayList.map((day, i) => (
-                      <SelectOpenDay key={i} storeData={storeData} name={day} />
-                    ))}
+                    {this.createCheckboxes()}
                   </div>
 
-                  {/* openTime Select */}
                   <div className="workingHours-column open-time">
                     <h3>開始時間</h3>
-                    <SelectOpenTime />
+                    {this.createOpenTimes()}
                   </div>
 
-                  {/* closeTime Select */}
                   <div className="workingHours-column close-time">
                     <h3>結束時間</h3>
-                    <SelectOpenTime />
+
+                    {this.createCloseTimes()}
                   </div>
                 </form>
               </div>
               <div className="workingHours-btn">
-                <button className="workingHours-next">下一步</button>
+                <button
+                  onClick={this.handleSubmit}
+                  className="workingHours-next"
+                >
+                  儲存
+                </button>
               </div>
             </main>
           </div>
@@ -88,8 +171,14 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setOpeningHours: (weekday, id) => dispatch(setOpeningHours(weekday, id))
+  };
+};
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     {
       collection: "store"

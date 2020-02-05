@@ -1,9 +1,4 @@
-const initState = {
-  staffs: [
-    { id: 1, name: "June", content: "TEST DATA" },
-    { id: 2, name: "May", content: "TEST DATA" }
-  ]
-};
+const initState = {};
 const staffsReducer = (state = initState, action) => {
   switch (action.type) {
     case "CREATE_STAFF":

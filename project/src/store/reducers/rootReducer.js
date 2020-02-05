@@ -3,6 +3,7 @@ import authReducer from "./authReducer";
 import staffsReducer from "./staffsReducer";
 import openingHoursReducer from "./openingHoursReducer";
 import bookingReducer from "./bookingReducer";
+import serviceReducer from "./serviceReducer";
 import { firestoreReducer } from "redux-firestore";
 import { firebaseReducer } from "react-redux-firebase";
 
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   booking: bookingReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
-  workday: openingHoursReducer
+  workday: openingHoursReducer,
+  serviceReducer: serviceReducer
 });
 
 export default rootReducer;

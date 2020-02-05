@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createStaff } from "../../store/actions/staffsAction";
+import { createService } from "../../store/actions/serviceAction";
 import { Redirect } from "react-router-dom";
 import "..//../style/createstaff.css";
 
-class CreateStaff extends Component {
+class CreateService extends Component {
   state = {
-    name: "",
-    phone: "",
-    email: "",
-    nickname: "",
+    item: "",
+    duration: "30",
+    price: "",
     desc: ""
   };
   handleChange = e => {
@@ -20,75 +19,61 @@ class CreateStaff extends Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log("submit", this.state);
-    this.props.createStaff(this.state, this.props.auth.uid);
-    this.props.history.push("/staff");
+    this.props.createService(this.state, this.props.auth.uid);
+    this.props.history.push("/service");
   };
 
-  // fileSelectHandler = event => {
-  //   this.setState({
-  //     avatar: event.target.files[0]
-  //   });
-  // };
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="signin" />;
     return (
       <div className="createstaff-wrapper">
         <div className="createstaff-header">
-          <h1>新增工作人員</h1>
+          <h1>新增服務項目</h1>
         </div>
         <form className="staff-form" onSubmit={this.handleSubmit}>
           <div className="input-wrapper">
             <div className="form-section">
               <div className="form-item">
-                <label htmlFor="name">姓名</label>
+                <label htmlFor="name">項目</label>
                 <input
-                  placeholder="e.g. 王大明"
-                  id="name"
+                  placeholder="e.g. 剪髮"
+                  id="item"
                   onChange={this.handleChange}
                 ></input>
               </div>
               <div className="form-item">
-                <label htmlFor="phone">手機</label>
-                <input
-                  placeholder="e.g. 0900123456"
-                  id="phone"
+                <label htmlFor="time">服務所需時間</label>
+                <select
+                  value={this.state.time}
                   onChange={this.handleChange}
-                ></input>
+                  id="duration"
+                >
+                  <option value="30">30 分鐘</option>
+                  <option value="60">1 小時</option>
+                  <option value="90">1.5 小時</option>
+                  <option value="120">2 小時</option>
+                  <option value="150">2.5 小時</option>
+                  <option value="180">3 小時</option>
+                </select>
               </div>
               <div className="form-item">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="price">價格</label>
                 <input
-                  placeholder="e.g. ming@gmail.com"
-                  id="email"
+                  placeholder="e.g. 2000元"
+                  id="price"
                   onChange={this.handleChange}
                 ></input>
-              </div>
-              <div className="form-item staff-avatar">
-                <label htmlFor="photo">圖片</label>
-                <input
-                  type="file"
-                  // onChange={this.fileSelectHandler}
-                />
               </div>
             </div>
             <div className="form-section">
-              <div className="form-item">
-                <label htmlFor="nickname">暱稱 (顯示在預訂網站上的名稱)</label>
-                <input
-                  placeholder="e.g. 小明"
-                  id="nickname"
-                  onChange={this.handleChange}
-                ></input>
-              </div>
-
               <div className="form-item">
                 <label htmlFor="desc">說明</label>
                 <textarea
                   rows="11"
                   id="desc"
                   onChange={this.handleChange}
-                  placeholder="e.g. 服務熱心、業績第一名"
+                  placeholder="e.g. 剪髮..."
                 ></textarea>
               </div>
             </div>
@@ -104,7 +89,6 @@ class CreateStaff extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     auth: state.firebase.auth
   };
@@ -112,7 +96,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createStaff: (staff, id) => dispatch(createStaff(staff, id))
+    createService: (service, id) => dispatch(createService(service, id))
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(CreateStaff);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateService);

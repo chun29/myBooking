@@ -1,15 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 
-const SelectOpenTime = ({ label, value, handleSelect, disabled }) => (
+const SelectCloseTime = ({ label, value, handleSelect }) => (
   <div className="set-container">
     <label>
       <div className="workingHours-startTime-container">
-        <select
-          value={value}
-          onChange={handleSelect}
-          name={label}
-          disabled={disabled}
-        >
+        <select value={value} onChange={handleSelect} name={label}>
           <option value="8">08:00</option>
           <option value="9">09:00</option>
           <option value="10">10:00</option>
@@ -21,4 +16,4 @@ const SelectOpenTime = ({ label, value, handleSelect, disabled }) => (
   </div>
 );
 
-export default SelectOpenTime;
+export default SelectCloseTime;

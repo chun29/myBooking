@@ -23,24 +23,30 @@ const DashboardNav = () => {
                 管理介面首頁
               </li>
             </Link>
-            <li>
-              <img src={calendar} alt="calender" />
-              行事曆
-            </li>
+            <Link to="/calendar">
+              <li>
+                <img src={calendar} alt="calender" />
+                行事曆
+              </li>
+            </Link>
             <Link to="/openinghours">
               <li>
                 <img src={time} alt="time" />
                 營業時間
               </li>
             </Link>
-            <li>
-              <img src={service} alt="service" />
-              服務項目
-            </li>
-            <li>
-              <img src={staff} alt="staff" />
-              服務人員
-            </li>
+            <Link to="/service">
+              <li>
+                <img src={service} alt="service" />
+                服務項目
+              </li>
+            </Link>
+            <Link to="/staff">
+              <li>
+                <img src={staff} alt="staff" />
+                服務人員
+              </li>
+            </Link>
           </ul>
         </div>
         {/* <div className="right-container">

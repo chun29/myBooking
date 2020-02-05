@@ -1,14 +1,20 @@
-export const createBooking = booking => {
+export const createBooking = (booking, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to database
     const firestore = getFirestore();
-    firestore.collection("booking").add({
-      ...booking,
-      addObjInfo: { text: "test", createdAt: new Date() }
-    }),
-      then(() => {
+    firestore
+      .collection("store")
+      .doc(id)
+      .collection("booking")
+      .doc()
+      .set({
+        ...booking,
+        createdAt: new Date()
+      })
+      .then(() => {
         dispatch({ type: "CREATE_BOOKING", booking });
-      }).catch(() => {
+      })
+      .catch(() => {
         dispatch({ type: "CREATE_BOOKING_ERR", err });
       });
   };

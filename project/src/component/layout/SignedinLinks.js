@@ -8,18 +8,12 @@ import "../../style/signedinLink.css";
 
 class SignedInLinks extends Component {
   render() {
-    console.log(this.props);
-    const { name, auth } = this.props;
+    const { profile } = this.props;
     let user = "";
 
-    if (name) {
-      const shortName = name.find(function(userName) {
-        return userName.id === auth.uid;
-      });
-      user = shortName.name.charAt(0).toUpperCase();
+    if (profile.name) {
+      user = profile.name.charAt(0).toUpperCase();
     }
-
-    const userName = auth.uid ? user : "";
 
     return (
       <React.Fragment>
@@ -36,7 +30,7 @@ class SignedInLinks extends Component {
           </li>
           <li>
             <NavLink to="/">
-              <div className="user-avatar">{userName}</div>
+              <div className="user-avatar">{user}</div>
             </NavLink>
           </li>
         </ul>
@@ -45,23 +39,14 @@ class SignedInLinks extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    auth: state.firebase.auth,
-    name: state.firestore.ordered.owners
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     signOut: () => dispatch(signOut())
   };
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(SignedInLinks);
-
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(null, mapDispatchToProps),
   firestoreConnect([
     {
       collection: "owners"
