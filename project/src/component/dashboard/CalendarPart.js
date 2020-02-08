@@ -1,5 +1,8 @@
 import React from "react";
 import moment, { months } from "moment";
+import "../../style/staff.css";
+import calendar from "../../img/calendar-2.png";
+import Test from "../shops/test";
 
 class CalendarPart extends React.Component {
   constructor(props) {
@@ -16,75 +19,56 @@ class CalendarPart extends React.Component {
 
   //Html + function
   render() {
-    // Booking Data
-    const booking = [
-      {
-        server: "JUNE",
-        date: "2",
-        month: "6",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "5",
-        month: "1",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "8",
-        month: "3",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "8",
-        month: "1",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "2",
-        month: "5",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "20",
-        month: "4",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "20",
-        month: "10",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "30",
-        month: "01",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "20",
-        month: "10",
-        service: "wash hair"
-      },
-      {
-        server: "JUNE",
-        date: "20",
-        month: "02",
-        service: "test1"
-      },
-      {
-        server: "JUNE",
-        date: "20",
-        month: "02",
-        service: "test2"
-      }
-    ];
+    console.log(this.props);
+    const staffInfo = this.props.staffs;
+    const serviceInfo = this.props.services;
+    const bookingInfo =
+      this.props.bookings &&
+      this.props.bookings.sort(function(a, b) {
+        return a.date.seconds - b.date.seconds;
+      });
+    const bookingList =
+      bookingInfo &&
+      staffInfo &&
+      serviceInfo &&
+      bookingInfo.map(booking => {
+        const staff =
+          staffInfo && staffInfo.filter(staff => staff.id === booking.server);
+
+        const staffName = staff[0] && staff[0].name;
+        const staffColor = staff[0] && staff[0].color;
+
+        const service =
+          serviceInfo &&
+          serviceInfo.filter(service => service.id === booking.service);
+        const serviceName = service && service[0] && service[0].item;
+        let date = new Date(booking.date.seconds * 1000);
+        const bookingMonth = date.getMonth() + 1;
+        const bookingDate = date.getDate();
+        const bookingHours = date.getHours();
+        const name = booking.name;
+        const id = booking.id;
+        let bookingMinutes;
+        if (date.getMinutes() == 0) {
+          bookingMinutes = "00";
+        } else {
+          bookingMinutes = date.getMinutes();
+        }
+
+        return {
+          server: staffName,
+          serverColor: staffColor,
+          service: serviceName,
+          date: bookingDate,
+          month: bookingMonth,
+          hours: bookingHours,
+          minutes: bookingMinutes,
+          name: name,
+          id: id
+        };
+      });
+    console.log(bookingList);
+
     // Mon~Sun
     let weekday = moment.weekdaysShort().map(day => {
       return (
@@ -117,19 +101,26 @@ class CalendarPart extends React.Component {
 
     for (let d = 1; d <= moment(this.state.dateObject).daysInMonth(); d++) {
       let currentDay = d == moment().date() ? "today" : "";
-      const datas = booking.filter(
-        data =>
-          data.month == moment(this.state.dateObject).month() + 1 &&
-          data.date == d
-      );
+      const datas =
+        bookingList &&
+        bookingList.filter(
+          data =>
+            data.month == moment(this.state.dateObject).month() + 1 &&
+            data.date == d
+        );
 
       daysInMonth.push(
         <td id={d} key={d} className={`calendar-day ${currentDay}`}>
-          {d}
-          <div>
-            {datas.map(data => {
-              return <div>{data.service}</div>;
-            })}
+          <div className="day-text">{d}</div>
+          <div className="day-bookings">
+            {datas &&
+              datas.map(data => {
+                return (
+                  <React.Fragment>
+                    <Test data={data} />
+                  </React.Fragment>
+                );
+              })}
           </div>
         </td>
       );
@@ -200,7 +191,7 @@ class CalendarPart extends React.Component {
         <table className="calendar-month">
           <thead>
             <tr>
-              <th colSpan="4">Select a Month</th>
+              <th>Select a Month</th>
             </tr>
           </thead>
           <tbody>{monthlist}</tbody>
@@ -257,30 +248,34 @@ class CalendarPart extends React.Component {
     };
 
     return (
-      <div>
+      <div className="calendar-main-wrapper">
         <div className="calendar-header">
-          <button
+          <span
             className="button-prev"
             onClick={e => {
               this.setPrevMonth();
             }}
           >
             ◀︎
-          </button>
-          <div>
-            <h4 onClick={this.showMonth}>{month()}</h4>
+          </span>
+          <div className="calendar-icon">
+            <div className="calendar-icon-1">
+              <img src={calendar} alt="calendar-icon" />
+            </div>
+
+            <div className="calendar-icon-2">
+              <span onClick={this.showMonth}>{month()} </span>
+              <span onClick={this.showYear}> {year()}</span>
+            </div>
           </div>
-        </div>
-        <div className="month">
-          <span onClick={this.showYear}>{year()}</span>
-          <button
+          <span
             className="button-next"
             onClick={e => {
               this.setNextMonth();
             }}
           >
             ▶︎
-          </button>
+          </span>
         </div>
 
         {this.state.showYearTable && <div>{yearTable()}</div>}
@@ -290,7 +285,7 @@ class CalendarPart extends React.Component {
           </table>
         )}
         {this.state.showDateTable && (
-          <table className="calendar-day">
+          <table className="calendar-table">
             <thead>
               <tr>{weekday}</tr>
             </thead>

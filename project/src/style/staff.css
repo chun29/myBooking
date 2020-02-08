@@ -59,3 +59,103 @@ table tbody tr td {
   font-size: 14px;
   color: #626262;
 }
+.calendar-main-wrapper .calendar-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.calendar-main-wrapper .calendar-header .calendar-icon {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.calendar-main-wrapper .calendar-header .calendar-icon-1 {
+  display: flex;
+  justify-content: center;
+}
+
+.calendar-main-wrapper .calendar-header .calendar-icon-2 {
+  margin: 13px 20px;
+}
+
+.button-prev,
+.button-next {
+  cursor: pointer;
+  line-height: 40px;
+  height: 40px;
+  width: 25px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.button-prev:hover,
+.button-next:hover {
+  background-color: #24334a;
+  color: #fff;
+  border-radius: 3px;
+}
+.calendar-table {
+  border-collapse: collapse;
+}
+
+.calendar-table,
+.calendar-table th,
+.calendar-table td {
+  border: 1px solid rgba(229, 229, 229, 0.7);
+}
+
+.calendar-table th {
+  height: 50px;
+  text-align: center;
+  padding: 0;
+}
+.calendar-table td {
+  width: 100px;
+  height: 100px;
+}
+
+.calendar-day {
+  padding: 10px 8px 5px 8px;
+  vertical-align: top;
+}
+.day-text {
+  text-align: right;
+}
+
+.booking-text {
+  background-color: #a5dff8;
+  padding: 4px 4px 4px 8px;
+  margin-top: 5px;
+
+  border-radius: 3px;
+}
+/* #a6e5bd */
+.booking-text span {
+  font-size: 12px;
+}
+.booking-time-text {
+  display: inline-block;
+  width: 35px;
+}
+.toolTip {
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  margin: 10px 0 0 10px;
+  padding: 5px 0;
+
+  /* 定位 */
+  position: absolute;
+  z-index: 1;
+}
+.toolTip div {
+  font-size: 12px;
+  text-align: left;
+  padding-left: 5px;
+}

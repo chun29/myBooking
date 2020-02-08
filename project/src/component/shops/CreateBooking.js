@@ -73,7 +73,7 @@ class CreateBooking extends Component {
                 />
               </div>
               <div className="form-item">
-                <label htmlFor="service">服務</label>
+                <label htmlFor="service">選擇服務</label>
                 <select id="service" onChange={this.handleChange}>
                   {serviceArr &&
                     serviceArr.map(service => {

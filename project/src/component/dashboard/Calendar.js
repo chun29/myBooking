@@ -11,7 +11,6 @@ import CalendarPart from "./CalendarPart";
 
 class Calendar extends Component {
   render() {
-    console.log(this.props);
     const { bookings } = this.props;
     const bookingList =
       this.props.staff && this.props.service ? (
@@ -46,7 +45,11 @@ class Calendar extends Component {
                     <button className="add-staff">新增預約</button>
                   </Link>
                 </div>
-                <CalendarPart />
+                <CalendarPart
+                  bookings={bookings}
+                  staffs={this.props.staff}
+                  services={this.props.service}
+                />
 
                 <table className="staff-table-wrapper">
                   <thead>
@@ -72,7 +75,6 @@ class Calendar extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     staff: state.firestore.ordered.staff,
     auth: state.firebase.auth,

@@ -110,7 +110,6 @@ class OpeningHours extends Component {
   createCloseTimes = () => WEEK.map(this.createCloseTime);
 
   handleSubmit = () => {
-    console.log(this.state);
     this.props.setOpeningHours(this.state, this.props.auth.uid);
   };
   render() {

@@ -1,0 +1,163 @@
+.online-container {
+  background-color: #f5f5f5;
+}
+
+.online-container .online-header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(245, 245, 245);
+  line-height: 70px;
+  height: 70px;
+  font-size: 16px;
+  padding: 0 10%;
+}
+
+.online-container .banner-wrapper {
+  height: 320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.online-container .banner {
+  background-image: url(../img/banner.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.online-container .store-info {
+  margin-top: -150px;
+  padding: 0px 10%;
+  position: relative;
+}
+
+.online-container .info-section {
+  padding: 20px 5%;
+  background-color: white;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.online-container .info-section h1 {
+  margin: 20px 10px 40px 0;
+  font-size: 38px;
+  letter-spacing: 1px;
+  vertical-align: middle;
+}
+
+.online-container .button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.online-container .button-wrapper button {
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  width: auto;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  outline: none;
+  margin: 0 10px 30px 10px;
+}
+.online-container .button-wrapper .blue {
+  background-color: #5e7da7;
+}
+
+.online-container .button-wrapper .red {
+  background-color: #db6f1c;
+}
+
+.online-container .info-section .info {
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+.online-container .infohr {
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+.online-container .store-desc {
+  min-height: 50px;
+  text-align: left;
+  line-height: 30px;
+}
+
+.online-container .info-section h3 {
+  margin-bottom: 20px;
+}
+
+.online-container .store-photo-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.online-container .store-photo img {
+  width: 170px;
+  height: 230px;
+  margin: 0 15px;
+}
+
+.online-container .service-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.online-container .service-wrapper .service {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  text-align: left;
+  padding: 10px;
+  min-height: 400px;
+  margin: 0 10px 20px 8px;
+}
+
+.online-container .service-wrapper .service button {
+  position: relative;
+  bottom: 0;
+}
+
+.online-container .service img {
+  flex: 1;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.online-container .service .service-desc {
+  flex: 1;
+}
+.online-container .service .extra-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.online-container .service button {
+  background: #db6f1c;
+  color: #ffffff;
+  font-size: 16px;
+  overflow: hidden;
+  font-weight: 600;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 10px 2px;
+}

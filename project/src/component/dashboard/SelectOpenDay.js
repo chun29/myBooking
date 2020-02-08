@@ -39,31 +39,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectOpenDay);
-
-{
-  /* <div className="set-container">
-  <label>
-    <input
-      onChange={() => {
-        this.handleOpen("monday");
-      }}
-      type="checkbox"
-      name="workingHours-monday-open"
-      value="true"
-      checked={this.state.businessHour[0].open}
-      id="monday"
-    />
-    <div className="workday-text">星期一</div>
-  </label>
-</div>; */
-}
-
-// this.setState(prevState => ({
-//   businessHour: prevState.businessHour.map(eachday => {
-//     if (eachday.day === id) {
-//       eachday.open = !eachday.open;
-//     }
-//     return eachday;
-//   })
-// }));
-// this.props.setOpeningHours(this.state.businessHour, this.props.auth.uid);

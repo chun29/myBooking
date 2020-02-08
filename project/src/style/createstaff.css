@@ -84,3 +84,7 @@
   align-self: flex-end;
   margin-right: 10px;
 }
+
+.storeCloseBtn {
+  appearance: none;
+}

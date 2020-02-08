@@ -55,23 +55,9 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    staffs: state.staff.staffs,
-    bookings: state.firestore.ordered.booking,
     auth: state.firebase.auth,
     profile: state.firebase.profile
   };
 };
 
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect(props => {
-    return [
-      {
-        collection: "store",
-        doc: props.auth.uid,
-        subcollections: [{ collection: "booking" }],
-        storeAs: "booking"
-      }
-    ];
-  })
-)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
