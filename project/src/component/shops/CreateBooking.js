@@ -9,11 +9,16 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class CreateBooking extends Component {
   state = {
+    selectedService: "",
+    selectedStaff: "",
+    selectedDate: "",
+    bookedDay: "",
+    duration: "60",
+    startTime: "",
     name: "",
-    service: "",
-    server: "",
-    desc: "",
-    date: new Date()
+    phone: "",
+    email: "",
+    desc: ""
   };
 
   handleChange = e => {
@@ -26,9 +31,45 @@ class CreateBooking extends Component {
     this.props.createBooking(this.state, this.props.auth.uid);
     this.props.history.push("/calendar");
   };
-  handleDate = date => {
+  handleEndTime = e => {
+    const duration = e.target.options[e.target.selectedIndex].getAttribute(
+      "time"
+    );
+
     this.setState({
-      date: date
+      duration: duration,
+      selectedService: e.target.value
+    });
+  };
+  handleDate = date => {
+    let month;
+    let day;
+    if (date.getMonth() + 1 < 10) {
+      month = "0" + (date.getMonth() + 1);
+    } else {
+      month = String(date.getMonth() + 1);
+    }
+    if (date.getDate() < 10) {
+      day = "0" + date.getDate();
+    } else {
+      day = String(date.getDate());
+    }
+
+    const bookedDay = String(date.getFullYear()) + month + day;
+    console.log(bookedDay);
+
+    const hour = date.getHours();
+    let time;
+    if (date.getMinutes() == 0) {
+      time = hour;
+    } else {
+      time = hour + 0.5;
+    }
+    console.log(time);
+    this.setState({
+      selectedDate: date,
+      startTime: time,
+      bookedDay: bookedDay
     });
   };
 
@@ -41,7 +82,11 @@ class CreateBooking extends Component {
         <div className="createstaff-header">
           <h1>新增預約</h1>
         </div>
-        <form className="staff-form" onSubmit={this.handleSubmit}>
+        <form
+          autoComplete="off"
+          className="staff-form"
+          onSubmit={this.handleSubmit}
+        >
           <div className="input-wrapper">
             <div className="form-section">
               <div className="form-item">
@@ -53,17 +98,36 @@ class CreateBooking extends Component {
                 ></input>
               </div>
               <div className="form-item">
+                <label htmlFor="name">預約者電話</label>
+                <input
+                  placeholder="e.g. 0988123456"
+                  id="phone"
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <div className="form-item">
+                <label htmlFor="name">預約者 Email</label>
+                <input
+                  placeholder="e.g. customer@gmail.com"
+                  id="email"
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+
+              <div className="form-item">
                 <label htmlFor="date">日期</label>
                 <DatePicker
                   minDate={new Date()}
-                  selected={this.state.date}
+                  selected={this.state.selectedDate}
                   onChange={this.handleDate}
+                  placeholderText="請選擇日期"
                 />
               </div>
               <div className="form-item">
                 <label htmlFor="time">時間</label>
                 <DatePicker
-                  selected={this.state.date}
+                  selected={this.state.selectedDate}
+                  placeholderText="請選擇時間"
                   onChange={this.handleDate}
                   showTimeSelect
                   showTimeSelectOnly
@@ -72,13 +136,22 @@ class CreateBooking extends Component {
                   dateFormat="h:mm aa"
                 />
               </div>
+            </div>
+            <div className="form-section">
               <div className="form-item">
-                <label htmlFor="service">選擇服務</label>
-                <select id="service" onChange={this.handleChange}>
+                <label htmlFor="selectService">選擇服務</label>
+                <select id="selectedService" onChange={this.handleEndTime}>
+                  <option disabled selected value>
+                    -- 請選擇服務 --
+                  </option>
                   {serviceArr &&
                     serviceArr.map(service => {
                       return (
-                        <option key={service.id} value={service.id}>
+                        <option
+                          key={service.id}
+                          value={service.id}
+                          time={service.duration}
+                        >
                           {service.item} ({service.duration / 60} 小時)
                         </option>
                       );
@@ -86,8 +159,11 @@ class CreateBooking extends Component {
                 </select>
               </div>
               <div className="form-item">
-                <label htmlFor="name">服務人員</label>
-                <select id="server" onChange={this.handleChange}>
+                <label htmlFor="selectStaff">服務人員</label>
+                <select id="selectedStaff" onChange={this.handleChange}>
+                  <option disabled selected value>
+                    -- 請選擇服務人員 --
+                  </option>
                   {staffArr &&
                     staffArr.map(staff => {
                       return (
@@ -98,12 +174,11 @@ class CreateBooking extends Component {
                     })}
                 </select>
               </div>
-            </div>
-            <div className="form-section">
+
               <div className="form-item">
                 <label htmlFor="desc">加入備註</label>
                 <textarea
-                  rows="11"
+                  rows="10"
                   id="desc"
                   onChange={this.handleChange}
                 ></textarea>
@@ -121,7 +196,6 @@ class CreateBooking extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state);
   return {
     staff: state.firestore.ordered.staff,
     service: state.firestore.ordered.service,

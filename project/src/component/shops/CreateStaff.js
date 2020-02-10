@@ -37,7 +37,11 @@ class CreateStaff extends Component {
         <div className="createstaff-header">
           <h1>新增工作人員</h1>
         </div>
-        <form className="staff-form" onSubmit={this.handleSubmit}>
+        <form
+          autocomplete="off"
+          className="staff-form"
+          onSubmit={this.handleSubmit}
+        >
           <div className="input-wrapper">
             <div className="form-section">
               <div className="form-item">

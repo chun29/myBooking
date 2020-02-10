@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
@@ -11,27 +11,22 @@ import Staff from "./Staff";
 import AvailableTime from "./AvailableTime";
 
 class Template extends React.Component {
-  constructor(props) {
-    super(props);
-    this.scrollDiv = createRef();
-    this.scrollDiv2 = createRef();
-    this.state = {
-      serviceShow: false,
-      staffShow: false,
-      dateShow: false,
-      timeShow: false,
-      selectedService: "",
-      selectedStaff: "",
-      selectedDate: "",
-      bookedDay: "",
-      duration: "",
-      startTime: "",
-      name: "",
-      phone: "",
-      email: "",
-      desc: ""
-    };
-  }
+  state = {
+    serviceShow: false,
+    staffShow: false,
+    dateShow: false,
+    timeShow: false,
+    selectedService: "",
+    selectedStaff: "",
+    selectedDate: "",
+    bookedDay: "",
+    duration: "",
+    startTime: "",
+    name: "",
+    phone: "",
+    email: "",
+    desc: ""
+  };
 
   handleChange = date => {
     let month;
@@ -54,38 +49,20 @@ class Template extends React.Component {
       selectedDate: date,
       bookedDay: bookedDay
     });
-    if (this.state.timeShow == false) {
-      this.setState({
-        timeShow: true
-      });
-    }
   };
   showBooking = () => {
-    this.setState(
-      {
-        serviceShow: true,
-        staffShow: true,
-        dateShow: true
-      },
-      function() {
-        this.scrollDiv.current.scrollIntoView({
-          behavior: "smooth"
-        });
-      }
-    );
+    this.setState({
+      serviceShow: true,
+      staffShow: true,
+      dateShow: true
+    });
   };
 
-  selectStaff = (e, id) => {
-    this.setState(
-      {
-        selectedStaff: id
-      },
-      function() {
-        this.scrollDiv2.current.scrollIntoView({
-          behavior: "smooth"
-        });
-      }
-    );
+  selectStaff = e => {
+    this.setState({
+      selectedStaff: e
+    });
+    console.log(e);
   };
   selectService = (e, duration) => {
     this.setState({
@@ -96,8 +73,9 @@ class Template extends React.Component {
   };
 
   render() {
-    const id = "3IYjMjG5ejTCoyfQ6FYapwJsMaA3";
     console.log(this.props.match.params);
+    const id = this.props.match.params;
+
     const data = this.props;
     let store;
     let storeCloseDay = [];
@@ -270,7 +248,7 @@ class Template extends React.Component {
             </div>
             {this.state.serviceShow && (
               <div className="info-section">
-                <h3 ref={this.scrollDiv}>服務</h3>
+                <h3>服務</h3>
                 <div className="service-wrapper">
                   {serviceArr.map((service, i) => {
                     return (
@@ -304,7 +282,7 @@ class Template extends React.Component {
             )}
             {this.state.dateShow && (
               <div className="info-section">
-                <h3 ref={this.scrollDiv2}>選擇日期</h3>
+                <h3>選擇日期</h3>
                 <DatePicker
                   selected={this.state.selectedDate}
                   onChange={this.handleChange}
@@ -322,7 +300,6 @@ class Template extends React.Component {
             {this.state.timeShow && (
               <div className="info-section">
                 <h3>時間</h3>
-                <p>尚無可選擇時間</p>
                 <div className="service-wrapper">
                   <AvailableTime
                     bookedDay={this.state.bookedDay}
@@ -330,7 +307,6 @@ class Template extends React.Component {
                     storeInfo={store}
                     weekDay={this.state.selectedDate}
                     duration={this.state.duration}
-                    selectStaff={this.state.selectedStaff}
                   />
                 </div>
               </div>
@@ -360,24 +336,18 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => {
-    const uid = props.match.params.id;
-
     return [
       {
         collection: "store",
-        doc: uid,
+        doc: props.match.params,
         subcollections: [{ collection: "staff" }],
         storeAs: "staff"
       },
       {
         collection: "store",
-        doc: uid,
+        doc: props.match.params,
         subcollections: [{ collection: "service" }],
         storeAs: "service"
-      },
-      {
-        collection: "store",
-        doc: uid
       }
     ];
   })

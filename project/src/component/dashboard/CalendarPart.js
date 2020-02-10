@@ -25,7 +25,7 @@ class CalendarPart extends React.Component {
     const bookingInfo =
       this.props.bookings &&
       this.props.bookings.sort(function(a, b) {
-        return a.date.seconds - b.date.seconds;
+        return a.selectedDate.seconds - b.selectedDate.seconds;
       });
     const bookingList =
       bookingInfo &&
@@ -33,16 +33,17 @@ class CalendarPart extends React.Component {
       serviceInfo &&
       bookingInfo.map(booking => {
         const staff =
-          staffInfo && staffInfo.filter(staff => staff.id === booking.server);
+          staffInfo &&
+          staffInfo.filter(staff => staff.id === booking.selectedStaff);
 
         const staffName = staff[0] && staff[0].name;
         const staffColor = staff[0] && staff[0].color;
 
         const service =
           serviceInfo &&
-          serviceInfo.filter(service => service.id === booking.service);
+          serviceInfo.filter(service => service.id === booking.selectedService);
         const serviceName = service && service[0] && service[0].item;
-        let date = new Date(booking.date.seconds * 1000);
+        let date = new Date(booking.selectedDate.seconds * 1000);
         const bookingMonth = date.getMonth() + 1;
         const bookingDate = date.getDate();
         const bookingHours = date.getHours();
@@ -56,8 +57,8 @@ class CalendarPart extends React.Component {
         }
 
         return {
-          server: staffName,
-          serverColor: staffColor,
+          staff: staffName,
+          staffColor: staffColor,
           service: serviceName,
           date: bookingDate,
           month: bookingMonth,
@@ -114,10 +115,10 @@ class CalendarPart extends React.Component {
           <div className="day-text">{d}</div>
           <div className="day-bookings">
             {datas &&
-              datas.map(data => {
+              datas.map((data, i) => {
                 return (
                   <React.Fragment>
-                    <Test data={data} />
+                    <Test key={i} data={data} />
                   </React.Fragment>
                 );
               })}
@@ -185,7 +186,7 @@ class CalendarPart extends React.Component {
       });
       rows.push(cells); // add last row
       let monthlist = rows.map((d, i) => {
-        return <tr>{d}</tr>;
+        return <tr key={i}>{d}</tr>;
       });
       return (
         <table className="calendar-month">
@@ -233,7 +234,7 @@ class CalendarPart extends React.Component {
       });
       rows.push(cells);
       let yearlist = rows.map((d, i) => {
-        return <tr>{d}</tr>;
+        return <tr key={i}>{d}</tr>;
       });
       return (
         <table className="calendar-month">

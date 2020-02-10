@@ -1,5 +1,10 @@
 export const createBooking = (booking, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const { startTime, duration } = booking;
+    const bookedTime = [];
+    bookedTime[0] = startTime;
+    bookedTime[1] = startTime + duration;
+
     // make async call to database
     const firestore = getFirestore();
     firestore
@@ -11,6 +16,19 @@ export const createBooking = (booking, id) => {
         ...booking,
         createdAt: new Date()
       })
+      // .then(() => {
+      //   return firestore
+      //     .collection("bookingTime")
+      //     .doc(id)
+      //     .collection(booking.bookedDay)
+      //     .doc(booking.selectedStaff)
+      //     .set(
+      //       {
+      //         bookedTime: [bookedTime]
+      //       },
+      //       { merge: true }
+      //     );
+      // })
       .then(() => {
         dispatch({ type: "CREATE_BOOKING", booking });
       })
@@ -19,3 +37,5 @@ export const createBooking = (booking, id) => {
       });
   };
 };
+
+[0, 2];

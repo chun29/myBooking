@@ -9,7 +9,7 @@ export default class Test extends Component {
     };
   }
   render() {
-    const data = this.props.data;
+    const { data } = this.props;
     return (
       <div
         className="booking-text"
@@ -25,7 +25,7 @@ export default class Test extends Component {
           <span className="toolTip">
             <h4>預約資訊</h4>
             <div>預約編號：{data.id.substring(0, 4)}</div>
-            <div>服務人員：{data.server}</div>
+            <div>服務人員：{data.staff}</div>
             <div>顧客姓名：{data.name}</div>
           </span>
         )}

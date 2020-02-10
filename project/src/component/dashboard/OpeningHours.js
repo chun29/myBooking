@@ -10,15 +10,7 @@ import SelectOpenTime from "./SelectOpenTime";
 import SelectCloseTime from "./SelectOpenTime";
 import setOpeningHours from "../../store/actions/openingHoursAction";
 
-const WEEK = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-  "sunday"
-];
+const WEEK = [1, 2, 3, 4, 5, 6, 0];
 class OpeningHours extends Component {
   state = {
     isOpen: WEEK.reduce(
@@ -38,7 +30,7 @@ class OpeningHours extends Component {
     closeTime: WEEK.reduce(
       (options, option) => ({
         ...options,
-        [option]: "8"
+        [option]: "18"
       }),
       {}
     )
@@ -129,7 +121,7 @@ class OpeningHours extends Component {
                 <h1>設定營業時間</h1>
               </div>
               <div className="workingHours-container">
-                <form className="workingHours-form">
+                <form autocomplete="off" className="workingHours-form">
                   <div className="workingHours-column workday">
                     <h3>星期</h3>
                     {this.createCheckboxes()}
