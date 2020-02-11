@@ -322,7 +322,7 @@ class Template extends React.Component {
             {this.state.timeShow && (
               <div className="info-section">
                 <h3>時間</h3>
-                <p>尚無可選擇時間</p>
+
                 <div className="service-wrapper">
                   <AvailableTime
                     bookedDay={this.state.bookedDay}

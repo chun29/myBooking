@@ -15,7 +15,7 @@ import Service from "./component/dashboard/Service";
 import Calendar from "./component/dashboard/Calendar";
 import BookingWebSetup from "./component/dashboard/BookingWebSetup";
 import Template from "./component/onlineWebsite/Template";
-import Test from "./component/testarea/TestComponent";
+import Online from "./component/dashboard/Online";
 
 class App extends Component {
   render() {
@@ -36,7 +36,7 @@ class App extends Component {
             <Route path="/calendar" component={Calendar} />
             <Route path="/onlinebooking" component={BookingWebSetup} />
             <Route path="/booking/:id" component={Template} />
-            <Route path="/test" component={Test} />
+            <Route path="/online" component={Online} />
           </Switch>
         </div>
       </Router>

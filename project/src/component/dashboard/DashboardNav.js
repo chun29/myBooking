@@ -6,6 +6,7 @@ import calendar from "../../img/calendar.png";
 import time from "../../img/time.png";
 import service from "../../img/service.png";
 import staff from "../../img/staff.png";
+import online from "../../img/online.png";
 import { Link } from "react-router-dom";
 
 const DashboardNav = () => {
@@ -47,22 +48,14 @@ const DashboardNav = () => {
                 服務人員
               </li>
             </Link>
+            <Link to="/online">
+              <li>
+                <img src={online} alt="online website" />
+                打造專屬預約網站
+              </li>
+            </Link>
           </ul>
         </div>
-        {/* <div className="right-container">
-          <div className="home-info today-booking">
-            <h1>今日預約</h1>
-          </div>
-          <div className="home-info upcoming-booking">
-            <h1>本週預約</h1>
-          </div>
-          <div className="home-info today-booking">
-            <h1>近期新增預約</h1>
-          </div>
-          <div className="home-info today-booking">
-            <h1>服務統計</h1>
-          </div>
-        </div> */}
       </main>
     </React.Fragment>
   );

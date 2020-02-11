@@ -61,6 +61,7 @@
   border: 1px solid #c2c2c2;
   outline: none;
   padding: 9px 5px;
+  resize: none;
 }
 
 .button-wrapper {

@@ -10,10 +10,11 @@ export default class Test extends Component {
   }
   render() {
     const { data } = this.props;
+
     return (
       <div
         className="booking-text"
-        style={{ backgroundColor: data.serverColor }}
+        style={{ backgroundColor: data.staffColor }}
         onMouseEnter={this.onMouseOver.bind(this)}
         onMouseLeave={this.onMouseOut.bind(this)}
       >

@@ -3,17 +3,19 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { onlineSetup } from "../../store/actions/onlineAction";
 import "..//../style/createstaff.css";
+import storelogo from "../../img/store-logo.png";
 
 class BookingWebSetup extends Component {
   state = {
     storeName: "",
     storeAddress: "",
     storePhone: "",
-    startDay: "",
-    closeDay: "",
+    openBookingTime: "0",
+    closeBookingTime: "0",
     storeDesc: "",
-    bookingDesc: "",
-    storeIsClose: false
+    bookingNote: "",
+    storeIsClose: false,
+    image: null
   };
 
   handleChange = e => {
@@ -21,17 +23,23 @@ class BookingWebSetup extends Component {
       [e.target.id]: e.target.value
     });
   };
+  handleImgChange = e => {
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      this.setState(() => ({ image }));
+    }
+  };
   handleSubmit = e => {
     e.preventDefault();
     this.props.onlineSetup(this.state, this.props.auth.uid);
-    this.props.history.push("/calendar");
+    this.props.history.push("/dashboard");
   };
 
   render() {
     return (
       <div className="createstaff-wrapper">
         <div className="createstaff-header">
-          <h1>線上預約設定</h1>
+          <h1>線上預約網站設定</h1>
         </div>
         <form className="staff-form" onSubmit={this.handleSubmit}>
           <div className="input-wrapper">
@@ -60,36 +68,76 @@ class BookingWebSetup extends Component {
                   onChange={this.handleChange}
                 ></input>
               </div>
+              <div className="form-item logo-wrapper">
+                <label htmlFor="desc">公司標誌</label>
+                <div className="logo-circle">
+                  <img className="store-logo" src={storelogo} alt="home" />
+                </div>
+                <p>建議尺寸 180 x 180</p>
+                <input
+                  type="file"
+                  name="pic"
+                  accept="image/*"
+                  onChange={this.handleImgChange}
+                />
+              </div>
+              <div className="form-item logo-wrapper">
+                <label htmlFor="desc">公司主視覺</label>
+                <div className="logo-circle">
+                  <img className="store-logo" src={storelogo} alt="home" />
+                </div>
+                <p>建議尺寸 1920 x 140</p>
+                <input
+                  type="file"
+                  name="pic"
+                  accept="image/*"
+                  onChange={this.handleImgChange}
+                />
+              </div>
               <div className="form-item">
-                <label htmlFor="desc">最早可在服務前多久預約</label>
-                <select>
-                  <option>1週</option>
-                  <option>2週</option>
-                  <option>3週</option>
-                  <option>4週</option>
-                  <option>5週</option>
-                  <option>6週</option>
-                  <option>7週</option>
-                  <option>8週</option>
-                  <option>9週</option>
-                  <option>10週</option>
-                  <option>11週</option>
-                  <option>12週</option>
+                <label htmlFor="desc">
+                  最早預約時間 (例如:兩個月前開放預約)
+                </label>
+                <select
+                  id="openBookingTime"
+                  value={this.state.openBookingTime}
+                  onChange={this.handleChange}
+                >
+                  <option value="0">不限制</option>
+                  <option value="7">1週</option>
+                  <option value="14">2週</option>
+                  <option value="21">3週</option>
+                  <option value="28">4週</option>
+                  <option value="35">5週</option>
+                  <option value="42">6週</option>
+                  <option value="49">7週</option>
+                  <option value="56">8週</option>
+                  <option value="63">9週</option>
+                  <option value="70">10週</option>
+                  <option value="77">11週</option>
+                  <option value="84">12週</option>
                 </select>
               </div>
               <div className="form-item">
-                <label htmlFor="desc">最晚可在服務前多久預約</label>
-                <select>
-                  <option>1天</option>
-                  <option>2天</option>
-                  <option>3天</option>
-                  <option>4天</option>
-                  <option>5天</option>
-                  <option>6天</option>
-                  <option>1週</option>
-                  <option>2週</option>
-                  <option>3週</option>
-                  <option>4週</option>
+                <label htmlFor="desc">
+                  最晚預約時間 (例如:最晚須於一天之前預約)
+                </label>
+                <select
+                  value={this.state.closeBookingTime}
+                  onChange={this.handleChange}
+                  id="closeBookingTime"
+                >
+                  <option value="0">不限制</option>
+                  <option value="1">1天</option>
+                  <option value="2">2天</option>
+                  <option value="3">3天</option>
+                  <option value="4">4天</option>
+                  <option value="5">5天</option>
+                  <option value="6">6天</option>
+                  <option value="7">1週</option>
+                  <option value="14">2週</option>
+                  <option value="21">3週</option>
+                  <option value="28">4週</option>
                 </select>
               </div>
             </div>
@@ -112,8 +160,10 @@ class BookingWebSetup extends Component {
               </div>
 
               <div className="form-item">
-                <label htmlFor="desc">
-                  暫時關閉線上預約 <span>□</span>
+                <label htmlFor="desc">暫時關閉線上預約</label>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span class="slider round"></span>
                 </label>
               </div>
             </div>

@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const StoreCalender = () => {
   return (
     <div>
-      <h1>行事曆</h1>
-      <p>要放行事曆</p>
+      <Link to="/onlinebooking">
+        <h1>上線設定</h1>
+      </Link>
     </div>
   );
 };
