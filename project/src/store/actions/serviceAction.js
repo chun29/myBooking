@@ -1,5 +1,6 @@
 export const createService = (service, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    console.log(service);
     // make async to database
     const firestore = getFirestore();
     console.log(firestore.collection("store"));

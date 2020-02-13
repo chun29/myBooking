@@ -37,7 +37,8 @@
   font-size: 14px;
   display: inline-block;
   max-width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .form-item input {
@@ -62,19 +63,21 @@
   outline: none;
   padding: 9px 5px;
   resize: none;
+  font-size: 14px;
+  color: #2c2c2c;
 }
-
-.button-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+.create-staff-button {
+  color: #fff;
+  background-color: #24334a;
+  border-color: #24334a;
+}
+.cancel-staff-button {
+  background-color: #fff;
+  color: #24334a;
 }
 
 .create-staff-button,
 .cancel-staff-button {
-  color: #fff;
-  background-color: #24334a;
-  border-color: #24334a;
   font-size: 14px;
   text-align: center;
   vertical-align: middle;
@@ -88,4 +91,51 @@
 
 .storeCloseBtn {
   appearance: none;
+}
+
+.color-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.color-area .color {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ffbf69;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.color-area .selected {
+  background-image: url(../img/check.png);
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.switch-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.staff-avatar-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.booking-open-btn {
+  width: 10px;
+}
+
+.alert-msg {
+  font-size: 12px;
+  padding-left: 5px;
+  color: #ff9d9d;
+}
+
+.required:after {
+  color: #ff9d9d;
+  content: " *";
+  display: inline;
 }

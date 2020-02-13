@@ -13,7 +13,7 @@ class CreateBooking extends Component {
     selectedStaff: "",
     selectedDate: "",
     bookedDay: "",
-    duration: "60",
+    duration: "",
     startTime: "",
     name: "",
     phone: "",
@@ -28,6 +28,8 @@ class CreateBooking extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+    console.log(this.state);
+    console.log(this.props.auth.uid);
     this.props.createBooking(this.state, this.props.auth.uid);
     this.props.history.push("/calendar");
   };
@@ -158,6 +160,7 @@ class CreateBooking extends Component {
                     })}
                 </select>
               </div>
+
               <div className="form-item">
                 <label htmlFor="selectStaff">服務人員</label>
                 <select id="selectedStaff" onChange={this.handleChange}>

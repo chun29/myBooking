@@ -1,19 +1,38 @@
 export const createStaff = (staff, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // make async to database
+    const { image } = staff;
     const firestore = getFirestore();
-    console.log(firestore.collection("store"));
-    firestore
-      .collection("store")
-      .doc(id)
-      .collection("staff")
-      .doc()
-      .set(staff, { merge: true })
-      .then(() => {
-        dispatch({ type: "CREATE_STAFF", staff });
+    const firebase = getFirebase();
+
+    const imagesPath = "images";
+
+    firebase
+      .uploadFile(imagesPath, image)
+      .then(uploadedFile => {
+        return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
       })
-      .catch(err => {
-        dispatch({ type: "CREATE_STAFF_ERROR", err });
+      .then(downloadURL => {
+        console.log(
+          `Successfully uploaded file and got download link - ${downloadURL}`
+        );
+        return downloadURL;
+      })
+      .then(url => {
+        staff.url = url;
+        staff.image = image.name;
+
+        firestore
+          .collection("store")
+          .doc(id)
+          .collection("staff")
+          .doc()
+          .set(staff, { merge: true })
+          .then(() => {
+            dispatch({ type: "CREATE_STAFF", staff });
+          })
+          .catch(err => {
+            dispatch({ type: "CREATE_STAFF_ERROR", err });
+          });
       });
   };
 };

@@ -1,9 +1,12 @@
 import React from "react";
 import storePhoto from "../../img/banner.jpg";
+import Button from "@material-ui/core/Button";
+import Timer from "../../img/timer.png";
 
 const Service = ({ service, selectService, selectedService }) => {
   let style;
-  if (service.item == selectedService) {
+
+  if (service.id == selectedService.id) {
     style = {
       border: "2px solid rgba(81, 203, 238, 1)",
       boxShadow: "0 0 5px rgba(81, 203, 238, 1)"
@@ -11,22 +14,32 @@ const Service = ({ service, selectService, selectedService }) => {
   }
   return (
     <div className="service" style={style}>
-      <img src={storePhoto} />
-      <div className="service-desc">
-        <h3>{service.item}</h3>
+      <img className="service-img" src={storePhoto} />
+      <div className="service-row-1 service-desc">
+        <p>{service.item}</p>
         <p>{service.desc}</p>
-        <div className="extra-info">
-          <p>🕑 {service.duration / 60} 小時</p>
-          <p>＄{service.price}</p>
-        </div>
+      </div>
+      <div className="service-row-2">
+        <p>
+          <span>
+            <img className="timer" src={Timer}></img>
+          </span>
+          <span className="duration-text">{service.duration / 60} 小時</span>
+        </p>
+        <p className="price-text">＄{service.price}</p>
+      </div>
 
-        <button
+      <div className="service-row-3 extra-info">
+        <p>閱讀更多</p>
+        <Button
+          variant="outlined"
+          color="primary"
           onClick={() => {
-            selectService(service.item, service.duration / 60);
+            selectService(service.item, service.id, service.duration / 60);
           }}
         >
           選擇
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -40,8 +40,9 @@ class Staff extends Component {
                 <table className="staff-table-wrapper">
                   <thead>
                     <tr>
-                      <th>編輯</th>
-                      <th>圖片</th>
+                      <th></th>
+                      <th className="staff-img-th"></th>
+
                       <th>姓名</th>
                       <th>電話</th>
                       <th>Email</th>

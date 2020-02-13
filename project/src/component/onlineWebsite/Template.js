@@ -9,6 +9,9 @@ import storePhoto from "../../img/banner.jpg";
 import Service from "./service";
 import Staff from "./Staff";
 import AvailableTime from "./AvailableTime";
+import BookingProcess from "./BookingProcess";
+import BookingConfirm from "./BookingConfirm";
+import { createBooking } from "../../store/actions/bookingAction";
 
 class Template extends React.Component {
   constructor(props) {
@@ -16,16 +19,19 @@ class Template extends React.Component {
     this.scrollDiv = createRef();
     this.scrollDiv2 = createRef();
     this.state = {
+      step: "",
+      bookingShow: false,
       serviceShow: false,
       staffShow: false,
       dateShow: false,
       timeShow: false,
-      selectedService: "",
-      selectedStaff: "",
+      confirmShow: false,
+      selectedService: { item: "", id: "" },
+      selectedStaff: { name: "", id: "" },
       selectedDate: "",
       bookedDay: "",
       duration: "",
-      startTime: "",
+      startTime: { num: "", text: "" },
       name: "",
       phone: "",
       email: "",
@@ -64,8 +70,8 @@ class Template extends React.Component {
     this.setState(
       {
         serviceShow: true,
-        staffShow: true,
-        dateShow: true
+        bookingShow: true,
+        step: 1
       },
       function() {
         this.scrollDiv.current.scrollIntoView({
@@ -75,10 +81,32 @@ class Template extends React.Component {
     );
   };
 
-  selectStaff = (e, id) => {
+  selectService = (item, id, duration) => {
+    this.setState({
+      selectedService: {
+        ...this.state.selectedService,
+        item,
+        id
+      },
+      duration: duration * 60,
+      serviceShow: false,
+      staffShow: true,
+      step: 2
+    });
+  };
+
+  selectStaff = (name, id) => {
     this.setState(
       {
-        selectedStaff: id
+        selectedStaff: {
+          ...this.state.selectedStaff,
+          name,
+          id
+        },
+        serviceShow: false,
+        staffShow: false,
+        dateShow: true,
+        step: 3
       },
       function() {
         this.scrollDiv2.current.scrollIntoView({
@@ -87,31 +115,87 @@ class Template extends React.Component {
       }
     );
   };
-  selectService = (e, duration) => {
+  selectStartTime = (num, text) => {
     this.setState({
-      selectedService: e,
-      duration: duration * 60,
-      timeShow: true
+      startTime: {
+        ...this.state.startTime,
+        num,
+        text
+      },
+      confirmShow: true,
+      dateShow: false,
+      step: 4
     });
   };
 
+  handleInfoChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  selectStep = step => {
+    if (step == 1) {
+      this.setState({
+        serviceShow: true,
+        staffShow: false,
+        dateShow: false,
+        step: 1
+      });
+    } else if (step == 2) {
+      if (this.state.selectedService.item.length < 1) {
+        return;
+      } else {
+        this.setState({
+          serviceShow: false,
+          staffShow: true,
+          dateShow: false,
+          step: 2
+        });
+      }
+    } else if (step == 3) {
+      if (
+        this.state.selectedService.item.length < 1 ||
+        this.state.selectedStaff.name.length < 1
+      ) {
+        return;
+      } else {
+        this.setState({
+          serviceShow: false,
+          staffShow: false,
+          dateShow: true,
+          step: 3
+        });
+      }
+    }
+  };
+
+  handleSubmit = id => {
+    this.props.createBooking(this.state, id.id);
+    // this.props.history.push("/");
+  };
+
   render() {
-    const id = "3IYjMjG5ejTCoyfQ6FYapwJsMaA3";
-    console.log(this.props.match.params);
+    const id = this.props.match.params && this.props.match.params;
+    // console.log(this.props.match.params);
     const data = this.props;
     let store;
     let storeCloseDay = [];
     if (data.store && data.store[0].online) {
+      console.log(data.store[0].workday.isOpen);
       store = {
+        bookingIsOpen: data.store[0].online.storeName.bookingIsOpen,
         name: data.store[0].online.storeName,
         address: data.store[0].online.storeAddress,
         phone: data.store[0].online.storePhone,
         desc: data.store[0].online.storeDesc,
-        note: data.store[0].online.bookingDesc,
-        startDay: Number(data.store[0].online.startDay),
-        closeDay: Number(data.store[0].online.closeDay),
+        note: data.store[0].online.bookingNote,
+        startDay: Number(data.store[0].online.bookOpenDay),
+        closeDay: Number(data.store[0].online.bookCloseDay),
+        logoImg: data.store[0].online.logoSrc,
+        bannerImg: data.store[0].online.bannerSrc,
         close: data.store[0].online.storeIsClose,
-        isOpen: data.store[0].workday.open,
+        isOpen: Object.values(data.store[0].workday.isOpen),
         openTime: data.store[0].workday.openTime,
         closeTime: data.store[0].workday.closeTime
       };
@@ -122,6 +206,7 @@ class Template extends React.Component {
         }
       }
     }
+
     const isOpenDay = date => {
       const day = date.getDay();
       for (let i = 0; i < storeCloseDay.length; i++) {
@@ -236,7 +321,9 @@ class Template extends React.Component {
           <div className="right-header">查詢/修改預約</div>
         </nav>
         <div className="banner-wrapper">
-          <div className="banner"></div>
+          <div className="banner">
+            {store && <img className="banner" src={store.bannerImg} />}
+          </div>
         </div>
         <div className="content">
           <div className="store-info">
@@ -260,7 +347,7 @@ class Template extends React.Component {
               <h3>店家圖片</h3>
               <div className="store-photo-wrapper">
                 <div className="store-photo">
-                  <img src={storePhoto} alt="" />
+                  {store && <img src={store.logoImg} alt="" />}
                 </div>
               </div>
             </div>
@@ -268,76 +355,108 @@ class Template extends React.Component {
               <h3>預約須知</h3>
               <div className="store-desc">{store && <p>{store.note}</p>}</div>
             </div>
-            {this.state.serviceShow && (
-              <div className="info-section">
-                <h3 ref={this.scrollDiv}>服務</h3>
-                <div className="service-wrapper">
-                  {serviceArr.map((service, i) => {
-                    return (
-                      <Service
-                        key={i}
-                        service={service}
-                        selectService={this.selectService}
-                        selectedService={this.state.selectedService}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-            {this.state.staffShow && (
-              <div className="info-section">
-                <h3>服務人員</h3>
-                <div className="service-wrapper">
-                  {staffArr.map((staff, i) => {
-                    return (
-                      <Staff
-                        key={i}
-                        staff={staff}
-                        selectStaff={this.selectStaff}
-                        selectedStaff={this.state.selectedStaff}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-            {this.state.dateShow && (
-              <div className="info-section">
-                <h3 ref={this.scrollDiv2}>選擇日期</h3>
-                <DatePicker
-                  selected={this.state.selectedDate}
-                  onChange={this.handleChange}
-                  minDate={new Date().setDate(
-                    new Date().getDate() + store.closeDay
-                  )}
-                  maxDate={new Date().setDate(
-                    new Date().getDate() + store.startDay
-                  )}
-                  placeholderText="請選擇日期"
-                  filterDate={isOpenDay}
-                />
-              </div>
-            )}
-            {this.state.timeShow && (
-              <div className="info-section">
-                <h3>時間</h3>
 
-                <div className="service-wrapper">
-                  <AvailableTime
-                    bookedDay={this.state.bookedDay}
-                    storeID={id}
-                    storeInfo={store}
-                    weekDay={this.state.selectedDate}
-                    duration={this.state.duration}
-                    selectStaff={this.state.selectedStaff}
-                  />
+            {this.state.bookingShow && (
+              <div
+                ref={this.scrollDiv}
+                className="info-section booking-section"
+              >
+                <BookingProcess
+                  step={this.state.step}
+                  selectStep={this.selectStep}
+                />
+                <div className="booking-step-item">
+                  {this.state.serviceShow && (
+                    <div>
+                      <h3>STEP1 選擇服務</h3>
+                      <div className="service-wrapper">
+                        {serviceArr.map((service, i) => {
+                          return (
+                            <Service
+                              key={i}
+                              service={service}
+                              selectService={this.selectService}
+                              selectedService={this.state.selectedService}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                  {this.state.staffShow && (
+                    <div className="booking-step-item">
+                      <h3>選擇服務人員</h3>
+                      <div className="service-wrapper">
+                        {staffArr.map((staff, i) => {
+                          return (
+                            <Staff
+                              key={i}
+                              staff={staff}
+                              selectStaff={this.selectStaff}
+                              selectedStaff={this.state.selectedStaff}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
+
+                {this.state.dateShow && (
+                  <div className="booking-step-date">
+                    <h3 ref={this.scrollDiv2}>STEP4 選擇日期</h3>
+                    <DatePicker
+                      selected={this.state.selectedDate}
+                      onChange={this.handleChange}
+                      minDate={new Date().setDate(
+                        new Date().getDate() + store.closeDay
+                      )}
+                      maxDate={new Date().setDate(
+                        new Date().getDate() + store.startDay
+                      )}
+                      placeholderText="請選擇日期"
+                      filterDate={isOpenDay}
+                      className="datePicker"
+                    />
+                    {this.state.timeShow && (
+                      <div>
+                        <h3>可選擇時間</h3>
+
+                        <div className="service-wrapper">
+                          <AvailableTime
+                            bookedDay={this.state.bookedDay}
+                            storeID={id}
+                            storeInfo={store}
+                            weekDay={this.state.selectedDate}
+                            duration={this.state.duration}
+                            selectStaff={this.state.selectedStaff}
+                            selectStartTime={this.selectStartTime}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {this.state.confirmShow && (
+                  <div className="booking-step-item">
+                    <h3>STEP4 填入顧客資訊</h3>
+                    <BookingConfirm
+                      allState={this.state}
+                      handleInfoChange={this.handleInfoChange}
+                      handleSubmit={this.handleSubmit}
+                      storeID={id}
+                    />
+                  </div>
+                )}
               </div>
             )}
-            {/* {store && <div>{timeArea()}</div>} */}
           </div>
         </div>
+        <footer>
+          <div className="copyright">
+            © 2019 MyBooking All rights researved.
+          </div>
+        </footer>
       </div>
     );
   }

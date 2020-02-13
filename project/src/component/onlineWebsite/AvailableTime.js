@@ -8,14 +8,14 @@ import "../../style/template.css";
 
 class AvailableTime extends Component {
   render() {
-    console.log;
     const {
       booking,
       bookedDay,
       storeInfo,
       weekDay,
       duration,
-      selectStaff
+      selectStaff,
+      selectStartTime
     } = this.props;
     console.log(selectStaff);
     let closeTime;
@@ -29,7 +29,6 @@ class AvailableTime extends Component {
     let bookedList = [];
 
     if (booking) {
-      console.log(booking);
       booking.map(data => {
         if (data.bookedDay == bookedDay && data.selectedStaff == selectStaff) {
           console.log(data.startTime, data.duration);
@@ -103,11 +102,10 @@ class AvailableTime extends Component {
         return diff;
       }
       let availableArr = arr_diff(bookedTime, times).map(e => e.split(","));
-      console.log(availableArr);
 
       // 最終時間 Arr
       let finalArr = [];
-      console.log(duration);
+
       for (let i = 0; i < availableArr.length - (duration / 30 - 1); i++) {
         if (
           Number(availableArr[i][0]) + duration / 60 ===
@@ -122,19 +120,24 @@ class AvailableTime extends Component {
       // 生成btn
       let finalBtn = [];
       for (let i = 0; i < finalArr.length; i++) {
-        let time;
+        let time = [];
         if (finalArr[i] == 12) {
-          time = "12:00 PM";
+          time[0] = "12:00 PM";
+          time[1] = 12;
+        } else if (finalArr[i] == 12.5) {
+          time[0] = "12:30 PM";
+          time[1] = 12.5;
         } else {
           let hh = Math.floor(finalArr[i]); // getting hours of day in 0-24 format
           let mm = (finalArr[i] * 60) % 60; // getting minutes of the hour in 0-55 format
           let ap = ["AM", "PM"]; // AM-PM
-          time =
+          time[0] =
             ("0" + (hh % 12)).slice(-2) +
             ":" +
             ("0" + mm).slice(-2) +
             " " +
             ap[Math.floor(hh / 12)];
+          time[1] = finalArr[i];
         }
         finalBtn.push(time);
       }
@@ -143,8 +146,14 @@ class AvailableTime extends Component {
         <div>
           {finalBtn.map((time, i) => {
             return (
-              <button className="timeButton" key={i}>
-                {time}
+              <button
+                onClick={() => {
+                  selectStartTime(time[1], time[0]);
+                }}
+                className="timeButton"
+                key={i}
+              >
+                {time[0]}
               </button>
             );
           })}

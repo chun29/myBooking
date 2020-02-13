@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import setOpeningHours from "../../store/actions/openingHoursAction";
 import { connect } from "react-redux";
+import Checkbox from "@material-ui/core/Checkbox";
 
 class SelectOpenDay extends Component {
   render() {
@@ -12,14 +13,16 @@ class SelectOpenDay extends Component {
       <div className="set-container">
         <div className="form-check">
           <label>
-            <input
-              type="checkbox"
-              name={day}
+            <Checkbox
+              name={day[0]}
               checked={isOpen}
               onChange={checkboxChange}
               className="form-check-input"
+              value="secondary"
+              color="primary"
+              inputProps={{ "aria-label": "secondary checkbox" }}
             />
-            {day}
+            {day[1]}
           </label>
         </div>
       </div>

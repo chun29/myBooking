@@ -10,7 +10,6 @@ export default class Test extends Component {
   }
   render() {
     const { data } = this.props;
-
     return (
       <div
         className="booking-text"
@@ -18,9 +17,7 @@ export default class Test extends Component {
         onMouseEnter={this.onMouseOver.bind(this)}
         onMouseLeave={this.onMouseOut.bind(this)}
       >
-        <span className="booking-time-text">
-          {data.hours}:{data.minutes}
-        </span>
+        <span className="booking-time-text">{data.time}</span>
         <span>{data.service}</span>
         {this.state.isHover && (
           <span className="toolTip">

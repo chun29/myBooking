@@ -10,27 +10,37 @@ import SelectOpenTime from "./SelectOpenTime";
 import SelectCloseTime from "./SelectOpenTime";
 import setOpeningHours from "../../store/actions/openingHoursAction";
 
-const WEEK = [1, 2, 3, 4, 5, 6, 0];
+const WEEK = [
+  [1, "星期一"],
+  [2, "星期二"],
+  [3, "星期三"],
+  [4, "星期四"],
+  [5, "星期五"],
+  [6, "星期六"],
+  [0, "星期日"]
+];
+
+// const WEEK = [1, 2, 3, 4, 5, 6, 0];
 class OpeningHours extends Component {
   state = {
     isOpen: WEEK.reduce(
       (options, option) => ({
         ...options,
-        [option]: true
+        [option[0]]: true
       }),
       {}
     ),
     openTime: WEEK.reduce(
       (options, option) => ({
         ...options,
-        [option]: "8"
+        [option[0]]: "8"
       }),
       {}
     ),
     closeTime: WEEK.reduce(
       (options, option) => ({
         ...options,
-        [option]: "18"
+        [option[0]]: "18"
       }),
       {}
     )
@@ -52,7 +62,7 @@ class OpeningHours extends Component {
     this.setState(prevState => ({
       openTime: {
         ...prevState.openTime,
-        [name]: time
+        [name[0]]: time
       }
     }));
   };
@@ -63,7 +73,7 @@ class OpeningHours extends Component {
     this.setState(prevState => ({
       closeTime: {
         ...prevState.closeTime,
-        [name]: time
+        [name[0]]: time
       }
     }));
   };
@@ -71,7 +81,7 @@ class OpeningHours extends Component {
   createCheckbox = option => (
     <SelectOpenDay
       label={option}
-      isSelected={this.state.isOpen[option]}
+      isSelected={this.state.isOpen[option[0]]}
       onCheckboxChange={this.handleCheckboxChange}
       key={option}
     />
@@ -80,20 +90,20 @@ class OpeningHours extends Component {
   createOpenTime = option => (
     <SelectOpenTime
       label={option}
-      value={this.state.openTime[option]}
+      value={this.state.openTime[option[0]]}
       handleSelect={this.handleSelectOpenValue}
       key={option}
-      disabled={!this.state.isOpen[option]}
+      disabled={!this.state.isOpen[option[0]]}
     />
   );
 
   createCloseTime = option => (
     <SelectCloseTime
       label={option}
-      value={this.state.closeTime[option]}
+      value={this.state.closeTime[option[0]]}
       handleSelect={this.handleSelectCloseValue}
       key={option}
-      disabled={!this.state.isOpen[option]}
+      disabled={!this.state.isOpen[option[0]]}
     />
   );
 

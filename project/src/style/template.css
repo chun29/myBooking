@@ -14,19 +14,14 @@
 }
 
 .online-container .banner-wrapper {
-  height: 320px;
+  height: 450px;
   margin: 0 auto;
   position: relative;
 }
 
 .online-container .banner {
-  background-image: url(../img/banner.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
-  position: relative;
   height: 100%;
+  width: 100%;
 }
 
 .online-container .store-info {
@@ -108,58 +103,78 @@
   height: 230px;
   margin: 0 15px;
 }
+/* online-container .service-wrapper */
 
 .online-container .service-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-left: 20px;
 }
 
 .online-container .service-wrapper .service {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  border-radius: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  width: 320px;
+  flex-direction: row;
+  border: 1px solid #e8e8e8;
   text-align: left;
-  padding: 10px;
-  min-height: 400px;
-  margin: 0 10px 20px 8px;
+  padding: 5px 10px 5px 0;
+  margin: 0;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
 }
 
-.online-container .service-wrapper .service button {
-  position: relative;
-  bottom: 0;
+.online-container .service-wrapper .service:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-right: black;
 }
 
-.online-container .service img {
-  flex: 1;
-  width: 100%;
-  height: 120px;
-  margin-bottom: 20px;
+.online-container .service .service-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  border-radius: 50%;
+  margin-left: -20px;
 }
 
-.online-container .service .service-desc {
-  flex: 1;
-}
 .online-container .service .extra-info {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
+  text-align: center;
 }
-.online-container .service button {
-  background: #db6f1c;
-  color: #ffffff;
+.online-container .service-wrapper .service button {
   font-size: 16px;
   overflow: hidden;
   font-weight: 600;
-  left: 0;
-  right: 0;
-  width: 100%;
-  margin: 0 auto;
+  width: 80px;
+  margin-top: 5px;
   border-radius: 2px;
-  padding: 10px 2px;
+  padding: 5px 2px;
+  height: 35px;
+}
+
+.service-row-1 {
+  text-align: left;
+  width: 200px;
+}
+
+.service-row-2 {
+  width: 200px;
+}
+.service-row-1 p {
+  font-weight: 600;
+}
+
+.service-row-2,
+.service-row-3 {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.booking-step-date h3 {
+  margin-top: 20px;
 }
 
 .timeButton {
@@ -170,6 +185,118 @@
   color: #ffffff;
   text-align: center;
   cursor: pointer;
-  margin: 5px;
   padding: 10px 16px;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.datePicker {
+  padding: 10px;
+}
+.step-wrapper {
+  width: 300px;
+  margin-right: 50px;
+  text-align: left;
+  align-self: center;
+}
+.step-wrapper-header {
+  display: block;
+  letter-spacing: 1.2px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.step-wrapper .step {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.step-wrapper .step .step-num {
+  margin-right: 10px;
+}
+
+.step-wrapper .step-msg {
+  font-size: 12px;
+  color: #434343;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.step-wrapper .step-selected {
+  background-color: #eee;
+  color: black;
+  border-radius: 5px;
+}
+
+.online-container .booking-section {
+  display: flex;
+  flex-direction: row;
+  min-height: 500px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.booking-step-item {
+  align-self: center;
+  flex: 3;
+}
+
+.booking-step-date {
+  padding-top: 50px;
+  width: 80%;
+  margin: 0 100px;
+}
+
+.online-container footer {
+  background-color: #434343;
+  height: 100px;
+  margin-top: 50px;
+  color: #fff;
+}
+
+.online-container footer .copyright {
+  text-align: center;
+  line-height: 100px;
+}
+
+.timer {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  margin-bottom: -3px;
+}
+.price-text {
+  margin-top: 8px;
+  margin-left: 5px;
+}
+
+.step4-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.customer-info-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 280px;
+  height: 350px;
+  justify-content: space-evenly;
+}
+
+.booking-confirm {
+  flex: 1;
+}
+
+.booking-confirm {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 300px;
+  height: 350px;
+  justify-content: space-evenly;
+  text-align: left;
+  margin-left: 50px;
 }

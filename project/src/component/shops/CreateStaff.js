@@ -10,7 +10,10 @@ class CreateStaff extends Component {
     phone: "",
     email: "",
     nickname: "",
-    desc: ""
+    desc: "",
+    color: "#bbc1e8",
+    image: null,
+    url: ""
   };
   handleChange = e => {
     this.setState({
@@ -19,28 +22,45 @@ class CreateStaff extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+
     console.log("submit", this.state);
     this.props.createStaff(this.state, this.props.auth.uid);
     this.props.history.push("/staff");
   };
 
-  // fileSelectHandler = event => {
-  //   this.setState({
-  //     avatar: event.target.files[0]
-  //   });
-  // };
+  cancelForm = e => {
+    e.preventDefault();
+    this.props.history.push("/staff");
+  };
+
+  handleColorChange = color => {
+    this.setState({
+      color: color
+    });
+  };
+
+  handleImgChange = e => {
+    console.log(e.target.files[0]);
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      this.setState(() => ({ image }));
+    }
+  };
+
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="signin" />;
+    const colors = ["#bbc1e8", "#a5dff8", "#ffbf69", "#ff9cbb", "#a6e5bd"];
+
     return (
       <div className="createstaff-wrapper">
         <div className="createstaff-header">
           <h1>新增工作人員</h1>
         </div>
         <form
-          autocomplete="off"
-          className="staff-form"
           onSubmit={this.handleSubmit}
+          autoComplete="off"
+          className="staff-form"
         >
           <div className="input-wrapper">
             <div className="form-section">
@@ -68,12 +88,29 @@ class CreateStaff extends Component {
                   onChange={this.handleChange}
                 ></input>
               </div>
-              <div className="form-item staff-avatar">
+              <div className="form-item staff-avatar-wrapper">
                 <label htmlFor="photo">圖片</label>
-                <input
-                  type="file"
-                  // onChange={this.fileSelectHandler}
-                />
+                <input type="file" onChange={this.handleImgChange} />
+              </div>
+              <div className="form-item">
+                <label htmlFor="email">行事曆上預約顯示顏色</label>
+                <div className="color-area">
+                  {colors.map(color => {
+                    let addClass = "";
+                    if (this.state.color == color) {
+                      addClass = "selected";
+                    }
+                    return (
+                      <div
+                        style={{ backgroundColor: color }}
+                        onClick={() => {
+                          this.handleColorChange(color);
+                        }}
+                        className={`color ${addClass}`}
+                      ></div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
             <div className="form-section">
@@ -98,8 +135,12 @@ class CreateStaff extends Component {
             </div>
           </div>
           <div className="button-wrapper">
-            <button className="cancel-staff-button">取消</button>
-            <button className="create-staff-button">新增</button>
+            <button onClick={this.cancelForm} className="cancel-staff-button">
+              取消
+            </button>
+            <button type="submit" className="create-staff-button">
+              新增
+            </button>
           </div>
         </form>
       </div>

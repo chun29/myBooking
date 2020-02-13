@@ -1,9 +1,29 @@
 export const createBooking = (booking, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const { startTime, duration } = booking;
-    const bookedTime = [];
-    bookedTime[0] = startTime;
-    bookedTime[1] = startTime + duration;
+    const {
+      bookedDay,
+      desc,
+      duration,
+      email,
+      name,
+      phone,
+      selectedDate,
+      selectedService,
+      selectedStaff,
+      startTime
+    } = booking;
+    const bookingInfo = {
+      bookedDay,
+      desc,
+      duration,
+      email,
+      name,
+      phone,
+      selectedDate,
+      selectedService: selectedService.id,
+      selectedStaff: selectedStaff.id,
+      startTime: startTime.num
+    };
 
     // make async call to database
     const firestore = getFirestore();
@@ -13,22 +33,9 @@ export const createBooking = (booking, id) => {
       .collection("booking")
       .doc()
       .set({
-        ...booking,
+        ...bookingInfo,
         createdAt: new Date()
       })
-      // .then(() => {
-      //   return firestore
-      //     .collection("bookingTime")
-      //     .doc(id)
-      //     .collection(booking.bookedDay)
-      //     .doc(booking.selectedStaff)
-      //     .set(
-      //       {
-      //         bookedTime: [bookedTime]
-      //       },
-      //       { merge: true }
-      //     );
-      // })
       .then(() => {
         dispatch({ type: "CREATE_BOOKING", booking });
       })
