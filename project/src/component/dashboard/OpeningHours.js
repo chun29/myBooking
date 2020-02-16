@@ -125,7 +125,7 @@ class OpeningHours extends Component {
             <DashboardNav />
           </div>
 
-          <div className="right-container">
+          <div className="all-right-container">
             <main className="openingHours-wrapper">
               <div className="workingHours-header">
                 <h1>設定營業時間</h1>

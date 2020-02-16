@@ -3,10 +3,9 @@
   width: 100%;
 }
 .staff-header {
-  margin-top: 20px;
-}
-.button-wrapper {
-  margin-bottom: 10px;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #1a237e;
 }
 
 .staff-main-wrapper {
@@ -21,41 +20,64 @@
 
 .button-wrapper button {
   font-size: 14px;
-
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 10px;
   line-height: 20px;
   padding: 10px 17px;
+  border: 1px solid #00bfa5;
+  background-color: #fff;
+  color: #00bfa5;
+  font-weight: 600;
+}
+.button-wrapper button:hover {
+  background-color: #00bfa5;
+  color: white;
 }
 
 /*Table*/
 table {
   margin-top: 20px;
   border-collapse: collapse;
+  border-radius: 1em !important;
+  overflow: hidden;
   width: 100%;
+  border: 2px solid #1a237e;
 }
 th,
 td {
   text-align: left;
 }
+thead {
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+}
 
 table thead tr th {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
   padding: 14px 0 14px 14px;
   vertical-align: middle;
   border-bottom: 1px solid rgba(229, 229, 229, 0.7);
-  color: rgba(44, 44, 44, 0.35);
-  background-color: #f7f7f8;
+  color: #1a237e;
+  background-color: white;
+}
+tbody tr {
+  border-bottom: 1px solid #f2f2f2;
 }
 
 table tbody tr td {
   background: #fff;
-  border-bottom: 1px solid rgba(229, 229, 229, 0.7);
   padding-left: 5px;
-  font-size: 15px;
+  font-size: 16px;
   color: #626262;
+  padding: 10px;
 }
+
+/* Calendar */
+.calendar-main-wrapper {
+  padding: 30px;
+  margin-bottom: 100px;
+}
+
 .calendar-main-wrapper .calendar-header {
   display: flex;
   flex-direction: row;
@@ -91,7 +113,7 @@ table tbody tr td {
 
 .button-prev:hover,
 .button-next:hover {
-  background-color: #24334a;
+  background-color: #1a237e;
   color: #fff;
   border-radius: 3px;
 }
@@ -102,7 +124,7 @@ table tbody tr td {
 .calendar-table,
 .calendar-table th,
 .calendar-table td {
-  border: 1px solid rgba(229, 229, 229, 0.7);
+  border: 1.3px solid rgba(229, 229, 229, 0.7);
 }
 
 .calendar-table th {
@@ -139,22 +161,27 @@ table tbody tr td {
   width: 60px;
 }
 .toolTip {
-  width: 120px;
   background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 6px;
   margin: 10px 0 0 10px;
-  padding: 5px 0;
+  padding: 20px;
+  min-height: 180px;
 
   /* 定位 */
   position: absolute;
   z-index: 1;
 }
+.toolTip h4 {
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: 10px;
+}
 .toolTip div {
-  font-size: 12px;
+  font-size: 15px;
   text-align: left;
-  padding-left: 5px;
+  line-height: 28px;
 }
 
 /* logo upload*/
@@ -195,8 +222,36 @@ table tbody tr td {
 }
 
 .edit-img {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   cursor: pointer;
   margin-left: 10px;
+}
+.dashboard-msg {
+  background-color: #00bfa5;
+  z-index: 200;
+  position: fixed;
+  top: 5%;
+  right: 35%;
+  width: 300px;
+  height: 60px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  line-height: 60px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.booking-delete-btn {
+  font-size: 14px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.booking-delete-btn:hover {
+  background-color: #00bfa5;
+  color: white;
+  border: white;
 }

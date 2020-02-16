@@ -4,9 +4,11 @@ import SignInLinks from "./SignedinLinks";
 import SignedOutLinks from "./SignedOutLinks";
 import "../../style/navbar.css";
 import { connect } from "react-redux";
+import { Logo } from "../layout/Layout";
 
 const Navbar = props => {
   const { auth, profile } = props;
+
   const links = auth.uid ? (
     <SignInLinks profile={profile} />
   ) : (
@@ -16,9 +18,8 @@ const Navbar = props => {
     <React.Fragment>
       <header className="nav-container">
         <div className="left-container">
-          <Link to="/">
-            <h1>MyBooking</h1>
-          </Link>
+          <Logo />
+
           <nav>
             <ul>
               <Link to="/">

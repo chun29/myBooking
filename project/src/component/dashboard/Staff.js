@@ -9,13 +9,35 @@ import { Link } from "react-router-dom";
 import StaffList from "../shops/StaffList";
 
 class Staff extends Component {
+  state = {
+    showMsg: false,
+    staffMsg: null
+  };
+  componentDidUpdate(prevProps) {
+    // 常見用法（別忘了比較 prop）：
+    if (this.props.staffMsg !== prevProps.staffMsg) {
+      this.setState({
+        showMsg: true,
+        staffMsg: this.props.staffMsg
+      }),
+        setTimeout(
+          function() {
+            this.setState({
+              showMsg: false
+            });
+          }.bind(this),
+          3000
+        );
+    }
+  }
+
   render() {
     const staffs = this.props.staff ? (
-      <StaffList staffs={this.props.staff} />
+      <StaffList staffs={this.props.staff} storeId={this.props.auth.uid} />
     ) : (
       "Loading"
     );
-
+    const staffMsg = this.state.staffMsg;
     return (
       <div className="dashboard">
         <div className="top">
@@ -26,7 +48,7 @@ class Staff extends Component {
             <DashboardNav />
           </div>
 
-          <div className="right-container">
+          <div className="all-right-container">
             <div className="staff-wrapper">
               <div className="staff-header">
                 <h1>服務人員</h1>
@@ -40,9 +62,9 @@ class Staff extends Component {
                 <table className="staff-table-wrapper">
                   <thead>
                     <tr>
-                      <th></th>
-                      <th className="staff-img-th"></th>
-
+                      <th>刪除</th>
+                      <th className="staff-img-th">編輯</th>
+                      <th>照片</th>
                       <th>姓名</th>
                       <th>電話</th>
                       <th>Email</th>
@@ -51,6 +73,11 @@ class Staff extends Component {
                   </thead>
                   <tbody>{staffs}</tbody>
                 </table>
+                {this.state.showMsg && (
+                  <div className="dashboard-msg">
+                    {staffMsg ? <p>{staffMsg}</p> : null}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -61,9 +88,11 @@ class Staff extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     staff: state.firestore.ordered.staff,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    staffMsg: state.staff.staffMsg
   };
 };
 

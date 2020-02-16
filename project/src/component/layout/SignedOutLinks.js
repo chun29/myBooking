@@ -7,10 +7,15 @@ const SignedOutLinks = () => {
       <ul>
         <li>
           <NavLink to="/signin">
-            <button className="login-btn">登入</button>
+            <div className="login-btn-wrapper">
+              <div className="lock-img"></div>
+              <button className="nav-login-btn">登入</button>
+            </div>
           </NavLink>
+        </li>
+        <li>
           <NavLink to="/signup">
-            <button className="signup-btn">註冊</button>
+            <button className="nav-signup-btn">註冊</button>
           </NavLink>
         </li>
       </ul>

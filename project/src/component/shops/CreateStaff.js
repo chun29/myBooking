@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { createStaff } from "../../store/actions/staffsAction";
 import { Redirect } from "react-router-dom";
 import "..//../style/createstaff.css";
+import staffAvatar from "../../img/staff-avatar-2.png";
 
 class CreateStaff extends Component {
   state = {
@@ -13,19 +14,58 @@ class CreateStaff extends Component {
     desc: "",
     color: "#bbc1e8",
     image: null,
-    url: ""
+    imageSrc: staffAvatar,
+    url: "",
+    error: {
+      name: false,
+      phone: false,
+      image: false,
+      nickname: false
+    }
   };
   handleChange = e => {
+    if (e.target.id == "phone") {
+      if (isNaN(e.target.value)) {
+        console.log("111");
+        this.setState(prevState => ({
+          error: {
+            // object that we want to update
+            ...prevState.error, // keep all other key-value pairs
+            phone: true // update the value of specific key
+          }
+        }));
+      } else {
+        this.setState(prevState => ({
+          error: {
+            // object that we want to update
+            ...prevState.error, // keep all other key-value pairs
+            phone: false // update the value of specific key
+          }
+        }));
+      }
+    }
+    if (e.target.id == "name") {
+      this.setState(prevState => ({
+        error: {
+          // object that we want to update
+          ...prevState.error, // keep all other key-value pairs
+          name: false // update the value of specific key
+        }
+      }));
+    }
+
+    if (e.target.id == "nickname") {
+      this.setState(prevState => ({
+        error: {
+          // object that we want to update
+          ...prevState.error, // keep all other key-value pairs
+          nickname: false // update the value of specific key
+        }
+      }));
+    }
     this.setState({
       [e.target.id]: e.target.value
     });
-  };
-  handleSubmit = e => {
-    e.preventDefault();
-
-    console.log("submit", this.state);
-    this.props.createStaff(this.state, this.props.auth.uid);
-    this.props.history.push("/staff");
   };
 
   cancelForm = e => {
@@ -38,12 +78,87 @@ class CreateStaff extends Component {
       color: color
     });
   };
-
   handleImgChange = e => {
-    console.log(e.target.files[0]);
     if (e.target.files[0]) {
       const image = e.target.files[0];
-      this.setState(() => ({ image }));
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        this.setState({
+          image: image,
+          imageSrc: reader.result
+        });
+      };
+      reader.readAsDataURL(image);
+      this.setState(prevState => ({
+        error: {
+          // object that we want to update
+          ...prevState.error, // keep all other key-value pairs
+          image: false // update the value of specific key
+        }
+      }));
+    }
+  };
+
+  // handleImgChange = e => {
+  //   console.log(e.target.files[0]);
+  //   if (e.target.files[0]) {
+  //     const image = e.target.files[0];
+  //     this.setState(() => ({ image }));
+  //   }
+  // };
+  handleSubmit = e => {
+    e.preventDefault();
+
+    if (this.state.name.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          // object that we want to update
+          ...prevState.error, // keep all other key-value pairs
+          name: true // update the value of specific key
+        }
+      }));
+    }
+
+    if (this.state.phone.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          // object that we want to update
+          ...prevState.error, // keep all other key-value pairs
+          phone: true // update the value of specific key
+        }
+      }));
+    }
+
+    if (this.state.image == null) {
+      this.setState(prevState => ({
+        error: {
+          // object that we want to update
+          ...prevState.error, // keep all other key-value pairs
+          image: true // update the value of specific key
+        }
+      }));
+    }
+
+    if (this.state.nickname.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          // object that we want to update
+          ...prevState.error, // keep all other key-value pairs
+          nickname: true // update the value of specific key
+        }
+      }));
+    }
+
+    if (
+      this.state.name.length > 0 &&
+      this.state.nickname.length > 0 &&
+      this.state.phone.length > 0 &&
+      this.state.image !== null
+    ) {
+      console.log("submit", this.state);
+      this.props.createStaff(this.state, this.props.auth.uid);
+      this.props.history.push("/staff");
     }
   };
 
@@ -65,7 +180,13 @@ class CreateStaff extends Component {
           <div className="input-wrapper">
             <div className="form-section">
               <div className="form-item">
-                <label htmlFor="name">姓名</label>
+                <label className="required" htmlFor="name">
+                  姓名{" "}
+                  {this.state.error.name && (
+                    <span className="alert-msg">名稱請填寫完整</span>
+                  )}
+                </label>
+
                 <input
                   placeholder="e.g. 王大明"
                   id="name"
@@ -73,7 +194,13 @@ class CreateStaff extends Component {
                 ></input>
               </div>
               <div className="form-item">
-                <label htmlFor="phone">手機</label>
+                <label className="required" htmlFor="phone">
+                  聯絡電話{" "}
+                  {this.state.error.phone && (
+                    <span className="alert-msg">請填入完整聯絡電話</span>
+                  )}
+                </label>
+
                 <input
                   placeholder="e.g. 0900123456"
                   id="phone"
@@ -81,13 +208,37 @@ class CreateStaff extends Component {
                 ></input>
               </div>
               <div className="form-item">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">信箱</label>
                 <input
                   placeholder="e.g. ming@gmail.com"
                   id="email"
                   onChange={this.handleChange}
                 ></input>
               </div>
+
+              <div className="form-item logo-wrapper">
+                <label className="required" htmlFor="desc">
+                  大頭貼照{" "}
+                  {this.state.error.image && (
+                    <span className="alert-msg">請上傳大頭貼照</span>
+                  )}
+                </label>
+                <div className="logo-circle">
+                  <img
+                    className="store-logo"
+                    src={this.state.imageSrc}
+                    alt="home"
+                  />
+                </div>
+                <p>建議尺寸 180 x 180</p>
+                <input
+                  onChange={this.handleImgChange}
+                  type="file"
+                  name="pic"
+                  accept="image/*"
+                />
+              </div>
+
               <div className="form-item staff-avatar-wrapper">
                 <label htmlFor="photo">圖片</label>
                 <input type="file" onChange={this.handleImgChange} />
@@ -95,13 +246,14 @@ class CreateStaff extends Component {
               <div className="form-item">
                 <label htmlFor="email">行事曆上預約顯示顏色</label>
                 <div className="color-area">
-                  {colors.map(color => {
+                  {colors.map((color, i) => {
                     let addClass = "";
                     if (this.state.color == color) {
                       addClass = "selected";
                     }
                     return (
                       <div
+                        key={i}
                         style={{ backgroundColor: color }}
                         onClick={() => {
                           this.handleColorChange(color);
@@ -115,7 +267,13 @@ class CreateStaff extends Component {
             </div>
             <div className="form-section">
               <div className="form-item">
-                <label htmlFor="nickname">暱稱 (顯示在預訂網站上的名稱)</label>
+                <label className="required" htmlFor="nickname">
+                  暱稱 (顯示在預訂網站上的名稱){" "}
+                  {this.state.error.nickname && (
+                    <span className="alert-msg">請填入暱稱</span>
+                  )}
+                </label>
+
                 <input
                   placeholder="e.g. 小明"
                   id="nickname"
@@ -134,7 +292,7 @@ class CreateStaff extends Component {
               </div>
             </div>
           </div>
-          <div className="button-wrapper">
+          <div className="form-button-wrapper">
             <button onClick={this.cancelForm} className="cancel-staff-button">
               取消
             </button>

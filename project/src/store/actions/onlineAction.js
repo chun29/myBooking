@@ -6,13 +6,10 @@ export const onlineSetup = (online, id) => {
     const firebase = getFirebase();
 
     const imagesPath = "images";
-    console.log(logoImage);
-    console.log();
 
     firebase
       .uploadFile(imagesPath, logoImage)
       .then(uploadFile => {
-        console.log("ok");
         return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
       })
       .then(downloadURL => {

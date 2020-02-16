@@ -1,60 +1,92 @@
 import React, { Component } from "react";
 import "../../style/login.css";
 import { connect } from "react-redux";
-import { signIn } from "../../store/actions/authAction";
+import { signIn, socialLogin } from "../../store/actions/authAction";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Logo } from "../layout/Layout";
 
 class SignIn extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    error: ""
   };
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
+      error: ""
     });
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    if (this.state.email.length < 1 || this.state.password.length < 6) {
+      this.setState({
+        error: "請檢查輸入的信箱或密碼"
+      });
+      return;
+    }
     this.props.signIn(this.state);
+    this.setState({
+      error: "登入中"
+    });
   };
   render() {
     const { authError, auth } = this.props;
+
+    const errorMsg = this.state.error;
     if (auth.uid) return <Redirect to="dashboard" />;
     return (
-      <div>
+      <div className="signin-wrapper">
         <div className="signin-header">
-          <Link to="/">
-            <h1>MyBooking</h1>
+          <Logo />
+          <Link to="/signup">
+            <div className="signup-btn-wrapper">
+              <div className="plus-img"></div>
+              <button className="signup-btn">註冊</button>
+            </div>
           </Link>
-          <button className="signup-btn">註冊</button>
         </div>
-        <div className="signin-container">
-          <h1>預約管理系統</h1>
-          <p>
-            第一次使用嗎？
-            <Link to="/signup">
-              <span>註冊</span>
-            </Link>
-          </p>
-          <form onSubmit={this.handleSubmit} className="signin-input">
-            <input
-              placeholder="Email"
-              id="email"
-              onChange={this.handleChange}
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              id="password"
-              autoComplete="on"
-              onChange={this.handleChange}
-            />
-            <button className="signin-btn">登入</button>
-            <div>{authError ? <p>{authError}</p> : null}</div>
-          </form>
+        <div className="signin-down">
+          <div className="signin-left"></div>
+          <div className="signin-right">
+            <div className="signin-container">
+              <div className="signin-logo"></div>
+              <h1>預約管理系統</h1>
+              <p>
+                第一次使用嗎？
+                <Link to="/signup">
+                  <span className="signin-text">註冊</span>
+                </Link>
+              </p>
+              <form onSubmit={this.handleSubmit} className="signin-input">
+                <input
+                  placeholder="信箱"
+                  id="email"
+                  onChange={this.handleChange}
+                  autoComplete="off"
+                />
+                <input
+                  placeholder="密碼"
+                  type="password"
+                  id="password"
+                  autoComplete="on"
+                  onChange={this.handleChange}
+                  autoComplete="off"
+                />
+                <div className="sign-alert">
+                  {authError ? <p>{authError}</p> : <p>{errorMsg}</p>}
+                </div>
+                <button
+                  className="signin-btn"
+                  variant="contained"
+                  color="primary"
+                >
+                  登入
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     );

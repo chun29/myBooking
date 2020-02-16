@@ -1,0 +1,22 @@
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.logo-container h1 {
+  font-size: 26px;
+  margin: 0 30px 0 10px;
+  cursor: pointer;
+  color: #1a237e;
+  align-self: center;
+}
+
+.nav-logo {
+  background-image: url(../img/logo.png);
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 50px;
+}

@@ -18,3 +18,22 @@ export const createService = (service, id) => {
       });
   };
 };
+
+export const deleteService = (storeId, serviceId) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("store")
+      .doc(storeId)
+      .collection("service")
+      .doc(serviceId)
+      .delete()
+      .then(() => {
+        console.log("服務刪除成功!");
+        dispatch({ type: "DELETE_SERVICE", serviceId });
+      })
+      .catch(() => {
+        dispatch({ type: "DELETE_SERVICE_ERR", err });
+      });
+  };
+};

@@ -3,6 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #f4f6fe;
 }
 
 .dashboard a {
@@ -22,7 +23,6 @@
 .dashboard .down .left-container {
   width: 250px;
   height: 100vh;
-  background-color: rgb(26, 38, 58);
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -30,21 +30,195 @@
   font-size: 14px;
   position: fixed;
   left: 0;
-  top: 75px;
 }
 
-.dashboard .down .right-container {
+.dashboard .down .dashboard-right-container {
+  margin: 0 auto;
+  width: 70%;
   display: flex;
   flex-direction: row;
-  margin-left: 280px;
+  margin-left: 350px;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-.dashboard .down .right-container h1 {
-  font-size: 24px;
-}
-
-.dashboard .down .right-container .dashboard-item-container {
+.dashboard .down .dashboard-right-container .dashboard-item-container {
   width: 500px;
-  height: 300px;
+  box-shadow: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
+}
+
+.dashboard-item-container {
+  border-radius: 10px;
+  margin: 0 50px;
+  height: 800px;
+}
+.dashboard-item-container ul {
+  list-style: none;
+  width: 90%;
+  margin: 0 auto;
+}
+.dashboard-item1 {
+  background-color: white;
+  border: 1px solid #d5dbfe;
+  border-radius: 10px;
+  flex: 1.5;
+}
+
+.dashboard-item2 {
+  background: #5473ff;
+  border-color: transparent;
+  box-shadow: 0 3px 18px rgba(77, 87, 143, 0.07);
+  border: 1px solid #d5dbfe;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: white;
+  flex: 1.2;
+}
+
+/* 今日預約 */
+.notification-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 720px;
+}
+.notification-wrapper-2 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.notification-section ul {
+  flex-grow: 1;
+}
+.view-all {
+  color: #3c5afa;
+  padding: 20px;
+  border-top: 1px solid #f0f0f0;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.notification-section-2 {
+  flex-grow: 1;
+  border-left: 1px solid rgba(149, 172, 239, 0.5);
+  margin: 0 45px;
+  padding: 30px 0 30px 20px;
+}
+.view-all-2 {
+  padding: 20px;
+  border-top: 1px solid #f0f0f0;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.today-sum {
+  display: flex;
+  width: 90%;
+  height: 100px;
+  align-items: center;
+  border-radius: 10px;
+  border: solid 1px #ccc;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.sum-item {
+  text-align: center;
+  flex: 1;
+  font-size: 18px;
+  line-height: 35px;
+}
+.sum-item-1 {
+  border-right: solid 1px #ccc;
+}
+.notification-wrapper h1 {
+  padding: 30px 24px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 21px;
+  text-align: center;
+  padding: 23px 50px;
+  border-bottom: 1px solid #e9ebf3;
+  letter-spacing: 2px;
+}
+
+.today-info {
+  color: #1a237e;
+}
+.new-info {
+  color: white;
+}
+.today-booking-info-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 30px 0 10px 10px;
+}
+.today-booking-info {
+  display: flex;
+  flex-direction: column;
+  margin: 0 50px 0 20px;
+}
+
+.today-booking-date {
+  font-weight: 700;
+  font-size: 22px;
+  color: #00bfa5;
+  line-height: 25px;
+  margin: 0 10px;
+}
+.today-booking-time {
+  color: #67768c;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  margin-bottom: 4px;
+}
+.today-booking-service {
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.today-booking-price {
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.notification-section-2 .date {
+  color: #cddaff;
+  font-size: 13px;
+}
+.notification-section-2 h3 {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 4px 0;
+  color: #fff;
+}
+.notification-section-2 p {
+  color: #cddaff;
+  font-size: 13px;
+}
+.notification-section-2 h3:before {
+  transition: background-color 0.1s linear;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 10px;
+  background-color: #90a8ee;
+  content: "";
+  margin-right: 16px;
+  margin-left: -24px;
+}
+.change-box {
+  font-size: 13px;
+  line-height: 1.5;
+  padding-bottom: 23px;
+  display: block;
+}
+
+/* Calendar */
+.all-right-container {
+  margin-left: 300px;
 }

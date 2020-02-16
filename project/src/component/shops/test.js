@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-
-export default class Test extends Component {
+import { connect } from "react-redux";
+import { deleteBooking } from "../../store/actions/bookingAction";
+class Test extends Component {
   constructor(props) {
     super(props);
-    //state
+
     this.state = {
       isHover: false
     };
   }
+  deleteBooking = (id, storeID) => {
+    this.props.deleteBooking(id, storeID);
+  };
   render() {
-    const { data } = this.props;
+    const { data, storeID } = this.props;
+    console.log(storeID);
     return (
       <div
         className="booking-text"
@@ -18,13 +23,27 @@ export default class Test extends Component {
         onMouseLeave={this.onMouseOut.bind(this)}
       >
         <span className="booking-time-text">{data.time}</span>
+        <br />
         <span>{data.service}</span>
         {this.state.isHover && (
           <span className="toolTip">
             <h4>預約資訊</h4>
-            <div>預約編號：{data.id.substring(0, 4)}</div>
+            <div>預約編號：{data.id}</div>
+            <div>開始時間：{data.time}</div>
+            <div>服務時間：{data.duration}</div>
             <div>服務人員：{data.staff}</div>
             <div>顧客姓名：{data.name}</div>
+            <div>顧客電話：{data.phone}</div>
+            <div>顧客信箱：{data.email}</div>
+            <div>備註：{data.desc}</div>
+            <button
+              className="booking-delete-btn"
+              onClick={() => {
+                this.deleteBooking(data.id, storeID);
+              }}
+            >
+              刪除預約
+            </button>
           </span>
         )}
       </div>
@@ -42,3 +61,10 @@ export default class Test extends Component {
     });
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteBooking: (bookingID, storeId) =>
+      dispatch(deleteBooking(bookingID, storeId))
+  };
+};
+export default connect(null, mapDispatchToProps)(Test);

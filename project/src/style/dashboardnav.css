@@ -13,7 +13,7 @@ main {
 main .left-container {
   width: 250px;
   height: 100vh;
-  background-color: rgb(26, 38, 58);
+  background-color: #1a237e;
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -21,7 +21,7 @@ main .left-container {
   font-size: 14px;
   position: fixed;
   left: 0;
-  top: 75px;
+  top: 80px;
 }
 
 main .left-container a {
@@ -42,10 +42,6 @@ main .left-container li img {
   width: 24px;
   height: 24px;
   margin-right: 20px;
-}
-
-main .left-container .home {
-  background-color: rgba(73, 85, 105, 0.8);
 }
 
 main .right-container {

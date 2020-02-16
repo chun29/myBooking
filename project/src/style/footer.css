@@ -1,6 +1,11 @@
 .footer {
-  height: 50px;
-  background-color: #333;
+  background-color: #1a237e;
+  height: 200px;
   color: #fff;
   text-align: center;
+  display: flex;
+  align-items: center;
+}
+.footer .copyright {
+  margin: 0 auto;
 }

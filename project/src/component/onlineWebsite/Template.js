@@ -140,6 +140,7 @@ class Template extends React.Component {
         serviceShow: true,
         staffShow: false,
         dateShow: false,
+        confirmShow: false,
         step: 1
       });
     } else if (step == 2) {
@@ -150,6 +151,7 @@ class Template extends React.Component {
           serviceShow: false,
           staffShow: true,
           dateShow: false,
+          confirmShow: false,
           step: 2
         });
       }
@@ -164,15 +166,36 @@ class Template extends React.Component {
           serviceShow: false,
           staffShow: false,
           dateShow: true,
+          confirmShow: false,
           step: 3
+        });
+      }
+    } else if (step == 4) {
+      if (
+        this.state.selectedService.item.length < 1 ||
+        this.state.selectedStaff.name.length < 1 ||
+        this.state.startTime.num.length < 1
+      ) {
+        return;
+      } else {
+        this.setState({
+          serviceShow: false,
+          staffShow: false,
+          dateShow: false,
+          confirmShow: true,
+          step: 4
         });
       }
     }
   };
 
   handleSubmit = id => {
-    this.props.createBooking(this.state, id.id);
-    // this.props.history.push("/");
+    if (this.state.name.length > 0 && this.state.phone.length > 0) {
+      this.props.createBooking(this.state, id.id);
+      this.props.history.push("/");
+    } else {
+      alert("資料請填完整");
+    }
   };
 
   render() {

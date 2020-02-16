@@ -1,12 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-button {
-  outline: none;
+.signin-wrapper a {
+  text-decoration: none;
 }
 
 .signin-header {
@@ -17,30 +10,65 @@ button {
   line-height: 80px;
   width: 100%;
   align-items: center;
-  color: #333;
+  color: #3a3e45;
 }
 
 .signin-header h1 {
-  font-size: 28px;
-  margin: 0 30px 0 70px;
+  font-size: 26px;
+  margin: 0 30px 0 10px;
   cursor: pointer;
+  color: #1a237e;
+}
+.signin-logo {
+  background-image: url(../img/logo.png);
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-self: center;
+  margin-bottom: 10px;
 }
 
-.signin-header .signup-btn {
-  width: 100px;
-  height: 35px;
-  font-size: 12px;
-  background-color: none;
-  border-radius: 100px;
-  font-weight: 400;
+/* signup page btn wrapper */
+
+.signup-btn-wrapper {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.signup-btn {
+  font-size: 15px;
+  color: #1a237e;
   cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  font-size: 14px;
-  margin-right: 80px;
-  background-color: #ff55a0;
+  background-color: white;
   border: none;
-  color: #fff;
+  outline: none;
+}
+.plus-img {
+  width: 20px;
+  height: 20px;
+  background-image: url(../img//signup-img.png);
+  background-size: cover;
+  margin-right: 5px;
+}
+.left-arrow-img {
+  width: 20px;
+  height: 20px;
+  background-image: url(../img//login-img.png);
+  background-size: cover;
+  margin-right: 5px;
+}
+.signup-btn-wrapper:hover > .plus-img {
+  background-image: url(../img//signup-img-2.png);
+}
+.signup-btn-wrapper:hover > .left-arrow-img {
+  background-image: url(../img//login-img-2.png);
+}
+
+.signup-btn-wrapper:hover > .signup-btn {
+  color: #3d5afe;
 }
 
 .signin-container {
@@ -50,21 +78,18 @@ button {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .signin-container h1 {
-  font-size: 36px;
-
-  cursor: pointer;
-  margin-bottom: 30px;
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #1a237e;
 }
 
-.signin-container p {
-  color: #777;
-}
 .signin-container span {
-  color: rgb(15, 181, 187);
+  color: #00bfa5;
+  font-weight: 500;
   cursor: pointer;
 }
 .signin-container .signin-input {
@@ -72,39 +97,74 @@ button {
   flex-direction: column;
 }
 .signin-container input {
-  border: none;
-  border-bottom: 1px solid #ddd;
-  margin: 25px 0px 30px 0px;
+  border: 1px solid #cbd5ff;
+  margin: 25px 30px 10px 30px;
+  border-radius: 10px;
   font-size: 17px;
-  height: 30px;
-  line-height: 30px;
-  padding: 10px 0px 8px;
+  height: 50px;
+  line-height: 40px;
+  padding: 10px 0px 8px 15px;
   outline: none;
   transition: all 150ms;
 }
-.signin-container input:hover {
-  border-bottom: 1px solid #777777;
-}
+
 .signin-container input:focus {
-  border-bottom: 1px solid rgb(15, 181, 187);
+  border: 1px solid #1a237e;
 }
 .signin-container .signin-btn {
+  margin: 20px 0 10px 0;
   outline: none;
-  width: 100px;
+  padding: 10px 22px;
   height: 40px;
-  background: #f6f9f9;
+  background: #3d5afe;
+  color: #fff;
+  border-radius: 10px;
   transition: all 150ms;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 50px;
   font-weight: 400;
   cursor: pointer;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   align-self: center;
 }
 
 .signin-container .signin-btn:hover {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid #b5bbbb;
-  color: #222;
+  background: #1a237e;
+}
+/* 新調整css */
+
+.signin-down {
+  display: flex;
+  height: calc(100vh - 50px);
+}
+
+.signin-left {
+  flex: 2;
+  background-image: url(../img/signin-bg.jpg);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+}
+
+.signin-right {
+  flex: 1.2;
+  height: 100%;
+}
+
+.signin-text {
+  font-weight: 500;
+}
+/* alert msg */
+.sign-alert {
+  color: #f03478;
+  font-size: 13px;
+}
+
+.social-login {
+  margin: 0 auto;
+  width: 80%;
 }

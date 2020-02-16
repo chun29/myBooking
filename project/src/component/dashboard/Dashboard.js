@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Notifications from "./Notifications";
-import StoreCalender from "../shops/StoreCalender";
+import { Notifications, TodayBookings } from "./Notifications";
+
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -12,7 +12,7 @@ import "../../style/dashboard.css";
 
 class Dashboard extends Component {
   render() {
-    const { auth, profile } = this.props;
+    const { auth, profile, notifications } = this.props;
     let user = "";
     if (profile.name) {
       user = profile.name.charAt(0).toUpperCase();
@@ -29,22 +29,19 @@ class Dashboard extends Component {
           <div className="left-container">
             <DashboardNav />
           </div>
-          <div className="right-container">
-            <div className="dashboard-item-container">
-              <Notifications />
+          <div className="dashboard-right-container">
+            <div className="dashboard-item-container dashboard-item1">
+              <Notifications notifications={notifications} />
             </div>
-            <div className="dashboard-item-container">
-              <StoreCalender />
-            </div>
-            <div className="dashboard-item-container">
-              <Link to="/createbooking">
+
+            <div className="dashboard-item-container  dashboard-item2">
+              <TodayBookings />
+              {/* <Link to="/createbooking">
                 <button>新增預約</button>
               </Link>
-            </div>
-            <div className="dashboard-item-container">
               <Link to="/createstaff">
                 <button>新增工作人員</button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -56,8 +53,14 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    profile: state.firebase.profile
+    profile: state.firebase.profile,
+    notifications: state.firestore.ordered.notifications
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: "notifications", limit: 5, orderBy: ["time", "desc"] }
+  ])
+)(Dashboard);

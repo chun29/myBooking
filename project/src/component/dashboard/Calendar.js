@@ -6,22 +6,33 @@ import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
 import "../../style/staff.css";
 import { Link } from "react-router-dom";
-import BookingList from "../shops/BookingList";
 import CalendarPart from "./CalendarPart";
 
 class Calendar extends Component {
+  state = {
+    showMsg: false,
+    bookingMsg: null
+  };
+  componentDidUpdate(prevProps) {
+    // 常見用法（別忘了比較 prop）：
+    if (this.props.bookingMsg !== prevProps.bookingMsg) {
+      this.setState({
+        showMsg: true,
+        bookingMsg: this.props.bookingMsg
+      }),
+        setTimeout(
+          function() {
+            this.setState({
+              showMsg: false
+            });
+          }.bind(this),
+          3000
+        );
+    }
+  }
   render() {
     const { bookings } = this.props;
-    const bookingList =
-      this.props.staff && this.props.service ? (
-        <BookingList
-          bookings={bookings}
-          staffs={this.props.staff}
-          services={this.props.service}
-        />
-      ) : (
-        "Loading"
-      );
+    const bookingMsg = this.state.bookingMsg;
 
     return (
       <div className="dashboard">
@@ -33,7 +44,7 @@ class Calendar extends Component {
             <DashboardNav />
           </div>
 
-          <div className="right-container">
+          <div className="all-right-container">
             <div className="staff-wrapper">
               <div className="staff-header">
                 <h1>行事曆</h1>
@@ -49,22 +60,13 @@ class Calendar extends Component {
                   bookings={bookings}
                   staffs={this.props.staff}
                   services={this.props.service}
+                  storeID={this.props.auth.uid}
                 />
-
-                <table className="staff-table-wrapper">
-                  <thead>
-                    <tr>
-                      <th>編輯</th>
-                      <th>預約 ID</th>
-                      <th>預約日期</th>
-                      <th>顧客姓名</th>
-                      <th>服務人員</th>
-                      <th>服務</th>
-                      <th>描述</th>
-                    </tr>
-                  </thead>
-                  {/* <tbody>{bookingList}</tbody> */}
-                </table>
+                {this.state.showMsg && (
+                  <div className="dashboard-msg">
+                    {bookingMsg ? <p>{bookingMsg}</p> : null}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -79,7 +81,8 @@ const mapStateToProps = state => {
     staff: state.firestore.ordered.staff,
     auth: state.firebase.auth,
     bookings: state.firestore.ordered.booking,
-    service: state.firestore.ordered.service
+    service: state.firestore.ordered.service,
+    bookingMsg: state.booking.bookingMsg
   };
 };
 

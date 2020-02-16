@@ -19,7 +19,7 @@ class Online extends Component {
             <DashboardNav />
           </div>
 
-          <div className="right-container">
+          <div className="all-right-container">
             <div className="staff-wrapper">
               <div className="staff-header">
                 <h1>專屬預約網站</h1>

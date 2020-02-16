@@ -17,7 +17,7 @@ class AvailableTime extends Component {
       selectStaff,
       selectStartTime
     } = this.props;
-    console.log(selectStaff);
+
     let closeTime;
     let openTime;
     if (weekDay) {
@@ -27,11 +27,15 @@ class AvailableTime extends Component {
     }
 
     let bookedList = [];
-
+    console.log(selectStaff);
     if (booking) {
+      console.log(booking);
       booking.map(data => {
-        if (data.bookedDay == bookedDay && data.selectedStaff == selectStaff) {
-          console.log(data.startTime, data.duration);
+        console.log(data);
+        if (
+          data.bookedDay == bookedDay &&
+          data.selectedStaff == selectStaff.id
+        ) {
           let startTime = data.startTime;
           let endTime = data.startTime + data.duration / 60;
           let length = (endTime - startTime) * 2;

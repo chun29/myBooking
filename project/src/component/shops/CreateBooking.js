@@ -9,12 +9,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class CreateBooking extends Component {
   state = {
-    selectedService: "",
-    selectedStaff: "",
+    selectedService: { item: "", id: "" },
+    selectedStaff: { name: "", id: "" },
     selectedDate: "",
     bookedDay: "",
     duration: "",
-    startTime: "",
+    startTime: { num: "", text: "" },
     name: "",
     phone: "",
     email: "",
@@ -24,6 +24,14 @@ class CreateBooking extends Component {
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
+    });
+  };
+  selectStaff = e => {
+    this.setState({
+      selectedStaff: {
+        ...this.state.selectedStaff,
+        id: e.target.value
+      }
     });
   };
   handleSubmit = e => {
@@ -40,7 +48,10 @@ class CreateBooking extends Component {
 
     this.setState({
       duration: duration,
-      selectedService: e.target.value
+      selectedService: {
+        ...this.state.selectedService,
+        id: e.target.value
+      }
     });
   };
   handleDate = date => {
@@ -67,10 +78,13 @@ class CreateBooking extends Component {
     } else {
       time = hour + 0.5;
     }
-    console.log(time);
+
     this.setState({
       selectedDate: date,
-      startTime: time,
+      startTime: {
+        ...this.state.startTime,
+        num: time
+      },
       bookedDay: bookedDay
     });
   };
@@ -163,7 +177,7 @@ class CreateBooking extends Component {
 
               <div className="form-item">
                 <label htmlFor="selectStaff">服務人員</label>
-                <select id="selectedStaff" onChange={this.handleChange}>
+                <select id="selectedStaff" onChange={this.selectStaff}>
                   <option disabled selected value>
                     -- 請選擇服務人員 --
                   </option>

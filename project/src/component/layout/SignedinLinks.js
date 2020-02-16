@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { signOut } from "../../store/actions/authAction";
-import "../../style/signedinLink.css";
 
 class SignedInLinks extends Component {
   render() {
@@ -20,17 +19,20 @@ class SignedInLinks extends Component {
         <ul>
           <li>
             <NavLink to="/dashboard">
-              <button className="login-btn">前往管理系統</button>
+              <button className="nav-signup-btn">前往管理系統</button>
             </NavLink>
           </li>
           <li>
             <a onClick={this.props.signOut}>
-              <button className="login-btn">登出</button>
+              <div className="login-btn-wrapper">
+                <div className="exit-img"></div>
+                <button className="nav-login-btn">登出</button>
+              </div>
             </a>
           </li>
           <li>
             <NavLink to="/">
-              <div className="user-avatar">{user}</div>
+              <div className="home-user-avatar">{user}</div>
             </NavLink>
           </li>
         </ul>

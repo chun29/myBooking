@@ -1,6 +1,16 @@
 export const createStaff = (staff, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const { image } = staff;
+    const { name, phone, nickname, image, color, desc, email, url } = staff;
+    const staffInfo = {
+      name,
+      phone,
+      nickname,
+      image,
+      color,
+      desc,
+      email,
+      url
+    };
     const firestore = getFirestore();
     const firebase = getFirebase();
 
@@ -18,21 +28,40 @@ export const createStaff = (staff, id) => {
         return downloadURL;
       })
       .then(url => {
-        staff.url = url;
-        staff.image = image.name;
-
+        staffInfo.url = url;
+        staffInfo.image = image.name;
+        console.log(staffInfo);
         firestore
           .collection("store")
           .doc(id)
           .collection("staff")
           .doc()
-          .set(staff, { merge: true })
+          .set(staffInfo, { merge: true })
           .then(() => {
-            dispatch({ type: "CREATE_STAFF", staff });
+            dispatch({ type: "CREATE_STAFF", staffInfo });
           })
           .catch(err => {
             dispatch({ type: "CREATE_STAFF_ERROR", err });
           });
+      });
+  };
+};
+
+export const deleteStaff = (storeId, staffId) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("store")
+      .doc(storeId)
+      .collection("staff")
+      .doc(staffId)
+      .delete()
+      .then(() => {
+        console.log("服務人員刪除成功!");
+        dispatch({ type: "DELETE_STAFF", staffId });
+      })
+      .catch(() => {
+        dispatch({ type: "DELETE_STAFF_ERR", err });
       });
   };
 };

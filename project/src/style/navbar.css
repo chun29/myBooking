@@ -1,5 +1,4 @@
 .nav-container {
-  background-color: #f8f8f8;
   position: fixed;
   right: 0;
   left: 0;
@@ -8,12 +7,14 @@
   justify-content: space-between;
   height: 80px;
   align-items: center;
-  color: #333;
+  color: #1a237e;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
 .nav-container a {
   text-decoration: none;
-  color: #333;
+  color: #1a237e;
 }
 
 .nav-container .left-container {
@@ -24,10 +25,9 @@
   margin-right: 50px;
 }
 
-.nav-container h1 {
-  font-size: 28px;
-  margin: 0 30px 0 70px;
-  cursor: pointer;
+.nav-container nav {
+  display: flex;
+  align-items: center;
 }
 
 .nav-container ul {
@@ -40,29 +40,76 @@
   cursor: pointer;
   line-height: 32px;
 }
+/* home page btn wrapper */
 
-.nav-container .right-container button {
-  width: 100px;
-  height: 35px;
-  font-size: 12px;
-  background-color: none;
-  border-radius: 100px;
-  font-weight: 400;
+.nav-signup-btn {
+  font-size: 15px;
   cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  font-size: 14px;
+  border-radius: 10px;
+  background-color: #3d5afe;
+  color: #fff;
+  padding: 10px 25px 10px 25px;
+  outline: none;
+}
+
+.nav-signup-btn:hover {
+  background-color: #1a237e;
+}
+
+.login-btn-wrapper {
+  display: flex;
+  flex-direction: row;
   margin-right: 10px;
 }
 
-.login-btn {
-  background-color: transparent;
-  border: 1px solid #333;
-  color: #333;
+.nav-login-btn {
+  color: #00bfa5;
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+  background-color: white;
+  outline: none;
+}
+.lock-img {
+  background-image: url(../img/lock.png);
+  background-size: 60%;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 30px;
+  margin: 0 2px;
+}
+.exit-img {
+  background-image: url(../img/exit.png);
+  background-size: 60%;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 30px;
+  margin: 0 2px;
+}
+.login-btn-wrapper:hover > .nav-login-btn {
+  color: #3d5afe;
 }
 
-.signup-btn {
-  background-color: #ff55a0;
+.login-btn-wrapper:hover > .lock-img {
+  background-image: url(../img/lock-2.png);
+}
+
+.login-btn-wrapper:hover > .exit-img {
+  background-image: url(../img//exit-2.png);
+}
+
+/*  avatar */
+.home-user-avatar {
+  background-color: #1a237e;
   color: #fff;
-  border: none;
+  font-size: 24px;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 20px;
+  cursor: pointer;
 }

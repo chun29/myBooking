@@ -1,14 +1,19 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import "../../style/dashboardheader.css";
+import { Logo, UserAvatar } from "../layout/Layout";
+import { connect } from "react-redux";
 
-const DashboardHeader = ({ userName }) => {
+const DashboardHeader = ({ auth, profile }) => {
+  let user = "";
+  if (profile.name) {
+    user = profile.name.charAt(0).toUpperCase();
+  }
+  const userName = auth.uid ? user : "";
+
   return (
     <React.Fragment>
       <div className="dashboard-header">
-        <Link to="/">
-          <h1>MyBooking</h1>
-        </Link>
+        <Logo />
         <div className="right-container">
           <div className="online-container">
             <div className="color-sign"></div>
@@ -17,12 +22,18 @@ const DashboardHeader = ({ userName }) => {
               <p className="online-setup">尚未設定</p>
             </div>
           </div>
-          <div className="bell-img"></div>
-          <div className="user-avatar">{userName}</div>
+          {/* <div className="bell-img"></div> */}
+          <UserAvatar userName={userName} />
         </div>
       </div>
     </React.Fragment>
   );
 };
 
-export default DashboardHeader;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
+  };
+};
+export default connect(mapStateToProps)(DashboardHeader);

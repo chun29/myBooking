@@ -45,4 +45,21 @@ export const createBooking = (booking, id) => {
   };
 };
 
-[0, 2];
+export const deleteBooking = (bookingId, storeId) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("store")
+      .doc(storeId)
+      .collection("booking")
+      .doc(bookingId)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        dispatch({ type: "DELETE_BOOKING", bookingId });
+      })
+      .catch(() => {
+        dispatch({ type: "DELETE_BOOKING_ERR", err });
+      });
+  };
+};

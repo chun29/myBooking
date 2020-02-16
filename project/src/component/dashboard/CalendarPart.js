@@ -11,14 +11,13 @@ class CalendarPart extends React.Component {
     this.state = {
       dateObject: moment(),
       allMonths: moment.months(),
-      showMonthTable: false,
-      showYearTable: false,
       showDateTable: true
     };
   }
 
   //Html + function
   render() {
+    const { storeID } = this.props;
     const staffInfo = this.props.staffs;
     const serviceInfo = this.props.services;
     const bookingInfo =
@@ -63,7 +62,7 @@ class CalendarPart extends React.Component {
         const bookingMonth = date.getMonth() + 1;
         const bookingDate = date.getDate();
         const bookingHours = date.getHours();
-        const name = booking.name;
+        const { name, phone, email, desc, duration } = booking;
         const id = booking.id;
         let bookingMinutes;
         if (date.getMinutes() == 0) {
@@ -80,9 +79,13 @@ class CalendarPart extends React.Component {
           month: bookingMonth,
           hours: bookingHours,
           minutes: bookingMinutes,
-          time: time,
-          name: name,
-          id: id
+          duration: duration / 60 + "小時",
+          time,
+          name,
+          id,
+          phone,
+          email,
+          desc
         };
       });
     console.log(bookingList);
@@ -135,7 +138,7 @@ class CalendarPart extends React.Component {
               datas.map((data, i) => {
                 return (
                   <React.Fragment>
-                    <Test key={i} data={data} />
+                    <Test key={i} data={data} storeID={storeID} />
                   </React.Fragment>
                 );
               })}
@@ -165,7 +168,7 @@ class CalendarPart extends React.Component {
     });
 
     let daysinmonth = rows.map((d, i) => {
-      return <tr>{d}</tr>;
+      return <tr key={i}>{d}</tr>;
     });
 
     // Create month picker
@@ -282,8 +285,8 @@ class CalendarPart extends React.Component {
             </div>
 
             <div className="calendar-icon-2">
-              <span onClick={this.showMonth}>{month()} </span>
-              <span onClick={this.showYear}> {year()}</span>
+              <span>{month()} </span>
+              <span> {year()}</span>
             </div>
           </div>
           <span
@@ -344,31 +347,6 @@ class CalendarPart extends React.Component {
     this.setState({
       dateObject: dateObject
     });
-  };
-
-  setYear = year => {
-    let dateObject = Object.assign({}, this.state.dateObject);
-    dateObject = moment(dateObject).set("year", year);
-
-    this.setState(prevstate => ({
-      dateObject: dateObject,
-      showMonthTable: !prevstate.showMonthTable,
-      showYearTable: false // add to state
-    }));
-  };
-
-  showMonth = e => {
-    this.setState(prevstate => ({
-      showMonthTable: !prevstate.showMonthTable,
-      showDateTable: !prevstate.showDateTable
-    }));
-  };
-
-  showYear = e => {
-    this.setState(prevstate => ({
-      showYearTable: !prevstate.showYearTable,
-      showDateTable: !prevstate.showDateTable
-    }));
   };
 }
 

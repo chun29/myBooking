@@ -9,12 +9,38 @@ import { Link } from "react-router-dom";
 import ServiceList from "../shops/ServiceList";
 
 class Service extends Component {
+  state = {
+    showMsg: false,
+    serviceMsg: null
+  };
+  componentDidUpdate(prevProps) {
+    // 常見用法（別忘了比較 prop）：
+    if (this.props.serviceMsg !== prevProps.serviceMsg) {
+      this.setState({
+        showMsg: true,
+        serviceMsg: this.props.serviceMsg
+      }),
+        setTimeout(
+          function() {
+            this.setState({
+              showMsg: false
+            });
+          }.bind(this),
+          3000
+        );
+    }
+  }
+
   render() {
     const services = this.props.services ? (
-      <ServiceList services={this.props.services} />
+      <ServiceList
+        services={this.props.services}
+        storeId={this.props.auth.uid}
+      />
     ) : (
       "Loading"
     );
+    const serviceMsg = this.state.serviceMsg;
     return (
       <div className="dashboard">
         <div className="top">
@@ -25,7 +51,7 @@ class Service extends Component {
             <DashboardNav />
           </div>
 
-          <div className="right-container">
+          <div className="all-right-container">
             <div className="staff-wrapper">
               <div className="staff-header">
                 <h1>服務項目</h1>
@@ -39,6 +65,7 @@ class Service extends Component {
                 <table className="staff-table-wrapper">
                   <thead>
                     <tr>
+                      <th>刪除</th>
                       <th>編輯</th>
                       <th>項目</th>
                       <th>時間</th>
@@ -48,6 +75,11 @@ class Service extends Component {
                   </thead>
                   <tbody>{services}</tbody>
                 </table>
+                {this.state.showMsg && (
+                  <div className="dashboard-msg">
+                    {serviceMsg ? <p>{serviceMsg}</p> : null}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -60,7 +92,8 @@ class Service extends Component {
 const mapStateToProps = state => {
   return {
     services: state.firestore.ordered.services,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    serviceMsg: state.serviceReducer.serviceMsg
   };
 };
 
