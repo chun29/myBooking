@@ -105,9 +105,8 @@ class CreateStaff extends Component {
     if (this.state.name.length < 1) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          name: true // update the value of specific key
+          ...prevState.error,
+          name: true
         }
       }));
     }
@@ -115,9 +114,8 @@ class CreateStaff extends Component {
     if (this.state.phone.length < 1) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          phone: true // update the value of specific key
+          ...prevState.error,
+          phone: true
         }
       }));
     }
@@ -173,7 +171,7 @@ class CreateStaff extends Component {
             <div className="form-section">
               <div className="form-item">
                 <label className="required" htmlFor="name">
-                  姓名{" "}
+                  姓名
                   {this.state.error.name && (
                     <span className="alert-msg">名稱請填寫完整</span>
                   )}

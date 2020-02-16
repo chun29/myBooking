@@ -9,8 +9,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class CreateBooking extends Component {
   state = {
-    selectedService: { item: "", id: "" },
-    selectedStaff: { name: "", id: "" },
+    selectedService: { item: "", id: "0" },
+    selectedStaff: { name: "", id: "0" },
     selectedDate: "",
     bookedDay: "",
     duration: "",
@@ -18,10 +18,46 @@ class CreateBooking extends Component {
     name: "",
     phone: "",
     email: "",
-    desc: ""
+    desc: "",
+    error: {
+      name: false,
+      phone: false,
+      selectedDate: false,
+      selectedService: false,
+      selectedStaff: false
+    }
   };
 
   handleChange = e => {
+    if (e.target.id == "phone") {
+      if (isNaN(e.target.value)) {
+        this.setState(prevState => ({
+          error: {
+            // object that we want to update
+            ...prevState.error, // keep all other key-value pairs
+            phone: true // update the value of specific key
+          }
+        }));
+      } else {
+        this.setState(prevState => ({
+          error: {
+            // object that we want to update
+            ...prevState.error, // keep all other key-value pairs
+            phone: false // update the value of specific key
+          }
+        }));
+      }
+    }
+
+    if (e.target.id == "name") {
+      this.setState(prevState => ({
+        error: {
+          // object that we want to update
+          ...prevState.error, // keep all other key-value pairs
+          name: false // update the value of specific key
+        }
+      }));
+    }
     this.setState({
       [e.target.id]: e.target.value
     });
@@ -30,17 +66,16 @@ class CreateBooking extends Component {
     this.setState({
       selectedStaff: {
         ...this.state.selectedStaff,
-        id: e.target.value
+        id: e.target.value,
+        name: e.target.value
+      },
+      error: {
+        ...this.state.error,
+        selectedStaff: false
       }
     });
   };
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log(this.state);
-    console.log(this.props.auth.uid);
-    this.props.createBooking(this.state, this.props.auth.uid);
-    this.props.history.push("/calendar");
-  };
+
   handleEndTime = e => {
     const duration = e.target.options[e.target.selectedIndex].getAttribute(
       "time"
@@ -51,6 +86,10 @@ class CreateBooking extends Component {
       selectedService: {
         ...this.state.selectedService,
         id: e.target.value
+      },
+      error: {
+        ...this.state.error,
+        selectedService: false
       }
     });
   };
@@ -69,7 +108,6 @@ class CreateBooking extends Component {
     }
 
     const bookedDay = String(date.getFullYear()) + month + day;
-    console.log(bookedDay);
 
     const hour = date.getHours();
     let time;
@@ -85,11 +123,70 @@ class CreateBooking extends Component {
         ...this.state.startTime,
         num: time
       },
+      error: {
+        ...this.state.error,
+        selectedDate: false
+      },
       bookedDay: bookedDay
     });
   };
   handleCancel = e => {
     this.props.history.push("/calendar");
+  };
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.state.name.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          ...prevState.error,
+          name: true
+        }
+      }));
+    }
+    if (this.state.phone.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          ...prevState.error,
+          phone: true
+        }
+      }));
+    }
+
+    if (this.state.selectedDate.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          ...prevState.error,
+          selectedDate: true
+        }
+      }));
+    }
+
+    if (this.state.duration.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          ...prevState.error,
+          selectedService: true
+        }
+      }));
+    }
+    if (this.state.selectedStaff.name.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          ...prevState.error,
+          selectedStaff: true
+        }
+      }));
+    }
+    if (
+      this.state.name.length > 0 &&
+      this.state.phone.length > 0 &&
+      this.state.selectedStaff.name.length > 0 &&
+      this.state.duration.length > 0 &&
+      this.state.bookedDay.length > 0
+    ) {
+      this.props.createBooking(this.state, this.props.auth.uid);
+      this.props.history.push("/calendar");
+    }
   };
 
   render() {
@@ -109,7 +206,12 @@ class CreateBooking extends Component {
           <div className="input-wrapper">
             <div className="form-section">
               <div className="form-item">
-                <label htmlFor="name">預約者</label>
+                <label className="required" htmlFor="name">
+                  顧客姓名
+                  {this.state.error.name && (
+                    <span className="alert-msg">名稱請填寫完整</span>
+                  )}
+                </label>
                 <input
                   placeholder="e.g. 王小美"
                   id="name"
@@ -117,7 +219,12 @@ class CreateBooking extends Component {
                 ></input>
               </div>
               <div className="form-item">
-                <label htmlFor="name">預約者電話</label>
+                <label className="required" htmlFor="name">
+                  顧客電話
+                  {this.state.error.phone && (
+                    <span className="alert-msg">請填入完整聯絡電話</span>
+                  )}
+                </label>
                 <input
                   placeholder="e.g. 0988123456"
                   id="phone"
@@ -125,7 +232,7 @@ class CreateBooking extends Component {
                 ></input>
               </div>
               <div className="form-item">
-                <label htmlFor="name">預約者 Email</label>
+                <label htmlFor="name">顧客信箱</label>
                 <input
                   placeholder="e.g. customer@gmail.com"
                   id="email"
@@ -134,7 +241,12 @@ class CreateBooking extends Component {
               </div>
 
               <div className="form-item">
-                <label htmlFor="date">日期</label>
+                <label className="required" htmlFor="date">
+                  日期
+                  {this.state.error.selectedDate && (
+                    <span className="alert-msg">請選擇日期與時間</span>
+                  )}
+                </label>
                 <DatePicker
                   minDate={new Date()}
                   selected={this.state.selectedDate}
@@ -143,7 +255,12 @@ class CreateBooking extends Component {
                 />
               </div>
               <div className="form-item">
-                <label htmlFor="time">時間</label>
+                <label className="required" htmlFor="time">
+                  時間
+                  {this.state.error.selectedDate && (
+                    <span className="alert-msg">請選擇日期與時間</span>
+                  )}
+                </label>
                 <DatePicker
                   selected={this.state.selectedDate}
                   placeholderText="請選擇時間"
@@ -158,13 +275,19 @@ class CreateBooking extends Component {
             </div>
             <div className="form-section">
               <div className="form-item">
-                <label htmlFor="selectService">選擇服務</label>
+                <label className="required" htmlFor="selectService">
+                  選擇服務
+                  {this.state.error.selectedService && (
+                    <span className="alert-msg">請選擇服務</span>
+                  )}
+                </label>
                 <select
                   className="all-select"
                   id="selectedService"
                   onChange={this.handleEndTime}
+                  value={this.state.selectedService.id}
                 >
-                  <option disabled selected value>
+                  <option disabled value="0">
                     -- 請選擇服務 --
                   </option>
                   {serviceArr &&
@@ -183,13 +306,19 @@ class CreateBooking extends Component {
               </div>
 
               <div className="form-item">
-                <label htmlFor="selectStaff">服務人員</label>
+                <label className="required" htmlFor="selectStaff">
+                  服務人員
+                  {this.state.error.selectedStaff && (
+                    <span className="alert-msg">請選擇服務人員</span>
+                  )}
+                </label>
                 <select
+                  value={this.state.selectedStaff.id}
                   className="all-select"
                   id="selectedStaff"
                   onChange={this.selectStaff}
                 >
-                  <option disabled selected value>
+                  <option disabled value="0">
                     -- 請選擇服務人員 --
                   </option>
                   {staffArr &&
