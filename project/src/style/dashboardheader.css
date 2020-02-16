@@ -35,11 +35,17 @@
   background-color: #f4f6fe;
 }
 .dashboard-header .online-container .color-sign {
-  background-color: #f33155;
   width: 16px;
   height: 16px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.dashboard-header .online-container .red {
+  background-color: #f33155;
+}
+.dashboard-header .online-container .blue {
+  background-color: #3d5afe;
 }
 
 .dashboard-header .online-container .online-setup {

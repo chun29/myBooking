@@ -1,7 +1,6 @@
 import React from "react";
 
 export const Notifications = props => {
-  console.log(props);
   return (
     <div className="notification-wrapper">
       <h1 className="today-info">今日預約</h1>
@@ -61,7 +60,6 @@ export const Notifications = props => {
 };
 
 export const TodayBookings = props => {
-  console.log(props);
   return (
     <div className="notification-wrapper notification-wrapper-2">
       <h1 className="new-info">最新訊息</h1>

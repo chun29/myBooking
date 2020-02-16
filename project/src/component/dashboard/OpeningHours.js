@@ -46,6 +46,21 @@ class OpeningHours extends Component {
     )
   };
 
+  componentDidUpdate(prevProps) {
+    // 常見用法（別忘了比較 prop）：
+    if (this.props.store !== prevProps.store) {
+      // this.setState({ store: this.props.store });
+
+      const workday = this.props.store[0].workday;
+
+      this.setState({
+        isOpen: workday.isOpen,
+        closeTime: workday.closeTime,
+        openTime: workday.openTime
+      });
+    }
+  }
+
   handleCheckboxChange = changeEvent => {
     const { name } = changeEvent.target;
     this.setState(prevState => ({
@@ -131,7 +146,7 @@ class OpeningHours extends Component {
             </div>
             <main className="openingHours-wrapper">
               <div className="workingHours-container">
-                <form autocomplete="off" className="workingHours-form">
+                <form autoComplete="off" className="workingHours-form">
                   <div className="workingHours-column workday">
                     <h3>星期</h3>
                     {this.createCheckboxes()}
@@ -179,10 +194,13 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([
-    {
-      collection: "store"
-    }
-  ])
+  connect(mapStateToProps),
+  firestoreConnect(props => {
+    return [
+      {
+        collection: "store",
+        doc: props.auth.uid
+      }
+    ];
+  })
 )(OpeningHours);

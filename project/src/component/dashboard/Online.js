@@ -8,7 +8,19 @@ import "../../style/staff.css";
 import { Link } from "react-router-dom";
 
 class Online extends Component {
+  state = {
+    store: ""
+  };
+
+  componentDidUpdate(prevProps) {
+    // 常見用法（別忘了比較 prop）：
+    if (this.props.store !== prevProps.store) {
+      this.setState({ store: this.props.store });
+    }
+  }
+
   render() {
+    const { auth } = this.props;
     return (
       <div className="dashboard">
         <div className="top">
@@ -58,13 +70,11 @@ class Online extends Component {
                   </div> */}
                   <div className="main-right">
                     <h3>預約頁面</h3>
-                    <Link>
-                      http://localhost:8080/booking/3IYjMjG5ejTCoyfQ6FYapwJsMaA3
-                    </Link>
-                    <div>
-                      <h3>狀態</h3>
-                      <p>已上線</p>
-                    </div>
+                    <div>商店帳號：{auth.uid}</div>
+                    <div>商店名稱</div>
+                    <div>商店電話</div>
+                    <div>商店地址</div>
+                    <div>img</div>
                   </div>
                 </div>
               </div>
@@ -79,7 +89,9 @@ class Online extends Component {
 const mapStateToProps = state => {
   return {
     staff: state.firestore.ordered.staff,
-    auth: state.firebase.auth
+    store: state.firestore.ordered.store,
+    auth: state.firebase.auth,
+    test: "123"
   };
 };
 
@@ -92,6 +104,10 @@ export default compose(
         doc: props.auth.uid,
         subcollections: [{ collection: "staff" }],
         storeAs: "staff"
+      },
+      {
+        collection: "store",
+        doc: props.auth.uid
       }
     ];
   })

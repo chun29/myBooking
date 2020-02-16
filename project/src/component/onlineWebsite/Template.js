@@ -200,12 +200,26 @@ class Template extends React.Component {
 
   render() {
     const id = this.props.match.params && this.props.match.params;
-    // console.log(this.props.match.params);
+
     const data = this.props;
+    if (data.store && data.store[0]) {
+      if (data.store[0].online) {
+        onlineSetup = data.store[0].online.bookingIsOpen;
+      }
+    }
+
+    let onlineSetup = false;
+
+    if (data.store && data.store[0]) {
+      if (data.store[0].online) {
+        onlineSetup = data.store[0].online.bookingIsOpen;
+      }
+    }
+
     let store;
     let storeCloseDay = [];
     if (data.store && data.store[0].online) {
-      console.log(data.store[0].workday.isOpen);
+      // console.log(data.store[0].workday.isOpen);
       store = {
         bookingIsOpen: data.store[0].online.storeName.bookingIsOpen,
         name: data.store[0].online.storeName,
@@ -336,8 +350,7 @@ class Template extends React.Component {
         </div>
       );
     };
-
-    return (
+    const setUp = (
       <div className="online-container">
         <nav className="online-header">
           <div className="left-header">My 線上預約</div>
@@ -482,6 +495,154 @@ class Template extends React.Component {
         </footer>
       </div>
     );
+
+    const view = onlineSetup ? setUp : "loading";
+    return <React.Fragment>{view}</React.Fragment>;
+    // return (
+    //   <div className="online-container">
+    //     <nav className="online-header">
+    //       <div className="left-header">My 線上預約</div>
+    //       <div className="right-header">查詢/修改預約</div>
+    //     </nav>
+    //     <div className="banner-wrapper">
+    //       <div className="banner">
+    //         {store && <img className="banner" src={store.bannerImg} />}
+    //       </div>
+    //     </div>
+    //     <div className="content">
+    //       <div className="store-info">
+    //         <div className="info-section">
+    //           {store && <h1>{store.name}</h1>}
+    //           <div className="button-wrapper">
+    //             <button className="blue">查看地圖</button>
+
+    //             <button className="red" onClick={this.showBooking}>
+    //               我要預訂
+    //             </button>
+    //           </div>
+    //           {store && <div className="info phone">電話：{store.phone}</div>}
+    //           {store && (
+    //             <div className="info address">地址：{store.address}</div>
+    //           )}
+    //           <hr className="infohr" />
+    //           <div className="store-desc">{store && <p>{store.desc}</p>}</div>
+    //         </div>
+    //         <div className="info-section">
+    //           <h3>店家圖片</h3>
+    //           <div className="store-photo-wrapper">
+    //             <div className="store-photo">
+    //               {store && <img src={store.logoImg} alt="" />}
+    //             </div>
+    //           </div>
+    //         </div>
+    //         <div className="info-section">
+    //           <h3>預約須知</h3>
+    //           <div className="store-desc">{store && <p>{store.note}</p>}</div>
+    //         </div>
+
+    //         {this.state.bookingShow && (
+    //           <div
+    //             ref={this.scrollDiv}
+    //             className="info-section booking-section"
+    //           >
+    //             <BookingProcess
+    //               step={this.state.step}
+    //               selectStep={this.selectStep}
+    //             />
+    //             <div className="booking-step-item">
+    //               {this.state.serviceShow && (
+    //                 <div>
+    //                   <h3>STEP1 選擇服務</h3>
+    //                   <div className="service-wrapper">
+    //                     {serviceArr.map((service, i) => {
+    //                       return (
+    //                         <Service
+    //                           key={i}
+    //                           service={service}
+    //                           selectService={this.selectService}
+    //                           selectedService={this.state.selectedService}
+    //                         />
+    //                       );
+    //                     })}
+    //                   </div>
+    //                 </div>
+    //               )}
+    //               {this.state.staffShow && (
+    //                 <div className="booking-step-item">
+    //                   <h3>選擇服務人員</h3>
+    //                   <div className="service-wrapper">
+    //                     {staffArr.map((staff, i) => {
+    //                       return (
+    //                         <Staff
+    //                           key={i}
+    //                           staff={staff}
+    //                           selectStaff={this.selectStaff}
+    //                           selectedStaff={this.state.selectedStaff}
+    //                         />
+    //                       );
+    //                     })}
+    //                   </div>
+    //                 </div>
+    //               )}
+    //             </div>
+
+    //             {this.state.dateShow && (
+    //               <div className="booking-step-date">
+    //                 <h3 ref={this.scrollDiv2}>STEP4 選擇日期</h3>
+    //                 <DatePicker
+    //                   selected={this.state.selectedDate}
+    //                   onChange={this.handleChange}
+    //                   minDate={new Date().setDate(
+    //                     new Date().getDate() + store.closeDay
+    //                   )}
+    //                   maxDate={new Date().setDate(
+    //                     new Date().getDate() + store.startDay
+    //                   )}
+    //                   placeholderText="請選擇日期"
+    //                   filterDate={isOpenDay}
+    //                   className="datePicker"
+    //                 />
+    //                 {this.state.timeShow && (
+    //                   <div>
+    //                     <h3>可選擇時間</h3>
+
+    //                     <div className="service-wrapper">
+    //                       <AvailableTime
+    //                         bookedDay={this.state.bookedDay}
+    //                         storeID={id}
+    //                         storeInfo={store}
+    //                         weekDay={this.state.selectedDate}
+    //                         duration={this.state.duration}
+    //                         selectStaff={this.state.selectedStaff}
+    //                         selectStartTime={this.selectStartTime}
+    //                       />
+    //                     </div>
+    //                   </div>
+    //                 )}
+    //               </div>
+    //             )}
+    //             {this.state.confirmShow && (
+    //               <div className="booking-step-item">
+    //                 <h3>STEP4 填入顧客資訊</h3>
+    //                 <BookingConfirm
+    //                   allState={this.state}
+    //                   handleInfoChange={this.handleInfoChange}
+    //                   handleSubmit={this.handleSubmit}
+    //                   storeID={id}
+    //                 />
+    //               </div>
+    //             )}
+    //           </div>
+    //         )}
+    //       </div>
+    //     </div>
+    //     <footer>
+    //       <div className="copyright">
+    //         © 2019 MyBooking All rights researved.
+    //       </div>
+    //     </footer>
+    //   </div>
+    // );
   }
 }
 

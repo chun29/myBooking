@@ -49,3 +49,10 @@ export const onlineSetup = (online, id) => {
       });
   };
 };
+
+export const getOnline = (online, id) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    const firebase = getFirebase();
+  };
+};
