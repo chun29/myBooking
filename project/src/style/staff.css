@@ -3,7 +3,7 @@
   width: 100%;
 }
 .staff-header {
-  margin-top: 15px;
+  margin-top: 10px;
   font-size: 16px;
   color: #1a237e;
 }
@@ -23,11 +23,12 @@
   cursor: pointer;
   border-radius: 10px;
   line-height: 20px;
-  padding: 10px 17px;
+  padding: 15px 20px;
   border: 1px solid #00bfa5;
   background-color: #fff;
   color: #00bfa5;
   font-weight: 600;
+  outline: none;
 }
 .button-wrapper button:hover {
   background-color: #00bfa5;
@@ -75,6 +76,7 @@ table tbody tr td {
 /* Calendar */
 .calendar-main-wrapper {
   padding: 30px;
+  margin-top: -80px;
   margin-bottom: 100px;
 }
 

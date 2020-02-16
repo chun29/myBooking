@@ -220,5 +220,7 @@
 
 /* Calendar */
 .all-right-container {
-  margin-left: 300px;
+  position: relative;
+  left: 20%;
+  max-width: 1250px;
 }

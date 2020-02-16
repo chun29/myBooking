@@ -126,10 +126,10 @@ class OpeningHours extends Component {
           </div>
 
           <div className="all-right-container">
+            <div className="staff-header">
+              <h1>設定營業時間</h1>
+            </div>
             <main className="openingHours-wrapper">
-              <div className="workingHours-header">
-                <h1>設定營業時間</h1>
-              </div>
               <div className="workingHours-container">
                 <form autocomplete="off" className="workingHours-form">
                   <div className="workingHours-column workday">
@@ -149,10 +149,10 @@ class OpeningHours extends Component {
                   </div>
                 </form>
               </div>
-              <div className="workingHours-btn">
+              <div className="form-button-wrapper">
                 <button
                   onClick={this.handleSubmit}
-                  className="workingHours-next"
+                  className="create-staff-button"
                 >
                   儲存
                 </button>

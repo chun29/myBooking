@@ -2,7 +2,7 @@ const initState = { serviceMsg: null };
 const serviceReducer = (state = initState, action) => {
   switch (action.type) {
     case "CREATE_SERVICE":
-      console.log("created staff", action.service);
+      console.log("created staff", action.newService);
       return {
         ...state,
         serviceMsg: "成功新增服務"

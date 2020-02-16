@@ -88,6 +88,9 @@ class CreateBooking extends Component {
       bookedDay: bookedDay
     });
   };
+  handleCancel = e => {
+    this.props.history.push("/calendar");
+  };
 
   render() {
     const staffArr = this.props.staff ? this.props.staff : "";
@@ -156,7 +159,11 @@ class CreateBooking extends Component {
             <div className="form-section">
               <div className="form-item">
                 <label htmlFor="selectService">選擇服務</label>
-                <select id="selectedService" onChange={this.handleEndTime}>
+                <select
+                  className="all-select"
+                  id="selectedService"
+                  onChange={this.handleEndTime}
+                >
                   <option disabled selected value>
                     -- 請選擇服務 --
                   </option>
@@ -177,7 +184,11 @@ class CreateBooking extends Component {
 
               <div className="form-item">
                 <label htmlFor="selectStaff">服務人員</label>
-                <select id="selectedStaff" onChange={this.selectStaff}>
+                <select
+                  className="all-select"
+                  id="selectedStaff"
+                  onChange={this.selectStaff}
+                >
                   <option disabled selected value>
                     -- 請選擇服務人員 --
                   </option>
@@ -203,8 +214,10 @@ class CreateBooking extends Component {
             </div>
           </div>
 
-          <div className="button-wrapper">
-            <button className="cancel-staff-button">取消</button>
+          <div className="form-button-wrapper">
+            <button onClick={this.handleCancel} className="cancel-staff-button">
+              取消
+            </button>
             <button className="create-staff-button">新增</button>
           </div>
         </form>

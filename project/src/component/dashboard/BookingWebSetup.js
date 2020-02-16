@@ -305,6 +305,7 @@ class BookingWebSetup extends Component {
                   最早預約時間 (例如:兩個月前開放預約)
                 </label>
                 <select
+                  className="all-select"
                   id="bookOpenDay"
                   value={this.state.startDay}
                   onChange={this.handleChange}
@@ -329,6 +330,7 @@ class BookingWebSetup extends Component {
                   最晚預約時間 (例如:最晚須於一天之前預約)
                 </label>
                 <select
+                  className="all-select"
                   value={this.state.closeDay}
                   onChange={this.handleChange}
                   id="bookCloseDay"
@@ -384,7 +386,7 @@ class BookingWebSetup extends Component {
             </div>
           </div>
 
-          <div className="button-wrapper">
+          <div className="form-button-wrapper">
             <button onClick={this.handleCancel} className="cancel-staff-button">
               取消
             </button>

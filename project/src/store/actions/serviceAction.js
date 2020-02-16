@@ -1,24 +1,49 @@
 export const createService = (service, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    console.log(service);
-    // make async to database
+    const { item, price, desc, duration, image, url } = service;
+    const newService = {
+      item,
+      price,
+      desc,
+      duration,
+      image,
+      url
+    };
     const firestore = getFirestore();
-    console.log(firestore.collection("store"));
-    firestore
-      .collection("store")
-      .doc(id)
-      .collection("service")
-      .doc()
-      .set(service, { merge: true })
-      .then(() => {
-        dispatch({ type: "CREATE_SERVICE", service });
+    const firebase = getFirebase();
+
+    const imagesPath = "images";
+
+    firebase
+      .uploadFile(imagesPath, image)
+      .then(uploadedFile => {
+        return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
       })
-      .catch(err => {
-        dispatch({ type: "CREATE_SERVICE_ERROR", err });
+      .then(downloadURL => {
+        console.log(
+          `Successfully uploaded file and got download link - ${downloadURL}`
+        );
+        return downloadURL;
+      })
+      .then(url => {
+        newService.url = url;
+        newService.image = image.name;
+
+        firestore
+          .collection("store")
+          .doc(id)
+          .collection("service")
+          .doc()
+          .set(newService, { merge: true })
+          .then(() => {
+            dispatch({ type: "CREATE_SERVICE", newService });
+          })
+          .catch(err => {
+            dispatch({ type: "CREATE_SERVICE_ERROR", err });
+          });
       });
   };
 };
-
 export const deleteService = (storeId, serviceId) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();

@@ -10,6 +10,22 @@ const SelectOpenTime = ({ label, value, handleSelect, disabled }) => (
           name={label}
           disabled={disabled}
         >
+          <option value="0">00:00</option>
+          <option value="0.5">00:30</option>
+          <option value="1">01:00</option>
+          <option value="1.5">01:30</option>
+          <option value="2">02:00</option>
+          <option value="2.5">02:30</option>
+          <option value="3">03:00</option>
+          <option value="3.5">03:30</option>
+          <option value="4">04:00</option>
+          <option value="4.5">04:30</option>
+          <option value="5">05:00</option>
+          <option value="5.5">05:30</option>
+          <option value="6">06:00</option>
+          <option value="6.5">06:30</option>
+          <option value="7">07:00</option>
+          <option value="7.5">07:30</option>
           <option value="8">08:00</option>
           <option value="8.5">08:30</option>
           <option value="9">09:00</option>
@@ -31,6 +47,17 @@ const SelectOpenTime = ({ label, value, handleSelect, disabled }) => (
           <option value="17">17:00</option>
           <option value="17.5">17:30</option>
           <option value="18">18:00</option>
+          <option value="18.5">18:30</option>
+          <option value="19">19:00</option>
+          <option value="19.5">19:30</option>
+          <option value="20">20:00</option>
+          <option value="20.5">20:30</option>
+          <option value="21">21:00</option>
+          <option value="21.5">21:30</option>
+          <option value="22">22:00</option>
+          <option value="22.5">22:30</option>
+          <option value="23">23:00</option>
+          <option value="23.5">23:30</option>
         </select>
       </div>
     </label>

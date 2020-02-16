@@ -1,7 +1,7 @@
 export const createStaff = (staff, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const { name, phone, nickname, image, color, desc, email, url } = staff;
-    const staffInfo = {
+    const newStaff = {
       name,
       phone,
       nickname,
@@ -28,17 +28,17 @@ export const createStaff = (staff, id) => {
         return downloadURL;
       })
       .then(url => {
-        staffInfo.url = url;
-        staffInfo.image = image.name;
-        console.log(staffInfo);
+        newStaff.url = url;
+        newStaff.image = image.name;
+
         firestore
           .collection("store")
           .doc(id)
           .collection("staff")
           .doc()
-          .set(staffInfo, { merge: true })
+          .set(newStaff, { merge: true })
           .then(() => {
-            dispatch({ type: "CREATE_STAFF", staffInfo });
+            dispatch({ type: "CREATE_STAFF", newStaff });
           })
           .catch(err => {
             dispatch({ type: "CREATE_STAFF_ERROR", err });

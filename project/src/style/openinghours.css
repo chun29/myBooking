@@ -43,19 +43,31 @@
 .workingHours-form h3 {
   margin: 50px 0 30px 0;
 }
-.workingHours-form .set-container select {
-  appearance: none;
+.workingHours-form .set-container select,
+.all-select {
   -moz-appearance: none;
   -webkit-appearance: none;
-  width: 180px;
+  width: auto;
+  min-width: 180px;
   height: 40px;
   padding-left: 10px;
   background-color: #f6f7f7;
   font-size: 16px;
-  border: 1px solid #dee3e7;
-  border-radius: 2px;
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.7);
+  border: 1px solid #cbd5ff;
+  border-radius: 8px;
   outline: none;
   background: url(../img/arrow.png) no-repeat 90% white;
+  color: #3c444a;
+}
+.workingHours-form .set-container select:focus,
+.all-select:focus {
+  outline: none;
+  border-color: #3c5afa;
+  box-shadow: 0 0 3px rgba(45, 135, 210, 0.5),
+    inset 0 1px 1px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.1s linear, color 0.1s linear;
+  color: #3c5afa;
 }
 
 .workingHours-next {

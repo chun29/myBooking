@@ -26,7 +26,6 @@ class CreateStaff extends Component {
   handleChange = e => {
     if (e.target.id == "phone") {
       if (isNaN(e.target.value)) {
-        console.log("111");
         this.setState(prevState => ({
           error: {
             // object that we want to update
@@ -100,13 +99,6 @@ class CreateStaff extends Component {
     }
   };
 
-  // handleImgChange = e => {
-  //   console.log(e.target.files[0]);
-  //   if (e.target.files[0]) {
-  //     const image = e.target.files[0];
-  //     this.setState(() => ({ image }));
-  //   }
-  // };
   handleSubmit = e => {
     e.preventDefault();
 
@@ -194,8 +186,22 @@ class CreateStaff extends Component {
                 ></input>
               </div>
               <div className="form-item">
+                <label className="required" htmlFor="nickname">
+                  暱稱 (顯示在預訂網站上的名稱)
+                  {this.state.error.nickname && (
+                    <span className="alert-msg">請填入暱稱</span>
+                  )}
+                </label>
+
+                <input
+                  placeholder="e.g. 小明"
+                  id="nickname"
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <div className="form-item">
                 <label className="required" htmlFor="phone">
-                  聯絡電話{" "}
+                  聯絡電話
                   {this.state.error.phone && (
                     <span className="alert-msg">請填入完整聯絡電話</span>
                   )}
@@ -216,33 +222,6 @@ class CreateStaff extends Component {
                 ></input>
               </div>
 
-              <div className="form-item logo-wrapper">
-                <label className="required" htmlFor="desc">
-                  大頭貼照{" "}
-                  {this.state.error.image && (
-                    <span className="alert-msg">請上傳大頭貼照</span>
-                  )}
-                </label>
-                <div className="logo-circle">
-                  <img
-                    className="store-logo"
-                    src={this.state.imageSrc}
-                    alt="home"
-                  />
-                </div>
-                <p>建議尺寸 180 x 180</p>
-                <input
-                  onChange={this.handleImgChange}
-                  type="file"
-                  name="pic"
-                  accept="image/*"
-                />
-              </div>
-
-              <div className="form-item staff-avatar-wrapper">
-                <label htmlFor="photo">圖片</label>
-                <input type="file" onChange={this.handleImgChange} />
-              </div>
               <div className="form-item">
                 <label htmlFor="email">行事曆上預約顯示顏色</label>
                 <div className="color-area">
@@ -266,19 +245,27 @@ class CreateStaff extends Component {
               </div>
             </div>
             <div className="form-section">
-              <div className="form-item">
-                <label className="required" htmlFor="nickname">
-                  暱稱 (顯示在預訂網站上的名稱){" "}
-                  {this.state.error.nickname && (
-                    <span className="alert-msg">請填入暱稱</span>
+              <div className="form-item logo-wrapper">
+                <label className="required" htmlFor="desc">
+                  大頭貼照
+                  {this.state.error.image && (
+                    <span className="alert-msg">請上傳大頭貼照</span>
                   )}
                 </label>
-
+                <div className="logo-circle">
+                  <img
+                    className="store-logo"
+                    src={this.state.imageSrc}
+                    alt="home"
+                  />
+                </div>
+                <p>建議尺寸 180 x 180</p>
                 <input
-                  placeholder="e.g. 小明"
-                  id="nickname"
-                  onChange={this.handleChange}
-                ></input>
+                  onChange={this.handleImgChange}
+                  type="file"
+                  name="pic"
+                  accept="image/*"
+                />
               </div>
 
               <div className="form-item">
