@@ -12,7 +12,30 @@ import "../../style/dashboard.css";
 
 class Dashboard extends Component {
   render() {
-    const { auth, profile, notifications } = this.props;
+    const { auth, profile, notifications, bookings } = this.props;
+
+    Date.prototype.yyyymmdd = function() {
+      var mm = this.getMonth() + 1;
+      var dd = this.getDate();
+
+      return [
+        this.getFullYear(),
+        (mm > 9 ? "" : "0") + mm,
+        (dd > 9 ? "" : "0") + dd
+      ].join("");
+    };
+
+    var date = new Date();
+    const today = date.yyyymmdd();
+    let todayBookings = [];
+    if (bookings) {
+      bookings.map(booking => {
+        if (booking.bookedDay === today) {
+          todayBookings.push(booking);
+        }
+      });
+    }
+
     let user = "";
     if (profile.name) {
       user = profile.name.charAt(0).toUpperCase();
@@ -31,11 +54,15 @@ class Dashboard extends Component {
           </div>
           <div className="dashboard-right-container">
             <div className="dashboard-item-container dashboard-item1">
-              <Notifications notifications={notifications} />
+              <TodayBookings
+                todayBookings={todayBookings}
+                staffs={this.props.staff}
+                services={this.props.service}
+              />
             </div>
 
             <div className="dashboard-item-container  dashboard-item2">
-              <TodayBookings />
+              <Notifications notifications={notifications} />
               {/* <Link to="/createbooking">
                 <button>新增預約</button>
               </Link>
@@ -54,13 +81,36 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile,
-    notifications: state.firestore.ordered.notifications
+    notifications: state.firestore.ordered.notifications,
+    bookings: state.firestore.ordered.booking,
+    staff: state.firestore.ordered.staff,
+    service: state.firestore.ordered.service
   };
 };
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([
-    { collection: "notifications", limit: 5, orderBy: ["time", "desc"] }
-  ])
+  firestoreConnect(props => {
+    return [
+      { collection: "notifications", limit: 5 },
+      {
+        collection: "store",
+        doc: props.auth.uid,
+        subcollections: [{ collection: "booking" }],
+        storeAs: "booking"
+      },
+      {
+        collection: "store",
+        doc: props.auth.uid,
+        subcollections: [{ collection: "staff" }],
+        storeAs: "staff"
+      },
+      {
+        collection: "store",
+        doc: props.auth.uid,
+        subcollections: [{ collection: "service" }],
+        storeAs: "service"
+      }
+    ];
+  })
 )(Dashboard);

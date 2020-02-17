@@ -192,27 +192,21 @@ class Template extends React.Component {
   };
 
   handleSubmit = id => {
-    this.props.createBooking(this.state, id.id);
-    this.setState({
-      confirmShow: false,
-      resultShow: true,
-      bookingShow: false
-    });
-    // if (
-    //   this.state.name.length > 0 &&
-    //   this.state.phone.length > 0 &&
-    //   this.state.email.length > 0
-    // ) {
-    //   this.props.createBooking(this.state, id.id);
-    //   this.setState(
-    //     {
-    // confirmShow:false,
-    //       resultShow:true
-    //     },)
-    //   // this.props.history.push("/");
-    // } else {
-    //   alert("資料請填完整");
-    // }
+    if (
+      this.state.name.length > 0 &&
+      this.state.phone.length > 0 &&
+      this.state.email.length > 0
+    ) {
+      this.props.createBooking(this.state, id.id);
+
+      this.setState({
+        confirmShow: false,
+        resultShow: true,
+        bookingShow: false
+      });
+    } else {
+      alert("資料請填完整");
+    }
   };
 
   render() {

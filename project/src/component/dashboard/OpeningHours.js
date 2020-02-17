@@ -20,34 +20,40 @@ const WEEK = [
   [0, "星期日"]
 ];
 
-// const WEEK = [1, 2, 3, 4, 5, 6, 0];
 class OpeningHours extends Component {
-  state = {
-    isOpen: WEEK.reduce(
-      (options, option) => ({
-        ...options,
-        [option[0]]: true
-      }),
-      {}
-    ),
-    openTime: WEEK.reduce(
-      (options, option) => ({
-        ...options,
-        [option[0]]: "8"
-      }),
-      {}
-    ),
-    closeTime: WEEK.reduce(
-      (options, option) => ({
-        ...options,
-        [option[0]]: "18"
-      }),
-      {}
-    )
-  };
+  constructor(props) {
+    super(props);
+    this.state = props.store ? props.store[0].workday : null;
+    /*
+    this.state = {
+      isOpen: WEEK.reduce(
+        (options, option) => ({
+          ...options,
+          [option[0]]: true
+        }),
+        {}
+      ),
+      openTime: WEEK.reduce(
+        (options, option) => ({
+          ...options,
+          [option[0]]: "8"
+        }),
+        {}
+      ),
+      closeTime: WEEK.reduce(
+        (options, option) => ({
+          ...options,
+          [option[0]]: "18"
+        }),
+        {}
+      )
+    };
+    */
+  }
 
   componentDidUpdate(prevProps) {
     // 常見用法（別忘了比較 prop）：
+
     if (this.props.store !== prevProps.store) {
       // this.setState({ store: this.props.store });
 
@@ -130,6 +136,11 @@ class OpeningHours extends Component {
     this.props.setOpeningHours(this.state, this.props.auth.uid);
   };
   render() {
+    console.log(this.props);
+    console.log("state", this.state);
+    if (this.state === null) {
+      return <div>Loading</div>;
+    }
     return (
       <div className="dashboard">
         <div className="top">
@@ -194,7 +205,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => {
     return [
       {

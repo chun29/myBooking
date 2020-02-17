@@ -14,7 +14,6 @@ class Calendar extends Component {
     bookingMsg: null
   };
   componentDidUpdate(prevProps) {
-    // 常見用法（別忘了比較 prop）：
     if (this.props.bookingMsg !== prevProps.bookingMsg) {
       this.setState({
         showMsg: true,

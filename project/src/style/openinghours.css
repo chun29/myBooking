@@ -69,6 +69,10 @@
   transition: box-shadow 0.1s linear, color 0.1s linear;
   color: #3c5afa;
 }
+.workingHours-form .set-container select:disabled {
+  opacity: 0.4;
+  border: 1px solid #fff;
+}
 
 .workingHours-next {
   position: relative;
