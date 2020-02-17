@@ -11,6 +11,7 @@ class StaffList extends Component {
   };
   render() {
     const { staffs, storeId } = this.props;
+    console.log(staffs);
     return (
       <React.Fragment>
         {staffs &&

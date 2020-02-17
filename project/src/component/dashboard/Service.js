@@ -7,6 +7,7 @@ import DashboardHeader from "./DashboardHeader";
 import "../../style/staff.css";
 import { Link } from "react-router-dom";
 import ServiceList from "../shops/ServiceList";
+import addservice from "../../img/addservice.png";
 
 class Service extends Component {
   state = {
@@ -32,15 +33,49 @@ class Service extends Component {
   }
 
   render() {
-    const services = this.props.services ? (
+    const serviceMsg = this.state.serviceMsg;
+    if (this.props.services && this.props.services.length < 1) {
+      return (
+        <div className="dashboard">
+          <div className="top">
+            <DashboardHeader />
+          </div>
+          <div className="down">
+            <div className="left-container">
+              <DashboardNav />
+            </div>
+
+            <div className="all-right-container">
+              <div className="staff-wrapper">
+                <div className="staff-header">
+                  <h1>服務項目</h1>
+                </div>
+                <div className="staff-main-wrapper">
+                  <div className="button-wrapper">
+                    <Link to="/createservice">
+                      <button className="add-staff">新建服務項目</button>
+                    </Link>
+                  </div>
+                  <h1>尚未有服務創建</h1>
+                  <img src={addservice} className="addservice" />
+                  {this.state.showMsg && (
+                    <div className="dashboard-msg">
+                      {serviceMsg ? <p>{serviceMsg}</p> : null}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    const services = this.props.services && (
       <ServiceList
         services={this.props.services}
         storeId={this.props.auth.uid}
       />
-    ) : (
-      "Loading"
     );
-    const serviceMsg = this.state.serviceMsg;
     return (
       <div className="dashboard">
         <div className="top">

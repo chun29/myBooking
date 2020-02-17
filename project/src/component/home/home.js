@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../layout/Navbar";
 import "../../style/home.css";
-import loading from "../layout/loading";
 import Footer from "../layout/Footer.js";
 
 export default class home extends Component {

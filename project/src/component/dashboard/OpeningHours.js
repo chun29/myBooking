@@ -23,7 +23,32 @@ const WEEK = [
 class OpeningHours extends Component {
   constructor(props) {
     super(props);
-    this.state = props.store ? props.store[0].workday : null;
+    this.state =
+      props.store && props.store[0]
+        ? props.store[0].workday
+        : {
+            isOpen: WEEK.reduce(
+              (options, option) => ({
+                ...options,
+                [option[0]]: true
+              }),
+              {}
+            ),
+            openTime: WEEK.reduce(
+              (options, option) => ({
+                ...options,
+                [option[0]]: "8"
+              }),
+              {}
+            ),
+            closeTime: WEEK.reduce(
+              (options, option) => ({
+                ...options,
+                [option[0]]: "18"
+              }),
+              {}
+            )
+          };
     /*
     this.state = {
       isOpen: WEEK.reduce(
@@ -51,21 +76,21 @@ class OpeningHours extends Component {
     */
   }
 
-  componentDidUpdate(prevProps) {
-    // 常見用法（別忘了比較 prop）：
+  // componentDidUpdate(prevProps) {
+  //   // 常見用法（別忘了比較 prop）：
 
-    if (this.props.store !== prevProps.store) {
-      // this.setState({ store: this.props.store });
+  //   if (this.props.store !== prevProps.store) {
+  //     // this.setState({ store: this.props.store });
 
-      const workday = this.props.store[0].workday;
+  //     const workday = this.props.store[0].workday;
 
-      this.setState({
-        isOpen: workday.isOpen,
-        closeTime: workday.closeTime,
-        openTime: workday.openTime
-      });
-    }
-  }
+  //     this.setState({
+  //       isOpen: workday.isOpen,
+  //       closeTime: workday.closeTime,
+  //       openTime: workday.openTime
+  //     });
+  //   }
+  // }
 
   handleCheckboxChange = changeEvent => {
     const { name } = changeEvent.target;
@@ -136,8 +161,6 @@ class OpeningHours extends Component {
     this.props.setOpeningHours(this.state, this.props.auth.uid);
   };
   render() {
-    console.log(this.props);
-    console.log("state", this.state);
     if (this.state === null) {
       return <div>Loading</div>;
     }

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Notifications, TodayBookings } from "./Notifications";
-
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -63,12 +61,6 @@ class Dashboard extends Component {
 
             <div className="dashboard-item-container  dashboard-item2">
               <Notifications notifications={notifications} />
-              {/* <Link to="/createbooking">
-                <button>新增預約</button>
-              </Link>
-              <Link to="/createstaff">
-                <button>新增工作人員</button>
-              </Link> */}
             </div>
           </div>
         </div>
