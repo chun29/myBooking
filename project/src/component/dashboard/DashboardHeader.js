@@ -23,13 +23,14 @@ const DashboardHeader = ({ auth, profile, store }) => {
     user = profile.name.charAt(0).toUpperCase();
   }
   const userName = auth.uid ? user : "";
+  const link = "/booking/" + auth.uid;
 
   return (
     <React.Fragment>
       <div className="dashboard-header">
         <Logo />
         <div className="right-container">
-          <Link to="/online">
+          <Link to={link}>
             <div className="online-container">
               <div className={`color-sign ${newClass}`}></div>
               <div className="online-info">

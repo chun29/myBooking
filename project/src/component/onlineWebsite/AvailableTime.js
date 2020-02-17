@@ -142,7 +142,7 @@ class AvailableTime extends Component {
       }
 
       return (
-        <div>
+        <div className="time-btn-wrapper">
           {finalBtn.map((time, i) => {
             return (
               <button

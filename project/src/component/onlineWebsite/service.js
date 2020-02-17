@@ -16,8 +16,8 @@ const Service = ({ service, selectService, selectedService }) => {
     <div className="service" style={style}>
       <img className="service-img" src={storePhoto} />
       <div className="service-row-1 service-desc">
-        <p>{service.item}</p>
-        <p>{service.desc}</p>
+        <p className="service-header">{service.item}</p>
+        <p className="service-text"> {service.desc}</p>
       </div>
       <div className="service-row-2">
         <p>

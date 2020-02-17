@@ -14,6 +14,9 @@
 }
 .dashboard-header a {
   text-decoration: none;
+  color: #1a237e;
+  font-weight: 500;
+  letter-spacing: 0.8px;
 }
 
 .dashboard-header .right-container {
@@ -45,7 +48,7 @@
   background-color: #f33155;
 }
 .dashboard-header .online-container .blue {
-  background-color: #3d5afe;
+  background-color: #4d80e4;
 }
 
 .dashboard-header .online-container .online-setup {

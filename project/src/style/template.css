@@ -3,18 +3,50 @@
 }
 
 .online-container .online-header {
-  height: 70px;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(245, 245, 245);
-  line-height: 70px;
-  height: 70px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+  line-height: 80px;
+  height: 80px;
   font-size: 16px;
   padding: 0 10%;
+  border-bottom: 1px solid rgba(61, 90, 254, 0.2);
+}
+.online-container .online-header::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+}
+
+.online-container .left-header {
+  font-size: 24px;
+  margin: 0 30px 0 10px;
+  cursor: pointer;
+  color: #1a237e;
+  align-self: center;
+  font-weight: 600;
+}
+
+.online-container .right-header {
+  margin-top: 13px;
+  font-size: 15px;
+  border-radius: 10px;
+  background-color: #3d5afe;
+  color: #fff;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  padding: 0 20px;
 }
 
 .online-container .banner-wrapper {
-  height: 450px;
+  height: 650px;
   margin: 0 auto;
   position: relative;
 }
@@ -26,54 +58,68 @@
 
 .online-container .store-info {
   margin-top: -150px;
-  padding: 0px 10%;
+  padding: 0px 15%;
   position: relative;
 }
 
 .online-container .info-section {
+  margin: 0 auto;
   padding: 20px 5%;
   background-color: white;
   border-radius: 8px;
   text-align: center;
   margin-bottom: 10px;
+  max-width: 1400px;
 }
 .online-container .info-section h1 {
   margin: 20px 10px 40px 0;
   font-size: 38px;
   letter-spacing: 1px;
   vertical-align: middle;
+  color: #1a237e;
 }
 
 .online-container .button-wrapper {
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 }
 
 .online-container .button-wrapper button {
-  border: none;
-  border-radius: 3px;
-  color: #ffffff;
-  width: auto;
-  font-size: 16px;
+  border-radius: 10px;
+  font-weight: 400;
+  cursor: pointer;
+  display: inline-block;
   text-align: center;
-  padding: 10px 40px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-  outline: none;
-  margin: 0 10px 30px 10px;
+  font-size: 17px;
+  margin-left: 12px;
+  width: 175px;
+  padding: 0px 35px;
+  height: 60px;
+  line-height: 60px;
 }
 .online-container .button-wrapper .blue {
-  background-color: #5e7da7;
+  border: 1px solid #00bfa5;
+  background-color: #fff;
+  color: #00bfa5;
 }
-
+.online-container .button-wrapper .blue:hover {
+  background-color: #00bfa5;
+  color: #fff;
+}
+.online-container .button-wrapper .red:hover {
+  background-color: #1a237e;
+}
 .online-container .button-wrapper .red {
-  background-color: #db6f1c;
+  background-color: #3d5afe;
+  color: #fff;
 }
 
 .online-container .info-section .info {
   margin-bottom: 30px;
   letter-spacing: 1px;
   font-size: 16px;
+  color: #1a237e;
 }
 .online-container .infohr {
   margin: 0 auto;
@@ -81,17 +127,21 @@
   margin-top: 20px;
   margin-bottom: 30px;
   border: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(61, 90, 254, 0.2);
+  width: 100%;
+  height: 0px;
 }
 
 .online-container .store-desc {
   min-height: 50px;
   text-align: left;
   line-height: 30px;
+  color: #1a237e;
 }
 
 .online-container .info-section h3 {
   margin-bottom: 20px;
+  color: #1a237e;
 }
 
 .online-container .store-photo-wrapper {
@@ -105,7 +155,7 @@
 }
 /* online-container .service-wrapper */
 
-.online-container .service-wrapper {
+/* .online-container .service-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -246,6 +296,284 @@
 .booking-step-date {
   padding-top: 50px;
   width: 80%;
+  margin: 0 100px;
+}
+
+.online-container footer {
+  background-color: #434343;
+  height: 100px;
+  margin-top: 50px;
+  color: #fff;
+}
+
+.online-container footer .copyright {
+  text-align: center;
+  line-height: 100px;
+}
+
+.timer {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  margin-bottom: -3px;
+}
+.price-text {
+  margin-top: 8px;
+  margin-left: 5px;
+}
+
+.step4-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.customer-info-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 280px;
+  height: 350px;
+  justify-content: space-evenly;
+}
+
+.booking-confirm {
+  flex: 1;
+}
+
+.booking-confirm {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 300px;
+  height: 350px;
+  justify-content: space-evenly;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.booking-result-wrapper {
+  min-height: 300px;
+}
+.result-middle {
+  margin: 0 auto;
+}
+
+.result-img {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 50%;
+  height: 400px;
+}
+
+.text-wrapper {
+  font-size: 18px;
+  line-height: 35px;
+}
+
+.result-success {
+  margin: 0 auto;
+  width: 40%;
+  line-height: 35px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.result-h1 {
+  color: #1a237e;
+} */
+.step-list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px 0;
+}
+.online-container .service-wrapper {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  align-items: stretch;
+}
+
+.online-container .service-wrapper .service {
+  border-radius: 10px 10px 0 0;
+  width: 48%;
+  margin-bottom: 30px;
+  background-color: #fff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  height: 100%;
+  margin: 25px 35px;
+  justify-content: space-evenly;
+  max-width: 450px;
+}
+
+.online-container .service-wrapper .service:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-right: black;
+}
+
+.online-container .service .service-img {
+  width: 100%;
+  height: 320px;
+  border-radius: 10px 10px 0 0;
+}
+
+.online-container .service .extra-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  text-align: center;
+}
+.online-container .service-wrapper .service button {
+  margin-top: 20px;
+  font-size: 17px;
+  border-radius: 10px;
+  background-color: #3d5afe;
+  color: #fff;
+  padding: 13px 23px 14px;
+  text-align: center;
+  display: inline-block;
+  width: 150px;
+  align-self: center;
+}
+
+.service-row-1 {
+  text-align: left;
+  margin-left: 20px;
+}
+.service-header {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+  height: 46px;
+  margin: 5px 0;
+}
+.service-text {
+  margin-bottom: 25px;
+  height: 68px;
+  line-height: 23px;
+  overflow: hidden;
+  font-size: 16px;
+}
+.service-row-2 {
+  width: 200px;
+}
+
+.service-row-2,
+.service-row-3 {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.booking-step-date h3 {
+  margin-top: 20px;
+}
+
+.time-btn-wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.timeButton {
+  border: 1px solid #00bfa5;
+  background-color: #fff;
+  color: #00bfa5;
+  border-radius: 10px;
+  font-weight: 400;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  font-size: 17px;
+  margin-left: 12px;
+  width: 175px;
+  padding: 0px 35px;
+  height: 60px;
+  line-height: 60px;
+  margin: 10px 15px;
+}
+
+.timeButton:hover {
+  background-color: #00bfa5;
+  color: white;
+}
+
+.datePicker {
+  padding: 10px;
+}
+.step-wrapper {
+  text-align: left;
+  align-self: center;
+  border-bottom: 4px solid #3d5afe;
+  margin-bottom: 65px;
+  color: #2e2424;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+.step-wrapper-header {
+  margin-bottom: 20px;
+  color: #1a237e;
+  display: block;
+  letter-spacing: 1.2px;
+  text-align: center;
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+.step-wrapper .step {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: #f4f6fe;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  font-weight: 700;
+  height: 60px;
+  display: table-cell;
+  line-height: 60px;
+  width: 25%;
+  text-align: center;
+}
+.step-wrapper .step .step-num {
+  margin-right: 10px;
+}
+
+.step-wrapper .step-msg {
+  font-size: 12px;
+  color: #434343;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.step-wrapper .step-selected {
+  background-color: #00bfa5;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.online-container .booking-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.booking-step-date {
   margin: 0 100px;
 }
 
