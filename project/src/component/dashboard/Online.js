@@ -90,8 +90,7 @@ const mapStateToProps = state => {
   return {
     staff: state.firestore.ordered.staff,
     store: state.firestore.ordered.store,
-    auth: state.firebase.auth,
-    test: "123"
+    auth: state.firebase.auth
   };
 };
 

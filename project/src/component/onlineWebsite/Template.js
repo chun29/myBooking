@@ -12,6 +12,7 @@ import AvailableTime from "./AvailableTime";
 import BookingProcess from "./BookingProcess";
 import BookingConfirm from "./BookingConfirm";
 import { createBooking } from "../../store/actions/bookingAction";
+import Result from "../onlineWebsite/Result";
 
 class Template extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Template extends React.Component {
       dateShow: false,
       timeShow: false,
       confirmShow: false,
+      resultShow: false,
       selectedService: { item: "", id: "" },
       selectedStaff: { name: "", id: "" },
       selectedDate: "",
@@ -190,12 +192,27 @@ class Template extends React.Component {
   };
 
   handleSubmit = id => {
-    if (this.state.name.length > 0 && this.state.phone.length > 0) {
-      this.props.createBooking(this.state, id.id);
-      this.props.history.push("/");
-    } else {
-      alert("資料請填完整");
-    }
+    this.props.createBooking(this.state, id.id);
+    this.setState({
+      confirmShow: false,
+      resultShow: true,
+      bookingShow: false
+    });
+    // if (
+    //   this.state.name.length > 0 &&
+    //   this.state.phone.length > 0 &&
+    //   this.state.email.length > 0
+    // ) {
+    //   this.props.createBooking(this.state, id.id);
+    //   this.setState(
+    //     {
+    // confirmShow:false,
+    //       resultShow:true
+    //     },)
+    //   // this.props.history.push("/");
+    // } else {
+    //   alert("資料請填完整");
+    // }
   };
 
   render() {
@@ -484,6 +501,11 @@ class Template extends React.Component {
                     />
                   </div>
                 )}
+              </div>
+            )}
+            {this.state.resultShow && (
+              <div className="info-section booking-result-wrapper">
+                <Result allState={this.state} />
               </div>
             )}
           </div>

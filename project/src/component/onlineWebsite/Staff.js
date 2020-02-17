@@ -33,7 +33,7 @@ const Staff = ({ staff, selectStaff, selectedStaff }) => {
           variant="outlined"
           color="primary"
           onClick={() => {
-            selectStaff(staff.name, staff.id);
+            selectStaff(staff.nickname, staff.id);
           }}
         >
           選擇

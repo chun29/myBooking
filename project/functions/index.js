@@ -43,8 +43,8 @@ exports.sendEmail = functions.firestore
     const mailOptions = {
       from: `mybookingtw@gmail.com`,
       to: snap.data().email,
-      subject: "contact form message",
-      html: `<h1>Order Confirmation</h1>
+      subject: "MyBooking 預約通知",
+      html: `<h1>MyBooking 預約結果</h1>
            <p> <b>Email: </b>${snap.data().email} </p>`
     };
     return transporter.sendMail(mailOptions, (error, data) => {

@@ -27,11 +27,9 @@ class AvailableTime extends Component {
     }
 
     let bookedList = [];
-    console.log(selectStaff);
+
     if (booking) {
-      console.log(booking);
       booking.map(data => {
-        console.log(data);
         if (
           data.bookedDay == bookedDay &&
           data.selectedStaff == selectStaff.id
@@ -59,7 +57,6 @@ class AvailableTime extends Component {
         }
       });
     }
-    console.log(bookedList);
 
     const timeArea = bookedTime => {
       //Book time fake data
@@ -69,7 +66,7 @@ class AvailableTime extends Component {
       let times = []; // time array
       let start = openTime; //Number(store.openTime.friday); // start time
       let close = closeTime;
-      console.log(openTime, closeTime);
+
       let length = (close - start) * 2;
 
       // 全部時間 array 格式 [[開始時間],[結束時間],...]
@@ -80,7 +77,6 @@ class AvailableTime extends Component {
         times.push(t);
         start = start + 0.5;
       }
-      console.log(times);
 
       //篩出全部時間-已預定的時間
       function arr_diff(a1, a2) {
@@ -119,7 +115,6 @@ class AvailableTime extends Component {
           finalArr.push(data);
         }
       }
-      console.log(finalArr);
 
       // 生成btn
       let finalBtn = [];
@@ -185,7 +180,6 @@ export default withRouter(
   compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect(props => {
-      console.log(props);
       const uid = props.match.params.id;
 
       return [

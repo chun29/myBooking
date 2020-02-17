@@ -1,3 +1,5 @@
+import { createDispatchHook } from "react-redux";
+
 export const createBooking = (booking, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const {
@@ -31,12 +33,13 @@ export const createBooking = (booking, id) => {
       .collection("store")
       .doc(id)
       .collection("booking")
-      .doc()
-      .set({
+      .add({
         ...bookingInfo,
         createdAt: new Date()
       })
-      .then(() => {
+      .then(docRef => {
+        console.log(docRef.id);
+        booking.id = docRef.id;
         dispatch({ type: "CREATE_BOOKING", booking });
       })
       .catch(() => {

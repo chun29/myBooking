@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
-
+import { connect } from "react-redux";
 class BookingConfirm extends Component {
   render() {
     const {
@@ -37,7 +37,8 @@ class BookingConfirm extends Component {
             <TextField
               className="customer-info"
               id="standard-required"
-              label="Email"
+              label="信箱"
+              required
               onChange={handleInfoChange}
               name="email"
             />
@@ -71,5 +72,13 @@ class BookingConfirm extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    newBooking: state.booking.newBooking,
+    bookingMsg: state.booking.bookingMsg
+  };
+};
 
-export default BookingConfirm;
+// export default BookingConfirm;
+
+export default connect(mapStateToProps)(BookingConfirm);

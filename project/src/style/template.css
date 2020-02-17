@@ -300,3 +300,34 @@
   text-align: left;
   margin-left: 50px;
 }
+
+.booking-result-wrapper {
+  min-height: 300px;
+}
+.result-middle {
+  margin: 0 auto;
+}
+
+.result-img {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 50%;
+  height: 400px;
+}
+
+.text-wrapper {
+  font-size: 18px;
+  line-height: 35px;
+}
+
+.result-success {
+  margin: 0 auto;
+  width: 40%;
+  line-height: 35px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.result-h1 {
+  color: #1a237e;
+}
