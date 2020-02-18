@@ -1,17 +1,34 @@
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
 const cors = require("cors")({ origin: true });
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
 
 const admin = require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
 
-const createNotification = notification => {
+//user created
+exports.userCreated = functions.firestore
+  .document("owner/{ownerID}")
+  .onCreate((snap, context) => {
+    const newValue = snap.data();
+    const ownerID = context.params.ownerID;
+    const notification = {
+      type: "系統通知",
+      content: `Hi ${newValue.name}，歡迎使用 MyBooking 預約管理系統。請先去做商店基本設定。`
+    };
+    return createNotification(notification, ownerID);
+  });
+
+// booking created
+const createNotification = (notification, id) => {
   return admin
     .firestore()
+    .collection("store")
+    .doc(id)
     .collection("notifications")
-    .add(notification)
+    .add({
+      ...notification,
+      createdAt: new Date()
+    })
     .then(doc => console.log("NOTIFICATION ADDED", doc));
 };
 
@@ -20,15 +37,18 @@ exports.bookingCreated = functions.firestore
   .onCreate((snap, context) => {
     const newValue = snap.data();
     const storeID = context.params.storeID;
-    const bookingID = context.params.bookingID;
     const notification = {
-      content: newValue.desc,
-      storeID,
-      bookingID
+      type: "新預約",
+      name: newValue.name,
+      selectedDate: newValue.selectedDate,
+      timeText: newValue.timeText,
+      serviceItem: newValue.serviceItem,
+      staffName: newValue.staffName
     };
-    return createNotification(notification);
+    return createNotification(notification, storeID);
   });
 
+// booking created send email
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -49,12 +69,13 @@ exports.sendEmail = functions.firestore
               <p>親愛的 ${snap.data().name} 先生/小姐 您好：<p>
               <p>您的預約已經成功，以下是您的預約資料，感謝您的光臨。</p>
               <p><b>預約代碼：</b>${bookingID} </p>
-              <p><b>預約商家：</b></p>
-              <p><b>預約時段：</b></p>
-              <p><b>服務：</b></p>
-              <p><b>服務人員：</b></p>
-              <p><b>電子郵件: </b>${snap.data().email} </p>
-              <p><b>備註: </b>${snap.data().desc} </p>
+              <p><b>預約商家：</b>${snap.data().storeName}</p>
+              <p><b>預約日期：</b>${snap.data().bookedDay}</p>
+              <p><b>預約時段：</b>${snap.data().timeText}</p>
+              <p><b>服務：</b>${snap.data().serviceItem}</p>
+              <p><b>服務人員：</b>${snap.data().staffName}</p>
+              <p><b>電子郵件:</b> </b>${snap.data().email} </p>
+              <p><b>備註:</b>${snap.data().desc} </p>
               <p>如有任何問題請聯繫 MyBooking 訂位服務平台，謝謝。</p>
            `
     };
@@ -65,4 +86,21 @@ exports.sendEmail = functions.firestore
       }
       console.log("Sent!");
     });
+  });
+
+// delete booking
+
+exports.bookingDelete = functions.firestore
+  .document("store/{storeID}/booking/{bookingID}")
+  .onDelete((snap, context) => {
+    const newValue = snap.data();
+    const storeID = context.params.storeID;
+    const notification = {
+      type: "預約取消",
+      selectedDate: newValue.selectedDate,
+      startTime: newValue.startTime,
+      serviceItem: newValue.serviceItem,
+      staffName: newValue.staffName
+    };
+    return createNotification(notification, storeID);
   });

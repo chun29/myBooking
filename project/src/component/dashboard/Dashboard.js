@@ -84,7 +84,12 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect(props => {
     return [
-      { collection: "notifications", limit: 5 },
+      {
+        collection: "store",
+        doc: props.auth.uid,
+        subcollections: [{ collection: "notifications" }],
+        storeAs: "notifications"
+      },
       {
         collection: "store",
         doc: props.auth.uid,

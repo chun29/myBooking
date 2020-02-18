@@ -7,8 +7,8 @@ const Staff = ({ staff, selectStaff, selectedStaff }) => {
 
   if (staff.id == selectedStaff.id) {
     style = {
-      border: "2px solid rgba(81, 203, 238, 1)",
-      boxShadow: "0 0 5px rgba(81, 203, 238, 1)"
+      border: "2px solid #3d5afe",
+      boxShadow: "0 0 5px #3d5afe"
     };
   }
 
@@ -20,15 +20,14 @@ const Staff = ({ staff, selectStaff, selectedStaff }) => {
   }
 
   return (
-    <div className="service" style={style}>
-      <img className="service-img" src={url} />
+    <div className="service step-service" style={style}>
+      <img className="staff-img" src={url} />
       <div className="service-row-1 service-desc">
-        <p>{staff.nickname}</p>
-        <p>{staff.desc}</p>
+        <p className="service-header">{staff.nickname}</p>
+        <p className="service-text">{staff.desc}</p>
       </div>
       <div className="service-row-2"> </div>
       <div className="service-row-3 extra-info">
-        <p>閱讀更多</p>
         <Button
           variant="outlined"
           color="primary"

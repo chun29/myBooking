@@ -14,7 +14,17 @@ class Test extends Component {
   };
   render() {
     const { data, storeID } = this.props;
-    console.log(storeID);
+
+    const text = data.desc;
+    const ntext = text ? (
+      <span>
+        {text.split("\n").map((i, key) => {
+          return <span key={key}>{i}</span>;
+        })}
+      </span>
+    ) : (
+      ""
+    );
     return (
       <div
         className="booking-text"
@@ -35,7 +45,7 @@ class Test extends Component {
             <div>顧客姓名：{data.name}</div>
             <div>顧客電話：{data.phone}</div>
             <div>顧客信箱：{data.email}</div>
-            <div>備註：{data.desc}</div>
+            <div>備註：{ntext}</div>
             <button
               className="booking-delete-btn"
               onClick={() => {

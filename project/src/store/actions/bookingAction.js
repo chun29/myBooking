@@ -1,7 +1,8 @@
-import { createDispatchHook } from "react-redux";
-
-export const createBooking = (booking, id) => {
+export const createBooking = (booking, store) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const { id } = store;
+    const storeName = store.online ? store.online.storeName : "";
+    console.log(id, storeName);
     const {
       bookedDay,
       desc,
@@ -22,9 +23,13 @@ export const createBooking = (booking, id) => {
       name,
       phone,
       selectedDate,
+      storeName,
       selectedService: selectedService.id,
       selectedStaff: selectedStaff.id,
-      startTime: startTime.num
+      startTime: startTime.num,
+      serviceItem: selectedService.item,
+      staffName: selectedStaff.name,
+      timeText: startTime.text
     };
 
     // make async call to database

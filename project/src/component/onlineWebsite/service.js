@@ -8,13 +8,20 @@ const Service = ({ service, selectService, selectedService }) => {
 
   if (service.id == selectedService.id) {
     style = {
-      border: "2px solid rgba(81, 203, 238, 1)",
-      boxShadow: "0 0 5px rgba(81, 203, 238, 1)"
+      border: "2px solid #3d5afe",
+      boxShadow: "0 0 5px #3d5afe"
     };
   }
+  let url;
+  if (service.url == null) {
+    url = storePhoto;
+  } else {
+    url = service.url;
+  }
+
   return (
     <div className="service" style={style}>
-      <img className="service-img" src={storePhoto} />
+      <img className="service-img" src={url} />
       <div className="service-row-1 service-desc">
         <p className="service-header">{service.item}</p>
         <p className="service-text"> {service.desc}</p>
@@ -30,7 +37,6 @@ const Service = ({ service, selectService, selectedService }) => {
       </div>
 
       <div className="service-row-3 extra-info">
-        <p>閱讀更多</p>
         <Button
           variant="outlined"
           color="primary"

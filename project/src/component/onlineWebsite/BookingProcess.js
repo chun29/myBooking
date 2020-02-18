@@ -12,7 +12,7 @@ class BookingProcess extends Component {
     let addClass;
     return (
       <div className="step-wrapper">
-        <span className="step-wrapper-header">預約流程</span>
+        <h3 className="step-wrapper-header">預約流程</h3>
         <div className="step-column">
           <div className="step-list">
             {steps.map((data, i) => {

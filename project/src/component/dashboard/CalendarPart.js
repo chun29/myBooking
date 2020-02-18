@@ -23,7 +23,7 @@ class CalendarPart extends React.Component {
     const bookingInfo =
       this.props.bookings &&
       this.props.bookings.sort(function(a, b) {
-        return a.selectedDate.seconds - b.selectedDate.seconds;
+        return a.startTime - b.startTime;
       });
     const bookingList =
       bookingInfo &&
@@ -88,7 +88,6 @@ class CalendarPart extends React.Component {
           desc
         };
       });
-    console.log(bookingList);
 
     // Mon~Sun
     let weekday = moment.weekdaysShort().map(day => {

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
+import weblink from "../../img/link.png";
 
 const DashboardHeader = ({ auth, profile, store }) => {
   let onlineSetup = false;
@@ -17,6 +18,7 @@ const DashboardHeader = ({ auth, profile, store }) => {
 
   const newClass = onlineSetup ? "blue" : "red";
   const text = onlineSetup ? "已上線" : "關閉中";
+  const weblinkimg = onlineSetup ? weblink : "";
 
   let user = "";
   if (profile.name) {
@@ -37,6 +39,7 @@ const DashboardHeader = ({ auth, profile, store }) => {
                 <p>線上預約網站</p>
                 <p className="online-setup">{text}</p>
               </div>
+              <img className="weblinkimg" src={weblinkimg}></img>
             </div>
             {/* <div className="bell-img"></div> */}
           </Link>

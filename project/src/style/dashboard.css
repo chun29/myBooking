@@ -50,7 +50,7 @@
 .dashboard-item-container {
   border-radius: 10px;
   margin: 0 50px;
-  height: 800px;
+  height: 610px;
 }
 .dashboard-item-container ul {
   list-style: none;
@@ -79,7 +79,7 @@
 .notification-section {
   display: flex;
   flex-direction: column;
-  min-height: 720px;
+  height: 540px;
 }
 .notification-wrapper-2 {
   display: flex;
@@ -113,29 +113,27 @@
 .today-sum {
   display: flex;
   width: 90%;
-  height: 100px;
+  height: 90px;
   align-items: center;
   border-radius: 10px;
   border: solid 1px #ccc;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .sum-item {
   text-align: center;
   flex: 1;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 35px;
 }
 .sum-item-1 {
   border-right: solid 1px #ccc;
 }
 .notification-wrapper h1 {
-  padding: 30px 24px;
   font-weight: 600;
   font-size: 24px;
-  line-height: 21px;
   text-align: center;
-  padding: 23px 50px;
+  padding: 15px 50px;
   border-bottom: 1px solid #e9ebf3;
   letter-spacing: 2px;
 }
@@ -151,7 +149,7 @@
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid #ddd;
-  padding: 30px 0 10px 10px;
+  padding: 10px 0 10px 10px;
 }
 .today-booking-info {
   display: flex;
@@ -160,33 +158,34 @@
 }
 
 .today-booking-date {
-  font-weight: 700;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 16px;
   color: #00bfa5;
   line-height: 25px;
   margin: 0 10px;
 }
 .today-booking-time {
   color: #67768c;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 16px;
   margin-bottom: 4px;
 }
 .today-booking-service {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 18px;
   font-weight: 500;
   margin-bottom: 4px;
 }
 
 .today-booking-price {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 18px;
   font-weight: 500;
 }
 .today-booking-staff {
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .notification-section-2 .date {
@@ -225,7 +224,7 @@
 .all-right-container {
   position: relative;
   left: 20%;
-  max-width: 1250px;
+  max-width: 1100px;
 }
 .not-found {
   display: flex;
@@ -251,6 +250,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.notification-wrapper ul {
+  height: 100%;
+  overflow: auto;
+  margin-top: 10px;
 }
 .addservice {
   margin: 50px 0;

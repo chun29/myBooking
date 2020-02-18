@@ -29,7 +29,7 @@ class CreateBooking extends Component {
   };
 
   handleChange = e => {
-    if (e.target.id == "phone") {
+    if (e.target.id === "phone") {
       if (isNaN(e.target.value)) {
         this.setState(prevState => ({
           error: {
@@ -49,7 +49,7 @@ class CreateBooking extends Component {
       }
     }
 
-    if (e.target.id == "name") {
+    if (e.target.id === "name") {
       this.setState(prevState => ({
         error: {
           // object that we want to update
@@ -63,11 +63,12 @@ class CreateBooking extends Component {
     });
   };
   selectStaff = e => {
+    const name = e.target.options[e.target.selectedIndex].getAttribute("name");
     this.setState({
       selectedStaff: {
         ...this.state.selectedStaff,
         id: e.target.value,
-        name: e.target.value
+        name: name
       },
       error: {
         ...this.state.error,
@@ -80,12 +81,14 @@ class CreateBooking extends Component {
     const duration = e.target.options[e.target.selectedIndex].getAttribute(
       "time"
     );
+    const item = e.target.options[e.target.selectedIndex].getAttribute("item");
 
     this.setState({
       duration: duration,
       selectedService: {
         ...this.state.selectedService,
-        id: e.target.value
+        id: e.target.value,
+        item
       },
       error: {
         ...this.state.error,
@@ -184,7 +187,7 @@ class CreateBooking extends Component {
       this.state.duration.length > 0 &&
       this.state.bookedDay.length > 0
     ) {
-      this.props.createBooking(this.state, this.props.auth.uid);
+      this.props.createBooking(this.state, this.props.store[0]);
       this.props.history.push("/calendar");
     }
   };
@@ -297,6 +300,7 @@ class CreateBooking extends Component {
                           key={service.id}
                           value={service.id}
                           time={service.duration}
+                          item={service.item}
                         >
                           {service.item} ({service.duration / 60} 小時)
                         </option>
@@ -324,7 +328,11 @@ class CreateBooking extends Component {
                   {staffArr &&
                     staffArr.map(staff => {
                       return (
-                        <option key={staff.id} value={staff.id}>
+                        <option
+                          key={staff.id}
+                          value={staff.id}
+                          name={staff.name}
+                        >
                           {staff.name}
                         </option>
                       );
@@ -358,6 +366,7 @@ const mapStateToProps = state => {
   return {
     staff: state.firestore.ordered.staff,
     service: state.firestore.ordered.service,
+    store: state.firestore.ordered.store,
     auth: state.firebase.auth
   };
 };
@@ -377,6 +386,10 @@ export default compose(
         doc: props.auth.uid,
         subcollections: [{ collection: "staff" }],
         storeAs: "staff"
+      },
+      {
+        collection: "store",
+        doc: props.auth.uid
       },
       {
         collection: "store",

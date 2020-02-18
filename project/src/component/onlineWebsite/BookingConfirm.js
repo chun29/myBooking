@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import forms from "../../img/forms.png";
 import moment from "moment";
 import { connect } from "react-redux";
 class BookingConfirm extends Component {
@@ -11,63 +10,59 @@ class BookingConfirm extends Component {
       selectedDate,
       startTime
     } = this.props.allState;
-    const { handleInfoChange, handleSubmit, storeID } = this.props;
+    const { handleInfoChange, handleSubmit } = this.props;
     const day = moment(selectedDate).format("YYYY-MM-DD");
 
     return (
       <React.Fragment>
         <div className="step4-wrapper">
-          <form className="customer-info-wrapper" noValidate autoComplete="off">
-            <TextField
-              className="customer-info"
-              required
-              id="standard-required"
-              label="姓名"
-              onChange={handleInfoChange}
-              name="name"
-            />
-            <TextField
-              className="customer-info"
-              required
-              id="standard-required"
-              label="聯絡電話"
-              onChange={handleInfoChange}
-              name="phone"
-            />
-            <TextField
-              className="customer-info"
-              id="standard-required"
-              label="信箱"
-              required
-              onChange={handleInfoChange}
-              name="email"
-            />
-            <TextField
-              id="outlined-textarea"
-              label="備註"
-              rows="4"
-              placeholder="Placeholder"
-              multiline
-              onChange={handleInfoChange}
-              name="desc"
-            />
-          </form>
           <div className="booking-confirm">
             <div>{selectedService.item}</div>
             <div>日期：{day}</div>
             <div>時間：{startTime.text}</div>
             <div>服務人員：{selectedStaff.name}</div>
+            <div>
+              <img className="formimg" src={forms}></img>
+            </div>
           </div>
+          <form className="customer-info-wrapper" autoComplete="off">
+            <div className="form-item">
+              <label className="required" htmlFor="name">
+                姓名
+              </label>
+              <input name="name" onChange={handleInfoChange}></input>
+            </div>
+            <div className="form-item">
+              <label className="required" htmlFor="phone">
+                聯絡電話
+              </label>
+              <input name="phone" onChange={handleInfoChange}></input>
+            </div>
+            <div className="form-item">
+              <label className="required" htmlFor="email">
+                信箱
+              </label>
+              <input onChange={handleInfoChange} name="email"></input>
+            </div>
+            <div className="form-item">
+              <label htmlFor="desc">備註</label>
+              <textarea
+                rows="11"
+                onChange={handleInfoChange}
+                id="desc"
+                name="desc"
+              ></textarea>
+            </div>
+          </form>
         </div>
-        <Button
+        <button
           onClick={() => {
-            handleSubmit(storeID);
+            handleSubmit();
           }}
-          variant="contained"
-          color="secondary"
+          className="booking-confirm-btn"
         >
           確認預約
-        </Button>
+        </button>
       </React.Fragment>
     );
   }
