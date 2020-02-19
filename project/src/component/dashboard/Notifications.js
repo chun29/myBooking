@@ -148,10 +148,12 @@ export const Notifications = props => {
           content: data.content
         };
       }
+
       const date = data.selectedDate.seconds * 1000;
       const tt = moment(date).format("YYYY-MM-DD");
 
       let time = "";
+
       if (data.startTime == 12) {
         time = "12:00 PM";
       } else if (data.startTime == 12.5) {
@@ -167,14 +169,14 @@ export const Notifications = props => {
           " " +
           ap[Math.floor(hh / 12)];
       }
+
       if (data.type === "預約取消") {
         return {
           type: data.type,
           createdAt: t,
-          content: `${data.name} ${tt} ${time} ${data.staffName}  ${data.serviceItem}預約 已取消`
+          content: `${tt} ${time} 一筆 ${data.staffName}  ${data.serviceItem}預約 已取消`
         };
       }
-
       return {
         type: data.type,
         createdAt: t,

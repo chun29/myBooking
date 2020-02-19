@@ -41,7 +41,7 @@ exports.bookingCreated = functions.firestore
       type: "新預約",
       name: newValue.name,
       selectedDate: newValue.selectedDate,
-      timeText: newValue.timeText,
+      startTime: newValue.startTime,
       serviceItem: newValue.serviceItem,
       staffName: newValue.staffName
     };
