@@ -25,6 +25,18 @@ const staffsReducer = (state = initState, action) => {
         ...state,
         staffMsg: "刪除服務失敗"
       };
+    case "EDIT_STAFF":
+      console.log("EDIT staff", action.staffId);
+      return {
+        ...state,
+        staffMsg: "成功編輯服務人員"
+      };
+    case "EDIT_STAFF_ERR":
+      console.log("EDIT staff error", action.err);
+      return {
+        ...state,
+        staffMsg: "編輯服務失敗"
+      };
     default:
       return state;
   }

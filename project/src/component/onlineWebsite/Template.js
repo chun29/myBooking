@@ -12,6 +12,7 @@ import BookingProcess from "./BookingProcess";
 import BookingConfirm from "./BookingConfirm";
 import { createBooking } from "../../store/actions/bookingAction";
 import Result from "../onlineWebsite/Result";
+import { Link } from "react-router-dom";
 
 class Template extends React.Component {
   constructor(props) {
@@ -212,6 +213,7 @@ class Template extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     const id = this.props.match.params && this.props.match.params;
 
     const data = this.props;
@@ -376,7 +378,9 @@ class Template extends React.Component {
     return (
       <div className="online-container">
         <nav className="online-header">
-          <div className="left-header">My 線上預約</div>
+          <Link to="/">
+            <div className="left-header">My 線上預約</div>
+          </Link>
           <div className="right-header">查詢 / 取消預約</div>
         </nav>
         <div className="banner-wrapper">
@@ -389,7 +393,7 @@ class Template extends React.Component {
             <div className="info-section">
               {store && <h1>{store.name}</h1>}
               <div className="button-wrapper">
-                <button className="blue">查看地圖</button>
+                {/* <button className="blue">查看地圖</button> */}
 
                 <button className="red" onClick={this.showBooking}>
                   我要預訂

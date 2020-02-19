@@ -99,20 +99,7 @@ class Staff extends Component {
                     <button className="add-staff">新建服務人員</button>
                   </Link>
                 </div>
-                <table className="staff-table-wrapper">
-                  <thead>
-                    <tr>
-                      <th>刪除</th>
-                      <th className="staff-img-th">編輯</th>
-                      <th>照片</th>
-                      <th>姓名</th>
-                      <th>電話</th>
-                      <th>Email</th>
-                      <th>描述</th>
-                    </tr>
-                  </thead>
-                  <tbody>{staffs}</tbody>
-                </table>
+                {staffs}
                 {this.state.showMsg && (
                   <div className="dashboard-msg">
                     {staffMsg ? <p>{staffMsg}</p> : null}

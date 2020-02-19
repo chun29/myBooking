@@ -5,19 +5,6 @@ const cors = require("cors")({ origin: true });
 const admin = require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
 
-//user created
-exports.userCreated = functions.firestore
-  .document("owner/{ownerID}")
-  .onCreate((snap, context) => {
-    const newValue = snap.data();
-    const ownerID = context.params.ownerID;
-    const notification = {
-      type: "系統通知",
-      content: `Hi ${newValue.name}，歡迎使用 MyBooking 預約管理系統。請先去做商店基本設定。`
-    };
-    return createNotification(notification, ownerID);
-  });
-
 // booking created
 const createNotification = (notification, id) => {
   return admin
@@ -31,6 +18,19 @@ const createNotification = (notification, id) => {
     })
     .then(doc => console.log("NOTIFICATION ADDED", doc));
 };
+
+//user created
+exports.userCreated = functions.firestore
+  .document("owners/{ownerID}")
+  .onCreate((snap, context) => {
+    const newValue = snap.data();
+    const ownerID = context.params.ownerID;
+    const notification = {
+      type: "系統通知",
+      content: `Hi ${newValue.name}，歡迎使用 MyBooking 預約管理系統。請先去做商店基本設定。`
+    };
+    return createNotification(notification, ownerID);
+  });
 
 exports.bookingCreated = functions.firestore
   .document("store/{storeID}/booking/{bookingID}")

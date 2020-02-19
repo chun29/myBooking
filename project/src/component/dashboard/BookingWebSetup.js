@@ -12,7 +12,7 @@ class BookingWebSetup extends Component {
     storeName: "",
     storeAddress: "",
     storePhone: "",
-    bookOpenDay: "0",
+    bookOpenDay: "365",
     bookCloseDay: "0",
     storeDesc: "",
     bookingNote: "",
@@ -310,7 +310,7 @@ class BookingWebSetup extends Component {
                   value={this.state.startDay}
                   onChange={this.handleChange}
                 >
-                  <option value="0">不限制</option>
+                  <option value="365">不限制</option>
                   <option value="7">1週</option>
                   <option value="14">2週</option>
                   <option value="21">3週</option>

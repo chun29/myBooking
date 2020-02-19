@@ -165,3 +165,19 @@
 .dollarsign {
   margin-right: 5px;
 }
+
+.edit-staff-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #f4f6fe;
+  z-index: 100;
+  margin-top: -150px;
+}
+
+.edit-staff-wrapper .createstaff-header h1 {
+  text-align: center;
+  font-size: 24px;
+  margin: 45px 0;
+  color: #1a237e;
+}

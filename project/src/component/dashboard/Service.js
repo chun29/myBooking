@@ -97,19 +97,7 @@ class Service extends Component {
                     <button className="add-staff">新建服務項目</button>
                   </Link>
                 </div>
-                <table className="staff-table-wrapper">
-                  <thead>
-                    <tr>
-                      <th>刪除</th>
-                      <th>編輯</th>
-                      <th>項目</th>
-                      <th>時間</th>
-                      <th>價格</th>
-                      <th>描述</th>
-                    </tr>
-                  </thead>
-                  <tbody>{services}</tbody>
-                </table>
+                {services}
                 {this.state.showMsg && (
                   <div className="dashboard-msg">
                     {serviceMsg ? <p>{serviceMsg}</p> : null}

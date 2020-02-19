@@ -14,7 +14,7 @@ const serviceReducer = (state = initState, action) => {
         serviceMsg: "新增服務失敗"
       };
     case "DELETE_SERVICE":
-      console.log("delete servic", action.serviceId);
+      console.log("delete service", action.serviceId);
       return {
         ...state,
         serviceMsg: "成功刪除服務"
@@ -24,6 +24,18 @@ const serviceReducer = (state = initState, action) => {
       return {
         ...state,
         serviceMsg: "刪除服務失敗"
+      };
+    case "EDIT_SERVICE":
+      console.log("delete service", action.serviceId);
+      return {
+        ...state,
+        serviceMsg: "成功編輯服務"
+      };
+    case "EDIT_SERVICE_ERR":
+      console.log("delete service error", action.err);
+      return {
+        ...state,
+        serviceMsg: "編輯服務失敗"
       };
     default:
       return state;

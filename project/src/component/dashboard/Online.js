@@ -5,7 +5,6 @@ import { firestoreConnect } from "react-redux-firebase";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
 import "../../style/staff.css";
-import { Link } from "react-router-dom";
 
 class Online extends Component {
   state = {
@@ -18,6 +17,18 @@ class Online extends Component {
       this.setState({ store: this.props.store });
     }
   }
+
+  onlineSetupLink = () => {
+    if (this.props.store[0].workday === null) {
+      alert("請先前往營業時間設定資料");
+    }
+    if (this.props.staff.length < 1) {
+      alert("請先前往服務人員設定資料");
+    }
+    if (this.props.staff.length < 1) {
+      alert("請先前往服務人員設定資料");
+    }
+  };
 
   render() {
     const { auth } = this.props;
@@ -38,9 +49,11 @@ class Online extends Component {
               </div>
               <div className="staff-main-wrapper">
                 <div className="button-wrapper">
-                  <Link to="/onlinebooking">
-                    <button className="add-staff">上線資料設定</button>
-                  </Link>
+                  {/* <Link to="/onlinebooking"> */}
+                  <button onClick={this.onlineSetupLink} className="add-staff">
+                    上線資料設定
+                  </button>
+                  {/* </Link> */}
                 </div>
                 <div>
                   {/* <div className="main-left">
@@ -103,6 +116,12 @@ export default compose(
         doc: props.auth.uid,
         subcollections: [{ collection: "staff" }],
         storeAs: "staff"
+      },
+      {
+        collection: "store",
+        doc: props.auth.uid,
+        subcollections: [{ collection: "service" }],
+        storeAs: "service"
       },
       {
         collection: "store",

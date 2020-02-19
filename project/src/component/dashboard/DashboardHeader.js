@@ -10,39 +10,41 @@ import weblink from "../../img/link.png";
 const DashboardHeader = ({ auth, profile, store }) => {
   let onlineSetup = false;
 
+  let user = "";
+  if (profile.name) {
+    user = profile.name.charAt(0).toUpperCase();
+  }
+  const userName = auth.uid ? user : "";
   if (store && store[0]) {
     if (store[0].online) {
       onlineSetup = store[0].online.bookingIsOpen;
     }
   }
 
+  const link = "/booking/" + auth.uid;
   const newClass = onlineSetup ? "blue" : "red";
   const text = onlineSetup ? "已上線" : "關閉中";
-  const weblinkimg = onlineSetup ? weblink : "";
-
-  let user = "";
-  if (profile.name) {
-    user = profile.name.charAt(0).toUpperCase();
-  }
-  const userName = auth.uid ? user : "";
-  const link = "/booking/" + auth.uid;
-
+  const weblinkimg = onlineSetup ? (
+    <Link to={link}>
+      <img className="weblinkimg" src={weblink} alt=""></img>
+    </Link>
+  ) : (
+    ""
+  );
   return (
     <React.Fragment>
       <div className="dashboard-header">
         <Logo />
         <div className="right-container">
-          <Link to={link}>
-            <div className="online-container">
-              <div className={`color-sign ${newClass}`}></div>
-              <div className="online-info">
-                <p>線上預約網站</p>
-                <p className="online-setup">{text}</p>
-              </div>
-              <img className="weblinkimg" src={weblinkimg}></img>
+          <div className="online-container">
+            <div className={`color-sign ${newClass}`}></div>
+            <div className="online-info">
+              <p>線上預約網站</p>
+              <p className="online-setup">{text}</p>
             </div>
-            {/* <div className="bell-img"></div> */}
-          </Link>
+            {weblinkimg}
+          </div>
+
           <UserAvatar userName={userName} />
         </div>
       </div>

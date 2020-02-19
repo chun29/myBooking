@@ -100,8 +100,9 @@
 .notification-section-2 {
   flex-grow: 1;
   border-left: 1px solid rgba(149, 172, 239, 0.5);
-  margin: 0 45px;
-  padding: 30px 0 30px 20px;
+  margin: 0 10px 0 20px;
+  padding: 25px 0 25px 26px;
+  overflow: auto;
 }
 .view-all-2 {
   padding: 20px;
@@ -203,21 +204,21 @@
   font-size: 13px;
 }
 .notification-section-2 h3:before {
-  transition: background-color 0.1s linear;
   display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   background-color: #90a8ee;
   content: "";
-  margin-right: 16px;
-  margin-left: -24px;
+  margin-right: 12px;
+  margin-left: -20px;
 }
 .change-box {
   font-size: 13px;
   line-height: 1.5;
   padding-bottom: 23px;
   display: block;
+  margin-left: -8px;
 }
 
 /* Calendar */

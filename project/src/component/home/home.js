@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../layout/Navbar";
 import "../../style/home.css";
 import Footer from "../layout/Footer.js";
+import { Link } from "react-router-dom";
 
 export default class home extends Component {
   render() {
@@ -15,8 +16,12 @@ export default class home extends Component {
               <h2>店家大小事就交給</h2>
               <h2>MyBooking</h2>
               <p>專為店家設計的線上管理系統解決預約問題</p>
-              <button className="blue-btn">立即體驗</button>
-              <button className="green-btn">了解更多</button>
+              <Link to="/signup">
+                <button className="blue-btn">立即體驗</button>
+              </Link>
+              <Link to="/signup">
+                <button className="green-btn">了解更多</button>
+              </Link>
             </div>
             <div className="main-image"></div>
           </div>

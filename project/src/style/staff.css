@@ -230,19 +230,21 @@ table tbody tr td {
   margin-left: 10px;
 }
 .dashboard-msg {
-  background-color: #00bfa5;
+  background-color: #4dd7c4;
   z-index: 200;
   position: fixed;
   top: 5%;
   right: 35%;
   width: 400px;
   height: 60px;
-  border-radius: 8px;
+  border-radius: 2px;
   color: white;
   text-align: center;
   line-height: 60px;
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1.2px;
+  box-shadow: 2px 3px rgba(229, 229, 229, 0.7);
 }
 .booking-delete-btn {
   font-size: 14px;

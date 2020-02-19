@@ -65,3 +65,52 @@ export const deleteStaff = (storeId, staffId) => {
       });
   };
 };
+
+export const editStaff = (storeId, staffId, staffInfo) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const { name, phone, nickname, image, color, desc, email, url } = staffInfo;
+    const newStaff = {
+      name,
+      phone,
+      nickname,
+      image,
+      color,
+      desc,
+      email,
+      url
+    };
+    const firestore = getFirestore();
+    const firebase = getFirebase();
+
+    const imagesPath = "images";
+
+    firebase
+      .uploadFile(imagesPath, image)
+      .then(uploadedFile => {
+        return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
+      })
+      .then(downloadURL => {
+        console.log(
+          `Successfully uploaded file and got download link - ${downloadURL}`
+        );
+        return downloadURL;
+      })
+      .then(url => {
+        newStaff.url = url;
+        newStaff.image = image.name;
+
+        firestore
+          .collection("store")
+          .doc(storeId)
+          .collection("staff")
+          .doc(staffId)
+          .update(newStaff)
+          .then(() => {
+            dispatch({ type: "EDIT_STAFF", newStaff });
+          })
+          .catch(err => {
+            dispatch({ type: "EDIT_STAFF_ERROR", err });
+          });
+      });
+  };
+};

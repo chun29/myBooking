@@ -130,9 +130,15 @@ export const Notifications = props => {
     return <div>Loading</div>;
   }
   console.log(props.notifications);
-  const notifications =
+
+  const newNotificationsList =
     props.notifications &&
-    props.notifications.map(data => {
+    props.notifications.sort(function(a, b) {
+      return b.createdAt.seconds - a.createdAt.seconds;
+    });
+  const notifications =
+    newNotificationsList &&
+    newNotificationsList.map(data => {
       const t = moment(data.createdAt.seconds * 1000).format("YYYY-MM-DD");
 
       if (data.type === "系統通知") {
@@ -160,6 +166,13 @@ export const Notifications = props => {
           ("0" + mm).slice(-2) +
           " " +
           ap[Math.floor(hh / 12)];
+      }
+      if (data.type === "預約取消") {
+        return {
+          type: data.type,
+          createdAt: t,
+          content: `${data.name} ${tt} ${time} ${data.staffName}  ${data.serviceItem}預約 已取消`
+        };
       }
 
       return {
