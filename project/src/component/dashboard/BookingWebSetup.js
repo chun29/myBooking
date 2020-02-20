@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
 import { onlineSetup } from "../../store/actions/onlineAction";
 import "..//../style/createstaff.css";
 import storelogo from "../../img/store-logo.png";
@@ -9,18 +10,20 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 class BookingWebSetup extends Component {
   state = {
-    storeName: "",
-    storeAddress: "",
-    storePhone: "",
-    bookOpenDay: "365",
-    bookCloseDay: "0",
-    storeDesc: "",
-    bookingNote: "",
-    bookingIsOpen: true,
-    logoImage: null,
-    logoSrc: storelogo,
-    bannerImage: null,
-    bannerSrc: storeBanner,
+    store: {
+      storeName: "",
+      storeAddress: "",
+      storePhone: "",
+      bookOpenDay: "365",
+      bookCloseDay: "0",
+      storeDesc: "",
+      bookingNote: "",
+      bookingIsOpen: true,
+      logoImage: null,
+      logoSrc: storelogo,
+      bannerImage: null,
+      bannerSrc: storeBanner
+    },
     error: {
       storePhone: false,
       storeName: false,
@@ -36,17 +39,15 @@ class BookingWebSetup extends Component {
       if (isNaN(e.target.value)) {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            storePhone: true // update the value of specific key
+            ...prevState.error,
+            storePhone: true
           }
         }));
       } else {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            storePhone: false // update the value of specific key
+            ...prevState.error,
+            storePhone: false
           }
         }));
       }
@@ -54,32 +55,32 @@ class BookingWebSetup extends Component {
     if (e.target.id == "storeName") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          storeName: false // update the value of specific key
+          ...prevState.error,
+          storeName: false
         }
       }));
     }
     if (e.target.id == "storeAddress") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          storeAddress: false // update the value of specific key
+          ...prevState.error,
+          storeAddress: false
         }
       }));
     }
     if (e.target.id == "storeDesc") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          storeDesc: false // update the value of specific key
+          ...prevState.error,
+          storeDesc: false
         }
       }));
     }
     this.setState({
-      [e.target.id]: e.target.value
+      store: {
+        ...this.state.store,
+        [e.target.id]: e.target.value
+      }
     });
   };
 
@@ -90,16 +91,18 @@ class BookingWebSetup extends Component {
 
       reader.onloadend = () => {
         this.setState({
-          logoImage: image,
-          logoSrc: reader.result
+          store: {
+            ...this.state.store,
+            logoImage: image,
+            logoSrc: reader.result
+          }
         });
       };
       reader.readAsDataURL(image);
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          logoImage: false // update the value of specific key
+          ...prevState.error,
+          logoImage: false
         }
       }));
     }
@@ -111,8 +114,11 @@ class BookingWebSetup extends Component {
 
       reader.onloadend = () => {
         this.setState({
-          bannerImage: image,
-          bannerSrc: reader.result
+          store: {
+            ...this.state.store,
+            bannerImage: image,
+            bannerSrc: reader.result
+          }
         });
       };
 
@@ -120,93 +126,105 @@ class BookingWebSetup extends Component {
 
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          bannerImage: false // update the value of specific key
+          ...prevState.error,
+          bannerImage: false
         }
       }));
     }
   };
   handleClick = e => {
-    this.setState({
-      bookingIsOpen: !this.state.bookingIsOpen
-    });
+    this.setState(prevState => ({
+      store: {
+        ...prevState.store,
+        bookingIsOpen: !prevState.store.bookingIsOpen
+      }
+    }));
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.storeName.length < 1) {
+    const onlineInfo = this.state.store;
+    if (onlineInfo.storeName.length < 1) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          storeName: true // update the value of specific key
+          ...prevState.error,
+          storeName: true
         }
       }));
     }
-    if (this.state.storeAddress.length < 1) {
+    if (onlineInfo.storeAddress.length < 1) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          storeAddress: true // update the value of specific key
+          ...prevState.error,
+          storeAddress: true
         }
       }));
     }
-    if (this.state.storePhone.length < 1) {
+    if (onlineInfo.storePhone.length < 1) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          storePhone: true // update the value of specific key
+          ...prevState.error,
+          storePhone: true
         }
       }));
     }
-    if (this.state.storeDesc.length < 1) {
+    if (onlineInfo.storeDesc.length < 1) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          storeDesc: true // update the value of specific key
+          ...prevState.error,
+          storeDesc: true
         }
       }));
     }
-    if (this.state.logoImage == null) {
+    if (onlineInfo.logoImage == null) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          logoImage: true // update the value of specific key
+          ...prevState.error,
+          logoImage: true
         }
       }));
     }
-    if (this.state.bannerImage == null) {
+    if (onlineInfo.bannerImage == null) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          bannerImage: true // update the value of specific key
+          ...prevState.error,
+          bannerImage: true
         }
       }));
     }
 
     if (
-      this.state.storeName.length > 0 &&
-      this.state.storeAddress.length > 0 &&
-      this.state.storePhone.length > 0 &&
-      this.state.logoImage !== null &&
-      this.state.bannerImage !== null &&
-      this.state.storeDesc.length > 0
+      onlineInfo.storeName.length > 0 &&
+      onlineInfo.storeAddress.length > 0 &&
+      onlineInfo.storePhone.length > 0 &&
+      onlineInfo.logoImage !== null &&
+      onlineInfo.bannerImage !== null &&
+      onlineInfo.storeDesc.length > 0
     ) {
-      this.props.onlineSetup(this.state, this.props.auth.uid);
+      this.props.onlineSetup(onlineInfo, this.props.auth.uid);
       this.props.history.push("/dashboard");
     }
   };
   handleCancel = e => {
     this.props.history.push("/dashboard");
   };
+  componentDidMount() {
+    if (this.props.store && this.props.store[0]) {
+      this.setState({ store: this.props.store[0].online });
+    }
+  }
+  componentDidUpdate(prevProps) {
+    // 常見用法（別忘了比較 prop）：
+    if (this.props.store && this.props.store[0]) {
+      if (this.props.store !== prevProps.store) {
+        this.setState({ store: this.props.store[0].online });
+      }
+    }
+  }
 
   render() {
+    const onlineInfo = this.state.store;
+
     return (
       <div className="createstaff-wrapper">
         <div className="createstaff-header">
@@ -226,6 +244,7 @@ class BookingWebSetup extends Component {
                   placeholder="e.g. AppWorks School"
                   id="storeName"
                   onChange={this.handleChange}
+                  value={onlineInfo.storeName}
                 ></input>
               </div>
               <div className="form-item">
@@ -239,6 +258,7 @@ class BookingWebSetup extends Component {
                   placeholder="請填入完整地址"
                   id="storeAddress"
                   onChange={this.handleChange}
+                  value={onlineInfo.storeAddress}
                 ></input>
               </div>
               <div className="form-item">
@@ -252,6 +272,7 @@ class BookingWebSetup extends Component {
                   placeholder="e.g. 02555888"
                   id="storePhone"
                   onChange={this.handleChange}
+                  value={onlineInfo.storePhone}
                 ></input>
               </div>
               <div className="form-item logo-wrapper">
@@ -262,11 +283,7 @@ class BookingWebSetup extends Component {
                   )}
                 </label>
                 <div className="logo-circle">
-                  <img
-                    className="store-logo"
-                    src={this.state.logoSrc}
-                    alt="home"
-                  />
+                  <img className="store-logo" src={onlineInfo.logoSrc} alt="" />
                 </div>
                 <p>建議尺寸 180 x 180</p>
                 <input
@@ -286,8 +303,8 @@ class BookingWebSetup extends Component {
                 <div className="banner-wrapper">
                   <img
                     className="store-banner"
-                    src={this.state.bannerSrc}
-                    alt="home"
+                    src={onlineInfo.bannerSrc}
+                    alt=""
                   />
                 </div>
                 <p>建議尺寸 1920 x 140</p>
@@ -307,7 +324,7 @@ class BookingWebSetup extends Component {
                 <select
                   className="all-select"
                   id="bookOpenDay"
-                  value={this.state.startDay}
+                  value={onlineInfo.bookOpenDay}
                   onChange={this.handleChange}
                 >
                   <option value="365">不限制</option>
@@ -331,7 +348,7 @@ class BookingWebSetup extends Component {
                 </label>
                 <select
                   className="all-select"
-                  value={this.state.closeDay}
+                  value={onlineInfo.bookCloseDay}
                   onChange={this.handleChange}
                   id="bookCloseDay"
                 >
@@ -360,6 +377,7 @@ class BookingWebSetup extends Component {
                   rows="11"
                   id="storeDesc"
                   onChange={this.handleChange}
+                  value={onlineInfo.storeDesc}
                 ></textarea>
               </div>
               <div className="form-item">
@@ -368,6 +386,7 @@ class BookingWebSetup extends Component {
                   rows="11"
                   id="bookingNote"
                   onChange={this.handleChange}
+                  value={onlineInfo.bookingNote}
                 ></textarea>
               </div>
 
@@ -375,7 +394,7 @@ class BookingWebSetup extends Component {
                 <label htmlFor="desc">
                   開放線上預約
                   <Checkbox
-                    checked={this.state.bookingIsOpen}
+                    checked={onlineInfo.bookingIsOpen}
                     onChange={this.handleClick}
                     color="primary"
                     value="secondary"
@@ -399,8 +418,10 @@ class BookingWebSetup extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    store: state.firestore.ordered.store
   };
 };
 
@@ -410,6 +431,14 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(
-  BookingWebSetup
-);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect(props => {
+    return [
+      {
+        collection: "store",
+        doc: props.auth.uid
+      }
+    ];
+  })
+)(BookingWebSetup);

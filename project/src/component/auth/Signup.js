@@ -19,8 +19,16 @@ class Signup extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    this.props.signUp(this.state);
+    if (this.state.name.length < 1 || this.state.email.length < 1) {
+      alert("請檢查輸入內容");
+    } else {
+      if (this.state.password.length < 6) {
+        alert("密碼至少六位數");
+      } else {
+        console.log(this.state);
+        this.props.signUp(this.state);
+      }
+    }
   };
   render() {
     const { auth } = this.props;
@@ -62,7 +70,7 @@ class Signup extends Component {
                   autoComplete="off"
                 ></input>
                 <input
-                  placeholder="密碼"
+                  placeholder="密碼 (至少六位數 )"
                   type="password"
                   id="password"
                   onChange={this.handleChange}

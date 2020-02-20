@@ -23,11 +23,13 @@ export default class home extends Component {
                 <button className="green-btn">了解更多</button>
               </Link>
             </div>
-            <div className="main-image"></div>
+            <div className="main-image-wrapper">
+              <div className="main-image"></div>
+            </div>
           </div>
         </div>
         <div className="main-desc-section">
-          <h2>為什麼選擇使用MyBooking？</h2>
+          <h2>為什麼選擇使用 MyBooking？</h2>
 
           <div className="container">
             <div className="main-desc">

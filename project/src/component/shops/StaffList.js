@@ -35,17 +35,15 @@ class StaffList extends Component {
       if (isNaN(e.target.value)) {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            phone: true // update the value of specific key
+            ...prevState.error,
+            phone: true
           }
         }));
       } else {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            phone: false // update the value of specific key
+            ...prevState.error,
+            phone: false
           }
         }));
       }
@@ -53,9 +51,8 @@ class StaffList extends Component {
     if (e.target.id == "name") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          name: false // update the value of specific key
+          ...prevState.error,
+          name: false
         }
       }));
     }
@@ -63,9 +60,8 @@ class StaffList extends Component {
     if (e.target.id == "nickname") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          nickname: false // update the value of specific key
+          ...prevState.error,
+          nickname: false
         }
       }));
     }

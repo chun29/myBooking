@@ -2,15 +2,15 @@
   display: flex;
   width: 90%;
   margin: 0 auto;
+  margin-bottom: 150px;
 }
 .desc {
-  flex: 1;
-  margin: 280px 0 0 0px;
+  width: 45%;
+  margin: 280px 0 0 50px;
   color: #1a237e;
 }
 .desc h2 {
-  max-width: 500px;
-  font-size: 52px;
+  font-size: 48px;
   margin-bottom: 15px;
 }
 
@@ -21,17 +21,16 @@
 }
 
 .desc button {
+  border: none;
   border-radius: 10px;
   font-weight: 400;
   cursor: pointer;
   display: inline-block;
   text-align: center;
   font-size: 17px;
-  margin-left: 12px;
-  width: 175px;
-  padding: 0px 35px;
-  height: 60px;
-  line-height: 60px;
+  margin-left: 20px;
+  padding: 8px 35px;
+  line-height: 40px;
 }
 .desc .blue-btn {
   background-color: #3d5afe;
@@ -42,16 +41,18 @@
   background-color: #fff;
   color: #00bfa5;
 }
+.main-image-wrapper {
+  flex: 1;
+}
 
 .main-image {
-  flex: 1;
   margin: 120px 0px 0 50px;
   background-image: url(../img/main-image.png);
-  height: 600px;
-  min-width: 800px;
+  width: 700px;
+  height: 95%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 140%;
 }
 .main-desc-section {
   background-color: #f4f6fe;
@@ -128,4 +129,103 @@
   margin: 20px;
   font-weight: 400;
   letter-spacing: 1px;
+}
+
+/* RWD */
+
+@media (max-width: 1380px) {
+  .main-content {
+    width: 90%;
+  }
+  .desc h2 {
+    font-size: 42px;
+  }
+  .desc p {
+    font-size: 16px;
+  }
+  .main-image-wrapper {
+    flex: 1;
+    margin-right: 50px;
+  }
+  .main-image {
+    width: 600px;
+    background-size: 150%;
+  }
+}
+
+@media (max-width: 1250px) {
+  .main-content {
+    width: 90%;
+  }
+  .desc h2 {
+    font-size: 38px;
+  }
+  .desc p {
+    font-size: 14px;
+  }
+  .main-image-wrapper {
+    flex: 1;
+    margin-right: 30px;
+  }
+  .main-image {
+    width: 500px;
+    background-size: 140%;
+  }
+
+  .desc button {
+    margin-left: 10px;
+    padding: 8px 25px;
+    line-height: 30px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 1030px) {
+  .main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+  }
+  .main-content .desc {
+    margin: 0;
+    margin-top: 150px;
+    width: 100%;
+    text-align: center;
+  }
+  .desc h2 {
+    margin: 0;
+    font-size: 38px;
+    width: auto;
+  }
+  .desc p {
+    font-size: 16px;
+  }
+  .main-image-wrapper {
+    flex: 1;
+    margin-right: 30px;
+  }
+  .main-image {
+    margin: 0;
+    width: 400px;
+    height: 300px;
+    background-size: 120%;
+  }
+
+  .desc button {
+    margin: 5px;
+    padding: 8px 25px;
+    line-height: 30px;
+  }
+  .main-desc-section .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .main-desc-section .main-desc {
+    margin-top: 50px;
+    align-self: center;
+    width: 80%;
+  }
 }

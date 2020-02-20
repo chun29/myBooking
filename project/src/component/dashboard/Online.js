@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
+import { Link } from "react-router-dom";
 import "../../style/staff.css";
 
 class Online extends Component {
@@ -49,11 +50,14 @@ class Online extends Component {
               </div>
               <div className="staff-main-wrapper">
                 <div className="button-wrapper">
-                  {/* <Link to="/onlinebooking"> */}
-                  <button onClick={this.onlineSetupLink} className="add-staff">
-                    上線資料設定
-                  </button>
-                  {/* </Link> */}
+                  <Link to="/onlinebooking">
+                    <button
+                      onClick={this.onlineSetupLink}
+                      className="add-staff"
+                    >
+                      上線資料設定
+                    </button>
+                  </Link>
                 </div>
                 <div>
                   {/* <div className="main-left">
