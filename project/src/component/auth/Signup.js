@@ -76,7 +76,7 @@ class Signup extends Component {
                   onChange={this.handleChange}
                   autoComplete="off"
                 ></input>
-                <button className="signin-btn">免費註冊</button>
+                <button className="signin-btn blue-btn">免費註冊</button>
               </form>
             </div>
           </div>

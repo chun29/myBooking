@@ -2,10 +2,35 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
 }
 
 button {
+  cursor: pointer;
+  text-align: center;
   outline: none;
+  border: none;
+}
+.blue-btn {
+  color: #fff;
+  background-color: #3d5afe;
+}
+
+.green-btn {
+  border: 1px solid #00bfa5;
+  color: #00bfa5;
+}
+
+.blue-btn:hover {
+  background-color: #1a237e;
+  color: #fff;
+}
+
+.green-btn:hover {
+  border: 1px solid #00bfa5;
+  background-color: #00bfa5;
+  color: #fff;
 }

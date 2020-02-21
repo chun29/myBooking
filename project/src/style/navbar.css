@@ -155,17 +155,18 @@
 
   .s-menu {
     display: inline-block;
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: 80px;
+    top: 81px;
     height: 300px;
     background-color: #fff;
     color: #1a237e;
     width: 250px;
     z-index: 100;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-    padding: 25px 15px;
+    padding: 25px;
   }
+
   .s-menu a {
     text-decoration: none;
     color: #1a237e;
@@ -175,22 +176,26 @@
     list-style: none;
     line-height: 50px;
   }
+  .s-menu ul li {
+    cursor: pointer;
+  }
+  .ul-btn-wrapper {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
   .ul-login {
-    background: #112745;
+    display: inline-block;
     opacity: 0.9;
-    border-radius: 30px;
-    color: #fff;
+    border-radius: 10px;
     text-align: center;
     cursor: pointer;
     font-size: 16px;
     font-weight: 700;
-    width: 105px;
+    width: 90px;
     height: 40px;
     line-height: 40px;
-  }
-  .ul-btn-wrapper {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
   }
 }

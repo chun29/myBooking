@@ -78,7 +78,7 @@ class SignIn extends Component {
                   {authError ? <p>{authError}</p> : <p>{errorMsg}</p>}
                 </div>
                 <button
-                  className="signin-btn"
+                  className="signin-btn blue-btn"
                   variant="contained"
                   color="primary"
                 >

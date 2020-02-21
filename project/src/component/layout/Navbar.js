@@ -17,10 +17,10 @@ class Navbar extends Component {
   render() {
     const { auth, profile } = this.props;
     this.showMenu = () => {
-      console.log("click");
-      this.setState({
-        showMenu: !this.state.showMenu
-      });
+      this.setState(prevState => ({
+        ...prevState.showMenu,
+        showMenu: !prevState.showMenu
+      }));
     };
     const links = auth.uid ? (
       <SignInLinks profile={profile} />
@@ -57,15 +57,16 @@ class Navbar extends Component {
               {auth.uid ? (
                 <Link to="/dashboard">
                   <li>前往管理介面</li>
+                  <li>登入</li>
                 </Link>
               ) : (
                 <li className="ul-btn-wrapper">
                   <Link to="/signin">
-                    <span className="ul-login">登入</span>
+                    <span className="ul-login blue-btn">登入</span>
                   </Link>
 
                   <Link to="/signup">
-                    <span className="ul-login">註冊</span>
+                    <span className="ul-login green-btn">註冊</span>
                   </Link>
                 </li>
               )}

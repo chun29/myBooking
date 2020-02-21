@@ -1,7 +1,6 @@
-.signin-wrapper a {
-  text-decoration: none;
+.signin-wrapper {
+  width: 100%;
 }
-
 .signin-header {
   display: flex;
   justify-content: space-between;
@@ -10,7 +9,6 @@
   line-height: 80px;
   width: 100%;
   align-items: center;
-  color: #3a3e45;
 }
 
 .signin-header h1 {
@@ -72,7 +70,7 @@
 }
 
 .signin-container {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
   color: #555;
   display: flex;
@@ -105,7 +103,6 @@
   line-height: 40px;
   padding: 10px 0px 8px 15px;
   outline: none;
-  transition: all 150ms;
 }
 
 .signin-container input:focus {
@@ -113,26 +110,15 @@
 }
 .signin-container .signin-btn {
   margin: 20px 0 10px 0;
-  outline: none;
   padding: 10px 22px;
   height: 40px;
-  background: #3d5afe;
-  color: #fff;
   border-radius: 10px;
-  transition: all 150ms;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
   font-weight: 400;
-  cursor: pointer;
-  text-align: center;
   font-size: 16px;
   align-self: center;
 }
 
-.signin-container .signin-btn:hover {
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid #b5bbbb;
-  background: #1a237e;
-}
 /* 新調整css */
 
 .signin-down {
@@ -167,4 +153,53 @@
 .social-login {
   margin: 0 auto;
   width: 80%;
+}
+@media (max-width: 1000px) {
+  .signin-left {
+    flex: 1;
+  }
+}
+@media (max-width: 700px) {
+  .signin-header {
+    height: 60px;
+  }
+  .nav-logo {
+    height: 40px;
+    width: 40px;
+  }
+  .signup-btn {
+    font-size: 14px;
+  }
+  .signin-down {
+    display: flex;
+    flex-direction: column;
+  }
+  .signin-left {
+    display: none;
+  }
+  .signin-header h1 {
+    display: none;
+  }
+  .signin-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .signin-container h1 {
+    font-size: 22px;
+  }
+  .signin-container p {
+    font-size: 12px;
+  }
+  .signin-container input {
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    margin-bottom: 0px;
+  }
+  .signin-container .signin-btn {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 22px;
+    font-size: 14px;
+  }
 }

@@ -3,6 +3,9 @@ import Navbar from "../layout/Navbar";
 import "../../style/home.css";
 import Footer from "../layout/Footer.js";
 import { Link } from "react-router-dom";
+import desc1 from "../../img/desc1.png";
+import desc2 from "../../img/desc2.png";
+import desc3 from "../../img/desc-1.png";
 
 export default class home extends Component {
   render() {
@@ -33,21 +36,27 @@ export default class home extends Component {
 
           <div className="container">
             <div className="main-desc">
-              <div className="desc-image"></div>
+              <div className="desc-image-wrapper">
+                <img className="desc-image" src={desc3} />
+              </div>
               <div className="desc-text">
                 <h3>節省人力、24小時隨時預約</h3>
                 <p>用線上系統取代人力，更省時間、更省成本、更多訂單！</p>
               </div>
             </div>
             <div className="main-desc">
-              <div className="desc-image"></div>
+              <div className="desc-image-wrapper">
+                <img className="desc-image" src={desc1} />
+              </div>
               <div className="desc-text">
                 <h3>節省人力、24小時隨時預約</h3>
                 <p>用線上系統取代人力，更省時間、更省成本、更多訂單！</p>
               </div>
             </div>
             <div className="main-desc">
-              <div className="desc-image"></div>
+              <div className="desc-image-wrapper">
+                <img className="desc-image" src={desc2} />
+              </div>
               <div className="desc-text">
                 <h3>節省人力、24小時隨時預約</h3>
                 <p>用線上系統取代人力，更省時間、更省成本、更多訂單！</p>
