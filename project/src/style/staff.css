@@ -11,7 +11,7 @@
 .staff-main-wrapper {
   position: relative;
   min-height: 1px;
-  padding-right: 50px;
+  /* padding-right: 50px; */
   width: 100%;
 }
 .button-wrapper {
@@ -36,23 +36,24 @@
 }
 
 /*Table*/
-table {
+
+/* table {
   margin-top: 20px;
   border-collapse: collapse;
   border-radius: 1em !important;
   overflow: hidden;
-  width: 100%;
-  border: 2px solid #1a237e;
-}
-th,
+  width: 100%;}
+  /* border: 2px solid #1a237e; */
+
+/* th,
 td {
   text-align: left;
 }
 thead {
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
-}
+} */
 
-table thead tr th {
+/* table thead tr th {
   font-weight: 600;
   font-size: 17px;
   padding: 14px 0 14px 14px;
@@ -71,120 +72,7 @@ table tbody tr td {
   font-size: 16px;
   color: #626262;
   padding: 10px;
-}
-
-/* Calendar */
-.calendar-main-wrapper {
-  padding: 30px;
-  margin-top: -80px;
-  margin-bottom: 100px;
-}
-
-.calendar-main-wrapper .calendar-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.calendar-main-wrapper .calendar-header .calendar-icon {
-  width: 180px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.calendar-main-wrapper .calendar-header .calendar-icon-1 {
-  display: flex;
-  justify-content: center;
-}
-
-.calendar-main-wrapper .calendar-header .calendar-icon-2 {
-  margin: 13px 20px;
-}
-
-.button-prev,
-.button-next {
-  cursor: pointer;
-  line-height: 40px;
-  height: 40px;
-  width: 25px;
-  text-align: center;
-  margin-top: 12px;
-}
-
-.button-prev:hover,
-.button-next:hover {
-  background-color: #1a237e;
-  color: #fff;
-  border-radius: 3px;
-}
-.calendar-table {
-  border-collapse: collapse;
-}
-
-.calendar-table,
-.calendar-table th,
-.calendar-table td {
-  border: 1.3px solid rgba(229, 229, 229, 0.7);
-}
-
-.calendar-table th {
-  height: 50px;
-  text-align: center;
-  padding: 0;
-}
-.calendar-table td {
-  width: 100px;
-  height: 100px;
-}
-
-.calendar-day {
-  padding: 10px 8px 5px 8px;
-  vertical-align: top;
-}
-.day-text {
-  text-align: right;
-}
-
-.booking-text {
-  background-color: #a5dff8;
-  padding: 4px 4px 4px 8px;
-  margin-top: 5px;
-
-  border-radius: 3px;
-}
-/* #a6e5bd */
-.booking-text span {
-  font-size: 12px;
-}
-.booking-time-text {
-  display: inline-block;
-  width: 60px;
-}
-.toolTip {
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  margin: 10px 0 0 10px;
-  padding: 20px;
-  min-height: 180px;
-
-  /* 定位 */
-  position: absolute;
-  z-index: 1;
-}
-.toolTip h4 {
-  font-size: 17px;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.toolTip div {
-  font-size: 15px;
-  text-align: left;
-  line-height: 28px;
-}
+} */
 
 /* logo upload*/
 .logo-circle {

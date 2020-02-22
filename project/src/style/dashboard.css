@@ -212,9 +212,134 @@
 }
 
 /* Calendar */
-.all-right-container {
-  max-width: 1100px;
+.all-right-container-calendar {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 100px;
+  margin-bottom: 100px;
 }
+
+.calendar-main-wrapper .calendar-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: -50px;
+}
+
+.calendar-main-wrapper .calendar-header .calendar-icon {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.calendar-main-wrapper .calendar-header .calendar-icon-1 {
+  display: flex;
+  justify-content: center;
+}
+
+.calendar-main-wrapper .calendar-header .calendar-icon-2 {
+  margin: 13px 20px;
+}
+
+.button-prev,
+.button-next {
+  cursor: pointer;
+  line-height: 40px;
+  height: 40px;
+  width: 25px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.button-prev:hover,
+.button-next:hover {
+  background-color: #1a237e;
+  color: #fff;
+  border-radius: 3px;
+}
+.calendar-table {
+  width: 100%;
+  box-sizing: border-box;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+  height: 100%;
+}
+
+.calendar-table,
+.calendar-table th,
+.calendar-table td {
+  border: #dadce0 1px solid;
+}
+
+.calendar-table th {
+  height: 50px;
+  text-align: center;
+  padding: 0;
+}
+.calendar-table td {
+  width: 100px;
+  height: 110px;
+  vertical-align: top;
+  box-sizing: content-box;
+}
+
+.calendar-day {
+  padding: 10px 8px 5px 8px;
+  vertical-align: top;
+}
+.day-text {
+  text-align: right;
+}
+
+.booking-text {
+  margin: 0 auto;
+  width: 95%;
+  font-size: 12px;
+  background-color: #a5dff8;
+  padding: 4px 4px 4px 8px;
+  margin-top: 5px;
+  border-radius: 3px;
+  color: #202124;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* #a6e5bd */
+.booking-text span {
+  font-size: 12px;
+}
+.booking-time-text {
+  display: inline-block;
+  width: 60px;
+}
+.toolTip {
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  margin: 10px 0 0 10px;
+  padding: 20px;
+  min-height: 180px;
+
+  /* 定位 */
+  position: absolute;
+  z-index: 1;
+}
+.toolTip h4 {
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.toolTip div {
+  font-size: 15px;
+  text-align: left;
+  line-height: 28px;
+}
+
 .not-found {
   display: flex;
   width: 100%;
@@ -251,13 +376,6 @@
   height: 500px;
 }
 
-/* m-size */
-/* @media (max-width: 1200px) {
-  .dashboard-item1,
-  .dashboard-item2 {
-    width: 400px;
-  }
-}*/
 @media (max-width: 1000px) {
   .main-wrapper {
     flex-direction: column;

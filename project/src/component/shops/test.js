@@ -32,9 +32,8 @@ class Test extends Component {
         onMouseEnter={this.onMouseOver.bind(this)}
         onMouseLeave={this.onMouseOut.bind(this)}
       >
-        <span className="booking-time-text">{data.time}</span>
-        <br />
-        <span>{data.service}</span>
+        {data.time}
+        {data.service}
         {this.state.isHover && (
           <span className="toolTip">
             <h4>預約資訊</h4>

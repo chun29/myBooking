@@ -76,21 +76,21 @@ class OpeningHours extends Component {
     */
   }
 
-  // componentDidUpdate(prevProps) {
-  //   // 常見用法（別忘了比較 prop）：
+  componentDidUpdate(prevProps) {
+    // 常見用法（別忘了比較 prop）：
 
-  //   if (this.props.store !== prevProps.store) {
-  //     // this.setState({ store: this.props.store });
+    if (this.props.store !== prevProps.store) {
+      // this.setState({ store: this.props.store });
 
-  //     const workday = this.props.store[0].workday;
+      const workday = this.props.store[0].workday;
 
-  //     this.setState({
-  //       isOpen: workday.isOpen,
-  //       closeTime: workday.closeTime,
-  //       openTime: workday.openTime
-  //     });
-  //   }
-  // }
+      this.setState({
+        isOpen: workday.isOpen,
+        closeTime: workday.closeTime,
+        openTime: workday.openTime
+      });
+    }
+  }
 
   handleCheckboxChange = changeEvent => {
     const { name } = changeEvent.target;
@@ -165,52 +165,100 @@ class OpeningHours extends Component {
       return <div>Loading</div>;
     }
     return (
-      <div className="dashboard">
-        <div className="top">
-          <DashboardHeader />
+      <div className="layout">
+        <div className="left">
+          <DashboardNav index={2} />
         </div>
-        <div className="down">
-          <div className="left-container">
-            <DashboardNav index={2} />
+        <div className="right">
+          <div className="header">
+            <DashboardHeader />
           </div>
+          <div className="main">
+            <div className="main-wrapper">
+              {/* <div className="staff-header">
+                <h1>設定營業時間</h1>
+              </div> */}
+              <main className="openingHours-wrapper">
+                <div className="workingHours-container">
+                  <form autoComplete="off" className="workingHours-form">
+                    <div className="workingHours-column workday">
+                      <h3>星期</h3>
+                      {this.createCheckboxes()}
+                    </div>
 
-          <div className="all-right-container">
-            <div className="staff-header">
-              <h1>設定營業時間</h1>
+                    <div className="workingHours-column open-time">
+                      <h3>開始時間</h3>
+                      {this.createOpenTimes()}
+                    </div>
+
+                    <div className="workingHours-column close-time">
+                      <h3>結束時間</h3>
+
+                      {this.createCloseTimes()}
+                    </div>
+                  </form>
+                  <div className="open-button-wrapper">
+                    <button
+                      onClick={this.handleSubmit}
+                      className="create-staff-button"
+                    >
+                      儲存
+                    </button>
+                  </div>
+                </div>
+              </main>
             </div>
-            <main className="openingHours-wrapper">
-              <div className="workingHours-container">
-                <form autoComplete="off" className="workingHours-form">
-                  <div className="workingHours-column workday">
-                    <h3>星期</h3>
-                    {this.createCheckboxes()}
-                  </div>
-
-                  <div className="workingHours-column open-time">
-                    <h3>開始時間</h3>
-                    {this.createOpenTimes()}
-                  </div>
-
-                  <div className="workingHours-column close-time">
-                    <h3>結束時間</h3>
-
-                    {this.createCloseTimes()}
-                  </div>
-                </form>
-              </div>
-              <div className="form-button-wrapper">
-                <button
-                  onClick={this.handleSubmit}
-                  className="create-staff-button"
-                >
-                  儲存
-                </button>
-              </div>
-            </main>
           </div>
         </div>
       </div>
     );
+    // return (
+    //   <div className="dashboard">
+    //     <div className="top">
+    //       <DashboardHeader />
+    //     </div>
+    //     <div className="down">
+    //       <div className="left-container">
+    //         <DashboardNav index={2} />
+    //       </div>
+
+    //       <div className="all-right-container">
+    //         <div className="staff-header">
+    //           <h1>設定營業時間</h1>
+    //         </div>
+    //         <main className="openingHours-wrapper">
+    //           <div className="workingHours-container">
+    //             <form autoComplete="off" className="workingHours-form">
+    //               <div className="workingHours-column workday">
+    //                 <h3>星期</h3>
+    //                 {this.createCheckboxes()}
+    //               </div>
+
+    //               <div className="workingHours-column open-time">
+    //                 <h3>開始時間</h3>
+    //                 {this.createOpenTimes()}
+    //               </div>
+
+    //               <div className="workingHours-column close-time">
+    //                 <h3>結束時間</h3>
+
+    //                 {this.createCloseTimes()}
+    //               </div>
+    //             </form>
+    //           </div>
+    //           <div className="form-button-wrapper">
+    //             <button
+    //               onClick={this.handleSubmit}
+    //               className="create-staff-button"
+    //             >
+    //               儲存
+    //             </button>
+    //           </div>
+    //         </main>
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
   }
 }
 
