@@ -1,67 +1,53 @@
-.dashboard {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #f4f6fe;
-}
+/* new layout */
 
-.dashboard a {
-  text-decoration: none;
-}
-
-.dashboard .top {
-  width: 100%;
-  height: 100px;
-}
-
-.dashboard .down {
-  display: flex;
-  flex-direction: column;
-}
-
-.dashboard .down .left-container {
-  width: 250px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  color: white;
-  font-size: 14px;
-  position: fixed;
-  left: 0;
-}
-
-.dashboard .down .dashboard-right-container {
-  margin: 0 auto;
-  width: 70%;
+.layout {
   display: flex;
   flex-direction: row;
-  margin-left: 350px;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  width: 100%;
+  height: 100vh;
+}
+.left {
+  overflow: hidden;
 }
 
-.dashboard .down .dashboard-right-container .dashboard-item-container {
-  width: 500px;
-  box-shadow: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
+.main {
+  display: flex;
+  flex-direction: row;
+  padding-top: 50px;
+  justify-content: space-evenly;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-
-.dashboard-item-container {
-  border-radius: 10px;
-  margin: 0 50px;
-  height: 610px;
-}
-.dashboard-item-container ul {
-  list-style: none;
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
   width: 90%;
   margin: 0 auto;
+  justify-content: space-evenly;
 }
+.right {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.dashboard-item1,
+.dashboard-item2 {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
+  height: 610px;
+  width: 450px;
+  margin: 0 10px;
+}
+
 .dashboard-item1 {
   background-color: white;
   border: 1px solid #d5dbfe;
-  border-radius: 10px;
-  flex: 1.5;
 }
 
 .dashboard-item2 {
@@ -69,10 +55,14 @@
   border-color: transparent;
   box-shadow: 0 3px 18px rgba(77, 87, 143, 0.07);
   border: 1px solid #d5dbfe;
-  border-radius: 10px;
   margin-bottom: 30px;
   color: white;
-  flex: 1.2;
+}
+
+.dashboard-item-container ul {
+  list-style: none;
+  width: 90%;
+  margin: 0 auto;
 }
 
 /* 今日預約 */
@@ -223,8 +213,6 @@
 
 /* Calendar */
 .all-right-container {
-  position: relative;
-  left: 20%;
   max-width: 1100px;
 }
 .not-found {
@@ -261,4 +249,69 @@
   margin: 50px 0;
   width: 60%;
   height: 500px;
+}
+
+/* m-size */
+/* @media (max-width: 1200px) {
+  .dashboard-item1,
+  .dashboard-item2 {
+    width: 400px;
+  }
+}*/
+@media (max-width: 1000px) {
+  .main-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .dashboard-item1,
+  .dashboard-item2 {
+    align-self: center;
+    width: 400px;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 500px) {
+  .main-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+  .dashboard-item1,
+  .dashboard-item2 {
+    width: 80%;
+    align-self: center;
+    margin-bottom: 30px;
+    height: 500px;
+  }
+  .today-booking-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .today-booking-info {
+    margin: 0 5px;
+  }
+  .notification-wrapper h1 {
+    font-size: 16px;
+  }
+  .sum-item {
+    font-size: 12px;
+  }
+  .today-booking-time {
+    display: none;
+  }
+  .today-booking-date,
+  .today-booking-service,
+  .today-booking-staff,
+  .today-booking-price {
+    font-size: 12px;
+    line-height: 12px;
+  }
+  .today-booking-price {
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }

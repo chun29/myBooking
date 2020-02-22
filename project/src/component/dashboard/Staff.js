@@ -45,7 +45,7 @@ class Staff extends Component {
           </div>
           <div className="down">
             <div className="left-container">
-              <DashboardNav />
+              <DashboardNav index={4} />
             </div>
 
             <div className="all-right-container">
@@ -85,7 +85,7 @@ class Staff extends Component {
         </div>
         <div className="down">
           <div className="left-container">
-            <DashboardNav />
+            <DashboardNav index={4} />
           </div>
 
           <div className="all-right-container">

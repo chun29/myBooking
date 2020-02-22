@@ -171,7 +171,7 @@ class OpeningHours extends Component {
         </div>
         <div className="down">
           <div className="left-container">
-            <DashboardNav />
+            <DashboardNav index={2} />
           </div>
 
           <div className="all-right-container">

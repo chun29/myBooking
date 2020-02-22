@@ -10,28 +10,44 @@ class Signup extends Component {
   state = {
     name: "",
     email: "",
-    password: ""
+    password: "",
+    error: ""
   };
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
+      error: ""
     });
   };
   handleSubmit = e => {
     e.preventDefault();
     if (this.state.name.length < 1 || this.state.email.length < 1) {
-      alert("請檢查輸入內容");
+      this.setState({
+        error: "請檢查輸入內容"
+      });
+      return;
     } else {
       if (this.state.password.length < 6) {
-        alert("密碼至少六位數");
+        this.setState({
+          error: "密碼至少六位數"
+        });
+        return;
       } else {
-        console.log(this.state);
         this.props.signUp(this.state);
       }
     }
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.authError !== prevProps.authError) {
+      this.setState({
+        error: this.props.authError
+      });
+    }
+  }
   render() {
-    const { auth } = this.props;
+    const { authError, auth } = this.props;
+    const errorMsg = this.state.error;
     if (auth.uid) return <Redirect to="dashboard" />;
     return (
       <div className="signin-wrapper">
@@ -70,12 +86,15 @@ class Signup extends Component {
                   autoComplete="off"
                 ></input>
                 <input
-                  placeholder="密碼 (至少六位數 )"
+                  placeholder="密碼 ( 至少六位數 )"
                   type="password"
                   id="password"
                   onChange={this.handleChange}
                   autoComplete="off"
                 ></input>
+                <div className="sign-alert">
+                  <p>{errorMsg}</p>
+                </div>
                 <button className="signin-btn blue-btn">免費註冊</button>
               </form>
             </div>
@@ -88,7 +107,8 @@ class Signup extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    authError: state.auth.authError
   };
 };
 

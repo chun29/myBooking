@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../style/login.css";
 import { connect } from "react-redux";
-import { signIn, socialLogin } from "../../store/actions/authAction";
+import { signIn } from "../../store/actions/authAction";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Logo } from "../layout/Layout";

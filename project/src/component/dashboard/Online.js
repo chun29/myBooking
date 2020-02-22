@@ -40,7 +40,7 @@ class Online extends Component {
         </div>
         <div className="down">
           <div className="left-container">
-            <DashboardNav />
+            <DashboardNav index={5} />
           </div>
 
           <div className="all-right-container">

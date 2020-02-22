@@ -9,56 +9,114 @@ import staff from "../../img/staff.png";
 import online from "../../img/online.png";
 import { Link } from "react-router-dom";
 
-const DashboardNav = () => {
-  return (
-    <React.Fragment>
-      <main>
-        <div className="left-container">
-          <ul>
-            <li>
-              <img src={nav} alt="nav" />
-            </li>
-            <Link to="/dashboard">
-              <li className="home">
-                <img src={home} alt="home" />
-                管理介面首頁
-              </li>
-            </Link>
-            <Link to="/calendar">
+class DashboardNav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showMenu: false };
+  }
+  showMenu = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      showMenu: !prevState.showMenu
+    }));
+  };
+  onMouseOver(e) {
+    console.log("click");
+    this.setState({
+      showMenu: true
+    });
+  }
+
+  onMouseOut(e) {
+    console.log("click");
+    this.setState({
+      showMenu: false
+    });
+  }
+  render() {
+    const menuList = [
+      { name: "管理介面首頁", img: home, url: "/dashboard" },
+      { name: "行事曆", img: calendar, url: "/calendar" },
+      { name: "營業時間", img: time, url: "/openinghours" },
+      { name: "服務項目", img: service, url: "/service" },
+      { name: " 服務人員", img: staff, url: "/staff" },
+      { name: "打造專屬預約網站", img: online, url: "/online" }
+    ];
+    const addStyle = { backgroundColor: "rgba(73, 85, 105, 0.8)" };
+    if (this.state.showMenu === true) {
+      return (
+        <React.Fragment>
+          <div
+            className="dashboard-nav"
+            onMouseLeave={this.onMouseOut.bind(this)}
+          >
+            <ul>
               <li>
-                <img src={calendar} alt="calender" />
-                行事曆
+                <img onClick={this.showMenu} src={nav} alt="nav" />
               </li>
-            </Link>
-            <Link to="/openinghours">
+
+              {menuList.map((menu, i) => {
+                if (i === this.props.index) {
+                  return (
+                    <Link key={i} to={menu.url}>
+                      <li style={addStyle}>
+                        <img src={menu.img} />
+                        {menu.name}
+                      </li>
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <Link key={i} to={menu.url}>
+                      <li>
+                        <img src={menu.img} />
+                        {menu.name}
+                      </li>
+                    </Link>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <div
+            className="s-dashboard-nav"
+            onMouseEnter={this.onMouseOver.bind(this)}
+          >
+            <ul>
               <li>
-                <img src={time} alt="time" />
-                營業時間
+                <img onClick={this.showMenu} src={nav} alt="nav" />
               </li>
-            </Link>
-            <Link to="/service">
-              <li>
-                <img src={service} alt="service" />
-                服務項目
-              </li>
-            </Link>
-            <Link to="/staff">
-              <li>
-                <img src={staff} alt="staff" />
-                服務人員
-              </li>
-            </Link>
-            <Link to="/online">
-              <li>
-                <img src={online} alt="online website" />
-                打造專屬預約網站
-              </li>
-            </Link>
-          </ul>
-        </div>
-      </main>
-    </React.Fragment>
-  );
-};
+
+              {menuList.map((menu, i) => {
+                if (i === this.props.index) {
+                  return (
+                    <Link key={i} to={menu.url}>
+                      <li style={addStyle}>
+                        <img src={menu.img} />
+                      </li>
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <Link key={i} to={menu.url}>
+                      <li>
+                        <img src={menu.img} />
+                      </li>
+                    </Link>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+        </React.Fragment>
+      );
+    }
+  }
+}
 
 export default DashboardNav;

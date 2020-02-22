@@ -40,7 +40,7 @@ class Calendar extends Component {
         </div>
         <div className="down">
           <div className="left-container">
-            <DashboardNav />
+            <DashboardNav index={1} />
           </div>
 
           <div className="all-right-container">

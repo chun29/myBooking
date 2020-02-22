@@ -22,6 +22,12 @@ const authReducer = (state = initState, action) => {
       return { ...state, authError: null };
     case "SIGNUP_ERROR":
       console.log(action.err.message);
+      if (
+        action.err.message ===
+        "The email address is already in use by another account."
+      ) {
+        return { ...state, authError: "此信箱已被註冊過" };
+      }
       return { ...state, authError: action.err.message };
     default:
       return state;

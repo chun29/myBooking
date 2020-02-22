@@ -42,29 +42,54 @@ class Dashboard extends Component {
 
     if (!auth.uid) return <Redirect to="/signIn" />;
     return (
-      <div className="dashboard">
-        <div className="top">
-          <DashboardHeader userName={userName} />
+      <div className="layout">
+        <div className="left">
+          <DashboardNav index={0} />
         </div>
-        <div className="down">
-          <div className="left-container">
-            <DashboardNav />
+        <div className="right">
+          <div className="header">
+            <DashboardHeader userName={userName} />
           </div>
-          <div className="dashboard-right-container">
-            <div className="dashboard-item-container dashboard-item1">
-              <TodayBookings
-                todayBookings={todayBookings}
-                staffs={this.props.staff}
-                services={this.props.service}
-              />
-            </div>
-
-            <div className="dashboard-item-container  dashboard-item2">
-              <Notifications notifications={notifications} />
+          <div className="main">
+            <div className="main-wrapper">
+              <div className="dashboard-item-container dashboard-item1">
+                <TodayBookings
+                  todayBookings={todayBookings}
+                  staffs={this.props.staff}
+                  services={this.props.service}
+                />
+              </div>
+              <div className="dashboard-item-container  dashboard-item2">
+                <Notifications notifications={notifications} />
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      // <div className="dashboard">
+      //   <div className="top">
+      //     <DashboardHeader userName={userName} />
+      //   </div>
+      //   <div className="down">
+      //     <div className="left-container">
+      //       <DashboardNav index={0} />
+      //     </div>
+      //     <div className="dashboard-right-container">
+      //       <div className="dashboard-item-container dashboard-item1">
+      //         <TodayBookings
+      //           todayBookings={todayBookings}
+      //           staffs={this.props.staff}
+      //           services={this.props.service}
+      //         />
+      //       </div>
+
+      //       <div className="dashboard-item-container  dashboard-item2">
+      //         <Notifications notifications={notifications} />
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
     );
   }
 }
