@@ -253,7 +253,7 @@ class ServiceList extends Component {
     }
 
     return (
-      <React.Fragment>
+      <div className="staff-table-container">
         <table className="staff-table-wrapper">
           <thead>
             <tr>
@@ -299,7 +299,7 @@ class ServiceList extends Component {
               })}
           </tbody>
         </table>
-      </React.Fragment>
+      </div>
     );
   }
 }

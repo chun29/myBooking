@@ -48,7 +48,7 @@ class Dashboard extends Component {
         </div>
         <div className="right">
           <div className="header">
-            <DashboardHeader userName={userName} />
+            <DashboardHeader />
           </div>
           <div className="main">
             <div className="main-wrapper">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteBooking } from "../../store/actions/bookingAction";
+import close from "../../img/close.png";
 class Test extends Component {
   constructor(props) {
     super(props);
@@ -26,45 +27,71 @@ class Test extends Component {
       ""
     );
     return (
-      <div
-        className="booking-text"
-        style={{ backgroundColor: data.staffColor }}
-        onMouseEnter={this.onMouseOver.bind(this)}
-        onMouseLeave={this.onMouseOut.bind(this)}
-      >
-        {data.time}
-        {data.service}
+      <React.Fragment>
+        <div
+          className="booking-text"
+          style={{ backgroundColor: data.staffColor }}
+          // onMouseEnter={this.onMouseOver.bind(this)}
+          // onMouseLeave={this.onMouseOut.bind(this)}
+          onClick={this.onMouseOver.bind(this)}
+        >
+          {data.time}
+          {data.service}
+        </div>
         {this.state.isHover && (
-          <span className="toolTip">
-            <h4>預約資訊</h4>
-            <div>預約編號：{data.id}</div>
-            <div>開始時間：{data.time}</div>
-            <div>服務時間：{data.duration}</div>
-            <div>服務人員：{data.staff}</div>
-            <div>顧客姓名：{data.name}</div>
-            <div>顧客電話：{data.phone}</div>
-            <div>顧客信箱：{data.email}</div>
-            <div>備註：{ntext}</div>
-            <button
-              className="booking-delete-btn"
-              onClick={() => {
-                this.deleteBooking(data.id, storeID);
-              }}
-            >
-              刪除預約
-            </button>
-          </span>
+          <div className="toolTip-bg">
+            <span className="toolTip">
+              <div onClick={this.onMouseOut.bind(this)}>
+                <img className="close-img" src={close} />
+              </div>
+              <h4>預約資訊</h4>
+              <div>
+                <b>預約編號</b>：{data.id}
+              </div>
+              <div>
+                <b>開始時間</b>：{data.time}
+              </div>
+              <div>
+                <b>服務時間</b>：{data.duration}
+              </div>
+              <div>
+                <b>服務人員</b>：{data.staff}
+              </div>
+              <div>
+                <b>顧客姓名</b>：{data.name}
+              </div>
+              <div>
+                <b>顧客電話</b>：{data.phone}
+              </div>
+              <div>
+                <b>顧客信箱</b>：{data.email}
+              </div>
+              <div>
+                <b>備註</b>：{ntext}
+              </div>
+              <button
+                className="booking-delete-btn"
+                onClick={() => {
+                  this.deleteBooking(data.id, storeID);
+                }}
+              >
+                刪除預約
+              </button>
+            </span>
+          </div>
         )}
-      </div>
+      </React.Fragment>
     );
   }
   onMouseOver(e) {
+    console.log("click");
     this.setState({
       isHover: true
     });
   }
 
   onMouseOut(e) {
+    console.log("click");
     this.setState({
       isHover: false
     });

@@ -304,7 +304,7 @@ class StaffList extends Component {
     }
 
     return (
-      <React.Fragment>
+      <div className="staff-table-container">
         <table className="staff-table-wrapper">
           <thead>
             <tr>
@@ -359,7 +359,7 @@ class StaffList extends Component {
               })}
           </tbody>
         </table>
-      </React.Fragment>
+      </div>
     );
   }
 }

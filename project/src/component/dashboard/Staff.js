@@ -77,40 +77,76 @@ class Staff extends Component {
     const staffs = this.props.staff && (
       <StaffList staffs={this.props.staff} storeId={this.props.auth.uid} />
     );
-
     return (
-      <div className="dashboard">
-        <div className="top">
-          <DashboardHeader />
+      <div className="layout">
+        <div className="left">
+          <DashboardNav index={4} />
         </div>
-        <div className="down">
-          <div className="left-container">
-            <DashboardNav index={4} />
+        <div className="right">
+          <div className="header">
+            <DashboardHeader />
           </div>
-
-          <div className="all-right-container">
-            <div className="staff-wrapper">
-              <div className="staff-header">
-                <h1>服務人員</h1>
-              </div>
-              <div className="staff-main-wrapper">
-                <div className="button-wrapper">
-                  <Link to="/createstaff">
-                    <button className="add-staff">新建服務人員</button>
-                  </Link>
-                </div>
-                {staffs}
-                {this.state.showMsg && (
-                  <div className="dashboard-msg">
-                    {staffMsg ? <p>{staffMsg}</p> : null}
+          <div className="main">
+            <div className="main-wrapper">
+              <div className="all-right-container-service">
+                <div className="staff-wrapper">
+                  <div className="staff-header">
+                    <h1>服務人員</h1>
                   </div>
-                )}
+                  <div className="staff-main-wrapper">
+                    <div className="button-wrapper">
+                      <Link to="/createstaff">
+                        <button className="add-staff">新建服務人員</button>
+                      </Link>
+                    </div>
+                    {staffs}
+                    {this.state.showMsg && (
+                      <div className="dashboard-msg">
+                        {staffMsg ? <p>{staffMsg}</p> : null}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     );
+
+    // return (
+    //   <div className="dashboard">
+    //     <div className="top">
+    //       <DashboardHeader />
+    //     </div>
+    //     <div className="down">
+    //       <div className="left-container">
+    //         <DashboardNav index={4} />
+    //       </div>
+
+    //       <div className="all-right-container">
+    //         <div className="staff-wrapper">
+    //           <div className="staff-header">
+    //             <h1>服務人員</h1>
+    //           </div>
+    //           <div className="staff-main-wrapper">
+    //             <div className="button-wrapper">
+    //               <Link to="/createstaff">
+    //                 <button className="add-staff">新建服務人員</button>
+    //               </Link>
+    //             </div>
+    //             {staffs}
+    //             {this.state.showMsg && (
+    //               <div className="dashboard-msg">
+    //                 {staffMsg ? <p>{staffMsg}</p> : null}
+    //               </div>
+    //             )}
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
   }
 }
 

@@ -316,18 +316,42 @@
   display: inline-block;
   width: 60px;
 }
+.toolTip-bg {
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background-color: #000;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
 .toolTip {
-  background-color: black;
-  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 448px;
+  width: 448px;
+  background-color: #fff;
+  color: #3c4043;
   text-align: center;
-  border-radius: 6px;
+  border-radius: 8px;
   margin: 10px 0 0 10px;
   padding: 20px;
-  min-height: 180px;
+  height: 380px;
 
   /* 定位 */
-  position: absolute;
-  z-index: 1;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  left: calc(50% - 224px);
+  top: 25%;
+  z-index: 100;
+  box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+    0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
 }
 .toolTip h4 {
   font-size: 17px;
@@ -338,6 +362,27 @@
   font-size: 15px;
   text-align: left;
   line-height: 28px;
+}
+.close-img {
+  width: 20px;
+  height: 20px;
+  float: right;
+  cursor: pointer;
+}
+.booking-delete-btn {
+  font-size: 14px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #00bfa5;
+  color: #00bfa5;
+  margin: 15px 0;
+  background-color: #fff;
+}
+
+.booking-delete-btn:hover {
+  background-color: #00bfa5;
+  color: white;
 }
 
 .not-found {
@@ -375,6 +420,21 @@
   width: 60%;
   height: 500px;
 }
+.booking-button-wrapper {
+  text-align: right;
+}
+.add-booking {
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 10px;
+  line-height: 20px;
+  padding: 15px 20px;
+  border: 1px solid #00bfa5;
+  background-color: #fff;
+  color: #00bfa5;
+  font-weight: 600;
+  outline: none;
+}
 
 @media (max-width: 1000px) {
   .main-wrapper {
@@ -387,6 +447,36 @@
     align-self: center;
     width: 400px;
     margin-bottom: 30px;
+  }
+}
+@media (max-width: 800px) {
+  .calendar-table th {
+    height: 30px;
+    font-size: 12px;
+  }
+  .calendar-table td {
+    height: 90px;
+    font-size: 12px;
+  }
+  .booking-text {
+    font-size: 10px;
+    padding: 4px;
+  }
+  .add-booking {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  .calendar-main-wrapper .calendar-header .calendar-icon {
+    width: 110px;
+  }
+  .button-prev,
+  .button-next {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .calendar-main-wrapper .calendar-header .calendar-icon-2 {
+    font-size: 12px;
+    margin: 10px 15px;
   }
 }
 @media (max-width: 500px) {
@@ -431,5 +521,58 @@
   .today-booking-price {
     overflow: hidden;
     white-space: nowrap;
+  }
+  .calendar-main-wrapper .calendar-header .calendar-icon-1 {
+    display: none;
+  }
+  .calendar-main-wrapper .calendar-header {
+    justify-content: flex-start;
+    margin-top: -40px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    padding: 0 10px;
+  }
+  .button-prev,
+  .button-next {
+    margin-top: 0;
+  }
+  .add-booking {
+    padding: 6px 8px;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+  .calendar-table td {
+    height: 80px;
+  }
+  .main {
+    padding-top: 20px;
+  }
+  .all-right-container-calendar {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  .toolTip {
+    height: 300px;
+    width: 90%;
+    font-size: 12px;
+    padding: 10px;
+    width: 200px;
+    left: calc(50% - 100px);
+  }
+  .close-img {
+    width: 14px;
+    height: 14px;
+  }
+  .toolTip div {
+    font-size: 12px;
+    text-align: left;
+    line-height: 20px;
+  }
+  .toolTip h4 {
+    font-size: 14px;
+  }
+  .booking-delete-btn {
+    font-size: 13px;
+    padding: 4px 12px;
   }
 }

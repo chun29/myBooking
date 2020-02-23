@@ -77,38 +77,74 @@ class Service extends Component {
       />
     );
     return (
-      <div className="dashboard">
-        <div className="top">
-          <DashboardHeader />
+      <div className="layout">
+        <div className="left">
+          <DashboardNav index={3} />
         </div>
-        <div className="down">
-          <div className="left-container">
-            <DashboardNav index={3} />
+        <div className="right">
+          <div className="header">
+            <DashboardHeader />
           </div>
-
-          <div className="all-right-container">
-            <div className="staff-wrapper">
-              <div className="staff-header">
-                <h1>服務項目</h1>
-              </div>
-              <div className="staff-main-wrapper">
-                <div className="button-wrapper">
-                  <Link to="/createservice">
-                    <button className="add-staff">新建服務項目</button>
-                  </Link>
-                </div>
-                {services}
-                {this.state.showMsg && (
-                  <div className="dashboard-msg">
-                    {serviceMsg ? <p>{serviceMsg}</p> : null}
+          <div className="main">
+            <div className="main-wrapper">
+              <div className="all-right-container-service">
+                <div className="staff-wrapper">
+                  <div className="staff-header">
+                    <h1>服務項目</h1>
                   </div>
-                )}
+                  <div className="staff-main-wrapper">
+                    <div className="button-wrapper">
+                      <Link to="/createservice">
+                        <button className="add-staff">新建服務項目</button>
+                      </Link>
+                    </div>
+                    {services}
+                    {this.state.showMsg && (
+                      <div className="dashboard-msg">
+                        {serviceMsg ? <p>{serviceMsg}</p> : null}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     );
+    // return (
+    //   <div className="dashboard">
+    //     <div className="top">
+    //       <DashboardHeader />
+    //     </div>
+    //     <div className="down">
+    //       <div className="left-container">
+    //         <DashboardNav index={3} />
+    //       </div>
+
+    //       <div className="all-right-container">
+    //         <div className="staff-wrapper">
+    //           <div className="staff-header">
+    //             <h1>服務項目</h1>
+    //           </div>
+    //           <div className="staff-main-wrapper">
+    //             <div className="button-wrapper">
+    //               <Link to="/createservice">
+    //                 <button className="add-staff">新建服務項目</button>
+    //               </Link>
+    //             </div>
+    //             {services}
+    //             {this.state.showMsg && (
+    //               <div className="dashboard-msg">
+    //                 {serviceMsg ? <p>{serviceMsg}</p> : null}
+    //               </div>
+    //             )}
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
   }
 }
 

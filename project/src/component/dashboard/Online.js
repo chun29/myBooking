@@ -6,6 +6,7 @@ import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
 import { Link } from "react-router-dom";
 import "../../style/staff.css";
+import online from "../../img/online-img.png";
 
 class Online extends Component {
   state = {
@@ -34,64 +35,80 @@ class Online extends Component {
   render() {
     const { auth } = this.props;
     return (
-      <div className="dashboard">
-        <div className="top">
-          <DashboardHeader />
+      <div className="layout">
+        <div className="left">
+          <DashboardNav index={5} />
         </div>
-        <div className="down">
-          <div className="left-container">
-            <DashboardNav index={5} />
+        <div className="right">
+          <div className="header">
+            <DashboardHeader />
           </div>
-
-          <div className="all-right-container">
-            <div className="staff-wrapper">
-              <div className="staff-header">
-                <h1>專屬預約網站</h1>
-              </div>
-              <div className="staff-main-wrapper">
-                <div className="button-wrapper">
-                  <Link to="/onlinebooking">
-                    <button
-                      onClick={this.onlineSetupLink}
-                      className="add-staff"
-                    >
-                      上線資料設定
-                    </button>
-                  </Link>
+          <div className="main main-online">
+            <div className="main-wrapper">
+              <div className="all-right-container-online">
+                <div className="online-step-info">
+                  <h1>輕鬆的架設您的專屬預約系統</h1>
+                  <h1>按照下列步驟開始吧！</h1>
+                  <div className="online-step-wrap">
+                    <div className="online-step">
+                      <img className="step-img" src={online} />
+                      <h4>1. 設定服務項目</h4>
+                      <Link to="/service">
+                        <p>前往連結</p>
+                      </Link>
+                    </div>
+                    <div className="online-step">
+                      <img className="step-img" src={online} />
+                      <h4>2. 設定服務人員</h4>
+                      <Link to="/staff">
+                        <p>前往連結</p>
+                      </Link>
+                    </div>
+                    <div className="online-step">
+                      <img className="step-img" src={online} />
+                      <h4>3. 設定預約時程</h4>
+                      <Link to="/openinghours">
+                        <p>前往連結</p>
+                      </Link>
+                    </div>
+                    <div className="online-step">
+                      <img className="step-img" src={online} />
+                      <h4>4. 上線設定</h4>
+                      <Link to="/onlinebooking">
+                        <p>前往連結</p>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  {/* <div className="main-left">
-                    <div className="main-left-header">
-                      <h1>輕鬆的架設您的專屬預約系統</h1>
-                      <h1>按照下列步驟開始吧！</h1>
+                <div className="member-info">
+                  <div className="button-wrapper">
+                    <Link to="/onlinebooking">
+                      <button
+                        onClick={this.onlineSetupLink}
+                        className="add-staff"
+                      >
+                        上線資料設定
+                      </button>
+                    </Link>
+                  </div>
+                  <div className="member-title">我的帳戶</div>
+                  <div className="member-content">
+                    <div className="content">
+                      <div className="member-cap">會員名稱</div>
+
+                      <div className="member-text">June</div>
                     </div>
-                    <div className="main-left-step">
-                      <div className="online-step">
-                        <h4>1. 設定服務項目</h4>
-                        <p>前往連結</p>
-                      </div>
-                      <div className="online-step">
-                        <h4>2. 設定服務人員</h4>
-                        <p>前往連結</p>
-                      </div>
-                      <div className="online-step">
-                        <h4>3. 設定預約時程</h4>
-                        <p>前往連結</p>
-                      </div>
-                      <div className="online-step">
-                        <h4>4. 上線設定</h4>
-                        <p>前往連結</p>
+                    <div className="content">
+                      <div className="member-cap">電子信箱</div>
+
+                      <div className="member-text">june@gmail.com</div>
+                      <div className="content">
+                        <div className="member-cap">預約頁面</div>
+                        <Link>
+                          <div className="member-text">{auth.uid}</div>
+                        </Link>
                       </div>
                     </div>
-                    <div className="main-left-step"></div>
-                  </div> */}
-                  <div className="main-right">
-                    <h3>預約頁面</h3>
-                    <div>商店帳號：{auth.uid}</div>
-                    <div>商店名稱</div>
-                    <div>商店電話</div>
-                    <div>商店地址</div>
-                    <div>img</div>
                   </div>
                 </div>
               </div>

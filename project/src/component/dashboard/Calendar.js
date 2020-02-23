@@ -51,9 +51,9 @@ class Calendar extends Component {
                   </div> */}
 
                   <div className="staff-main-wrapper">
-                    <div className="button-wrapper">
+                    <div className="booking-button-wrapper">
                       <Link to="/createbooking">
-                        <button className="add-staff">新增預約</button>
+                        <button className="add-booking">新增預約</button>
                       </Link>
                     </div>
                     <CalendarPart
