@@ -9,6 +9,7 @@ import SelectOpenDay from "./SelectOpenDay";
 import SelectOpenTime from "./SelectOpenTime";
 import SelectCloseTime from "./SelectOpenTime";
 import setOpeningHours from "../../store/actions/openingHoursAction";
+import Loading from "../layout/loading";
 
 const WEEK = [
   [1, "星期一"],
@@ -162,7 +163,10 @@ class OpeningHours extends Component {
   };
   render() {
     if (this.state === null) {
-      return <div>Loading</div>;
+      return <Loading />;
+    }
+    if (this.props.store == null) {
+      return <Loading />;
     }
     return (
       <div className="layout">
@@ -174,10 +178,10 @@ class OpeningHours extends Component {
             <DashboardHeader />
           </div>
           <div className="main">
-            <div className="main-wrapper">
-              {/* <div className="staff-header">
+            <div className="main-wrapper-time">
+              <div className="staff-header">
                 <h1>設定營業時間</h1>
-              </div> */}
+              </div>
               <main className="openingHours-wrapper">
                 <div className="workingHours-container">
                   <form autoComplete="off" className="workingHours-form">

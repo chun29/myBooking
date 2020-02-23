@@ -129,7 +129,6 @@ export const Notifications = props => {
   if (props.notifications === null) {
     return <div>Loading</div>;
   }
-  console.log(props.notifications);
 
   const newNotificationsList =
     props.notifications &&

@@ -50,12 +50,13 @@
 
 /* online-banner */
 .online-container .banner-wrapper {
-  height: 650px;
+  height: 550px;
   margin: 0 auto;
   position: relative;
 }
 
 .online-container .banner {
+  object-fit: cover;
   height: 100%;
   width: 100%;
 }
@@ -241,6 +242,7 @@
   width: 100%;
   height: 300px;
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
 }
 
 .service-desc {
@@ -252,6 +254,7 @@
   width: 250px;
   height: 250px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .online-container .service .extra-info {
@@ -475,4 +478,177 @@
   width: 350px;
   height: 250px;
   flex: 1;
+}
+
+@media (max-width: 1000px) {
+  .online-container .banner-wrapper {
+    height: 400px;
+  }
+  .online-container .store-info {
+    margin-top: -100px;
+  }
+  .timeButton {
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px 10px;
+  }
+  .formimg {
+    width: 260px;
+    height: 150px;
+  }
+  .online-container .info-section h1 {
+    font-size: 28px;
+    margin: 10px;
+    margin-bottom: 20px;
+  }
+  .help-msg {
+    font-size: 12px;
+  }
+
+  .result-success {
+    width: 90%;
+    font-size: 14px;
+  }
+  .result-img {
+    width: 280px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 800px) {
+  .online-container .banner-wrapper {
+    height: 200px;
+  }
+  .online-container .store-info {
+    margin-top: 10px;
+    padding: 0;
+  }
+  .online-container .button-wrapper .red {
+    font-size: 14px;
+    width: 175px;
+    padding: 0px 15px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .online-container .info-section h1 {
+    margin: 10px 0;
+  }
+  .online-container .info-section .info,
+  .online-container .store-desc {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .online-container .info-section h3 {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .online-container .store-photo img {
+    width: 120px;
+    height: 160px;
+  }
+  .online-container .step-list {
+    margin: 10px 0 12px 0;
+  }
+  .step-wrapper .step-selected,
+  .step-wrapper .step {
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .step-wrapper .step-msg {
+    margin-top: 20px;
+  }
+  .online-container .service-wrapper {
+    flex-direction: column;
+    margin-left: 0px;
+  }
+  .online-container .service-wrapper .service {
+    margin: 25px 20px;
+    width: 80%;
+    max-width: 300px;
+    align-self: center;
+  }
+  .online-container .service .service-img {
+    height: 260px;
+  }
+  .service-header {
+    font-size: 14px;
+    font-weight: 500;
+    height: 23px;
+  }
+  .service-text {
+    font-size: 12px;
+  }
+  .service-row-2,
+  .service-row-3 {
+    font-size: 12px;
+  }
+  .online-container .service-wrapper .service button {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+  .datePicker {
+    font-size: 14px;
+    border: 1px solid black;
+  }
+  .timeButton {
+    font-size: 12px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px 10px;
+  }
+  .step4-wrapper {
+    flex-direction: column;
+  }
+  .booking-confirm {
+    margin-left: 0;
+    font-size: 14px;
+  }
+  .customer-info-wrapper {
+    margin-top: 10px;
+  }
+  .form-item label {
+    font-weight: 500;
+  }
+  .form-item input {
+    height: 25px;
+  }
+  .formimg {
+    display: none;
+  }
+  .step4-wrapper {
+    height: auto;
+  }
+  .booking-confirm-btn {
+    font-size: 14px;
+    width: 175px;
+    padding: 0px 15px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .form-item {
+    margin-bottom: 10px;
+  }
+  .result-success {
+    width: 90%;
+  }
+  .online-container .info-section h1 {
+    font-size: 20px;
+  }
+  .result-success {
+    font-size: 14px;
+  }
+  .result-img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 160px;
+  }
+  .help-msg {
+    font-size: 12px;
+  }
 }

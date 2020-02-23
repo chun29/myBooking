@@ -21,14 +21,12 @@ class DashboardNav extends Component {
     }));
   };
   onMouseOver(e) {
-    console.log("click");
     this.setState({
       showMenu: true
     });
   }
 
   onMouseOut(e) {
-    console.log("click");
     this.setState({
       showMenu: false
     });

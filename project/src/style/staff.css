@@ -279,6 +279,7 @@ table tbody tr td {
 @media (max-width: 800px) {
   .staff-table-container {
     overflow-x: scroll;
+    margin: 10px;
   }
 
   .staff-table-wrapper {
@@ -293,9 +294,7 @@ table tbody tr td {
   @media (max-width: 500px) {
     .staff-header h1 {
       font-size: 18px;
-    }
-    .all-right-container-service {
-      width: 90%;
+      padding-left: 10px;
     }
 
     .staff-avatar-img {
@@ -312,6 +311,9 @@ table tbody tr td {
     .staff-table-wrapper td {
       font-size: 12px;
       white-space: nowrap;
+    }
+    .button-wrapper {
+      padding-right: 10px;
     }
     .button-wrapper button {
       font-size: 14px;

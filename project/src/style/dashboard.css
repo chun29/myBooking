@@ -25,6 +25,13 @@
   margin: 0 auto;
   justify-content: space-evenly;
 }
+.main-wrapper-time {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-evenly;
+}
 .right {
   height: 100%;
   width: 100%;
@@ -419,6 +426,7 @@
   margin: 50px 0;
   width: 60%;
   height: 500px;
+  object-fit: contain;
 }
 .booking-button-wrapper {
   text-align: right;

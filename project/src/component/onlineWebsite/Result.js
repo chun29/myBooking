@@ -44,7 +44,7 @@ class BookingConfirm extends Component {
             <div>預約結果已寄到您的信箱：{email}</div>
           </div>
           <img className="result-img" src={confirm}></img>
-          <div>
+          <div className="help-msg">
             需要協助嗎？ 聯絡 MyBooking 尋求支援與服務{" "}
             <b>
               <span>mybookingtw@gmail.com</span>

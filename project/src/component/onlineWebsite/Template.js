@@ -13,6 +13,7 @@ import BookingConfirm from "./BookingConfirm";
 import { createBooking } from "../../store/actions/bookingAction";
 import Result from "../onlineWebsite/Result";
 import { Link } from "react-router-dom";
+import Loading from "../layout/loading";
 
 class Template extends React.Component {
   constructor(props) {
@@ -213,7 +214,6 @@ class Template extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     const id = this.props.match.params && this.props.match.params;
 
     const data = this.props;
@@ -373,7 +373,20 @@ class Template extends React.Component {
 
     // const view = onlineSetup ? setUp : "loading";
     if (onlineSetup === null) {
-      return <div>Loading</div>;
+      return (
+        <div>
+          <Loading />
+        </div>
+      );
+    }
+    console.log(this.props.store);
+    if (this.props.store == null) {
+      console.log("nothing");
+      return (
+        <div>
+          <Loading />
+        </div>
+      );
     }
     return (
       <div className="online-container">
@@ -381,7 +394,6 @@ class Template extends React.Component {
           <Link to="/">
             <div className="left-header">My 線上預約</div>
           </Link>
-          <div className="right-header">查詢 / 取消預約</div>
         </nav>
         <div className="banner-wrapper">
           <div className="banner">

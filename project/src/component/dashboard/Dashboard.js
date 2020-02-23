@@ -41,6 +41,10 @@ class Dashboard extends Component {
     const userName = auth.uid ? user : "";
 
     if (!auth.uid) return <Redirect to="/signIn" />;
+    if (this.props.profile === null) {
+      console.log("11111");
+      return <Loading />;
+    }
     return (
       <div className="layout">
         <div className="left">
