@@ -16,6 +16,7 @@ import Calendar from "./component/dashboard/Calendar";
 import BookingWebSetup from "./component/dashboard/BookingWebSetup";
 import Template from "./component/onlineWebsite/Template";
 import Online from "./component/dashboard/Online";
+import NoMatchPage from "../../project/src/component/layout/404";
 
 class App extends Component {
   render() {
@@ -37,6 +38,7 @@ class App extends Component {
             <Route path="/onlinebooking" component={BookingWebSetup} />
             <Route path="/booking/:id" component={Template} />
             <Route path="/online" component={Online} />
+            <Route path="*" component={NoMatchPage} />
           </Switch>
         </div>
       </Router>

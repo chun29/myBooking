@@ -7,20 +7,33 @@ import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import weblink from "../../img/link.png";
 
-const DashboardHeader = ({ auth, profile, store }) => {
-  let onlineSetup = false;
-
+const DashboardHeader = ({ auth, profile, store, staff, service }) => {
   let user = "";
   if (profile.name) {
     user = profile.name.charAt(0).toUpperCase();
   }
   const userName = auth.uid ? user : "";
-  if (store && store[0]) {
-    if (store[0].online) {
-      onlineSetup = store[0].online.bookingIsOpen;
+
+  let onlineSetup = false;
+  if (store && store[0] && store[0].online) {
+    if (
+      store[0].online.bookingIsOpen == false ||
+      (store && store[0] && store[0].workday === null) ||
+      (staff && staff.length < 1) ||
+      (service && service.length < 1)
+    ) {
+      onlineSetup = false;
+    } else if (
+      store[0].online.bookingIsOpen == true &&
+      store[0].workday !== null &&
+      staff &&
+      staff.length > 0 &&
+      service &&
+      service.length > 0
+    ) {
+      onlineSetup = true;
     }
   }
-
   const link = "/booking/" + auth.uid;
   const newClass = onlineSetup ? "blue" : "red";
   const text = onlineSetup ? "已上線" : "關閉中";
@@ -56,7 +69,9 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile,
-    store: state.firestore.ordered.store
+    store: state.firestore.ordered.store,
+    staff: state.firestore.ordered.staff,
+    service: state.firestore.ordered.service
   };
 };
 
@@ -67,6 +82,18 @@ export default compose(
       {
         collection: "store",
         doc: props.auth.uid
+      },
+      {
+        collection: "store",
+        doc: props.auth.uid,
+        subcollections: [{ collection: "staff" }],
+        storeAs: "staff"
+      },
+      {
+        collection: "store",
+        doc: props.auth.uid,
+        subcollections: [{ collection: "service" }],
+        storeAs: "service"
       }
     ];
   })

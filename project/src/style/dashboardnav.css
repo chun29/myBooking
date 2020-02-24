@@ -21,6 +21,9 @@
   height: 22px;
   margin-right: 12px;
 }
+.s-dashboard-nav img {
+  margin-right: 0px;
+}
 
 .dashboard-nav ul {
   width: 90%;

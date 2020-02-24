@@ -11,6 +11,10 @@ import step_1 from "../../img/step1.png";
 import step_2 from "../../img/step2.png";
 import step_4 from "../../img/step4.png";
 import Loading from "../layout/loading";
+import alert from "../../img/alert.png";
+import mail from "../../img/mail.png";
+import user from "../../img/user.png";
+import www from "../../img/www.png";
 
 class Online extends Component {
   state = {
@@ -24,19 +28,8 @@ class Online extends Component {
     }
   }
 
-  onlineSetupLink = () => {
-    if (this.props.store[0].workday === null) {
-      alert("請先前往營業時間設定資料");
-    }
-    if (this.props.staff.length < 1) {
-      alert("請先前往服務人員設定資料");
-    }
-    if (this.props.staff.length < 1) {
-      alert("請先前往服務人員設定資料");
-    }
-  };
-
   render() {
+    console.log(this.props);
     if (this.props.profile.name == null) {
       return <Loading />;
     }
@@ -60,7 +53,10 @@ class Online extends Component {
       "關閉中"
     );
     let msg = [];
-    if (store && store[0] && store[0].workday === null) {
+    if (
+      (store && store[0] && store[0].workday === undefined) ||
+      (store && store.length < 1)
+    ) {
       msg.push("營業時間");
     }
     if (staff && staff.length < 1) {
@@ -71,24 +67,29 @@ class Online extends Component {
     }
     let showSetup;
     if (
-      (store && store[0] && store[0].workday === null) ||
+      (store && store[0] && store[0].workday === undefined) ||
       (staff && staff.length < 1) ||
       (service && service.length < 1)
     ) {
-      showSetup = msg.map((data, i) => {
-        return (
-          <div key={i}>
-            <div style={{ color: "red" }}>{data}尚未設定</div>
-          </div>
-        );
-      });
+      showSetup = (
+        <div className="alert-wrapper">
+          <h1 className="today-info">設定提示</h1>
+          {msg.map((data, i) => {
+            return (
+              <div className="set-alert-msg" key={i}>
+                <img className="alert-img" src={alert} />
+                <div style={{ color: "red" }}>{data}尚未設定</div>
+              </div>
+            );
+          })}
+        </div>
+      );
     } else {
+      console.log(store && store[0] && store[0].workday);
       showSetup = (
         <div className="button-wrapper">
           <Link to="/onlinebooking">
-            <button onClick={this.onlineSetupLink} className="add-staff">
-              上線資料設定
-            </button>
+            <button className="add-staff">上線資料設定</button>
           </Link>
         </div>
       );
@@ -107,8 +108,11 @@ class Online extends Component {
             <div className="main-wrapper">
               <div className="all-right-container-online">
                 <div className="online-step-info">
-                  <h1>輕鬆的架設您的專屬預約系統</h1>
-                  <h1>按照下列步驟開始吧！</h1>
+                  <div className="online-info-header">
+                    <h1>輕鬆的架設您的專屬預約系統</h1>
+                    <h1>按照下列步驟開始吧！</h1>
+                  </div>
+
                   <div className="online-step-wrap">
                     <div className="online-step">
                       <img className="step-img" src={step_1} />
@@ -126,7 +130,7 @@ class Online extends Component {
                     </div>
                     <div className="online-step">
                       <img className="step-img" src={step_3} />
-                      <h4>3. 設定預約時程</h4>
+                      <h4>3. 設定營業時間</h4>
                       <Link to="/openinghours">
                         <p>前往連結</p>
                       </Link>
@@ -141,29 +145,27 @@ class Online extends Component {
                   </div>
                 </div>
                 <div className="member-info">
-                  {/* <div className="button-wrapper">
-                      <Link to="/onlinebooking">
-                        <button
-                          onClick={this.onlineSetupLink}
-                          className="add-staff"
-                        >
-                          上線資料設定
-                        </button>
-                      </Link>
-                    </div> */}
-                  {showSetup}
-                  <div className="member-title">我的帳戶</div>
-                  <div className="member-content">
-                    <div className="content">
-                      <div className="member-cap">會員名稱</div>
+                  <div className="member-content-alert">{showSetup}</div>
 
-                      <div className="member-text">{profile.name}</div>
+                  <div className="member-content">
+                    <div className="member-title">我的帳戶</div>
+                    <div className="content">
+                      <div className="content-header-wrapper">
+                        <img className="member-icon" src={user} />
+                        <div className="member-cap">會員名稱</div>
+                        <div className="member-text">{profile.name}</div>
+                      </div>
                     </div>
                     <div className="content">
-                      <div className="member-cap">電子信箱</div>
-
-                      <div className="member-text">{profile.email}</div>
-                      <div className="content">
+                      <div className="content-header-wrapper">
+                        <img className="member-icon" src={mail} />
+                        <div className="member-cap">電子信箱</div>
+                        <div className="member-text">{profile.email}</div>
+                      </div>
+                    </div>
+                    <div className="content">
+                      <div className="content-header-wrapper">
+                        <img className="member-icon" src={www} />
                         <div className="member-cap">預約頁面</div>
 
                         <div className="member-text">{weblinkimg}</div>

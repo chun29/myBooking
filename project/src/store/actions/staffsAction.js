@@ -13,37 +13,50 @@ export const createStaff = (staff, id) => {
     };
     const firestore = getFirestore();
     const firebase = getFirebase();
-
     const imagesPath = "images";
+    if (image.name) {
+      firebase
+        .uploadFile(imagesPath, image)
+        .then(uploadedFile => {
+          return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
+        })
+        .then(downloadURL => {
+          console.log(
+            `Successfully uploaded file and got download link - ${downloadURL}`
+          );
+          return downloadURL;
+        })
+        .then(url => {
+          newStaff.url = url;
+          newStaff.image = image.name;
 
-    firebase
-      .uploadFile(imagesPath, image)
-      .then(uploadedFile => {
-        return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
-      })
-      .then(downloadURL => {
-        console.log(
-          `Successfully uploaded file and got download link - ${downloadURL}`
-        );
-        return downloadURL;
-      })
-      .then(url => {
-        newStaff.url = url;
-        newStaff.image = image.name;
-
-        firestore
-          .collection("store")
-          .doc(id)
-          .collection("staff")
-          .doc()
-          .set(newStaff, { merge: true })
-          .then(() => {
-            dispatch({ type: "CREATE_STAFF", newStaff });
-          })
-          .catch(err => {
-            dispatch({ type: "CREATE_STAFF_ERROR", err });
-          });
-      });
+          firestore
+            .collection("store")
+            .doc(id)
+            .collection("staff")
+            .doc()
+            .set(newStaff, { merge: true })
+            .then(() => {
+              dispatch({ type: "CREATE_STAFF", newStaff });
+            })
+            .catch(err => {
+              dispatch({ type: "CREATE_STAFF_ERROR", err });
+            });
+        });
+    } else {
+      firestore
+        .collection("store")
+        .doc(id)
+        .collection("staff")
+        .doc()
+        .set(newStaff, { merge: true })
+        .then(() => {
+          dispatch({ type: "CREATE_STAFF", newStaff });
+        })
+        .catch(err => {
+          dispatch({ type: "CREATE_STAFF_ERROR", err });
+        });
+    }
   };
 };
 
@@ -83,34 +96,48 @@ export const editStaff = (storeId, staffId, staffInfo) => {
     const firebase = getFirebase();
 
     const imagesPath = "images";
+    if (image.name) {
+      firebase
+        .uploadFile(imagesPath, image)
+        .then(uploadedFile => {
+          return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
+        })
+        .then(downloadURL => {
+          console.log(
+            `Successfully uploaded file and got download link - ${downloadURL}`
+          );
+          return downloadURL;
+        })
+        .then(url => {
+          newStaff.url = url;
+          newStaff.image = image.name;
 
-    firebase
-      .uploadFile(imagesPath, image)
-      .then(uploadedFile => {
-        return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
-      })
-      .then(downloadURL => {
-        console.log(
-          `Successfully uploaded file and got download link - ${downloadURL}`
-        );
-        return downloadURL;
-      })
-      .then(url => {
-        newStaff.url = url;
-        newStaff.image = image.name;
-
-        firestore
-          .collection("store")
-          .doc(storeId)
-          .collection("staff")
-          .doc(staffId)
-          .update(newStaff)
-          .then(() => {
-            dispatch({ type: "EDIT_STAFF", newStaff });
-          })
-          .catch(err => {
-            dispatch({ type: "EDIT_STAFF_ERROR", err });
-          });
-      });
+          firestore
+            .collection("store")
+            .doc(storeId)
+            .collection("staff")
+            .doc(staffId)
+            .update(newStaff)
+            .then(() => {
+              dispatch({ type: "EDIT_STAFF", newStaff });
+            })
+            .catch(err => {
+              dispatch({ type: "EDIT_STAFF_ERROR", err });
+            });
+        });
+    } else {
+      firestore
+        .collection("store")
+        .doc(storeId)
+        .collection("staff")
+        .doc(staffId)
+        .update(newStaff)
+        .then(() => {
+          dispatch({ type: "EDIT_STAFF", newStaff });
+        })
+        .catch(err => {
+          dispatch({ type: "EDIT_STAFF_ERROR", err });
+        });
+    }
   };
 };

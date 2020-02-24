@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createStaff } from "../../store/actions/staffsAction";
 import { Redirect } from "react-router-dom";
 import "..//../style/createstaff.css";
-import staffAvatar from "../../img/staff-avatar-2.png";
+import staffAvatar from "../../img/staff-avatar.png";
 
 class CreateStaff extends Component {
   state = {
@@ -13,13 +13,11 @@ class CreateStaff extends Component {
     nickname: "",
     desc: "",
     color: "#bbc1e8",
-    image: null,
-    imageSrc: staffAvatar,
-    url: "",
+    image: "",
+    url: null,
     error: {
       name: false,
       phone: false,
-      image: false,
       nickname: false
     }
   };
@@ -28,17 +26,15 @@ class CreateStaff extends Component {
       if (isNaN(e.target.value)) {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            phone: true // update the value of specific key
+            ...prevState.error,
+            phone: true
           }
         }));
       } else {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            phone: false // update the value of specific key
+            ...prevState.error,
+            phone: false
           }
         }));
       }
@@ -46,9 +42,8 @@ class CreateStaff extends Component {
     if (e.target.id == "name") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          name: false // update the value of specific key
+          ...prevState.error,
+          name: false
         }
       }));
     }
@@ -56,9 +51,8 @@ class CreateStaff extends Component {
     if (e.target.id == "nickname") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          nickname: false // update the value of specific key
+          ...prevState.error,
+          nickname: false
         }
       }));
     }
@@ -85,15 +79,14 @@ class CreateStaff extends Component {
       reader.onloadend = () => {
         this.setState({
           image: image,
-          imageSrc: reader.result
+          url: reader.result
         });
       };
       reader.readAsDataURL(image);
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          image: false // update the value of specific key
+          ...prevState.error,
+          image: false
         }
       }));
     }
@@ -120,22 +113,11 @@ class CreateStaff extends Component {
       }));
     }
 
-    if (this.state.image == null) {
-      this.setState(prevState => ({
-        error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          image: true // update the value of specific key
-        }
-      }));
-    }
-
     if (this.state.nickname.length < 1) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          nickname: true // update the value of specific key
+          ...prevState.error,
+          nickname: true
         }
       }));
     }
@@ -143,8 +125,7 @@ class CreateStaff extends Component {
     if (
       this.state.name.length > 0 &&
       this.state.nickname.length > 0 &&
-      this.state.phone.length > 0 &&
-      this.state.image !== null
+      this.state.phone.length > 0
     ) {
       console.log("submit", this.state);
       this.props.createStaff(this.state, this.props.auth.uid);
@@ -156,7 +137,7 @@ class CreateStaff extends Component {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="signin" />;
     const colors = ["#bbc1e8", "#a5dff8", "#ffbf69", "#ff9cbb", "#a6e5bd"];
-
+    const showPic = this.state.url ? this.state.url : staffAvatar;
     return (
       <div className="createstaff-wrapper">
         <div className="createstaff-header">
@@ -244,18 +225,9 @@ class CreateStaff extends Component {
             </div>
             <div className="form-section">
               <div className="form-item logo-wrapper">
-                <label className="required" htmlFor="desc">
-                  大頭貼照
-                  {this.state.error.image && (
-                    <span className="alert-msg">請上傳大頭貼照</span>
-                  )}
-                </label>
+                <label htmlFor="desc">大頭貼照</label>
                 <div className="logo-circle">
-                  <img
-                    className="store-logo"
-                    src={this.state.imageSrc}
-                    alt="home"
-                  />
+                  <img className="store-logo" src={showPic} alt="home" />
                 </div>
                 <p>建議尺寸 180 x 180</p>
                 <input

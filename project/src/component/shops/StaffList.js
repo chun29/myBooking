@@ -13,7 +13,6 @@ class StaffList extends Component {
       error: {
         name: false,
         phone: false,
-        image: false,
         nickname: false
       }
     };
@@ -95,13 +94,6 @@ class StaffList extends Component {
         });
       };
       reader.readAsDataURL(image);
-      this.setState(prevState => ({
-        error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          image: false // update the value of specific key
-        }
-      }));
     }
   };
 
@@ -127,22 +119,11 @@ class StaffList extends Component {
       }));
     }
 
-    if (staffInfo.image == null) {
-      this.setState(prevState => ({
-        error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          image: true // update the value of specific key
-        }
-      }));
-    }
-
     if (staffInfo.nickname.length < 1) {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          nickname: true // update the value of specific key
+          ...prevState.error,
+          nickname: true
         }
       }));
     }
@@ -150,10 +131,8 @@ class StaffList extends Component {
     if (
       staffInfo.name.length > 0 &&
       staffInfo.nickname.length > 0 &&
-      staffInfo.phone.length > 0 &&
-      staffInfo.image !== null
+      staffInfo.phone.length > 0
     ) {
-      console.log("submit", this.state);
       this.props.editStaff(this.props.storeId, staffInfo.id, staffInfo);
       this.setState({
         edit: false
@@ -162,7 +141,10 @@ class StaffList extends Component {
   };
 
   deleteStaff = (storeId, staffId) => {
-    this.props.deleteStaff(storeId, staffId);
+    const r = confirm("是否確認要刪除？");
+    if (r == true) {
+      this.props.deleteStaff(storeId, staffId);
+    }
   };
   render() {
     const { staffs, storeId } = this.props;
@@ -256,12 +238,7 @@ class StaffList extends Component {
               </div>
               <div className="form-section">
                 <div className="form-item logo-wrapper">
-                  <label className="required" htmlFor="desc">
-                    大頭貼照
-                    {this.state.error.image && (
-                      <span className="alert-msg">請上傳大頭貼照</span>
-                    )}
-                  </label>
+                  <label htmlFor="desc">大頭貼照</label>
                   <div className="logo-circle">
                     <img
                       className="store-logo"

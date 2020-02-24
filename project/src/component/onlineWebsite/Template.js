@@ -214,9 +214,26 @@ class Template extends React.Component {
   };
 
   render() {
+    const data = this.props;
+    if (data.store == null) {
+      return (
+        <div>
+          <Loading />
+        </div>
+      );
+    }
+    if (
+      data.store.length < 1 ||
+      data.store[0].online.bookingIsOpen == false ||
+      (data.store && data.store[0] && data.store[0].workday === null) ||
+      (data.staff && data.staff.length < 1) ||
+      (data.service && data.service.length < 1)
+    ) {
+      console.log(data.store, "nothing");
+      return <div>預約頁面目前關閉中</div>;
+    }
     const id = this.props.match.params && this.props.match.params;
 
-    const data = this.props;
     if (data.store && data.store[0]) {
       if (data.store[0].online) {
         onlineSetup = data.store[0].online.bookingIsOpen;
@@ -371,7 +388,6 @@ class Template extends React.Component {
       );
     };
 
-    // const view = onlineSetup ? setUp : "loading";
     if (onlineSetup === null) {
       return (
         <div>
@@ -380,14 +396,7 @@ class Template extends React.Component {
       );
     }
     console.log(this.props.store);
-    if (this.props.store == null) {
-      console.log("nothing");
-      return (
-        <div>
-          <Loading />
-        </div>
-      );
-    }
+
     return (
       <div className="online-container">
         <nav className="online-header">

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import edit from "../../img/edit.png";
 import deleteImg from "../../img/delete.png";
 import { deleteService, editService } from "../../store/actions/serviceAction";
+import servicebk from "../../img/service-bk.jpg";
 
 class ServiceList extends Component {
   constructor(props) {
@@ -11,8 +12,7 @@ class ServiceList extends Component {
       edit: false,
       error: {
         item: false,
-        price: false,
-        image: false
+        price: false
       }
     };
   }
@@ -42,9 +42,8 @@ class ServiceList extends Component {
       } else {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            phone: false // update the value of specific key
+            ...prevState.error,
+            phone: false
           }
         }));
       }
@@ -52,9 +51,8 @@ class ServiceList extends Component {
     if (e.target.id == "item") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          item: false // update the value of specific key
+          ...prevState.error,
+          item: false
         }
       }));
     }
@@ -80,13 +78,6 @@ class ServiceList extends Component {
         });
       };
       reader.readAsDataURL(image);
-      this.setState(prevState => ({
-        error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          image: false // update the value of specific key
-        }
-      }));
     }
   };
 
@@ -112,20 +103,7 @@ class ServiceList extends Component {
       return;
     }
 
-    if (serviceInfo.image == null) {
-      this.setState(prevState => ({
-        error: {
-          ...prevState.error,
-          image: true
-        }
-      }));
-    }
-
-    if (
-      serviceInfo.item.length > 0 &&
-      serviceInfo.price.length > 0 &&
-      serviceInfo.image !== null
-    ) {
+    if (serviceInfo.item.length > 0 && serviceInfo.price.length > 0) {
       console.log("submit", this.state);
       this.props.editService(this.props.storeId, serviceInfo.id, serviceInfo);
       this.setState({
@@ -259,6 +237,7 @@ class ServiceList extends Component {
             <tr>
               <th>刪除</th>
               <th>編輯</th>
+              <th>照片</th>
               <th>項目</th>
               <th>時間</th>
               <th>價格</th>
@@ -268,6 +247,13 @@ class ServiceList extends Component {
           <tbody>
             {services &&
               services.map(service => {
+                console.log(service);
+                let url;
+                if (service.url == null) {
+                  url = servicebk;
+                } else {
+                  url = service.url;
+                }
                 return (
                   <tr key={service.id}>
                     <td className="icon-edit">
@@ -287,6 +273,9 @@ class ServiceList extends Component {
                         }}
                         src={edit}
                       ></img>
+                    </td>
+                    <td className="staff-avatar">
+                      <img className="staff-avatar-img" src={url} />
                     </td>
                     <td className="staff-name">{service.item}</td>
                     <td className="staff-phone">

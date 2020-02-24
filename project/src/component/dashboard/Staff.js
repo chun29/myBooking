@@ -52,7 +52,7 @@ class Staff extends Component {
                 <div className="all-right-container-service">
                   <div className="staff-wrapper">
                     <div className="staff-header">
-                      <h1>服務項目</h1>
+                      <h1>服務人員</h1>
                     </div>
                     <div className="staff-main-wrapper">
                       <div className="button-wrapper">

@@ -30,7 +30,6 @@
   flex-direction: column;
   width: 90%;
   margin: 0 auto;
-  justify-content: space-evenly;
 }
 .right {
   height: 100%;
@@ -423,10 +422,10 @@
   margin-top: 10px;
 }
 .addservice {
-  margin: 50px 0;
   width: 60%;
-  height: 500px;
+  max-width: 600px;
   object-fit: contain;
+  align-self: center;
 }
 .booking-button-wrapper {
   text-align: right;

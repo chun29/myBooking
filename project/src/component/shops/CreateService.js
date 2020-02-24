@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createService } from "../../store/actions/serviceAction";
 import { Redirect } from "react-router-dom";
 import "..//../style/createstaff.css";
-import staffAvatar from "../../img/staff-avatar-2.png";
+import servicebk from "../../img/service-bk.jpg";
 
 class CreateService extends Component {
   state = {
@@ -11,8 +11,8 @@ class CreateService extends Component {
     duration: "30",
     price: "",
     desc: "",
-    image: null,
-    imageSrc: staffAvatar,
+    image: "",
+    url: null,
     error: {
       item: false,
       price: false,
@@ -22,7 +22,6 @@ class CreateService extends Component {
   handleChange = e => {
     if (e.target.id == "price") {
       if (isNaN(e.target.value)) {
-        console.log("111");
         this.setState(prevState => ({
           error: {
             ...prevState.error,
@@ -32,9 +31,8 @@ class CreateService extends Component {
       } else {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            phone: false // update the value of specific key
+            ...prevState.error,
+            phone: false
           }
         }));
       }
@@ -42,9 +40,8 @@ class CreateService extends Component {
     if (e.target.id == "item") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          item: false // update the value of specific key
+          ...prevState.error,
+          item: false
         }
       }));
     }
@@ -61,16 +58,10 @@ class CreateService extends Component {
       reader.onloadend = () => {
         this.setState({
           image: image,
-          imageSrc: reader.result
+          url: reader.result
         });
       };
       reader.readAsDataURL(image);
-      this.setState(prevState => ({
-        error: {
-          ...prevState.error,
-          image: false
-        }
-      }));
     }
   };
   cancelForm = e => {
@@ -99,20 +90,7 @@ class CreateService extends Component {
       return;
     }
 
-    if (this.state.image == null) {
-      this.setState(prevState => ({
-        error: {
-          ...prevState.error,
-          image: true
-        }
-      }));
-    }
-
-    if (
-      this.state.item.length > 0 &&
-      this.state.price.length > 0 &&
-      this.state.image !== null
-    ) {
+    if (this.state.item.length > 0 && this.state.price.length > 0) {
       console.log("submit", this.state);
       this.props.createService(this.state, this.props.auth.uid);
       this.props.history.push("/service");
@@ -122,6 +100,7 @@ class CreateService extends Component {
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="signin" />;
+    const showPic = this.state.url ? this.state.url : servicebk;
     return (
       <div className="createstaff-wrapper">
         <div className="createstaff-header">
@@ -184,18 +163,9 @@ class CreateService extends Component {
                 </span>
               </div>
               <div className="form-item logo-wrapper">
-                <label className="required" htmlFor="desc">
-                  服務項目照片
-                  {this.state.error.image && (
-                    <span className="alert-msg">請上傳服務項目照片</span>
-                  )}
-                </label>
+                <label htmlFor="desc">服務項目照片</label>
                 <div className="logo-circle">
-                  <img
-                    className="store-logo"
-                    src={this.state.imageSrc}
-                    alt="home"
-                  />
+                  <img className="store-logo" src={showPic} alt="home" />
                 </div>
                 <p>建議尺寸 180 x 180</p>
                 <input

@@ -210,12 +210,12 @@ class BookingWebSetup extends Component {
   };
   componentDidMount() {
     if (this.props.store && this.props.store[0]) {
+      console.log("test");
       this.setState({ store: this.props.store[0].online });
     }
   }
   componentDidUpdate(prevProps) {
-    // 常見用法（別忘了比較 prop）：
-    if (this.props.store && this.props.store[0]) {
+    if (this.props.store && this.props.store[0] && this.props.store[0].online) {
       if (this.props.store !== prevProps.store) {
         this.setState({ store: this.props.store[0].online });
       }

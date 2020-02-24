@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import forms from "../../img/forms.png";
+import forms from "../../img/form.png";
 import moment from "moment";
 import { connect } from "react-redux";
 class BookingConfirm extends Component {
@@ -17,11 +17,14 @@ class BookingConfirm extends Component {
       <React.Fragment>
         <div className="step4-wrapper">
           <div className="booking-confirm">
-            <div>{selectedService.item}</div>
-            <div>日期：{day}</div>
-            <div>時間：{startTime.text}</div>
-            <div>服務人員：{selectedStaff.name}</div>
-            <div>
+            <h2>預約項目</h2>
+            <div className="booking-confirm-item">{selectedService.item}</div>
+            <div className="booking-confirm-item">日期：{day}</div>
+            <div className="booking-confirm-item">時間：{startTime.text}</div>
+            <div className="booking-confirm-item">
+              服務人員：{selectedStaff.name}
+            </div>
+            <div className="booking-confirm-img">
               <img className="formimg" src={forms}></img>
             </div>
           </div>

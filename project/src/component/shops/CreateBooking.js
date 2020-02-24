@@ -33,17 +33,15 @@ class CreateBooking extends Component {
       if (isNaN(e.target.value)) {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            phone: true // update the value of specific key
+            ...prevState.error,
+            phone: true
           }
         }));
       } else {
         this.setState(prevState => ({
           error: {
-            // object that we want to update
-            ...prevState.error, // keep all other key-value pairs
-            phone: false // update the value of specific key
+            ...prevState.error,
+            phone: false
           }
         }));
       }
@@ -52,9 +50,8 @@ class CreateBooking extends Component {
     if (e.target.id === "name") {
       this.setState(prevState => ({
         error: {
-          // object that we want to update
-          ...prevState.error, // keep all other key-value pairs
-          name: false // update the value of specific key
+          ...prevState.error,
+          name: false
         }
       }));
     }
@@ -187,7 +184,10 @@ class CreateBooking extends Component {
       this.state.duration.length > 0 &&
       this.state.bookedDay.length > 0
     ) {
-      this.props.createBooking(this.state, this.props.store[0]);
+      const store = this.props.store[0]
+        ? this.props.store[0]
+        : { id: this.props.auth.uid };
+      this.props.createBooking(this.state, store);
       this.props.history.push("/calendar");
     }
   };

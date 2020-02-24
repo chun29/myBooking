@@ -420,7 +420,17 @@
   height: 100%;
   text-align: left;
   margin-left: 50px;
-  justify-content: space-between;
+  border: 1px solid #d5dbfe;
+  margin-right: 30px;
+  box-shadow: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
+  border-radius: 10px;
+  background-color: #f4f6fe;
+}
+.booking-confirm h2 {
+  text-align: center;
+  border-bottom: 1px solid #d4dbfe;
+  padding: 10px;
+  font-size: 18px;
 }
 
 .customer-info-wrapper {
@@ -473,11 +483,19 @@
   transition: box-shadow 0.1s linear, color 0.1s linear;
   color: #3c5afa;
 }
+.booking-confirm-img {
+  text-align: center;
+}
+.booking-confirm-item {
+  margin-bottom: 20px;
+  padding: 10px;
+}
 
 .formimg {
-  width: 350px;
-  height: 250px;
+  width: 250px;
+  height: 150px;
   flex: 1;
+  object-fit: contain;
 }
 
 @media (max-width: 1000px) {

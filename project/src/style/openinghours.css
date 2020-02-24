@@ -61,6 +61,12 @@
   background: url(../img/arrow.png) no-repeat 90% white;
   color: #3c444a;
 }
+.workingHours-form .set-container select {
+  height: 40px;
+}
+.workingHours-form .set-container {
+  height: 40px;
+}
 .workingHours-form .set-container select:focus,
 .all-select:focus {
   outline: none;
@@ -109,7 +115,7 @@
 }
 .openingHours-wrapper {
   max-width: 1000px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 @media (max-width: 1000px) {

@@ -25,7 +25,7 @@ class OpeningHours extends Component {
   constructor(props) {
     super(props);
     this.state =
-      props.store && props.store[0]
+      props.store && props.store[0] && props.store[0].workday
         ? props.store[0].workday
         : {
             isOpen: WEEK.reduce(
@@ -79,17 +79,22 @@ class OpeningHours extends Component {
 
   componentDidUpdate(prevProps) {
     // 常見用法（別忘了比較 prop）：
-
     if (this.props.store !== prevProps.store) {
-      // this.setState({ store: this.props.store });
+      if (
+        this.props.store &&
+        this.props.store[0] &&
+        this.props.store[0].workday
+      ) {
+        {
+          const workday = this.props.store[0].workday;
 
-      const workday = this.props.store[0].workday;
-
-      this.setState({
-        isOpen: workday.isOpen,
-        closeTime: workday.closeTime,
-        openTime: workday.openTime
-      });
+          this.setState({
+            isOpen: workday.isOpen,
+            closeTime: workday.closeTime,
+            openTime: workday.openTime
+          });
+        }
+      }
     }
   }
 
@@ -160,14 +165,14 @@ class OpeningHours extends Component {
 
   handleSubmit = () => {
     this.props.setOpeningHours(this.state, this.props.auth.uid);
+    alert("營業時間已設定");
   };
   render() {
     if (this.state === null) {
+      console.log(this.props.store, this.props.store[0]);
       return <Loading />;
     }
-    if (this.props.store == null) {
-      return <Loading />;
-    }
+
     return (
       <div className="layout">
         <div className="left">
