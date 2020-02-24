@@ -202,15 +202,19 @@ class BookingWebSetup extends Component {
       onlineInfo.storeDesc.length > 0
     ) {
       this.props.onlineSetup(onlineInfo, this.props.auth.uid);
-      this.props.history.push("/dashboard");
+      this.props.history.push("/online");
     }
   };
   handleCancel = e => {
-    this.props.history.push("/dashboard");
+    this.props.history.push("/online");
   };
   componentDidMount() {
-    if (this.props.store && this.props.store[0]) {
-      console.log("test");
+    if (
+      this.props.store &&
+      this.props.store[0] &&
+      this.props.store[0].online !== undefined
+    ) {
+      console.log("test", this.props.store[0].online);
       this.setState({ store: this.props.store[0].online });
     }
   }
@@ -223,6 +227,10 @@ class BookingWebSetup extends Component {
   }
 
   render() {
+    if (this.state.store == null) {
+      console.log("1111111111", this.state);
+      return <div>Loading</div>;
+    }
     const onlineInfo = this.state.store;
 
     return (
