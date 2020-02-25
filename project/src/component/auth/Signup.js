@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../style/login.css";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { signUp } from "../../store/actions/authAction";
+import { signUp, authMsg } from "../../store/actions/authAction";
 import { Link } from "react-router-dom";
 import { Logo } from "../layout/Layout";
 
@@ -10,44 +10,41 @@ class Signup extends Component {
   state = {
     name: "",
     email: "",
-    password: "",
-    error: ""
+    password: ""
   };
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value,
-      error: ""
+      [e.target.id]: e.target.value
     });
+    this.props.authMsg("");
   };
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.name.length < 1 || this.state.email.length < 1) {
-      this.setState({
-        error: "請檢查輸入內容"
-      });
+
+    const validateEmail = email => {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    };
+    const email = this.state.email;
+    const validate = validateEmail(email);
+    if (this.state.name.length < 1) {
+      this.props.authMsg("請檢查輸入的姓名");
       return;
-    } else {
-      if (this.state.password.length < 6) {
-        this.setState({
-          error: "密碼至少六位數"
-        });
-        return;
-      } else {
-        this.props.signUp(this.state);
-      }
     }
+    if (validate === false) {
+      this.props.authMsg("請檢查輸入的信箱");
+      return;
+    }
+    if (this.state.password.length < 6) {
+      this.props.authMsg("請檢查輸入的密碼");
+      return;
+    }
+    this.props.signUp(this.state);
+    this.props.authMsg("註冊中");
   };
 
-  componentDidUpdate(prevProps) {
-    if (this.props.authError !== prevProps.authError) {
-      this.setState({
-        error: this.props.authError
-      });
-    }
-  }
   render() {
     const { authError, auth } = this.props;
-    const errorMsg = this.state.error;
     if (auth.uid) return <Redirect to="dashboard" />;
     return (
       <div className="signin-wrapper">
@@ -86,14 +83,14 @@ class Signup extends Component {
                   autoComplete="off"
                 ></input>
                 <input
-                  placeholder="密碼 ( 至少六位數 )"
+                  placeholder="密碼"
                   type="password"
                   id="password"
                   onChange={this.handleChange}
                   autoComplete="off"
                 ></input>
                 <div className="sign-alert">
-                  <p>{errorMsg}</p>
+                  <p>{authError}</p>
                 </div>
                 <button className="signin-btn blue-btn">免費註冊</button>
               </form>
@@ -114,7 +111,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signUp: newUser => dispatch(signUp(newUser))
+    signUp: newUser => dispatch(signUp(newUser)),
+    authMsg: msg => dispatch(authMsg(msg))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

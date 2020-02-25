@@ -70,3 +70,9 @@ export const signUp = newUser => {
       });
   };
 };
+
+export const authMsg = msg => {
+  return dispatch => {
+    dispatch({ type: "ADD_AUTHMSG", msg });
+  };
+};

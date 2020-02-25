@@ -22,6 +22,7 @@ button {
 .green-btn {
   border: 1px solid #00bfa5;
   color: #00bfa5;
+  background-color: #fff;
 }
 
 .blue-btn:hover {

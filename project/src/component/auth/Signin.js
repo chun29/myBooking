@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../style/login.css";
 import { connect } from "react-redux";
-import { signIn } from "../../store/actions/authAction";
+import { signIn, authMsg } from "../../store/actions/authAction";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Logo } from "../layout/Layout";
@@ -9,32 +9,36 @@ import { Logo } from "../layout/Layout";
 class SignIn extends Component {
   state = {
     email: "",
-    password: "",
-    error: ""
+    password: ""
   };
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value,
-      error: ""
+      [e.target.id]: e.target.value
     });
+    this.props.authMsg("");
   };
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.email.length < 1 || this.state.password.length < 6) {
-      this.setState({
-        error: "請檢查輸入的信箱或密碼"
-      });
+    const validateEmail = email => {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    };
+    const email = this.state.email;
+    const validate = validateEmail(email);
+    if (validate === false) {
+      this.props.authMsg("請檢查輸入的信箱");
+      return;
+    }
+    if (this.state.password.length < 6) {
+      this.props.authMsg("請檢查輸入的密碼");
       return;
     }
     this.props.signIn(this.state);
-    this.setState({
-      error: "登入中"
-    });
+    this.props.authMsg("登入中");
   };
   render() {
     const { authError, auth } = this.props;
 
-    const errorMsg = this.state.error;
     if (auth.uid) return <Redirect to="dashboard" />;
     return (
       <div className="signin-wrapper">
@@ -75,7 +79,7 @@ class SignIn extends Component {
                   autoComplete="off"
                 />
                 <div className="sign-alert">
-                  {authError ? <p>{authError}</p> : <p>{errorMsg}</p>}
+                  <p>{authError}</p>
                 </div>
                 <button
                   className="signin-btn blue-btn"
@@ -101,7 +105,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signIn: creds => dispatch(signIn(creds))
+    signIn: creds => dispatch(signIn(creds)),
+    authMsg: msg => dispatch(authMsg(msg))
   };
 };
 

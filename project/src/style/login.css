@@ -188,6 +188,7 @@
     font-size: 22px;
   }
   .signin-container p {
+    margin-top: 10px;
     font-size: 12px;
   }
   .signin-container input {
@@ -197,6 +198,7 @@
     margin-bottom: 0px;
   }
   .signin-container .signin-btn {
+    margin-top: 10px;
     height: 35px;
     line-height: 35px;
     padding: 0 22px;
