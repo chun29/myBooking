@@ -33,6 +33,8 @@ const authReducer = (state = initState, action) => {
     case "ADD_AUTHMSG":
       console.log("ADD_AUTHMSG", action.msg);
       return { ...state, authError: action.msg };
+    case "SHOW_GUIDE":
+      return { ...state, showGuide: false };
     default:
       return state;
   }

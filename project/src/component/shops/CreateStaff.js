@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createStaff } from "../../store/actions/staffsAction";
 import { Redirect } from "react-router-dom";
 import "..//../style/createstaff.css";
-import staffAvatar from "../../img/staff-avatar.png";
+import uploader from "../../img/upload.png";
 
 class CreateStaff extends Component {
   state = {
@@ -74,6 +74,10 @@ class CreateStaff extends Component {
   handleImgChange = e => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
+      if (image.size > 2000000) {
+        alert("檔案請勿超過2MB");
+        return;
+      }
       const reader = new FileReader();
 
       reader.onloadend = () => {
@@ -137,7 +141,7 @@ class CreateStaff extends Component {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="signin" />;
     const colors = ["#bbc1e8", "#a5dff8", "#ffbf69", "#ff9cbb", "#a6e5bd"];
-    const showPic = this.state.url ? this.state.url : staffAvatar;
+    const showPic = this.state.url ? this.state.url : uploader;
     return (
       <div className="createstaff-wrapper">
         <div className="createstaff-header">
@@ -225,17 +229,21 @@ class CreateStaff extends Component {
             </div>
             <div className="form-section">
               <div className="form-item logo-wrapper">
-                <label htmlFor="desc">大頭貼照</label>
-                <div className="logo-circle">
-                  <img className="store-logo" src={showPic} alt="home" />
-                </div>
-                <p>建議尺寸 180 x 180</p>
-                <input
-                  onChange={this.handleImgChange}
-                  type="file"
-                  name="pic"
-                  accept="image/*"
-                />
+                <label htmlFor="pic">
+                  大頭貼照
+                  <div className="logo-circle">
+                    <img className="store-logo" src={showPic} alt="home" />
+                  </div>
+                  <p>建議尺寸 180 x 180</p>
+                  <input
+                    onChange={this.handleImgChange}
+                    type="file"
+                    name="pic"
+                    id="pic"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                  />
+                </label>
               </div>
 
               <div className="form-item">

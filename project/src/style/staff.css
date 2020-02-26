@@ -40,7 +40,7 @@
 
 .staff-table-wrapper th {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 15px;
   padding-top: 14px;
   padding-bottom: 14px;
   padding-left: 15px;
@@ -60,7 +60,7 @@
 .staff-table-wrapper td {
   width: 70px;
   color: black;
-  font-size: 13.5px;
+  font-size: 14px;
   background: rgb(255, 255, 255);
   border-bottom: 1px solid rgba(229, 229, 229, 0.7);
   border-top: 0px;
@@ -129,13 +129,12 @@ table tbody tr td {
 
 /* logo upload*/
 .logo-circle {
-  height: 86px;
-  width: 86px;
-  min-width: 80px;
-  min-height: 80px;
+  height: 90px;
+  width: 90px;
   border-radius: 50%;
   margin: 5px 0;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .logo-wrapper p {
@@ -145,11 +144,9 @@ table tbody tr td {
 }
 
 .store-logo {
-  margin-left: -3px;
-  margin-top: -3px;
-  height: 90px;
-  width: 90px;
-  border-radius: 50%;
+  height: 86px;
+  width: 86px;
+  object-fit: contain;
 }
 
 .banner-wrapper {
@@ -165,8 +162,8 @@ table tbody tr td {
 }
 
 .edit-img {
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
 }
 .dashboard-msg {

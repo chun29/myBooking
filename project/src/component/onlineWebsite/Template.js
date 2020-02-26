@@ -14,6 +14,10 @@ import { createBooking } from "../../store/actions/bookingAction";
 import Result from "../onlineWebsite/Result";
 import { Link } from "react-router-dom";
 import Loading from "../layout/loading";
+import calendar from "../../img/event.png";
+import group from "../../img/group.png";
+import work from "../../img/work.png";
+import notFound from "../../img/notfound.png";
 
 class Template extends React.Component {
   constructor(props) {
@@ -70,7 +74,7 @@ class Template extends React.Component {
     }
   };
   showBooking = () => {
-    if (this.state.resultShow == true) {
+    if (this.state.bookingShow == true) {
       window.location.reload(false);
     }
     this.setState(
@@ -230,7 +234,19 @@ class Template extends React.Component {
       (data.service && data.service.length < 1)
     ) {
       console.log(data.store, "nothing");
-      return <div>預約頁面目前關閉中</div>;
+      return (
+        <div className="online-container">
+          <nav className="online-header">
+            <Link to="/">
+              <div className="left-header">My 線上預約</div>
+            </Link>
+          </nav>
+          <div className="notfound-container">
+            <h1>很抱歉，此商店預約頁面關閉中</h1>
+            <img className="notfound" src={notFound} />
+          </div>
+        </div>
+      );
     }
     const id = this.props.match.params && this.props.match.params;
 
@@ -454,7 +470,11 @@ class Template extends React.Component {
                 <div className="booking-step-item">
                   {this.state.serviceShow && (
                     <div>
-                      <h3> 選擇服務</h3>
+                      <div className="step-header-wrapper">
+                        <img src={work} />
+                        <h3> 選擇服務</h3>
+                      </div>
+
                       <div className="service-wrapper">
                         {serviceArr.map((service, i) => {
                           return (
@@ -471,7 +491,11 @@ class Template extends React.Component {
                   )}
                   {this.state.staffShow && (
                     <div className="booking-step-item">
-                      <h3>選擇服務人員</h3>
+                      <div className="step-header-wrapper">
+                        <img src={group} />
+                        <h3>選擇服務人員</h3>
+                      </div>
+
                       <div className="service-wrapper">
                         {staffArr.map((staff, i) => {
                           return (
@@ -490,7 +514,11 @@ class Template extends React.Component {
 
                 {this.state.dateShow && (
                   <div className="booking-step-date">
-                    <h3 ref={this.scrollDiv2}>選擇日期與時間</h3>
+                    <div className="step-header-wrapper">
+                      <img src={calendar} />
+                      <h3 ref={this.scrollDiv2}>選擇日期與時間</h3>
+                    </div>
+
                     <DatePicker
                       selected={this.state.selectedDate}
                       onChange={this.handleChange}
@@ -504,6 +532,7 @@ class Template extends React.Component {
                       filterDate={isOpenDay}
                       className="datePicker"
                     />
+
                     {this.state.timeShow && (
                       <div>
                         <h3>可選擇時間</h3>

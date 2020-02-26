@@ -40,15 +40,16 @@ export const signUp = (newUser, callback) => {
           .doc(resp.user.uid)
           .set({
             name: newUser.name,
-            email: newUser.email
+            email: newUser.email,
+            guideShow: true
           });
       })
       .then(() => {
         firebase.auth().onAuthStateChanged(function(user) {
           user.sendEmailVerification();
         });
-        alert("已寄發驗證信，請先確認信箱再登入");
-        callback();
+        // alert("已寄發驗證信，請先確認信箱再登入");
+        // callback();
         dispatch({
           type: "SIGNUP_SUCCESS"
         });
@@ -62,5 +63,21 @@ export const signUp = (newUser, callback) => {
 export const authMsg = msg => {
   return dispatch => {
     dispatch({ type: "ADD_AUTHMSG", msg });
+  };
+};
+
+export const guideBanned = id => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("owners")
+      .doc(id)
+      .update({ guideShow: false })
+      .then(() => {
+        dispatch({ type: "SHOW_GUIDE" });
+      })
+      .catch(() => {
+        dispatch({ type: "SHOW_GUIDE_ERR", err });
+      });
   };
 };

@@ -16,16 +16,6 @@
   padding: 0 10%;
   border-bottom: 1px solid rgba(61, 90, 254, 0.2);
 }
-.online-container .online-header::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 0;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
-}
 
 .online-container .left-header {
   font-size: 24px;
@@ -117,10 +107,10 @@
 .online-container .button-wrapper .red {
   background-color: #3d5afe;
   color: #fff;
+  border: none;
 }
 .online-container .button-wrapper .red:hover {
   background-color: #1a237e;
-  border: none;
 }
 
 .online-container .info-section .info {
@@ -144,8 +134,9 @@
 }
 
 .online-container .info-section h3 {
-  margin-bottom: 20px;
   color: black;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .online-container .store-photo-wrapper {
@@ -185,12 +176,11 @@
 .step-wrapper .step {
   cursor: pointer;
   background-color: #f4f6fe;
-  border-radius: 15px 15px 0 0;
   position: relative;
   font-weight: 700;
-  height: 80px;
+  height: 70px;
   display: table-cell;
-  line-height: 80px;
+  line-height: 70px;
   width: 25%;
   text-align: center;
 }
@@ -208,7 +198,6 @@
 .step-wrapper .step-selected {
   background-color: #00bfa5;
   color: #fff;
-  border-radius: 15px 15px 0 0;
 }
 
 .online-container .service-wrapper {
@@ -217,7 +206,6 @@
   text-align: center;
   justify-content: center;
   flex-wrap: wrap;
-  margin-left: 20px;
   align-items: stretch;
 }
 
@@ -229,8 +217,10 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  margin: 25px 20px;
-  max-width: 400px;
+  margin: 20px 15px;
+  max-width: 250px;
+  justify-content: space-between;
+  transition: 0.3s;
 }
 
 .online-container .service-wrapper .service:hover {
@@ -240,7 +230,7 @@
 
 .online-container .service .service-img {
   width: 100%;
-  height: 300px;
+  height: 200px;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
 }
@@ -248,13 +238,17 @@
 .service-desc {
   padding: 0 10px;
 }
-
+.online-container .service {
+  background-color: #d4dbfe;
+}
 .online-container .service .staff-img {
   align-self: center;
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
+  border: 5px solid #cbd5ff;
   border-radius: 50%;
   object-fit: cover;
+  margin-top: 10px;
 }
 
 .online-container .service .extra-info {
@@ -265,14 +259,14 @@
 }
 .online-container .service-wrapper .service button {
   margin-top: 20px;
-  font-size: 17px;
+  font-size: 14px;
   border-radius: 10px;
   background-color: #3d5afe;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 16px;
   text-align: center;
   display: inline-block;
-  width: 150px;
+  width: 130px;
   align-self: center;
 }
 
@@ -280,15 +274,16 @@
   text-align: left;
 }
 .service-header {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 23px;
-  height: 46px;
+  height: 23px;
   margin: 5px 0;
 }
 .service-text {
   overflow: hidden;
-  font-size: 16px;
+  font-size: 13px;
+  font-weight: 300;
 }
 .service-row-2 {
   display: flex;
@@ -301,9 +296,7 @@
   display: flex;
   flex-direction: row;
   align-self: center;
-}
-.booking-step-date h3 {
-  margin-top: 20px;
+  font-size: 12px;
 }
 
 .time-btn-wrapper {
@@ -340,6 +333,7 @@
 .datePicker {
   padding: 10px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .online-container .booking-section {
@@ -366,8 +360,8 @@
 }
 
 .timer {
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   margin-right: 10px;
   margin-bottom: -3px;
 }
@@ -405,7 +399,7 @@
 
 .booking-step-item-2 {
   margin: 30px;
-  height: 700px;
+  height: auto;
 }
 .step4-wrapper {
   display: flex;
@@ -497,13 +491,39 @@
   flex: 1;
   object-fit: contain;
 }
+.step-header-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
 
+.step-header-wrapper img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.notfound-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding-top: 50px;
+}
+.notfound {
+  width: 50%;
+  margin-top: 50px;
+  object-fit: cover;
+}
 @media (max-width: 1000px) {
   .online-container .banner-wrapper {
     height: 400px;
   }
   .online-container .store-info {
     margin-top: -100px;
+    padding: 0px 5%;
   }
   .timeButton {
     width: 120px;
@@ -578,18 +598,12 @@
   .step-wrapper .step-msg {
     margin-top: 20px;
   }
-  .online-container .service-wrapper {
-    flex-direction: column;
-    margin-left: 0px;
-  }
+
   .online-container .service-wrapper .service {
-    margin: 25px 20px;
-    width: 80%;
-    max-width: 300px;
-    align-self: center;
+    margin: 10px 5px;
   }
   .online-container .service .service-img {
-    height: 260px;
+    height: 160px;
   }
   .service-header {
     font-size: 14px;
@@ -601,7 +615,7 @@
   }
   .service-row-2,
   .service-row-3 {
-    font-size: 12px;
+    font-size: 10px;
   }
   .online-container .service-wrapper .service button {
     margin-top: 10px;
@@ -610,7 +624,6 @@
   }
   .datePicker {
     font-size: 14px;
-    border: 1px solid black;
   }
   .timeButton {
     font-size: 12px;
@@ -668,5 +681,22 @@
   }
   .help-msg {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .online-container .booking-section {
+    padding: 20px 5px;
+  }
+  .step-wrapper .step .step-num {
+    margin-right: 5px;
+  }
+  .step-wrapper .step-selected,
+  .step-wrapper .step {
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .step-wrapper .step-msg {
+    font-size: 10px;
   }
 }

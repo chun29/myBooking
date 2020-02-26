@@ -144,9 +144,21 @@
 }
 
 .staff-avatar-img {
-  width: 65px;
-  height: 65px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
+  object-fit: cover;
+}
+.service-avatar {
+  width: 100px;
+  height: 65px;
+  border-radius: 10px;
+}
+.service-avatar-img {
+  width: 100px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .booking-open-btn {

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createService } from "../../store/actions/serviceAction";
 import { Redirect } from "react-router-dom";
 import "..//../style/createstaff.css";
-import servicebk from "../../img/service-bk.jpg";
+import uploader from "../../img/upload.png";
 
 class CreateService extends Component {
   state = {
@@ -100,7 +100,7 @@ class CreateService extends Component {
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="signin" />;
-    const showPic = this.state.url ? this.state.url : servicebk;
+    const showPic = this.state.url ? this.state.url : uploader;
     return (
       <div className="createstaff-wrapper">
         <div className="createstaff-header">
@@ -163,17 +163,21 @@ class CreateService extends Component {
                 </span>
               </div>
               <div className="form-item logo-wrapper">
-                <label htmlFor="desc">服務項目照片</label>
+                服務項目照片
                 <div className="logo-circle">
-                  <img className="store-logo" src={showPic} alt="home" />
+                  <label htmlFor="pic">
+                    <img className="store-logo" src={showPic} alt="home" />
+                    <input
+                      onChange={this.handleImgChange}
+                      type="file"
+                      name="pic"
+                      id="pic"
+                      accept="image/*"
+                      style={{ display: "none " }}
+                    />
+                  </label>
                 </div>
                 <p>建議尺寸 180 x 180</p>
-                <input
-                  onChange={this.handleImgChange}
-                  type="file"
-                  name="pic"
-                  accept="image/*"
-                />
               </div>
             </div>
             <div className="form-section">

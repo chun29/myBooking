@@ -7,10 +7,28 @@ import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
 import { Redirect } from "react-router-dom";
 import "../../style/dashboard.css";
+import { guideBanned } from "../../store/actions/authAction";
+import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      guideOpen: false
+    };
+  }
   render() {
-    const { auth, profile, notifications, bookings } = this.props;
+    console.log(this.props.guideShow);
+    const guideOpen = this.props.guideShow;
+    this.openGuide = () => {
+      this.setState({
+        guideOpen: !this.state.guideOpen
+      });
+    };
+    this.guideClose = () => {
+      this.props.guideBanned(this.props.auth.uid);
+    };
+    const { auth, notifications, bookings } = this.props;
 
     Date.prototype.yyyymmdd = function() {
       var mm = this.getMonth() + 1;
@@ -59,6 +77,76 @@ class Dashboard extends Component {
               <div className="dashboard-item-container  dashboard-item2">
                 <Notifications notifications={notifications} />
               </div>
+
+              {guideOpen && (
+                <div className="getting-started">
+                  {this.state.guideOpen ? (
+                    <button
+                      onClick={this.openGuide}
+                      className="getting-started-btn getting-started-btn-close"
+                    >
+                      X
+                    </button>
+                  ) : (
+                    <button
+                      onClick={this.openGuide}
+                      className="getting-started-btn"
+                    >
+                      使用教學
+                    </button>
+                  )}
+
+                  {this.state.guideOpen && (
+                    <div className="getting-started-surface">
+                      <div className="getting-started-surface-header">
+                        <h1>使用步驟</h1>
+                      </div>
+                      <div className="getting-started-surface-body">
+                        <ul>
+                          <Link to="/staff">
+                            <li className="getting-started-task-closed">
+                              <span className="getting-started-completed icon-circle-check">
+                                1
+                              </span>
+                              前往服務人員設定資料
+                            </li>
+                          </Link>
+                          <Link to="/service">
+                            <li className="getting-started-task-closed">
+                              <span className="getting-started-completed icon-circle-check">
+                                2
+                              </span>
+                              前往服務項目設定資料
+                            </li>
+                          </Link>
+                          <Link to="/openinghours">
+                            <li className="getting-started-task-closed">
+                              <span className="getting-started-completed icon-circle-check">
+                                3
+                              </span>
+                              營業時間設定資料
+                            </li>
+                          </Link>
+                          <Link to="/online">
+                            <li className="getting-started-task-closed">
+                              <span className="getting-started-completed icon-circle-check">
+                                4
+                              </span>
+                              預約網站頁面設定
+                            </li>
+                          </Link>
+                        </ul>
+                        <button
+                          onClick={this.guideClose}
+                          className="getting-started-dismiss"
+                        >
+                          不要再顯示
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -68,18 +156,28 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     auth: state.firebase.auth,
-    profile: state.firebase.profile,
     notifications: state.firestore.ordered.notifications,
     bookings: state.firestore.ordered.booking,
     staff: state.firestore.ordered.staff,
-    service: state.firestore.ordered.service
+    service: state.firestore.ordered.service,
+    guideShow:
+      state.firestore.ordered.owners &&
+      state.firestore.ordered.owners[0] &&
+      state.firestore.ordered.owners[0].guideShow
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    guideBanned: id => dispatch(guideBanned(id))
   };
 };
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => {
     return [
       {
@@ -87,6 +185,10 @@ export default compose(
         doc: props.auth.uid,
         subcollections: [{ collection: "notifications" }],
         storeAs: "notifications"
+      },
+      {
+        collection: "owners",
+        doc: props.auth.uid
       },
       {
         collection: "store",

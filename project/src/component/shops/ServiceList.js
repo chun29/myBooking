@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import edit from "../../img/edit.png";
 import deleteImg from "../../img/delete.png";
 import { deleteService, editService } from "../../store/actions/serviceAction";
-import servicebk from "../../img/service-bk.jpg";
 
 class ServiceList extends Component {
   constructor(props) {
@@ -274,8 +273,8 @@ class ServiceList extends Component {
                         src={edit}
                       ></img>
                     </td>
-                    <td className="staff-avatar">
-                      <img className="staff-avatar-img" src={url} />
+                    <td className="service-avatar">
+                      <img className="service-avatar-img" src={url} />
                     </td>
                     <td className="staff-name">{service.item}</td>
                     <td className="staff-phone">

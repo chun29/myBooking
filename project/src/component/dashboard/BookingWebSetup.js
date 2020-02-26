@@ -293,7 +293,7 @@ class BookingWebSetup extends Component {
                 <div className="logo-circle">
                   <img className="store-logo" src={onlineInfo.logoSrc} alt="" />
                 </div>
-                <p>建議尺寸 180 x 180</p>
+                <p>建議尺寸 300 x 250</p>
                 <input
                   type="file"
                   name="pic"
@@ -315,7 +315,7 @@ class BookingWebSetup extends Component {
                     alt=""
                   />
                 </div>
-                <p>建議尺寸 1920 x 140</p>
+                <p>建議尺寸 1280 x 400</p>
                 <input
                   type="file"
                   name="pic"
