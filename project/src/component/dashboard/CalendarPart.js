@@ -31,21 +31,10 @@ class CalendarPart extends React.Component {
       serviceInfo &&
       bookingInfo.map(booking => {
         let time = "";
-        if (booking.startTime == 12) {
-          time = "12:00 PM";
-        } else if (booking.startTime == 12.5) {
-          time = "12:30 PM";
-        } else {
-          let hh = Math.floor(booking.startTime); // getting hours of day in 0-24 format
-          let mm = (booking.startTime * 60) % 60; // getting minutes of the hour in 0-55 format
-          let ap = ["AM", "PM"]; // AM-PM
-          time =
-            ("0" + (hh % 12)).slice(-2) +
-            ":" +
-            ("0" + mm).slice(-2) +
-            " " +
-            ap[Math.floor(hh / 12)];
-        }
+
+        let hh = Math.floor(booking.startTime);
+        let mm = (booking.startTime * 60) % 60;
+        time = hh + ":" + ("0" + mm).slice(-2) + " ";
 
         const staff =
           staffInfo &&

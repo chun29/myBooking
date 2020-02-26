@@ -4,6 +4,7 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case "LOGIN_ERROR":
+      console.log(action);
       return {
         ...state,
         authError: "登入失敗"
@@ -21,7 +22,7 @@ const authReducer = (state = initState, action) => {
       console.log("註冊成功");
       return { ...state, authError: null };
     case "SIGNUP_ERROR":
-      console.log(action.err.message);
+      console.log(action);
       if (
         action.err.message ===
         "The email address is already in use by another account."

@@ -22,7 +22,7 @@ class Navbar extends Component {
         showMenu: !prevState.showMenu
       }));
     };
-    const links = auth.uid ? (
+    const links = auth.uid /*&& auth.emailVerified*/ ? (
       <SignInLinks profile={profile} />
     ) : (
       <SignedOutLinks />

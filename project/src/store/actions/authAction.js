@@ -27,7 +27,7 @@ export const signOut = () => {
   };
 };
 
-export const signUp = newUser => {
+export const signUp = (newUser, callback) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
@@ -43,26 +43,14 @@ export const signUp = newUser => {
             email: newUser.email
           });
       })
-      .then(dataBeforeEmail => {
+      .then(() => {
         firebase.auth().onAuthStateChanged(function(user) {
           user.sendEmailVerification();
         });
-        console.log("Signup and email verification successful:");
-      })
-      .then(dataAfterEmail => {
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user.emailVerified) {
-            // Email is verified
-            dispatch({
-              type: "SIGNUP_SUCCESS"
-            });
-          } else {
-            // Email is not verified
-            dispatch({
-              type: "SIGNUP_ERROR",
-              err
-            });
-          }
+        alert("已寄發驗證信，請先確認信箱再登入");
+        callback();
+        dispatch({
+          type: "SIGNUP_SUCCESS"
         });
       })
       .catch(err => {

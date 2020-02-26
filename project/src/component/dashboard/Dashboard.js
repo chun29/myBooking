@@ -34,15 +34,8 @@ class Dashboard extends Component {
       });
     }
 
-    let user = "";
-    if (profile.name) {
-      user = profile.name.charAt(0).toUpperCase();
-    }
-    const userName = auth.uid ? user : "";
-
-    if (!auth.uid) return <Redirect to="/signIn" />;
+    if (!auth.uid /*|| !auth.emailVerified*/) return <Redirect to="/signIn" />;
     if (this.props.profile === null) {
-      console.log("11111");
       return <Loading />;
     }
     return (
@@ -70,30 +63,6 @@ class Dashboard extends Component {
           </div>
         </div>
       </div>
-
-      // <div className="dashboard">
-      //   <div className="top">
-      //     <DashboardHeader userName={userName} />
-      //   </div>
-      //   <div className="down">
-      //     <div className="left-container">
-      //       <DashboardNav index={0} />
-      //     </div>
-      //     <div className="dashboard-right-container">
-      //       <div className="dashboard-item-container dashboard-item1">
-      //         <TodayBookings
-      //           todayBookings={todayBookings}
-      //           staffs={this.props.staff}
-      //           services={this.props.service}
-      //         />
-      //       </div>
-
-      //       <div className="dashboard-item-container  dashboard-item2">
-      //         <Notifications notifications={notifications} />
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
     );
   }
 }

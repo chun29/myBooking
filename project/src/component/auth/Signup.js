@@ -39,13 +39,15 @@ class Signup extends Component {
       this.props.authMsg("請檢查輸入的密碼");
       return;
     }
-    this.props.signUp(this.state);
     this.props.authMsg("註冊中");
+    this.props.signUp(this.state, () => this.props.history.push("/signIn"));
   };
 
   render() {
     const { authError, auth } = this.props;
-    if (auth.uid) return <Redirect to="dashboard" />;
+    if (auth.uid /*&& auth.emailVerified*/) {
+      return <Redirect to="dashboard" />;
+    }
     return (
       <div className="signin-wrapper">
         <div className="signin-header">
@@ -111,7 +113,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signUp: newUser => dispatch(signUp(newUser)),
+    signUp: (newUser, callback) => dispatch(signUp(newUser, callback)),
     authMsg: msg => dispatch(authMsg(msg))
   };
 };
