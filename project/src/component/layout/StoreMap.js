@@ -33,7 +33,7 @@ class StoreMap extends Component {
       <div style={{ height: "40vh", width: "100%" }}>
         <GoogleMapReact
           center={this.state.data}
-          bootstrapURLKeys={{ key: "AIzaSyDKRzpW8lLmF3O1eHMjgx1E6DAmCCFG4zc" }}
+
           defaultZoom={this.props.zoom}
         >
           <Marker lat={data.lat} lng={data.lng} name="MY STORE" color="red" />
