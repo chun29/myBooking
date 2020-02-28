@@ -4,6 +4,7 @@ import staffAvatar from "../../img/staff-avatar.png";
 import edit from "../../img/edit.png";
 import deleteImg from "../../img/delete.png";
 import { deleteStaff, editStaff } from "../../store/actions/staffsAction";
+import uploader from "../../img/upload.png";
 
 class StaffList extends Component {
   constructor(props) {
@@ -215,7 +216,7 @@ class StaffList extends Component {
                 </div>
 
                 <div className="form-item">
-                  <label htmlFor="email">行事曆上預約顯示顏色</label>
+                  <label htmlFor="email">預約顯示顏色</label>
                   <div className="color-area">
                     {colors.map((color, i) => {
                       let addClass = "";
@@ -238,21 +239,25 @@ class StaffList extends Component {
               </div>
               <div className="form-section">
                 <div className="form-item logo-wrapper">
-                  <label htmlFor="desc">大頭貼照</label>
-                  <div className="logo-circle">
-                    <img
-                      className="store-logo"
-                      src={staffInfo.url}
-                      alt="home"
-                    />
+                  <div className="form-item-title">大頭貼照</div>
+                  <div className="staff-pic-circle">
+                    <label htmlFor="avatar">
+                      <img
+                        className="staff-pic"
+                        src={staffInfo.url ? staffInfo.url : uploader}
+                        alt=""
+                      />
+                    </label>
                   </div>
-                  <p>建議尺寸 180 x 180</p>
                   <input
                     onChange={this.handleImgChange}
                     type="file"
                     name="pic"
                     accept="image/*"
+                    id="avatar"
+                    style={{ display: "none" }}
                   />
+                  <p>建議尺寸 180 x 180</p>
                 </div>
 
                 <div className="form-item">

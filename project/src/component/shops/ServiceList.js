@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import edit from "../../img/edit.png";
 import deleteImg from "../../img/delete.png";
+import Case from "../../img/case.png";
 import { deleteService, editService } from "../../store/actions/serviceAction";
+import uploader from "../../img/upload.png";
 
 class ServiceList extends Component {
   constructor(props) {
@@ -42,7 +44,7 @@ class ServiceList extends Component {
         this.setState(prevState => ({
           error: {
             ...prevState.error,
-            phone: false
+            price: false
           }
         }));
       }
@@ -188,21 +190,24 @@ class ServiceList extends Component {
                   </span>
                 </div>
                 <div className="form-item logo-wrapper">
-                  <label className="required" htmlFor="desc">
-                    服務項目照片
-                    {this.state.error.image && (
-                      <span className="alert-msg">請上傳服務項目照片</span>
-                    )}
+                  <div className="form-item-title">服務項目照片</div>
+                  <label htmlFor="pic">
+                    <div className="service-pic-circle">
+                      <img
+                        className="service-pic"
+                        src={serviceInfo.url ? serviceInfo.url : uploader}
+                        alt=""
+                      />
+                    </div>
                   </label>
-                  <div className="logo-circle">
-                    <img className="store-logo" src={serviceInfo.url} alt="" />
-                  </div>
-                  <p>建議尺寸 180 x 180</p>
+                  <p>建議尺寸 300 x 240</p>
                   <input
                     onChange={this.handleImgChange}
                     type="file"
                     name="pic"
+                    id="pic"
                     accept="image/*"
+                    style={{ display: "none" }}
                   />
                 </div>
               </div>
@@ -246,10 +251,9 @@ class ServiceList extends Component {
           <tbody>
             {services &&
               services.map(service => {
-                console.log(service);
                 let url;
                 if (service.url == null) {
-                  url = servicebk;
+                  url = Case;
                 } else {
                   url = service.url;
                 }

@@ -85,7 +85,6 @@ class Online extends Component {
         </div>
       );
     } else {
-      console.log(store && store[0] && store[0].workday);
       showSetup = (
         <div className="button-wrapper">
           <Link to="/onlinebooking">

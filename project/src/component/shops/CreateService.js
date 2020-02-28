@@ -32,7 +32,7 @@ class CreateService extends Component {
         this.setState(prevState => ({
           error: {
             ...prevState.error,
-            phone: false
+            price: false
           }
         }));
       }
@@ -163,10 +163,11 @@ class CreateService extends Component {
                 </span>
               </div>
               <div className="form-item logo-wrapper">
-                服務項目照片
-                <div className="logo-circle">
+                <div className="form-item-title"> 服務項目照片</div>
+
+                <div className="service-pic-circle">
                   <label htmlFor="pic">
-                    <img className="store-logo" src={showPic} alt="home" />
+                    <img className="service-pic" src={showPic} alt="home" />
                     <input
                       onChange={this.handleImgChange}
                       type="file"

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteBooking } from "../../store/actions/bookingAction";
 import close from "../../img/close.png";
+import event from "../../img/event.png";
+
 class Test extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +46,11 @@ class Test extends Component {
               <div onClick={this.onMouseOut.bind(this)}>
                 <img className="close-img" src={close} />
               </div>
-              <h4>預約資訊</h4>
+              <div className="toolTip-header-container">
+                <img src={event} />
+                <h4>預約資訊</h4>
+              </div>
+
               <div>
                 <b>預約編號</b>：{data.id}
               </div>

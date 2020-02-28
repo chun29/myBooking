@@ -15,8 +15,9 @@ export const Logo = () => {
 
 export const UserAvatar = userName => {
   return (
-    <NavLink to="/">
+    <NavLink to="/online">
       <div className="home-user-avatar">{userName.userName}</div>
+      {/* <div className="dropdown">TEST</div> */}
     </NavLink>
   );
 };

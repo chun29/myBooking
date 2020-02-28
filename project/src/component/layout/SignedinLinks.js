@@ -31,7 +31,7 @@ class SignedInLinks extends Component {
             </a>
           </li>
           <li>
-            <NavLink to="/">
+            <NavLink to="/online">
               <div className="home-user-avatar">{user}</div>
             </NavLink>
           </li>

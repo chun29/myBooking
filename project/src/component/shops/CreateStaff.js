@@ -231,8 +231,8 @@ class CreateStaff extends Component {
               <div className="form-item logo-wrapper">
                 <label htmlFor="pic">
                   大頭貼照
-                  <div className="logo-circle">
-                    <img className="store-logo" src={showPic} alt="home" />
+                  <div className="staff-pic-circle">
+                    <img className="staff-pic" src={showPic} alt="" />
                   </div>
                   <p>建議尺寸 180 x 180</p>
                   <input
@@ -272,7 +272,6 @@ class CreateStaff extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     auth: state.firebase.auth
   };

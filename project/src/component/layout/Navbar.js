@@ -6,6 +6,7 @@ import "../../style/navbar.css";
 import { connect } from "react-redux";
 import { Logo } from "../layout/Layout";
 import hamburger from "../../img/hamburger.png";
+import { signOut } from "../../store/actions/authAction";
 
 class Navbar extends Component {
   constructor(props) {
@@ -53,13 +54,24 @@ class Navbar extends Component {
         </header>
         {this.state.showMenu && (
           <div className="s-menu">
-            <ul>
-              {auth.uid ? (
-                <Link to="/dashboard">
-                  <li>前往管理介面</li>
-                  <li>登入</li>
-                </Link>
-              ) : (
+            {auth.uid ? (
+              <React.Fragment>
+                <ul className="s-menu-one">
+                  <Link to="/dashboard">
+                    <li>前往管理介面</li>
+                  </Link>
+                  <li>範例</li>
+                  <li>功能介紹</li>
+                </ul>
+                <div>
+                  <div className="s-menu-login-btn-wrapper">
+                    <div className="exit-img"></div>
+                    <div onClick={this.props.signOut}>登出</div>
+                  </div>
+                </div>
+              </React.Fragment>
+            ) : (
+              <ul>
                 <li className="ul-btn-wrapper">
                   <Link to="/signin">
                     <span className="ul-login blue-btn">登入</span>
@@ -69,16 +81,21 @@ class Navbar extends Component {
                     <span className="ul-login green-btn">註冊</span>
                   </Link>
                 </li>
-              )}
-              <li>範例</li>
-              <li>功能介紹</li>
-            </ul>
+                <li>範例</li>
+                <li>功能介紹</li>
+              </ul>
+            )}
           </div>
         )}
       </React.Fragment>
     );
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
 
 const mapStateToProps = state => {
   return {
@@ -87,4 +104,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

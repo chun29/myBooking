@@ -42,7 +42,7 @@ class SignIn extends Component {
   };
   render() {
     const { authError, auth } = this.props;
-    console.log(auth);
+
     if (auth.uid /*&& auth.emailVerified*/) {
       return <Redirect to="dashboard" />;
     }

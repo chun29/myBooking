@@ -188,7 +188,6 @@ class Staff extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     staff: state.firestore.ordered.staff,
     auth: state.firebase.auth,

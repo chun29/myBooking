@@ -18,6 +18,8 @@ import calendar from "../../img/event.png";
 import group from "../../img/group.png";
 import work from "../../img/work.png";
 import notFound from "../../img/notfound.png";
+import StoreMap from "../../component/layout/StoreMap";
+import storeBanner from "../../img/store-banner.jpg";
 
 class Template extends React.Component {
   constructor(props) {
@@ -233,7 +235,6 @@ class Template extends React.Component {
       (data.staff && data.staff.length < 1) ||
       (data.service && data.service.length < 1)
     ) {
-      console.log(data.store, "nothing");
       return (
         <div className="online-container">
           <nav className="online-header">
@@ -422,7 +423,12 @@ class Template extends React.Component {
         </nav>
         <div className="banner-wrapper">
           <div className="banner">
-            {store && <img className="banner" src={store.bannerImg} />}
+            {store && (
+              <img
+                className="banner"
+                src={store.bannerImg ? store.bannerImg : storeBanner}
+              />
+            )}
           </div>
         </div>
         <div className="content">
@@ -430,12 +436,11 @@ class Template extends React.Component {
             <div className="info-section">
               {store && <h1>{store.name}</h1>}
               <div className="button-wrapper">
-                {/* <button className="blue">查看地圖</button> */}
-
                 <button className="red" onClick={this.showBooking}>
                   我要預訂
                 </button>
               </div>
+              <StoreMap address={store.address} />
               {store && <div className="info phone">電話：{store.phone}</div>}
               {store && (
                 <div className="info address">地址：{store.address}</div>

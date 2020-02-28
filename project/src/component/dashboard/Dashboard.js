@@ -18,7 +18,6 @@ class Dashboard extends Component {
     };
   }
   render() {
-    console.log(this.props.guideShow);
     const guideOpen = this.props.guideShow;
     this.openGuide = () => {
       this.setState({
@@ -156,7 +155,6 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     auth: state.firebase.auth,
     notifications: state.firestore.ordered.notifications,

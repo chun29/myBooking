@@ -143,12 +143,14 @@
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid #ddd;
-  padding: 10px 0 10px 10px;
+  padding: 10px;
+  justify-content: space-between;
 }
 .today-booking-info {
   display: flex;
   flex-direction: column;
-  margin: 0 50px 0 20px;
+  width: 150px;
+  margin: 0 0 0 20px;
 }
 
 .today-booking-date {
@@ -310,8 +312,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
-/* #a6e5bd */
+.booking-text:hover {
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+}
 .booking-text span {
   font-size: 12px;
 }
@@ -335,19 +340,16 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  max-width: 448px;
-  width: 448px;
+  max-width: 460px;
   background-color: #fff;
   color: #3c4043;
   text-align: center;
-  border-radius: 8px;
-  margin: 10px 0 0 10px;
-  padding: 20px;
-  height: 380px;
+  border-radius: 10px;
+  padding: 30px;
+  height: 420px;
 
   /* 定位 */
   width: 100%;
-  top: 0;
   bottom: 0;
   position: fixed;
   left: calc(50% - 224px);
@@ -355,6 +357,15 @@
   z-index: 100;
   box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
     0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+}
+.toolTip-header-container {
+  display: flex;
+  justify-content: center;
+}
+.toolTip-header-container img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 .toolTip h4 {
   font-size: 17px;
@@ -364,11 +375,11 @@
 .toolTip div {
   font-size: 15px;
   text-align: left;
-  line-height: 28px;
+  line-height: 30px;
 }
 .close-img {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   float: right;
   cursor: pointer;
 }

@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { onlineSetup } from "../../store/actions/onlineAction";
 import "..//../style/createstaff.css";
-import storelogo from "../../img/store-logo.png";
 import storeBanner from "../../img/store-banner.png";
 import Checkbox from "@material-ui/core/Checkbox";
+import uploader from "../../img/upload.png";
 
 class BookingWebSetup extends Component {
   state = {
@@ -19,17 +19,15 @@ class BookingWebSetup extends Component {
       storeDesc: "",
       bookingNote: "",
       bookingIsOpen: true,
-      logoImage: null,
-      logoSrc: storelogo,
-      bannerImage: null,
-      bannerSrc: storeBanner
+      logoImage: "",
+      logoSrc: null,
+      bannerImage: "",
+      bannerSrc: null
     },
     error: {
       storePhone: false,
       storeName: false,
       storeAddress: false,
-      logoImage: false,
-      bannerImage: false,
       storeDesc: false
     }
   };
@@ -99,12 +97,6 @@ class BookingWebSetup extends Component {
         });
       };
       reader.readAsDataURL(image);
-      this.setState(prevState => ({
-        error: {
-          ...prevState.error,
-          logoImage: false
-        }
-      }));
     }
   };
   handleBannerChange = e => {
@@ -123,13 +115,6 @@ class BookingWebSetup extends Component {
       };
 
       reader.readAsDataURL(image);
-
-      this.setState(prevState => ({
-        error: {
-          ...prevState.error,
-          bannerImage: false
-        }
-      }));
     }
   };
   handleClick = e => {
@@ -160,14 +145,7 @@ class BookingWebSetup extends Component {
         }
       }));
     }
-    if (onlineInfo.storePhone.length < 1) {
-      this.setState(prevState => ({
-        error: {
-          ...prevState.error,
-          storePhone: true
-        }
-      }));
-    }
+
     if (onlineInfo.storeDesc.length < 1) {
       this.setState(prevState => ({
         error: {
@@ -176,29 +154,11 @@ class BookingWebSetup extends Component {
         }
       }));
     }
-    if (onlineInfo.logoImage == null) {
-      this.setState(prevState => ({
-        error: {
-          ...prevState.error,
-          logoImage: true
-        }
-      }));
-    }
-    if (onlineInfo.bannerImage == null) {
-      this.setState(prevState => ({
-        error: {
-          ...prevState.error,
-          bannerImage: true
-        }
-      }));
-    }
 
     if (
       onlineInfo.storeName.length > 0 &&
       onlineInfo.storeAddress.length > 0 &&
       onlineInfo.storePhone.length > 0 &&
-      onlineInfo.logoImage !== null &&
-      onlineInfo.bannerImage !== null &&
       onlineInfo.storeDesc.length > 0
     ) {
       this.props.onlineSetup(onlineInfo, this.props.auth.uid);
@@ -228,7 +188,6 @@ class BookingWebSetup extends Component {
 
   render() {
     if (this.state.store == null) {
-      console.log("1111111111", this.state);
       return <div>Loading</div>;
     }
     const onlineInfo = this.state.store;
@@ -284,43 +243,53 @@ class BookingWebSetup extends Component {
                 ></input>
               </div>
               <div className="form-item logo-wrapper">
-                <label className="required" htmlFor="desc">
-                  公司標誌
-                  {this.state.error.logoImage && (
-                    <span className="alert-msg">請上傳公司標誌</span>
-                  )}
-                </label>
+                <div className="form-item-title">公司圖片</div>
+
                 <div className="logo-circle">
-                  <img className="store-logo" src={onlineInfo.logoSrc} alt="" />
+                  <label htmlFor="logo">
+                    <img
+                      className="store-logo"
+                      src={onlineInfo.logoSrc ? onlineInfo.logoSrc : uploader}
+                      alt=""
+                    />
+                  </label>
                 </div>
+
                 <p>建議尺寸 300 x 250</p>
                 <input
                   type="file"
                   name="pic"
                   accept="image/*"
                   onChange={this.handleLogoChange}
+                  id="logo"
+                  style={{ display: "none" }}
                 />
               </div>
               <div className="form-item logo-wrapper">
-                <label className="required" htmlFor="desc">
-                  公司主視覺圖片
-                  {this.state.error.bannerImage && (
-                    <span className="alert-msg">請上傳公司圖片</span>
-                  )}
-                </label>
+                <div className="form-item-title">公司主視覺圖片</div>
+
                 <div className="banner-wrapper">
-                  <img
-                    className="store-banner"
-                    src={onlineInfo.bannerSrc}
-                    alt=""
-                  />
+                  <label htmlFor="banner">
+                    <img
+                      className="store-banner"
+                      src={
+                        onlineInfo.bannerSrc
+                          ? onlineInfo.bannerSrc
+                          : storeBanner
+                      }
+                      alt=""
+                    />
+                  </label>
                 </div>
+
                 <p>建議尺寸 1280 x 400</p>
                 <input
                   type="file"
                   name="pic"
+                  id="banner"
                   accept="image/*"
                   onChange={this.handleBannerChange}
+                  style={{ display: "none" }}
                 />
               </div>
             </div>
@@ -426,7 +395,6 @@ class BookingWebSetup extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     auth: state.firebase.auth,
     store: state.firestore.ordered.store
