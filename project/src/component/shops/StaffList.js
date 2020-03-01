@@ -5,6 +5,7 @@ import edit from "../../img/edit.png";
 import deleteImg from "../../img/delete.png";
 import { deleteStaff, editStaff } from "../../store/actions/staffsAction";
 import uploader from "../../img/upload.png";
+import camera from "../../img/camera.png";
 
 class StaffList extends Component {
   constructor(props) {
@@ -247,6 +248,11 @@ class StaffList extends Component {
                         src={staffInfo.url ? staffInfo.url : uploader}
                         alt=""
                       />
+                      <div className="img-description">
+                        {" "}
+                        <img src={camera} />
+                        新增
+                      </div>
                     </label>
                   </div>
                   <input

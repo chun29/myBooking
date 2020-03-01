@@ -21,7 +21,10 @@ const Staff = ({ staff, selectStaff, selectedStaff }) => {
 
   return (
     <div className="service step-service" style={style}>
-      <img className="staff-img" src={url} />
+      <div className="online-staff-bg">
+        <img className="staff-img" src={url} />
+      </div>
+
       <div className="service-row-1 service-desc">
         <p className="service-header">{staff.nickname}</p>
         <p className="service-text">{staff.desc}</p>

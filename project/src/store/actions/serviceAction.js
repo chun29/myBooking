@@ -14,8 +14,11 @@ export const createService = (service, id) => {
     const imagesPath = "images";
 
     if (image.name) {
+      const options = {
+        name: image => `${image.name}/${Date.now()}`
+      };
       firebase
-        .uploadFile(imagesPath, image)
+        .uploadFile(imagesPath, image, null, options)
         .then(uploadedFile => {
           return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
@@ -78,7 +81,6 @@ export const deleteService = (storeId, serviceId) => {
 };
 
 export const editService = (storeId, serviceId, serviceInfo) => {
-  console.log(serviceInfo, serviceId);
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const { item, price, desc, duration, image, url } = serviceInfo;
     const newService = {
@@ -94,8 +96,11 @@ export const editService = (storeId, serviceId, serviceInfo) => {
 
     const imagesPath = "images";
     if (image.name) {
+      const options = {
+        name: image => `${image.name}/${Date.now()}`
+      };
       firebase
-        .uploadFile(imagesPath, image)
+        .uploadFile(imagesPath, image, options)
         .then(uploadedFile => {
           return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
         })

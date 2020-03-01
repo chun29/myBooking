@@ -7,6 +7,7 @@ import "..//../style/createstaff.css";
 import storeBanner from "../../img/store-banner.png";
 import Checkbox from "@material-ui/core/Checkbox";
 import uploader from "../../img/upload.png";
+import camera from "../../img/camera.png";
 
 class BookingWebSetup extends Component {
   state = {
@@ -244,17 +245,19 @@ class BookingWebSetup extends Component {
               </div>
               <div className="form-item logo-wrapper">
                 <div className="form-item-title">公司圖片</div>
-
-                <div className="logo-circle">
-                  <label htmlFor="logo">
+                <label htmlFor="logo">
+                  <div className="logo-circle">
                     <img
                       className="store-logo"
                       src={onlineInfo.logoSrc ? onlineInfo.logoSrc : uploader}
                       alt=""
                     />
-                  </label>
-                </div>
-
+                    <div className="img-description-square">
+                      <img src={camera} />
+                      新增
+                    </div>
+                  </div>
+                </label>
                 <p>建議尺寸 300 x 250</p>
                 <input
                   type="file"
@@ -267,9 +270,8 @@ class BookingWebSetup extends Component {
               </div>
               <div className="form-item logo-wrapper">
                 <div className="form-item-title">公司主視覺圖片</div>
-
-                <div className="banner-wrapper">
-                  <label htmlFor="banner">
+                <label htmlFor="banner">
+                  <div className="banner-wrapper">
                     <img
                       className="store-banner"
                       src={
@@ -279,9 +281,12 @@ class BookingWebSetup extends Component {
                       }
                       alt=""
                     />
-                  </label>
-                </div>
-
+                    <div className="img-description-square">
+                      <img src={camera} />
+                      新增
+                    </div>
+                  </div>
+                </label>
                 <p>建議尺寸 1280 x 400</p>
                 <input
                   type="file"

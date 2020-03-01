@@ -76,8 +76,8 @@ class Template extends React.Component {
     }
   };
   showBooking = () => {
-    if (this.state.bookingShow == true) {
-      window.location.reload(false);
+    if (this.state.bookingShow == true || this.state.resultShow == true) {
+      window.location.reload(true);
     }
     this.setState(
       {

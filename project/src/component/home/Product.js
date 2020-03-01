@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import desc1 from "../../img/desc1.png";
 import desc2 from "../../img/desc2.png";
 import desc3 from "../../img/desc-1.png";
-import flow from "../../img/flow.png";
+import calendar from "../../img/undraw_online_calendar_kvu2.png";
 
 export default class home extends Component {
   render() {
@@ -17,14 +17,10 @@ export default class home extends Component {
         <div className="main-container">
           <div className="main-content">
             <div className="desc">
-              <h2>店家大小事就交給</h2>
-              <h2>MyBooking</h2>
-              <p>專為店家設計的線上管理系統解決預約問題</p>
+              <h2>線上預約系統</h2>
+              <p>MyBooking 預約系統，操作直覺友善, 24小時皆可使用</p>
               <Link to="/signup">
-                <button className="blue-btn">立即體驗</button>
-              </Link>
-              <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
-                <button className="green-btn">了解更多</button>
+                <button className="blue-btn">瞧瞧示範店家</button>
               </Link>
             </div>
             <div className="main-image-wrapper">
@@ -71,22 +67,6 @@ export default class home extends Component {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="main-desc-section-2">
-          <div className="main-desc-section-2-container">
-            <h2>直覺化預約管理</h2>
-            <p>
-              輕鬆新增服務項目與服務人員。日期、金額、備註說明皆在彈指間秒速新增
-            </p>
-            <p></p>
-            <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
-              <button className="main-desc-section-2-btn blue-btn">
-                了解預約管理系統
-              </button>
-            </Link>
-
-            <img src={flow} />
           </div>
         </div>
 

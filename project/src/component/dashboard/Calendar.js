@@ -14,10 +14,10 @@ class Calendar extends Component {
     bookingMsg: null
   };
   componentDidUpdate(prevProps) {
-    if (this.props.bookingMsg !== prevProps.bookingMsg) {
+    if (this.props.bookingMsg.time !== prevProps.bookingMsg.time) {
       this.setState({
         showMsg: true,
-        bookingMsg: this.props.bookingMsg
+        bookingMsg: this.props.bookingMsg.bookingMsg
       }),
         setTimeout(
           function() {
@@ -74,44 +74,6 @@ class Calendar extends Component {
           </div>
         </div>
       </div>
-
-      // <div className="dashboard">
-      //   <div className="top">
-      //     <DashboardHeader />
-      //   </div>
-      //   <div className="down">
-      //     <div className="left-container">
-      //       <DashboardNav index={1} />
-      //     </div>
-
-      //     <div className="all-right-container">
-      //       <div className="staff-wrapper">
-      //         <div className="staff-header">
-      //           <h1>行事曆</h1>
-      //         </div>
-
-      //         <div className="staff-main-wrapper">
-      //           <div className="button-wrapper">
-      //             <Link to="/createbooking">
-      //               <button className="add-staff">新增預約</button>
-      //             </Link>
-      //           </div>
-      //           <CalendarPart
-      //             bookings={bookings}
-      //             staffs={this.props.staff}
-      //             services={this.props.service}
-      //             storeID={this.props.auth.uid}
-      //           />
-      //           {this.state.showMsg && (
-      //             <div className="dashboard-msg">
-      //               {bookingMsg ? <p>{bookingMsg}</p> : null}
-      //             </div>
-      //           )}
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
     );
   }
 }
@@ -122,7 +84,7 @@ const mapStateToProps = state => {
     auth: state.firebase.auth,
     bookings: state.firestore.ordered.booking,
     service: state.firestore.ordered.service,
-    bookingMsg: state.booking.bookingMsg
+    bookingMsg: state.booking
   };
 };
 

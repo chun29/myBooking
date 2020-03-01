@@ -198,7 +198,9 @@ export const Notifications = props => {
             );
           })}
       </div>
-      <div className="view-all-2">查看全部訊息 ></div>
+      <Link to="/createbooking">
+        <div className="view-all-2">新增預約 ></div>
+      </Link>
     </div>
   );
 };

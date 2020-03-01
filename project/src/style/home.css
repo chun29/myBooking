@@ -47,6 +47,23 @@
   background-color: #f4f6fe;
   padding-bottom: 100px;
 }
+.main-desc-section-2 {
+  text-align: left;
+  background-color: #fff;
+}
+.main-desc-section-2-container {
+  padding-top: 50px;
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.main-desc-section-2-container img {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin: 80px 0;
+}
 
 .main-desc-section h2 {
   color: #1a237e;
@@ -57,7 +74,26 @@
   line-height: 1.55;
   font-weight: 400;
 }
-
+.main-desc-section-2 h2 {
+  color: #1a237e;
+  text-align: left;
+  font-size: 56px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+.main-desc-section-2 p {
+  font-size: 24px;
+  margin-top: 10px;
+}
+.main-desc-section-2-btn {
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 17px;
+  padding: 8px 35px;
+  width: 250px;
+  height: 60px;
+  margin-top: 10px;
+}
 .main-desc-section .container {
   margin: 0 auto;
   margin-top: 50px;
@@ -71,12 +107,14 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  height: 405px;
+  height: 450px;
   margin: 0 20px;
   width: 30%;
 }
 
 .desc-image-wrapper {
+  display: flex;
+  justify-content: center;
   background-color: #fff;
   border: 1px solid #3d5afe;
   background-position: center;
@@ -84,15 +122,14 @@
   position: relative;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
-  height: 255px;
-  padding: 15px;
+  height: 225px;
+  padding: 25px;
 }
 
 .main-desc-section .container .desc-image {
-  width: 100%;
+  width: 80%;
   height: 100%;
   margin: 0 auto;
-  text-align: center;
   object-fit: contain;
 }
 
@@ -100,10 +137,11 @@
   background-color: #3d5afe;
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
+  height: 180px;
 }
 
 .main-desc-section .container h3 {
-  color: #00bfa5;
+  color: white;
   font-size: 18px;
   margin: 20px;
   font-weight: 400;
@@ -120,11 +158,12 @@
 }
 
 .main-desc-section .container p {
-  font-size: 16px;
+  font-size: 15px;
   color: white;
   margin: 20px;
   font-weight: 400;
   letter-spacing: 1px;
+  line-height: 1.76;
 }
 
 /* RWD */

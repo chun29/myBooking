@@ -1,7 +1,7 @@
 // /src/App.js
 import React, { Component } from "react";
 import { Route } from "react-router";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import Home from "./component/home/home";
 import Dashboard from "./component/dashboard/Dashboard";
 import SignIn from "./component/auth/Signin";
@@ -17,27 +17,86 @@ import BookingWebSetup from "./component/dashboard/BookingWebSetup";
 import Template from "./component/onlineWebsite/Template";
 import Online from "./component/dashboard/Online";
 import NoMatchPage from "../../project/src/component/layout/404";
+import Product from "../../project/src/component/home/Product";
+import { connect } from "react-redux";
+
+const ProtectedRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
+  return (
+    <Route
+      path={path}
+      {...rest}
+      render={props => {
+        return loggedIn ? <Comp {...props} /> : <Redirect to="/signin" />;
+      }}
+    />
+  );
+};
 
 class App extends Component {
+  state = {
+    loggedIn: false
+  };
   render() {
+    console.log(this.props);
     return (
       <Router>
         <div className="App">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/product" component={Product} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={Signup} />
-            <Route path="/createstaff" component={CreateStaff} />
-            <Route path="/createbooking" component={CreateBooking} />
-            <Route path="/openingHours" component={OpeningHours} />
-            <Route path="/staff" component={Staff} />
-            <Route path="/service" component={Service} />
-            <Route path="/createservice" component={CreateService} />
-            <Route path="/calendar" component={Calendar} />
-            <Route path="/onlinebooking" component={BookingWebSetup} />
+            <ProtectedRoute
+              path="/dashboard"
+              loggedIn={this.props.auth.uid}
+              component={Dashboard}
+            />
+            <ProtectedRoute
+              path="/calendar"
+              loggedIn={this.props.auth.uid}
+              component={Calendar}
+            />
+            <ProtectedRoute
+              path="/staff"
+              loggedIn={this.props.auth.uid}
+              component={Staff}
+            />
+            <ProtectedRoute
+              path="/service"
+              loggedIn={this.props.auth.uid}
+              component={Service}
+            />
+            <ProtectedRoute
+              path="/openingHours"
+              loggedIn={this.props.auth.uid}
+              component={OpeningHours}
+            />
+            <ProtectedRoute
+              path="/online"
+              loggedIn={this.props.auth.uid}
+              component={Online}
+            />
+            <ProtectedRoute
+              path="/onlinebooking"
+              loggedIn={this.props.auth.uid}
+              component={BookingWebSetup}
+            />
+            <ProtectedRoute
+              path="/createstaff"
+              loggedIn={this.props.auth.uid}
+              component={CreateStaff}
+            />
+            <ProtectedRoute
+              path="/createbooking"
+              loggedIn={this.props.auth.uid}
+              component={CreateBooking}
+            />
+            <ProtectedRoute
+              path="/createservice"
+              loggedIn={this.props.auth.uid}
+              component={CreateService}
+            />
             <Route path="/booking/:id" component={Template} />
-            <Route path="/online" component={Online} />
             <Route path="*" component={NoMatchPage} />
           </Switch>
         </div>
@@ -46,4 +105,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(App);

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import weblink from "../../img/link.png";
+import Guide from "../../component/layout/Guide";
 
 const DashboardHeader = ({ auth, profile, store, staff, service }) => {
   let user = "";
@@ -18,7 +19,7 @@ const DashboardHeader = ({ auth, profile, store, staff, service }) => {
   if (store && store[0] && store[0].online) {
     if (
       store[0].online.bookingIsOpen == false ||
-      (store && store[0] && store[0].workday === null) ||
+      (store && store[0] && store[0].workday === undefined) ||
       (staff && staff.length < 1) ||
       (service && service.length < 1)
     ) {
@@ -44,6 +45,7 @@ const DashboardHeader = ({ auth, profile, store, staff, service }) => {
   ) : (
     ""
   );
+
   return (
     <React.Fragment>
       <div className="dashboard-header">
@@ -61,6 +63,7 @@ const DashboardHeader = ({ auth, profile, store, staff, service }) => {
           <UserAvatar userName={userName} />
         </div>
       </div>
+      <Guide />
     </React.Fragment>
   );
 };

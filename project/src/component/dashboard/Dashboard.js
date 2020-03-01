@@ -5,10 +5,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
-import { Redirect } from "react-router-dom";
 import "../../style/dashboard.css";
-import { guideBanned } from "../../store/actions/authAction";
-import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -18,17 +15,7 @@ class Dashboard extends Component {
     };
   }
   render() {
-    const guideOpen = this.props.guideShow;
-    this.openGuide = () => {
-      this.setState({
-        guideOpen: !this.state.guideOpen
-      });
-    };
-    this.guideClose = () => {
-      this.props.guideBanned(this.props.auth.uid);
-    };
-    const { auth, notifications, bookings } = this.props;
-
+    const { notifications, bookings } = this.props;
     Date.prototype.yyyymmdd = function() {
       var mm = this.getMonth() + 1;
       var dd = this.getDate();
@@ -51,7 +38,6 @@ class Dashboard extends Component {
       });
     }
 
-    if (!auth.uid /*|| !auth.emailVerified*/) return <Redirect to="/signIn" />;
     if (this.props.profile === null) {
       return <Loading />;
     }
@@ -76,76 +62,6 @@ class Dashboard extends Component {
               <div className="dashboard-item-container  dashboard-item2">
                 <Notifications notifications={notifications} />
               </div>
-
-              {guideOpen && (
-                <div className="getting-started">
-                  {this.state.guideOpen ? (
-                    <button
-                      onClick={this.openGuide}
-                      className="getting-started-btn getting-started-btn-close"
-                    >
-                      X
-                    </button>
-                  ) : (
-                    <button
-                      onClick={this.openGuide}
-                      className="getting-started-btn"
-                    >
-                      使用教學
-                    </button>
-                  )}
-
-                  {this.state.guideOpen && (
-                    <div className="getting-started-surface">
-                      <div className="getting-started-surface-header">
-                        <h1>使用步驟</h1>
-                      </div>
-                      <div className="getting-started-surface-body">
-                        <ul>
-                          <Link to="/staff">
-                            <li className="getting-started-task-closed">
-                              <span className="getting-started-completed icon-circle-check">
-                                1
-                              </span>
-                              前往服務人員設定資料
-                            </li>
-                          </Link>
-                          <Link to="/service">
-                            <li className="getting-started-task-closed">
-                              <span className="getting-started-completed icon-circle-check">
-                                2
-                              </span>
-                              前往服務項目設定資料
-                            </li>
-                          </Link>
-                          <Link to="/openinghours">
-                            <li className="getting-started-task-closed">
-                              <span className="getting-started-completed icon-circle-check">
-                                3
-                              </span>
-                              營業時間設定資料
-                            </li>
-                          </Link>
-                          <Link to="/online">
-                            <li className="getting-started-task-closed">
-                              <span className="getting-started-completed icon-circle-check">
-                                4
-                              </span>
-                              預約網站頁面設定
-                            </li>
-                          </Link>
-                        </ul>
-                        <button
-                          onClick={this.guideClose}
-                          className="getting-started-dismiss"
-                        >
-                          不要再顯示
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           </div>
         </div>

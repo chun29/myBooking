@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import setOpeningHours from "../../store/actions/openingHoursAction";
-import { connect } from "react-redux";
 import Checkbox from "@material-ui/core/Checkbox";
 
 class SelectOpenDay extends Component {
@@ -29,16 +27,5 @@ class SelectOpenDay extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    auth: state.firebase.auth
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setOpeningHours: (weekday, id) => dispatch(setOpeningHours(weekday, id))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SelectOpenDay);
+export default SelectOpenDay;

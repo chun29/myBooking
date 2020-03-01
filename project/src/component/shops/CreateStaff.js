@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createStaff } from "../../store/actions/staffsAction";
-import { Redirect } from "react-router-dom";
+import camera from "../../img/camera.png";
 import "..//../style/createstaff.css";
 import uploader from "../../img/upload.png";
 
@@ -129,7 +129,8 @@ class CreateStaff extends Component {
     if (
       this.state.name.length > 0 &&
       this.state.nickname.length > 0 &&
-      this.state.phone.length > 0
+      this.state.phone.length > 0 &&
+      !isNaN(this.state.phone)
     ) {
       console.log("submit", this.state);
       this.props.createStaff(this.state, this.props.auth.uid);
@@ -138,8 +139,6 @@ class CreateStaff extends Component {
   };
 
   render() {
-    const { auth } = this.props;
-    if (!auth.uid) return <Redirect to="signin" />;
     const colors = ["#bbc1e8", "#a5dff8", "#ffbf69", "#ff9cbb", "#a6e5bd"];
     const showPic = this.state.url ? this.state.url : uploader;
     return (
@@ -206,7 +205,7 @@ class CreateStaff extends Component {
               </div>
 
               <div className="form-item">
-                <label htmlFor="email">行事曆上預約顯示顏色</label>
+                <label htmlFor="email">預約顯示顏色</label>
                 <div className="color-area">
                   {colors.map((color, i) => {
                     let addClass = "";
@@ -233,6 +232,10 @@ class CreateStaff extends Component {
                   大頭貼照
                   <div className="staff-pic-circle">
                     <img className="staff-pic" src={showPic} alt="" />
+                    <div className="img-description">
+                      <img src={camera} />
+                      新增
+                    </div>
                   </div>
                   <p>建議尺寸 180 x 180</p>
                   <input

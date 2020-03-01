@@ -56,15 +56,6 @@
   color: #67768c;
 }
 
-.dashboard-header .bell-img {
-  width: 36px;
-  height: 36px;
-  background-image: url(../img/bell.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-right: 30px;
-}
-
 .weblinkimg {
   margin-left: 10px;
   width: 24px;

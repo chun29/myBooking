@@ -15,11 +15,10 @@ class Staff extends Component {
     staffMsg: null
   };
   componentDidUpdate(prevProps) {
-    // 常見用法（別忘了比較 prop）：
-    if (this.props.staffMsg !== prevProps.staffMsg) {
+    if (this.props.staffMsg.time !== prevProps.staffMsg.time) {
       this.setState({
         showMsg: true,
-        staffMsg: this.props.staffMsg
+        staffMsg: this.props.staffMsg.staffMsg
       }),
         setTimeout(
           function() {
@@ -34,9 +33,7 @@ class Staff extends Component {
 
   render() {
     const staffMsg = this.state.staffMsg;
-    if (this.props.staff === null) {
-      return <div>Loading</div>;
-    }
+
     if (this.props.staff && this.props.staff.length < 1) {
       return (
         <div className="layout">
@@ -55,12 +52,17 @@ class Staff extends Component {
                       <h1>服務人員</h1>
                     </div>
                     <div className="staff-main-wrapper">
-                      <div className="button-wrapper">
-                        <Link to="/createstaff">
-                          <button className="add-staff">新建服務人員</button>
-                        </Link>
+                      <div className="empty-wrapper">
+                        <img src={addstaff} className="addservice" />
+                        <h3>沒有服務人員</h3>
+                        <p>還沒有服務人員，請先新增</p>
+                        <div className="button-wrapper">
+                          <Link to="/createstaff">
+                            <button>新建服務人員</button>
+                          </Link>
+                        </div>
                       </div>
-                      <img src={addstaff} className="addservice" />
+
                       {this.state.showMsg && (
                         <div className="dashboard-msg">
                           {staffMsg ? <p>{staffMsg}</p> : null}
@@ -74,41 +76,6 @@ class Staff extends Component {
           </div>
         </div>
       );
-
-      // return (
-      //   <div className="dashboard">
-      //     <div className="top">
-      //       <DashboardHeader />
-      //     </div>
-      //     <div className="down">
-      //       <div className="left-container">
-      //         <DashboardNav index={4} />
-      //       </div>
-
-      //       <div className="all-right-container">
-      //         <div className="staff-wrapper">
-      //           <div className="staff-header">
-      //             <h1>服務人員</h1>
-      //           </div>
-      //           <div className="staff-main-wrapper">
-      //             <div className="button-wrapper">
-      //               <Link to="/createstaff">
-      //                 <button className="add-staff">新建服務人員</button>
-      //               </Link>
-      //             </div>
-      //             <h1>尚未有服務人員創建</h1>
-      //             <img src={addstaff} className="addservice" />
-      //             {this.state.showMsg && (
-      //               <div className="dashboard-msg">
-      //                 {staffMsg ? <p>{staffMsg}</p> : null}
-      //               </div>
-      //             )}
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // );
     } else {
     }
     const staffs = this.props.staff && (
@@ -150,40 +117,6 @@ class Staff extends Component {
         </div>
       </div>
     );
-
-    // return (
-    //   <div className="dashboard">
-    //     <div className="top">
-    //       <DashboardHeader />
-    //     </div>
-    //     <div className="down">
-    //       <div className="left-container">
-    //         <DashboardNav index={4} />
-    //       </div>
-
-    //       <div className="all-right-container">
-    //         <div className="staff-wrapper">
-    //           <div className="staff-header">
-    //             <h1>服務人員</h1>
-    //           </div>
-    //           <div className="staff-main-wrapper">
-    //             <div className="button-wrapper">
-    //               <Link to="/createstaff">
-    //                 <button className="add-staff">新建服務人員</button>
-    //               </Link>
-    //             </div>
-    //             {staffs}
-    //             {this.state.showMsg && (
-    //               <div className="dashboard-msg">
-    //                 {staffMsg ? <p>{staffMsg}</p> : null}
-    //               </div>
-    //             )}
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
@@ -191,7 +124,7 @@ const mapStateToProps = state => {
   return {
     staff: state.firestore.ordered.staff,
     auth: state.firebase.auth,
-    staffMsg: state.staff.staffMsg
+    staffMsg: state.staff
   };
 };
 

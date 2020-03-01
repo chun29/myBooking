@@ -15,11 +15,10 @@ class Service extends Component {
     serviceMsg: null
   };
   componentDidUpdate(prevProps) {
-    // 常見用法（別忘了比較 prop）：
-    if (this.props.serviceMsg !== prevProps.serviceMsg) {
+    if (this.props.serviceMsg.time !== prevProps.serviceMsg.time) {
       this.setState({
         showMsg: true,
-        serviceMsg: this.props.serviceMsg
+        serviceMsg: this.props.serviceMsg.serviceMsg
       }),
         setTimeout(
           function() {
@@ -52,12 +51,16 @@ class Service extends Component {
                       <h1>服務項目</h1>
                     </div>
                     <div className="staff-main-wrapper">
-                      <div className="button-wrapper">
-                        <Link to="/createservice">
-                          <button className="add-staff">新建服務項目</button>
-                        </Link>
+                      <div className="empty-wrapper">
+                        <img src={addservice} className="addservice" />
+                        <h3>沒有服務項目</h3>
+                        <p>還沒有服務項目，請先新增</p>
+                        <div className="button-wrapper">
+                          <Link to="/createservice">
+                            <button>新建服務項目</button>
+                          </Link>
+                        </div>
                       </div>
-                      <img src={addservice} className="addservice" />
                       {this.state.showMsg && (
                         <div className="dashboard-msg">
                           {serviceMsg ? <p>{serviceMsg}</p> : null}
@@ -71,40 +74,6 @@ class Service extends Component {
           </div>
         </div>
       );
-      // return (
-      //   <div className="dashboard">
-      //     <div className="top">
-      //       <DashboardHeader />
-      //     </div>
-      //     <div className="down">
-      //       <div className="left-container">
-      //         <DashboardNav index={3} />
-      //       </div>
-
-      //       <div className="all-right-container">
-      //         <div className="staff-wrapper">
-      //           <div className="staff-header">
-      //             <h1>服務項目</h1>
-      //           </div>
-      //           <div className="staff-main-wrapper">
-      //             <div className="button-wrapper">
-      //               <Link to="/createservice">
-      //                 <button className="add-staff">新建服務項目</button>
-      //               </Link>
-      //             </div>
-      //             <h1>尚未有服務創建</h1>
-      //             <img src={addservice} className="addservice" />
-      //             {this.state.showMsg && (
-      //               <div className="dashboard-msg">
-      //                 {serviceMsg ? <p>{serviceMsg}</p> : null}
-      //               </div>
-      //             )}
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // );
     }
     const services = this.props.services && (
       <ServiceList
@@ -148,39 +117,6 @@ class Service extends Component {
         </div>
       </div>
     );
-    // return (
-    //   <div className="dashboard">
-    //     <div className="top">
-    //       <DashboardHeader />
-    //     </div>
-    //     <div className="down">
-    //       <div className="left-container">
-    //         <DashboardNav index={3} />
-    //       </div>
-
-    //       <div className="all-right-container">
-    //         <div className="staff-wrapper">
-    //           <div className="staff-header">
-    //             <h1>服務項目</h1>
-    //           </div>
-    //           <div className="staff-main-wrapper">
-    //             <div className="button-wrapper">
-    //               <Link to="/createservice">
-    //                 <button className="add-staff">新建服務項目</button>
-    //               </Link>
-    //             </div>
-    //             {services}
-    //             {this.state.showMsg && (
-    //               <div className="dashboard-msg">
-    //                 {serviceMsg ? <p>{serviceMsg}</p> : null}
-    //               </div>
-    //             )}
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
@@ -188,7 +124,7 @@ const mapStateToProps = state => {
   return {
     services: state.firestore.ordered.services,
     auth: state.firebase.auth,
-    serviceMsg: state.serviceReducer.serviceMsg
+    serviceMsg: state.serviceReducer
   };
 };
 

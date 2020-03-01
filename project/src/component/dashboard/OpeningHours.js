@@ -9,7 +9,7 @@ import SelectOpenDay from "./SelectOpenDay";
 import SelectOpenTime from "./SelectOpenTime";
 import SelectCloseTime from "./SelectOpenTime";
 import setOpeningHours from "../../store/actions/openingHoursAction";
-import Loading from "../layout/loading";
+import Msg from "../../component/layout/Msg";
 
 const WEEK = [
   [1, "星期一"],
@@ -50,35 +50,9 @@ class OpeningHours extends Component {
               {}
             )
           };
-    /*
-    this.state = {
-      isOpen: WEEK.reduce(
-        (options, option) => ({
-          ...options,
-          [option[0]]: true
-        }),
-        {}
-      ),
-      openTime: WEEK.reduce(
-        (options, option) => ({
-          ...options,
-          [option[0]]: "8"
-        }),
-        {}
-      ),
-      closeTime: WEEK.reduce(
-        (options, option) => ({
-          ...options,
-          [option[0]]: "18"
-        }),
-        {}
-      )
-    };
-    */
   }
 
   componentDidUpdate(prevProps) {
-    // 常見用法（別忘了比較 prop）：
     if (this.props.store !== prevProps.store) {
       if (
         this.props.store &&
@@ -165,14 +139,8 @@ class OpeningHours extends Component {
 
   handleSubmit = () => {
     this.props.setOpeningHours(this.state, this.props.auth.uid);
-    alert("營業時間已設定");
   };
   render() {
-    if (this.state === null) {
-      console.log(this.props.store, this.props.store[0]);
-      return <Loading />;
-    }
-
     return (
       <div className="layout">
         <div className="left">
@@ -214,6 +182,7 @@ class OpeningHours extends Component {
                       儲存
                     </button>
                   </div>
+                  <Msg />
                 </div>
               </main>
             </div>
@@ -221,60 +190,14 @@ class OpeningHours extends Component {
         </div>
       </div>
     );
-    // return (
-    //   <div className="dashboard">
-    //     <div className="top">
-    //       <DashboardHeader />
-    //     </div>
-    //     <div className="down">
-    //       <div className="left-container">
-    //         <DashboardNav index={2} />
-    //       </div>
-
-    //       <div className="all-right-container">
-    //         <div className="staff-header">
-    //           <h1>設定營業時間</h1>
-    //         </div>
-    //         <main className="openingHours-wrapper">
-    //           <div className="workingHours-container">
-    //             <form autoComplete="off" className="workingHours-form">
-    //               <div className="workingHours-column workday">
-    //                 <h3>星期</h3>
-    //                 {this.createCheckboxes()}
-    //               </div>
-
-    //               <div className="workingHours-column open-time">
-    //                 <h3>開始時間</h3>
-    //                 {this.createOpenTimes()}
-    //               </div>
-
-    //               <div className="workingHours-column close-time">
-    //                 <h3>結束時間</h3>
-
-    //                 {this.createCloseTimes()}
-    //               </div>
-    //             </form>
-    //           </div>
-    //           <div className="form-button-wrapper">
-    //             <button
-    //               onClick={this.handleSubmit}
-    //               className="create-staff-button"
-    //             >
-    //               儲存
-    //             </button>
-    //           </div>
-    //         </main>
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    store: state.firestore.ordered.store
+    store: state.firestore.ordered.store,
+    openingHoursMsg: state.workday
   };
 };
 

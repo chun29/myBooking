@@ -5,6 +5,7 @@ import deleteImg from "../../img/delete.png";
 import Case from "../../img/case.png";
 import { deleteService, editService } from "../../store/actions/serviceAction";
 import uploader from "../../img/upload.png";
+import camera from "../../img/camera.png";
 
 class ServiceList extends Component {
   constructor(props) {
@@ -121,7 +122,7 @@ class ServiceList extends Component {
   };
   render() {
     const { services, storeId } = this.props;
-
+    console.log(services);
     if (this.state.edit === true) {
       const serviceInfo = this.state.service;
       return (
@@ -198,6 +199,10 @@ class ServiceList extends Component {
                         src={serviceInfo.url ? serviceInfo.url : uploader}
                         alt=""
                       />
+                      <div className="img-description-square">
+                        <img src={camera} />
+                        新增
+                      </div>
                     </div>
                   </label>
                   <p>建議尺寸 300 x 240</p>

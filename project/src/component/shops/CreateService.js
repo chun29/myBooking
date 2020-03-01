@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createService } from "../../store/actions/serviceAction";
-import { Redirect } from "react-router-dom";
 import "..//../style/createstaff.css";
 import uploader from "../../img/upload.png";
+import camera from "../../img/camera.png";
 
 class CreateService extends Component {
   state = {
@@ -98,8 +98,6 @@ class CreateService extends Component {
   };
 
   render() {
-    const { auth } = this.props;
-    if (!auth.uid) return <Redirect to="signin" />;
     const showPic = this.state.url ? this.state.url : uploader;
     return (
       <div className="createstaff-wrapper">
@@ -168,6 +166,10 @@ class CreateService extends Component {
                 <div className="service-pic-circle">
                   <label htmlFor="pic">
                     <img className="service-pic" src={showPic} alt="home" />
+                    <div className="img-description-square">
+                      <img src={camera} />
+                      新增
+                    </div>
                     <input
                       onChange={this.handleImgChange}
                       type="file"
@@ -178,7 +180,7 @@ class CreateService extends Component {
                     />
                   </label>
                 </div>
-                <p>建議尺寸 180 x 180</p>
+                <p>建議尺寸 300 x 240</p>
               </div>
             </div>
             <div className="form-section">

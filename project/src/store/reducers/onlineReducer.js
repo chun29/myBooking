@@ -1,25 +1,13 @@
 const initState = {
-  storeName: "",
-  storeAddress: "",
-  storePhone: "",
-  bookOpenDay: "0",
-  bookCloseDay: "0",
-  storeDesc: "",
-  bookingNote: "",
-  bookingIsOpen: true,
-  logoImage: null,
-  logoSrc: "",
-  bannerImage: null,
-  bannerSrc: ""
+  onlineMsg: null,
+  time: null
 };
 const onlineReducer = (state = initState, action) => {
   switch (action.type) {
     case "ONLINE-SETUP":
-      console.log("online setup", action.online);
-      return state;
+      return { ...state, onlineMsg: "上線資料設定成功", time: Date.now() };
     case "ONLINE-SETUP_ERROR":
-      console.log("online setup error", action.err);
-      return state;
+      return { ...state, onlineMsg: "上線資料設定失敗", time: Date.now() };
     default:
       return state;
   }

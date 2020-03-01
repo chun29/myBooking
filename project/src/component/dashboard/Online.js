@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { firestoreConnect, createFirebaseConnect } from "react-redux-firebase";
+import { firestoreConnect } from "react-redux-firebase";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
 import { Link } from "react-router-dom";
@@ -19,17 +19,30 @@ import www from "../../img/www.png";
 class Online extends Component {
   state = {
     store: "",
-    showSetup: true
+    showSetup: true,
+    showMsg: false,
+    onlineMsg: null
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.store !== prevProps.store) {
-      this.setState({ store: this.props.store });
+    if (this.props.onlineMsg.time !== prevProps.onlineMsg.time) {
+      this.setState({
+        showMsg: true,
+        onlineMsg: this.props.onlineMsg.onlineMsg
+      }),
+        setTimeout(
+          function() {
+            this.setState({
+              showMsg: false
+            });
+          }.bind(this),
+          3000
+        );
     }
   }
 
   render() {
-    console.log(this.props);
+    const onlineMsg = this.state.onlineMsg;
     if (this.props.profile.name == null) {
       return <Loading />;
     }
@@ -117,28 +130,28 @@ class Online extends Component {
                       <img className="step-img" src={step_1} />
                       <h4>1. 設定服務項目</h4>
                       <Link to="/service">
-                        <p>前往連結</p>
+                        <p className="go-to-link">前往連結</p>
                       </Link>
                     </div>
                     <div className="online-step">
                       <img className="step-img" src={step_2} />
                       <h4>2. 設定服務人員</h4>
                       <Link to="/staff">
-                        <p>前往連結</p>
+                        <p className="go-to-link">前往連結</p>
                       </Link>
                     </div>
                     <div className="online-step">
                       <img className="step-img" src={step_3} />
                       <h4>3. 設定營業時間</h4>
                       <Link to="/openinghours">
-                        <p>前往連結</p>
+                        <p className="go-to-link">前往連結</p>
                       </Link>
                     </div>
                     <div className="online-step">
                       <img className="step-img" src={step_4} />
                       <h4>4. 上線設定</h4>
                       <Link to="/onlinebooking">
-                        <p>前往連結</p>
+                        <p className="go-to-link">前往連結</p>
                       </Link>
                     </div>
                   </div>
@@ -170,6 +183,11 @@ class Online extends Component {
                         <div className="member-text">{weblinkimg}</div>
                       </div>
                     </div>
+                    {this.state.showMsg && (
+                      <div className="dashboard-msg">
+                        {onlineMsg ? <p>{onlineMsg}</p> : null}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -182,12 +200,14 @@ class Online extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     staff: state.firestore.ordered.staff,
     store: state.firestore.ordered.store,
     service: state.firestore.ordered.service,
     auth: state.firebase.auth,
-    profile: state.firebase.profile
+    profile: state.firebase.profile,
+    onlineMsg: state.onlineSetup
   };
 };
 

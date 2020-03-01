@@ -6,11 +6,14 @@ export const onlineSetup = (online, id) => {
     const firebase = getFirebase();
 
     const imagesPath = "images";
-    console.log(online);
 
     if (logoImage.name && bannerImage.name) {
+      const options = {
+        name: logoImage => `${logoImage.name}/${Date.now()}`
+      };
+
       firebase
-        .uploadFile(imagesPath, logoImage)
+        .uploadFile(imagesPath, logoImage, null, options)
         .then(uploadFile => {
           return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
@@ -23,7 +26,11 @@ export const onlineSetup = (online, id) => {
         .then(url => {
           online.logoSrc = url;
           online.logoImage = logoImage.name;
-          return firebase.uploadFile(imagesPath, bannerImage);
+          const optionsB = {
+            name: bannerImage => `${bannerImage.name}/${Date.now()}`
+          };
+
+          return firebase.uploadFile(imagesPath, bannerImage, null, optionsB);
         })
         .then(uploadFile => {
           return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
@@ -50,8 +57,11 @@ export const onlineSetup = (online, id) => {
             });
         });
     } else if (logoImage.name && !bannerImage.name) {
+      const options = {
+        name: logoImage => `${logoImage.name}/${Date.now()}`
+      };
       firebase
-        .uploadFile(imagesPath, logoImage)
+        .uploadFile(imagesPath, logoImage, null, options)
         .then(uploadFile => {
           return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
@@ -76,8 +86,11 @@ export const onlineSetup = (online, id) => {
             });
         });
     } else if (!logoImage.name && bannerImage.name) {
+      const options = {
+        name: bannerImage => `${bannerImage.name}/${Date.now()}`
+      };
       firebase
-        .uploadFile(imagesPath, bannerImage)
+        .uploadFile(imagesPath, bannerImage, null, options)
         .then(uploadFile => {
           return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
         })

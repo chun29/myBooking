@@ -36,8 +36,12 @@ class Navbar extends Component {
 
             <nav>
               <ul>
-                <li>功能介紹</li>
-                <li>範例</li>
+                {/* <Link to="product">
+                  <li>功能介紹</li>
+                </Link> */}
+                <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
+                  <li>預約網站範例</li>
+                </Link>
               </ul>
             </nav>
           </div>
@@ -60,7 +64,9 @@ class Navbar extends Component {
                   <Link to="/dashboard">
                     <li>前往管理介面</li>
                   </Link>
-                  <li>範例</li>
+                  <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
+                    <li>預約網站範例</li>
+                  </Link>
                   <li>功能介紹</li>
                 </ul>
                 <div>
@@ -81,7 +87,7 @@ class Navbar extends Component {
                     <span className="ul-login green-btn">註冊</span>
                   </Link>
                 </li>
-                <li>範例</li>
+                <li>預約網站範例</li>
                 <li>功能介紹</li>
               </ul>
             )}

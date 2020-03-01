@@ -1,5 +1,3 @@
-/* online-all */
-
 .online-container {
   background-color: #f5f5f5;
 }
@@ -69,7 +67,7 @@
 }
 .online-container .info-section h1 {
   margin: 20px 10px 40px 0;
-  font-size: 38px;
+  font-size: 32px;
   letter-spacing: 1px;
   vertical-align: middle;
   color: black;
@@ -177,7 +175,7 @@
   cursor: pointer;
   background-color: #f4f6fe;
   position: relative;
-  font-weight: 700;
+  font-weight: 600;
   height: 70px;
   display: table-cell;
   line-height: 70px;
@@ -217,8 +215,8 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  margin: 20px 15px;
-  max-width: 250px;
+  margin: 20px 18px;
+  max-width: 270px;
   justify-content: space-between;
   transition: 0.3s;
 }
@@ -245,7 +243,6 @@
   align-self: center;
   width: 150px;
   height: 150px;
-  border: 5px solid #cbd5ff;
   border-radius: 50%;
   object-fit: cover;
   margin-top: 10px;
@@ -334,6 +331,7 @@
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
+  margin-bottom: 15px;
 }
 
 .online-container .booking-section {
@@ -377,7 +375,8 @@
   margin-top: 50px;
   margin-bottom: 50px;
   width: 50%;
-  height: 400px;
+  height: 200px;
+  object-fit: contain;
 }
 
 .text-wrapper {
@@ -387,16 +386,21 @@
 
 .result-success {
   margin: 0 auto;
-  width: 40%;
-  line-height: 35px;
-  font-size: 18px;
+  width: 50%;
+  line-height: 25px;
+  font-size: 14px;
   text-align: left;
+}
+.result-success-1 {
+  margin-bottom: 10px;
 }
 
 .result-h1 {
   color: #1a237e;
 }
-
+.help-msg {
+  font-size: 14px;
+}
 .booking-step-item-2 {
   margin: 30px;
   height: auto;
@@ -517,6 +521,22 @@
   margin-top: 50px;
   object-fit: cover;
 }
+.online-staff-bg {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  display: block;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    url(../img/banner.jpg);
+  background-size: cover;
+}
+.online-container .info-section .info {
+  margin-top: 10px;
+}
+
 @media (max-width: 1000px) {
   .online-container .banner-wrapper {
     height: 400px;
@@ -536,7 +556,7 @@
     height: 150px;
   }
   .online-container .info-section h1 {
-    font-size: 28px;
+    font-size: 16px;
     margin: 10px;
     margin-bottom: 20px;
   }
@@ -546,7 +566,7 @@
 
   .result-success {
     width: 90%;
-    font-size: 14px;
+    font-size: 13px;
   }
   .result-img {
     width: 280px;
@@ -636,7 +656,7 @@
     flex-direction: column;
   }
   .booking-confirm {
-    margin-left: 0;
+    margin: 0;
     font-size: 14px;
   }
   .customer-info-wrapper {
@@ -698,5 +718,8 @@
   }
   .step-wrapper .step-msg {
     font-size: 10px;
+  }
+  .result-success {
+    font-size: 12px;
   }
 }

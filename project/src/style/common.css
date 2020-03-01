@@ -43,7 +43,7 @@ button {
   margin: 100px auto;
   position: fixed;
   top: 30%;
-  left: 50%;
+  left: calc(50% - 30px);
 }
 
 .sk-cube-grid .sk-cube {

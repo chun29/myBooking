@@ -15,8 +15,11 @@ export const createStaff = (staff, id) => {
     const firebase = getFirebase();
     const imagesPath = "images";
     if (image.name) {
+      const options = {
+        name: image => `${image.name}/${Date.now()}`
+      };
       firebase
-        .uploadFile(imagesPath, image)
+        .uploadFile(imagesPath, image, null, options)
         .then(uploadedFile => {
           return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
@@ -97,8 +100,11 @@ export const editStaff = (storeId, staffId, staffInfo) => {
 
     const imagesPath = "images";
     if (image.name) {
+      const options = {
+        name: image => `${image.name}/${Date.now()}`
+      };
       firebase
-        .uploadFile(imagesPath, image)
+        .uploadFile(imagesPath, image, null, options)
         .then(uploadedFile => {
           return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
         })

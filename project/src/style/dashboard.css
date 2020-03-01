@@ -43,7 +43,7 @@
 .dashboard-item2 {
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
-  height: 610px;
+  height: 613px;
   width: 450px;
   margin: 0 10px;
 }
@@ -60,6 +60,7 @@
   border: 1px solid #d5dbfe;
   margin-bottom: 30px;
   color: white;
+  height: 610px;
 }
 
 .dashboard-item-container ul {
@@ -98,11 +99,12 @@
   overflow: auto;
 }
 .view-all-2 {
-  padding: 20px;
+  padding: 21px;
   border-top: 1px solid #f0f0f0;
   width: 100%;
   display: block;
   text-align: center;
+  color: white;
 }
 .today-sum {
   display: flex;
@@ -407,8 +409,9 @@
 
 .notfound-img {
   align-self: center;
-  width: 80%;
-  height: 350px;
+  width: 50%;
+  height: 250px;
+  object-fit: contain;
 }
 
 .today-info-no {
@@ -456,7 +459,7 @@
   right: 1.5rem;
   position: fixed;
   text-align: left;
-  z-index: 100;
+  z-index: 200;
 }
 .getting-started-btn {
   background-color: #343f4e;
@@ -494,6 +497,22 @@
   width: 20px;
   line-height: 1em;
   box-sizing: border-box;
+}
+.getting-started-task-done {
+  margin-top: 5px;
+  padding: 15px 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border-bottom: #555c66 solid 1px;
+  justify-content: center;
+  background-color: #555c66;
+  border-radius: 10px;
+}
+.getting-started-img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 .getting-started .getting-started-surface {
   display: flex;
@@ -544,9 +563,8 @@
   font-size: 16px;
   text-align: center;
   width: 100%;
-  padding: 10px;
+  padding-top: 20px;
   color: white;
-  line-height: 40px;
 }
 .getting-started-completed {
   border-radius: 50%;
@@ -560,6 +578,21 @@
   color: #00c19a;
   font-size: 25px;
   vertical-align: middle;
+}
+.getting-started-completed-checked {
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  margin-right: 8px;
+  line-height: 1rem;
+  height: 25px;
+  width: 25px;
+  box-sizing: border-box;
+  padding-top: 4px;
+  color: #00c19a;
+  font-size: 12px;
+  vertical-align: middle;
+  border: 2px solid #00c19a;
 }
 .getting-started .getting-started-surface-body ul li span {
   border-radius: 50%;
