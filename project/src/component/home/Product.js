@@ -5,8 +5,7 @@ import Footer from "../layout/Footer.js";
 import { Link } from "react-router-dom";
 import desc1 from "../../img/desc1.png";
 import desc2 from "../../img/desc2.png";
-import desc3 from "../../img/desc-1.png";
-import calendar from "../../img/undraw_online_calendar_kvu2.png";
+import desc3 from "../../img/desc3.png";
 
 export default class home extends Component {
   render() {

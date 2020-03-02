@@ -13,6 +13,7 @@ button {
   text-align: center;
   outline: none;
   border: none;
+  border-radius: 10px;
 }
 .blue-btn {
   color: #fff;
@@ -34,6 +35,18 @@ button {
   border: 1px solid #00bfa5;
   background-color: #00bfa5;
   color: #fff;
+}
+h2 {
+  font-size: 48px;
+}
+h3 {
+  font-size: 36px;
+}
+h4 {
+  font-size: 28px;
+}
+h5 {
+  font-size: 18px;
 }
 
 /* loading */

@@ -16,31 +16,28 @@ class Dashboard extends Component {
   }
   render() {
     const { notifications, bookings } = this.props;
-    Date.prototype.yyyymmdd = function() {
-      var mm = this.getMonth() + 1;
-      var dd = this.getDate();
+    const bookedDay = () => {
+      const date = new Date();
+      const mm = date.getMonth() + 1;
+      const dd = date.getDate();
 
       return [
-        this.getFullYear(),
+        date.getFullYear(),
         (mm > 9 ? "" : "0") + mm,
         (dd > 9 ? "" : "0") + dd
       ].join("");
     };
 
-    var date = new Date();
-    const today = date.yyyymmdd();
     let todayBookings = [];
+
     if (bookings) {
       bookings.map(booking => {
-        if (booking.bookedDay === today) {
+        if (booking.bookedDay === bookedDay()) {
           todayBookings.push(booking);
         }
       });
     }
 
-    if (this.props.profile === null) {
-      return <Loading />;
-    }
     return (
       <div className="layout">
         <div className="left">
@@ -76,22 +73,12 @@ const mapStateToProps = state => {
     notifications: state.firestore.ordered.notifications,
     bookings: state.firestore.ordered.booking,
     staff: state.firestore.ordered.staff,
-    service: state.firestore.ordered.service,
-    guideShow:
-      state.firestore.ordered.owners &&
-      state.firestore.ordered.owners[0] &&
-      state.firestore.ordered.owners[0].guideShow
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    guideBanned: id => dispatch(guideBanned(id))
+    service: state.firestore.ordered.service
   };
 };
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps),
   firestoreConnect(props => {
     return [
       {

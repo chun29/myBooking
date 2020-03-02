@@ -36,9 +36,9 @@ class Navbar extends Component {
 
             <nav>
               <ul>
-                {/* <Link to="product">
+                <Link to="product">
                   <li>功能介紹</li>
-                </Link> */}
+                </Link>
                 <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
                   <li>預約網站範例</li>
                 </Link>
@@ -67,7 +67,9 @@ class Navbar extends Component {
                   <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
                     <li>預約網站範例</li>
                   </Link>
-                  <li>功能介紹</li>
+                  <Link to="product">
+                    <li>功能介紹</li>
+                  </Link>
                 </ul>
                 <div>
                   <div className="s-menu-login-btn-wrapper">
@@ -88,7 +90,9 @@ class Navbar extends Component {
                   </Link>
                 </li>
                 <li>預約網站範例</li>
-                <li>功能介紹</li>
+                <Link to="product">
+                  <li>功能介紹</li>
+                </Link>
               </ul>
             )}
           </div>

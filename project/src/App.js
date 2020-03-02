@@ -37,7 +37,6 @@ class App extends Component {
     loggedIn: false
   };
   render() {
-    console.log(this.props);
     return (
       <Router>
         <div className="App">
