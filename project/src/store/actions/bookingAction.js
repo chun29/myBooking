@@ -29,6 +29,7 @@ export const createBooking = (booking, store) => {
       startTime: startTime.num,
       serviceItem: selectedService.item,
       staffName: selectedStaff.name,
+      staffNickname: selectedStaff.nickname,
       timeText: startTime.text
     };
 

@@ -16,7 +16,7 @@ class Dashboard extends Component {
   }
   render() {
     const { notifications, bookings } = this.props;
-    const bookedDay = () => {
+    function bookedDay() {
       const date = new Date();
       const mm = date.getMonth() + 1;
       const dd = date.getDate();
@@ -26,17 +26,20 @@ class Dashboard extends Component {
         (mm > 9 ? "" : "0") + mm,
         (dd > 9 ? "" : "0") + dd
       ].join("");
-    };
-
-    let todayBookings = [];
-
-    if (bookings) {
-      bookings.map(booking => {
-        if (booking.bookedDay === bookedDay()) {
-          todayBookings.push(booking);
-        }
-      });
     }
+
+    function getTodayBookings(allBookings) {
+      let todayBookings = [];
+      if (allBookings) {
+        allBookings.map(booking => {
+          if (booking.bookedDay === bookedDay()) {
+            todayBookings.push(booking);
+          }
+        });
+      }
+      return todayBookings;
+    }
+    const todayBookings = getTodayBookings(bookings);
 
     return (
       <div className="layout">

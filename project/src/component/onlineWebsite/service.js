@@ -1,7 +1,6 @@
 import React from "react";
 import storePhoto from "../../img/banner.jpg";
-import Button from "@material-ui/core/Button";
-import Timer from "../../img/timer.png";
+import Timer from "../../img/clock.png";
 
 const Service = ({ service, selectService, selectedService }) => {
   let style;
@@ -22,31 +21,25 @@ const Service = ({ service, selectService, selectedService }) => {
   return (
     <div className="service" style={style}>
       <img className="service-img" src={url} />
-      <div className="service-row-1 service-desc">
+      <div className="service-desc">
         <p className="service-header">{service.item}</p>
         <p className="service-text"> {service.desc}</p>
       </div>
+
       <div className="service-row-2">
-        <p>
-          <span>
-            <img className="timer" src={Timer}></img>
-          </span>
-          <span className="duration-text">{service.duration / 60} 小時</span>
-        </p>
+        <img className="timer" src={Timer}></img>
+        <p className="duration-text">{service.duration / 60} 小時</p>
         <p className="price-text">＄{service.price}</p>
       </div>
 
-      <div className="service-row-3 extra-info">
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => {
-            selectService(service.item, service.id, service.duration / 60);
-          }}
-        >
-          選擇
-        </Button>
-      </div>
+      <button
+        className="blue-btn"
+        onClick={() => {
+          selectService(service.item, service.id, service.duration / 60);
+        }}
+      >
+        選擇
+      </button>
     </div>
   );
 };

@@ -3,10 +3,35 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import notFound from "../../img/notfound.png";
 
-export const TodayBookings = props => {
-  const { todayBookings } = props;
+const today = new Date();
+function getFormatDate(date) {
+  return moment(date).format("YYYY-MM-DD");
+}
+const todayFormat = getFormatDate(today);
 
-  if (todayBookings.length < 1) {
+function getFormatTime(time) {
+  if (time == 12) {
+    return "12:00 PM";
+  } else if (time == 12.5) {
+    return "12:30 PM";
+  } else {
+    let hh = Math.floor(time);
+    let mm = (time * 60) % 60;
+    let ap = ["AM", "PM"];
+    return (
+      ("0" + (hh % 12)).slice(-2) +
+      ":" +
+      ("0" + mm).slice(-2) +
+      " " +
+      ap[Math.floor(hh / 12)]
+    );
+  }
+}
+
+export const TodayBookings = props => {
+  const { todayBookings, staffs, services } = props;
+  const bookingNum = todayBookings.length;
+  if (bookingNum < 1) {
     return (
       <div className="notification-wrapper">
         <h1 className="today-info">今日預約</h1>
@@ -20,61 +45,34 @@ export const TodayBookings = props => {
       </div>
     );
   } else {
-    const newBookingList = todayBookings.sort(function(a, b) {
+    const sortBookingList = todayBookings.sort(function(a, b) {
       return a.startTime - b.startTime;
     });
-    const bookingNum = todayBookings.length;
-    const d = new Date();
-    const c = moment(d).format("YYYY-MM-DD");
-    const staffInfo = props.staffs;
-    const serviceInfo = props.services;
 
     const bookingList =
       todayBookings &&
-      staffInfo &&
-      serviceInfo &&
-      newBookingList.map(booking => {
-        let time = "";
-        if (booking.startTime == 12) {
-          time = "12:00 PM";
-        } else if (booking.startTime == 12.5) {
-          time = "12:30 PM";
-        } else {
-          let hh = Math.floor(booking.startTime);
-          let mm = (booking.startTime * 60) % 60;
-          let ap = ["AM", "PM"]; // AM-PM
-          time =
-            ("0" + (hh % 12)).slice(-2) +
-            ":" +
-            ("0" + mm).slice(-2) +
-            " " +
-            ap[Math.floor(hh / 12)];
-        }
-
-        const staff =
-          staffInfo &&
-          staffInfo.filter(staff => staff.id === booking.selectedStaff);
-
-        const staffName = staff[0] && staff[0].name;
-        const staffColor = staff[0] && staff[0].color;
-
-        const service =
-          serviceInfo &&
-          serviceInfo.filter(service => service.id === booking.selectedService);
-        const serviceName = service && service[0] && service[0].item;
-        const servicePrice = service && service[0] && service[0].price;
+      staffs &&
+      services &&
+      sortBookingList.map(booking => {
+        const time = getFormatTime(booking.startTime);
+        const staff = staffs.filter(
+          staff => staff.id === booking.selectedStaff
+        );
+        const service = services.filter(
+          service => service.id === booking.selectedService
+        );
 
         return {
-          time: time,
-          staff: staffName,
-          service: serviceName,
-          staffColor: staffColor,
-          price: servicePrice
+          time,
+          staff: staff[0].name,
+          service: service[0].item,
+          staffColor: staff[0].color,
+          price: service[0].price
         };
       });
     let allPrice = 0;
     if (bookingList) {
-      for (let i = 0; i < bookingList.length; i++) {
+      for (let i = 0; i < bookingNum; i++) {
         allPrice = Number(allPrice) + Number(bookingList[i].price);
       }
     }
@@ -99,7 +97,7 @@ export const TodayBookings = props => {
                   <li key={i} className="today-booking-info-wrapper">
                     <div className="today-booking-date">{booking.time}</div>
                     <div className="today-booking-info">
-                      <span className="today-booking-time">{c}</span>
+                      <span className="today-booking-time">{todayFormat}</span>
                       <span className="today-booking-service">
                         {booking.service}
                       </span>
@@ -126,60 +124,43 @@ export const TodayBookings = props => {
 };
 
 export const Notifications = props => {
-  if (props.notifications === null) {
-    return <div>Loading</div>;
-  }
-
-  const newNotificationsList =
-    props.notifications &&
-    props.notifications.sort(function(a, b) {
+  let { notifications } = props;
+  const sortNotificationsList =
+    notifications &&
+    notifications.sort(function(a, b) {
       return b.createdAt.seconds - a.createdAt.seconds;
     });
-  const notifications =
-    newNotificationsList &&
-    newNotificationsList.map(data => {
-      const t = moment(data.createdAt.seconds * 1000).format("YYYY-MM-DD");
+  notifications =
+    sortNotificationsList &&
+    sortNotificationsList.map(notification => {
+      const notificationFormatDate = getFormatDate(
+        notification.createdAt.seconds * 1000
+      );
+      const formatTime = getFormatTime(notification.startTime);
 
-      if (data.type === "系統通知") {
+      if (notification.type === "系統通知") {
         return {
-          type: data.type,
-          createdAt: t,
-          content: data.content
+          type: notification.type,
+          createdAt: notificationFormatDate,
+          content: notification.content
         };
       }
 
-      const date = data.selectedDate.seconds * 1000;
-      const tt = moment(date).format("YYYY-MM-DD");
+      const bookingDateFormat = getFormatDate(
+        notification.selectedDate.seconds * 1000
+      );
 
-      let time = "";
-
-      if (data.startTime == 12) {
-        time = "12:00 PM";
-      } else if (data.startTime == 12.5) {
-        time = "12:30 PM";
-      } else {
-        let hh = Math.floor(data.startTime);
-        let mm = (data.startTime * 60) % 60;
-        let ap = ["AM", "PM"]; // AM-PM
-        time =
-          ("0" + (hh % 12)).slice(-2) +
-          ":" +
-          ("0" + mm).slice(-2) +
-          " " +
-          ap[Math.floor(hh / 12)];
-      }
-
-      if (data.type === "預約取消") {
+      if (notification.type === "預約取消") {
         return {
-          type: data.type,
-          createdAt: t,
-          content: `${tt} ${time} 一筆 ${data.staffName}  ${data.serviceItem}預約 已取消`
+          type: notification.type,
+          createdAt: notificationFormatDate,
+          content: `${bookingDateFormat} ${formatTime} 一筆 ${notification.staffName}  ${notification.serviceItem}預約 已取消`
         };
       }
       return {
-        type: data.type,
-        createdAt: t,
-        content: `${data.name} 預約了 ${tt} ${time} ${data.staffName}  ${data.serviceItem}`
+        type: notification.type,
+        createdAt: notificationFormatDate,
+        content: `${notification.name} 預約了 ${bookingDateFormat} ${formatTime} ${notification.staffName}  ${notification.serviceItem}`
       };
     });
 

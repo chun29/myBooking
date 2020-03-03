@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import forms from "../../img/form.png";
 import moment from "moment";
 import { connect } from "react-redux";
+import calendarImg from "../../img/calendar-2.png";
+import timeImg from "../../img/clock.png";
+import staffImg from "../../img/staff-avatar.png";
+import serviceImg from "../../img/bag.png";
 class BookingConfirm extends Component {
   render() {
     const {
@@ -18,11 +22,21 @@ class BookingConfirm extends Component {
         <div className="step4-wrapper">
           <div className="booking-confirm">
             <h2>預約項目</h2>
-            <div className="booking-confirm-item">{selectedService.item}</div>
-            <div className="booking-confirm-item">日期：{day}</div>
-            <div className="booking-confirm-item">時間：{startTime.text}</div>
             <div className="booking-confirm-item">
-              服務人員：{selectedStaff.name}
+              <img className="icon" src={serviceImg} />
+              {selectedService.item}
+            </div>
+            <div className="booking-confirm-item">
+              <img className="icon" src={calendarImg} />
+              {day}
+            </div>
+            <div className="booking-confirm-item">
+              <img className="icon" src={timeImg} />
+              {startTime.text}
+            </div>
+            <div className="booking-confirm-item">
+              <img className="icon" src={staffImg} />
+              {selectedStaff.nickname}
             </div>
             <div className="booking-confirm-img">
               <img className="formimg" src={forms}></img>
@@ -62,7 +76,7 @@ class BookingConfirm extends Component {
           onClick={() => {
             handleSubmit();
           }}
-          className="booking-confirm-btn"
+          className="booking-confirm-btn blue-btn"
         >
           確認預約
         </button>

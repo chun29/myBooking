@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 class CreateBooking extends Component {
   state = {
     selectedService: { item: "", id: "0" },
-    selectedStaff: { name: "", id: "0" },
+    selectedStaff: { name: "", id: "0", nickname: "" },
     selectedDate: "",
     bookedDay: "",
     duration: "",
@@ -61,11 +61,15 @@ class CreateBooking extends Component {
   };
   selectStaff = e => {
     const name = e.target.options[e.target.selectedIndex].getAttribute("name");
+    const nickname = e.target.options[e.target.selectedIndex].getAttribute(
+      "nickname"
+    );
     this.setState({
       selectedStaff: {
         ...this.state.selectedStaff,
         id: e.target.value,
-        name: name
+        name,
+        nickname
       },
       error: {
         ...this.state.error,
@@ -108,6 +112,24 @@ class CreateBooking extends Component {
     }
 
     const bookedDay = String(date.getFullYear()) + month + day;
+    function getFormatTime(time) {
+      if (time == 12) {
+        return "12:00 PM";
+      } else if (time == 12.5) {
+        return "12:30 PM";
+      } else {
+        let hh = Math.floor(time);
+        let mm = (time * 60) % 60;
+        let ap = ["AM", "PM"];
+        return (
+          ("0" + (hh % 12)).slice(-2) +
+          ":" +
+          ("0" + mm).slice(-2) +
+          " " +
+          ap[Math.floor(hh / 12)]
+        );
+      }
+    }
 
     const hour = date.getHours();
     let time;
@@ -121,7 +143,8 @@ class CreateBooking extends Component {
       selectedDate: date,
       startTime: {
         ...this.state.startTime,
-        num: time
+        num: time,
+        text: getFormatTime(time)
       },
       error: {
         ...this.state.error,
@@ -332,6 +355,7 @@ class CreateBooking extends Component {
                           key={staff.id}
                           value={staff.id}
                           name={staff.name}
+                          nickname={staff.nickname}
                         >
                           {staff.name}
                         </option>

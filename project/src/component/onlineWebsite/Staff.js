@@ -1,6 +1,5 @@
 import React from "react";
 import staffAvatar from "../../img/staff-avatar.png";
-import Button from "@material-ui/core/Button";
 
 const Staff = ({ staff, selectStaff, selectedStaff }) => {
   let style;
@@ -20,7 +19,7 @@ const Staff = ({ staff, selectStaff, selectedStaff }) => {
   }
 
   return (
-    <div className="service step-service" style={style}>
+    <div className="service" style={style}>
       <div className="online-staff-bg">
         <img className="staff-img" src={url} />
       </div>
@@ -30,17 +29,15 @@ const Staff = ({ staff, selectStaff, selectedStaff }) => {
         <p className="service-text">{staff.desc}</p>
       </div>
       <div className="service-row-2"> </div>
-      <div className="service-row-3 extra-info">
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => {
-            selectStaff(staff.nickname, staff.id);
-          }}
-        >
-          選擇
-        </Button>
-      </div>
+
+      <button
+        className="blue-btn"
+        onClick={() => {
+          selectStaff(staff.name, staff.id, staff.nickname);
+        }}
+      >
+        選擇
+      </button>
     </div>
   );
 };

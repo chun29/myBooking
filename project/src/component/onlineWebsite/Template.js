@@ -8,7 +8,7 @@ import "../../style/template.css";
 import Service from "./service";
 import Staff from "./Staff";
 import AvailableTime from "./AvailableTime";
-import BookingProcess from "./BookingProcess";
+import { BookingProcess } from "./BookingProcess";
 import BookingConfirm from "./BookingConfirm";
 import { createBooking } from "../../store/actions/bookingAction";
 import Result from "../onlineWebsite/Result";
@@ -20,12 +20,15 @@ import work from "../../img/work.png";
 import notFound from "../../img/notfound.png";
 import StoreMap from "../../component/layout/StoreMap";
 import storeBanner from "../../img/store-banner.jpg";
+import phoneImg from "../../img/telephone.png";
+import addressImg from "../../img/address.png";
+import Footer from "../layout/Footer";
+import userInfoImg from "../../img/portfolio.png";
 
 class Template extends React.Component {
   constructor(props) {
     super(props);
     this.scrollDiv = createRef();
-    this.scrollDiv2 = createRef();
     this.state = {
       step: "",
       bookingShow: false,
@@ -36,7 +39,7 @@ class Template extends React.Component {
       confirmShow: false,
       resultShow: false,
       selectedService: { item: "", id: "" },
-      selectedStaff: { name: "", id: "" },
+      selectedStaff: { name: "", id: "", nickname: "" },
       selectedDate: "",
       bookedDay: "",
       duration: "",
@@ -107,25 +110,19 @@ class Template extends React.Component {
     });
   };
 
-  selectStaff = (name, id) => {
-    this.setState(
-      {
-        selectedStaff: {
-          ...this.state.selectedStaff,
-          name,
-          id
-        },
-        serviceShow: false,
-        staffShow: false,
-        dateShow: true,
-        step: 3
+  selectStaff = (name, id, nickname) => {
+    this.setState({
+      selectedStaff: {
+        ...this.state.selectedStaff,
+        name,
+        id,
+        nickname
       },
-      function() {
-        this.scrollDiv2.current.scrollIntoView({
-          behavior: "smooth"
-        });
-      }
-    );
+      serviceShow: false,
+      staffShow: false,
+      dateShow: true,
+      step: 3
+    });
   };
   selectStartTime = (num, text) => {
     this.setState({
@@ -312,98 +309,6 @@ class Template extends React.Component {
 
     const staffArr = this.props.staff ? this.props.staff : "";
     const serviceArr = this.props.service ? this.props.service : "";
-    const timeArea = () => {
-      //Book time fake data
-      const bookedTime = [
-        [8, 8.5],
-        [8.5, 9],
-        [10.5, 11],
-        [11.5, 12],
-        [13.5, 14],
-        [14, 14.5]
-      ];
-      // 由 open time and close time 生成全部時段 array
-
-      let times = []; // time array
-      let start = Number(store.openTime.friday); // start time
-      let close = 17;
-      const duration = 90;
-      let length = (close - start) * 2;
-
-      // 全部時間 array 格式 [[開始時間],[結束時間],...]
-      for (let i = 0; i < length; i++) {
-        let t = [];
-        t[0] = start;
-        t[1] = start + 0.5;
-        times.push(t);
-        start = start + 0.5;
-      }
-      //篩出全部時間-已預定的時間
-      function arr_diff(a1, a2) {
-        var a = [],
-          diff = [];
-
-        for (var i = 0; i < a1.length; i++) {
-          a[a1[i]] = true;
-        }
-
-        for (var i = 0; i < a2.length; i++) {
-          if (a[a2[i]]) {
-            delete a[a2[i]];
-          } else {
-            a[a2[i]] = true;
-          }
-        }
-
-        for (var k in a) {
-          diff.push(k);
-        }
-
-        return diff;
-      }
-      let availableArr = arr_diff(bookedTime, times).map(e => e.split(","));
-
-      // 最終時間 Arr
-      let finalArr = [];
-
-      for (let i = 0; i < availableArr.length - (duration / 30 - 1); i++) {
-        if (
-          Number(availableArr[i][0]) + duration / 60 ===
-          Number(availableArr[i + (duration / 30 - 1)][1])
-        ) {
-          const data = Number(availableArr[i][0]);
-          finalArr.push(data);
-        }
-      }
-
-      // 生成btn
-      let finalBtn = [];
-      for (let i = 0; i < finalArr.length; i++) {
-        let time;
-        if (finalArr[i] == 12) {
-          time = "12:00 PM";
-        } else {
-          let hh = Math.floor(finalArr[i]); // getting hours of day in 0-24 format
-          let mm = (finalArr[i] * 60) % 60; // getting minutes of the hour in 0-55 format
-          let ap = ["AM", "PM"]; // AM-PM
-          time =
-            ("0" + (hh % 12)).slice(-2) +
-            ":" +
-            ("0" + mm).slice(-2) +
-            " " +
-            ap[Math.floor(hh / 12)];
-        }
-        finalBtn.push(time);
-      }
-
-      return (
-        <div>
-          {finalBtn.map((time, i) => {
-            return <button key={i}>{time}</button>;
-          })}
-        </div>
-      );
-    };
 
     if (onlineSetup === null) {
       return (
@@ -412,7 +317,6 @@ class Template extends React.Component {
         </div>
       );
     }
-    console.log(this.props.store);
 
     return (
       <div className="online-container">
@@ -434,24 +338,37 @@ class Template extends React.Component {
         <div className="content">
           <div className="store-info">
             <div className="info-section">
-              {store && <h1>{store.name}</h1>}
+              {store && <h3>{store.name}</h3>}
               <div className="button-wrapper">
-                <button className="red" onClick={this.showBooking}>
+                <button className="blue-btn" onClick={this.showBooking}>
                   我要預訂
                 </button>
               </div>
               <StoreMap address={store.address} />
-              {store && <div className="info phone">電話：{store.phone}</div>}
-              {store && (
-                <div className="info address">地址：{store.address}</div>
-              )}
+              <div className="basic-container">
+                {store && (
+                  <div className="info">
+                    <img className="info-icon" src={phoneImg} />
+                    {store.phone}
+                  </div>
+                )}
+                {store && (
+                  <div className="info">
+                    <img className="info-icon" src={addressImg} />
+                    {store.address}
+                  </div>
+                )}
+              </div>
+
               <hr className="infohr" />
+
               <div className="store-desc">
                 {store && <div>{store.desc}</div>}
               </div>
             </div>
+
             <div className="info-section">
-              <h3>店家圖片</h3>
+              <h5>店家圖片</h5>
               <div className="store-photo-wrapper">
                 <div className="store-photo">
                   {store && <img src={store.logoImg} alt="" />}
@@ -459,7 +376,7 @@ class Template extends React.Component {
               </div>
             </div>
             <div className="info-section">
-              <h3>預約須知</h3>
+              <h5>預約須知</h5>
               <div className="store-desc">{store && <p>{store.note}</p>}</div>
             </div>
 
@@ -474,10 +391,10 @@ class Template extends React.Component {
                 />
                 <div className="booking-step-item">
                   {this.state.serviceShow && (
-                    <div>
+                    <React.Fragment>
                       <div className="step-header-wrapper">
                         <img src={work} />
-                        <h3> 選擇服務</h3>
+                        <h5> 選擇服務</h5>
                       </div>
 
                       <div className="service-wrapper">
@@ -492,13 +409,13 @@ class Template extends React.Component {
                           );
                         })}
                       </div>
-                    </div>
+                    </React.Fragment>
                   )}
                   {this.state.staffShow && (
                     <div className="booking-step-item">
                       <div className="step-header-wrapper">
                         <img src={group} />
-                        <h3>選擇服務人員</h3>
+                        <h5>選擇服務人員</h5>
                       </div>
 
                       <div className="service-wrapper">
@@ -521,7 +438,7 @@ class Template extends React.Component {
                   <div className="booking-step-date">
                     <div className="step-header-wrapper">
                       <img src={calendar} />
-                      <h3 ref={this.scrollDiv2}>選擇日期與時間</h3>
+                      <h5>選擇日期與時間</h5>
                     </div>
 
                     <DatePicker
@@ -540,8 +457,6 @@ class Template extends React.Component {
 
                     {this.state.timeShow && (
                       <div>
-                        <h3>可選擇時間</h3>
-
                         <div className="service-wrapper">
                           <AvailableTime
                             bookedDay={this.state.bookedDay}
@@ -559,7 +474,11 @@ class Template extends React.Component {
                 )}
                 {this.state.confirmShow && (
                   <div className="booking-step-item-2">
-                    <h3>填入顧客資訊</h3>
+                    <div className="step-header-wrapper">
+                      <img src={userInfoImg} />
+                      <h5>填入顧客資訊</h5>
+                    </div>
+
                     <BookingConfirm
                       allState={this.state}
                       handleInfoChange={this.handleInfoChange}
@@ -577,11 +496,7 @@ class Template extends React.Component {
             )}
           </div>
         </div>
-        <footer>
-          <div className="copyright">
-            © 2019 MyBooking All rights researved.
-          </div>
-        </footer>
+        <Footer />
       </div>
     );
   }

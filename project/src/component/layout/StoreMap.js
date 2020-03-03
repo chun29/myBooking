@@ -30,7 +30,7 @@ class StoreMap extends Component {
 
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: "40vh", width: "100%" }}>
+      <div style={{ height: "35vh", width: "100%" }}>
         <GoogleMapReact center={this.state.data} defaultZoom={this.props.zoom}>
           <Marker lat={data.lat} lng={data.lng} name="MY STORE" color="red" />
         </GoogleMapReact>

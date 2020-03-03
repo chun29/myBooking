@@ -48,6 +48,23 @@ exports.bookingCreated = functions.firestore
     return createNotification(notification, storeID);
   });
 
+// delete booking
+
+exports.bookingDelete = functions.firestore
+  .document("store/{storeID}/booking/{bookingID}")
+  .onDelete((snap, context) => {
+    const newValue = snap.data();
+    const storeID = context.params.storeID;
+    const notification = {
+      type: "預約取消",
+      selectedDate: newValue.selectedDate,
+      startTime: newValue.startTime,
+      serviceItem: newValue.serviceItem,
+      staffName: newValue.staffName
+    };
+    return createNotification(notification, storeID);
+  });
+
 // booking created send email
 let transporter = nodemailer.createTransport({
   service: "gmail",
@@ -73,7 +90,7 @@ exports.sendEmail = functions.firestore
               <p><b>預約日期：</b>${snap.data().bookedDay}</p>
               <p><b>預約時段：</b>${snap.data().timeText}</p>
               <p><b>服務：</b>${snap.data().serviceItem}</p>
-              <p><b>服務人員：</b>${snap.data().staffName}</p>
+              <p><b>服務人員：</b>${snap.data().staffNickname}</p>
               <p><b>電子郵件:</b> </b>${snap.data().email} </p>
               <p><b>備註:</b>${snap.data().desc} </p>
               <p>如有任何問題請聯繫 MyBooking 訂位服務平台，謝謝。</p>
@@ -86,21 +103,4 @@ exports.sendEmail = functions.firestore
       }
       console.log("Sent!");
     });
-  });
-
-// delete booking
-
-exports.bookingDelete = functions.firestore
-  .document("store/{storeID}/booking/{bookingID}")
-  .onDelete((snap, context) => {
-    const newValue = snap.data();
-    const storeID = context.params.storeID;
-    const notification = {
-      type: "預約取消",
-      selectedDate: newValue.selectedDate,
-      startTime: newValue.startTime,
-      serviceItem: newValue.serviceItem,
-      staffName: newValue.staffName
-    };
-    return createNotification(notification, storeID);
   });

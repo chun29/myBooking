@@ -18,9 +18,9 @@ class BookingConfirm extends Component {
     let view;
 
     if (bookingResult == 0) {
-      view = (
+      return (
         <div className="result-middle">
-          <h3>預約結果確認中</h3>
+          <h5>預約結果確認中</h5>
           <img className="result-img" src={result}></img>
         </div>
       );
@@ -29,9 +29,9 @@ class BookingConfirm extends Component {
       const name = data.newBooking ? data.newBooking.name : "";
       const email = data.newBooking ? data.newBooking.email : "";
       const ID = data.newBooking ? data.newBooking.id : "";
-      view = (
+      return (
         <React.Fragment>
-          <h3 className="result-h1">預約成功</h3>
+          <h5>預約成功</h5>
           <div className="result-success">
             <div className="result-success-1">
               親愛的 <b>{name} </b> 先生/小姐 您好，您的預約資訊如下
@@ -40,7 +40,7 @@ class BookingConfirm extends Component {
             <div>日期：{day}</div>
             <div>時間：{startTime.text}</div>
             <div>服務：{selectedService.item}</div>
-            <div>服務人員：{selectedStaff.name}</div>
+            <div>服務人員：{selectedStaff.nickname}</div>
             <div>預約結果已寄到您的信箱：{email}</div>
           </div>
           <img className="result-img" src={confirm}></img>
@@ -53,7 +53,7 @@ class BookingConfirm extends Component {
         </React.Fragment>
       );
     } else {
-      view = (
+      return (
         <div>
           <div className="text-wrapper">
             <h3> 預約結果</h3>
@@ -62,7 +62,7 @@ class BookingConfirm extends Component {
 
           <img className="result-img" src={contact}></img>
           <div>
-            需要協助嗎？ 聯絡 MyBooking 尋求支援與服務{" "}
+            需要協助嗎？ 聯絡 MyBooking 尋求支援與服務
             <b>
               <span>mybookingtw@gmail.com</span>
             </b>
@@ -70,8 +70,6 @@ class BookingConfirm extends Component {
         </div>
       );
     }
-
-    return <React.Fragment>{view}</React.Fragment>;
   }
 }
 const mapStateToProps = state => {

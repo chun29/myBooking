@@ -67,27 +67,6 @@
   padding: 15px;
 }
 
-.button-wrapper {
-  text-align: right;
-}
-
-.button-wrapper button {
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 10px;
-  line-height: 20px;
-  padding: 15px 20px;
-  border: 1px solid #00bfa5;
-  background-color: #fff;
-  color: #00bfa5;
-  font-weight: 600;
-  outline: none;
-}
-.button-wrapper button:hover {
-  background-color: #00bfa5;
-  color: white;
-}
-
 /* logo upload*/
 .logo-circle {
   height: 150px;
@@ -199,7 +178,7 @@
   cursor: default;
 }
 
-.banner-wrapper {
+.logo-wrapper .banner-wrapper {
   height: 200px;
   width: 100%;
   background-color: #fff;
@@ -207,7 +186,7 @@
   cursor: pointer;
   position: relative;
 }
-.banner-wrapper:hover .img-description-square {
+.logo-wrapper .banner-wrapper:hover .img-description-square {
   visibility: visible;
   opacity: 1;
   color: #fff;
@@ -516,7 +495,6 @@
     }
     .button-wrapper button {
       font-size: 14px;
-      padding: 10px 15px;
     }
     .alert-wrapper h1,
     .member-title {

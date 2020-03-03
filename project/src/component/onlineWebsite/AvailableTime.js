@@ -5,6 +5,7 @@ import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { withRouter } from "react-router";
 import "../../style/template.css";
+import optionsImg from "../../img/options.png";
 
 class AvailableTime extends Component {
   render() {
@@ -140,6 +141,14 @@ class AvailableTime extends Component {
         }
         finalBtn.push(time);
       }
+      if (finalBtn.length < 1) {
+        return (
+          <div>
+            <p>很抱歉，今日預約已滿，請選擇其他日期或是服務人員</p>
+            <img className="no-time-img" src={optionsImg} />
+          </div>
+        );
+      }
 
       return (
         <div className="time-btn-wrapper">
@@ -149,7 +158,7 @@ class AvailableTime extends Component {
                 onClick={() => {
                   selectStartTime(time[1], time[0]);
                 }}
-                className="timeButton"
+                className="timeButton green-btn"
                 key={i}
               >
                 {time[0]}
