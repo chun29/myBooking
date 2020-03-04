@@ -1,13 +1,13 @@
 import React from "react";
-import moment, { months } from "moment";
+import moment from "moment";
 import "../../style/staff.css";
 import calendar from "../../img/calendar-2.png";
-import Test from "../shops/test";
+import Day from "../shops/Day";
 
 class CalendarPart extends React.Component {
   constructor(props) {
     super(props);
-    //state
+
     this.state = {
       dateObject: moment(),
       allMonths: moment.months(),
@@ -15,7 +15,6 @@ class CalendarPart extends React.Component {
     };
   }
 
-  //Html + function
   render() {
     const { storeID } = this.props;
     const staffInfo = this.props.staffs;
@@ -25,6 +24,7 @@ class CalendarPart extends React.Component {
       this.props.bookings.sort(function(a, b) {
         return a.startTime - b.startTime;
       });
+
     const bookingList =
       bookingInfo &&
       staffInfo &&
@@ -40,19 +40,15 @@ class CalendarPart extends React.Component {
           staffInfo &&
           staffInfo.filter(staff => staff.id === booking.selectedStaff);
 
-        const staffName = staff[0] && staff[0].name;
-        const staffColor = staff[0] && staff[0].color;
-
         const service =
           serviceInfo &&
           serviceInfo.filter(service => service.id === booking.selectedService);
-        const serviceName = service && service[0] && service[0].item;
+
         let date = new Date(booking.selectedDate.seconds * 1000);
-        const bookingMonth = date.getMonth() + 1;
-        const bookingDate = date.getDate();
-        const bookingHours = date.getHours();
+
         const { name, phone, email, desc, duration } = booking;
         const id = booking.id;
+
         let bookingMinutes;
         if (date.getMinutes() == 0) {
           bookingMinutes = "00";
@@ -61,12 +57,12 @@ class CalendarPart extends React.Component {
         }
 
         return {
-          staff: staffName,
-          staffColor: staffColor,
-          service: serviceName,
-          date: bookingDate,
-          month: bookingMonth,
-          hours: bookingHours,
+          staff: staff[0] && staff[0].name,
+          staffColor: staff[0] && staff[0].color,
+          service: service[0] && service[0].item,
+          date: date.getDate(),
+          month: date.getMonth() + 1,
+          hours: date.getHours(),
           minutes: bookingMinutes,
           duration: duration / 60 + "小時",
           time,
@@ -79,9 +75,9 @@ class CalendarPart extends React.Component {
       });
 
     // Mon~Sun
-    let weekday = moment.weekdaysShort().map(day => {
+    let weekday = moment.weekdaysShort().map((day, i) => {
       return (
-        <th key={day} className="week-day">
+        <th key={i} className="week-day">
           {day}
         </th>
       );
@@ -101,10 +97,6 @@ class CalendarPart extends React.Component {
     for (let i = 0; i < firstDayOfMonth(); i++) {
       blanks.push(<td className="calendar-day empty">{""}</td>);
     }
-    //  generate </td> of date in the month.
-    let currentDay = () => {
-      return this.state.dateObject.format("D");
-    };
 
     let daysInMonth = [];
 
@@ -125,8 +117,8 @@ class CalendarPart extends React.Component {
             {datas &&
               datas.map((data, i) => {
                 return (
-                  <React.Fragment>
-                    <Test key={i} data={data} storeID={storeID} />
+                  <React.Fragment key={i}>
+                    <Day data={data} storeID={storeID} />
                   </React.Fragment>
                 );
               })}
@@ -134,12 +126,10 @@ class CalendarPart extends React.Component {
         </td>
       );
     }
-    // Define some more variables
-    var totalSlots = [...blanks, ...daysInMonth];
+
+    let totalSlots = [...blanks, ...daysInMonth];
     let rows = [];
     let cells = [];
-
-    // totalSloats
 
     totalSlots.forEach((row, i) => {
       if (i % 7 !== 0) {
@@ -159,103 +149,6 @@ class CalendarPart extends React.Component {
       return <tr key={i}>{d}</tr>;
     });
 
-    // Create month picker
-    const month = () => {
-      return this.state.dateObject.format("MMMM");
-    };
-
-    const MonthList = () => {
-      let months = [];
-      moment.months().map((month, i) =>
-        months.push(
-          <td
-            key={i}
-            onClick={e => {
-              this.setMonth(month);
-            }}
-          >
-            <span>{month}</span>
-          </td>
-        )
-      );
-
-      let rows = [];
-      let cells = [];
-
-      months.forEach((row, i) => {
-        if (i % 3 !== 0 || i == 0) {
-          // except zero index
-          cells.push(row);
-        } else {
-          rows.push(cells);
-          cells = [];
-          cells.push(row);
-        }
-      });
-      rows.push(cells); // add last row
-      let monthlist = rows.map((d, i) => {
-        return <tr key={i}>{d}</tr>;
-      });
-      return (
-        <table className="calendar-month">
-          <thead>
-            <tr>
-              <th>Select a Month</th>
-            </tr>
-          </thead>
-          <tbody>{monthlist}</tbody>
-        </table>
-      );
-    };
-
-    // Year picker
-    const year = () => {
-      return this.state.dateObject.format("Y");
-    };
-    // Year Table
-    const yearTable = () => {
-      let years = [2019, 2020, 2021, 2022, 2023, 2024];
-      let yearsArr = [];
-      years.map(data => {
-        yearsArr.push(
-          <td
-            key={data}
-            onClick={() => {
-              this.setYear(data);
-            }}
-          >
-            {data}
-          </td>
-        );
-      });
-      let rows = [];
-      let cells = [];
-
-      yearsArr.forEach((row, i) => {
-        if (i % 3 !== 0 || i == 0) {
-          cells.push(row);
-        } else {
-          rows.push(cells);
-          cells = [];
-          cells.push(row);
-        }
-      });
-      rows.push(cells);
-      let yearlist = rows.map((d, i) => {
-        return <tr key={i}>{d}</tr>;
-      });
-      return (
-        <table className="calendar-month">
-          <thead>
-            <tr>
-              <th colSpan="4">Select a Yeah</th>
-            </tr>
-          </thead>
-          <tbody>{yearlist}</tbody>
-        </table>
-      );
-    };
-
     return (
       <div className="calendar-main-wrapper">
         <div className="calendar-header">
@@ -273,8 +166,7 @@ class CalendarPart extends React.Component {
             </div>
 
             <div className="calendar-icon-2">
-              <span>{month()} </span>
-              <span> {year()}</span>
+              <span>{this.state.dateObject.format("MMMM")} </span>
             </div>
           </div>
           <span
@@ -287,12 +179,6 @@ class CalendarPart extends React.Component {
           </span>
         </div>
 
-        {this.state.showYearTable && <div>{yearTable()}</div>}
-        {this.state.showMonthTable && (
-          <table className="calendar-month">
-            <div>{this.state.showMonthTable && MonthList()}</div>
-          </table>
-        )}
         {this.state.showDateTable && (
           <table className="calendar-table">
             <thead>

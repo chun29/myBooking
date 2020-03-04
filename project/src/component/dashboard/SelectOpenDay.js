@@ -12,7 +12,7 @@ class SelectOpenDay extends Component {
         <div className="form-check">
           <label>
             <Checkbox
-              name={day[0]}
+              name={`${day[0]}`}
               checked={isOpen}
               onChange={checkboxChange}
               className="form-check-input"

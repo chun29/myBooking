@@ -15,6 +15,18 @@ class Test extends Component {
   deleteBooking = (id, storeID) => {
     this.props.deleteBooking(id, storeID);
   };
+
+  onMouseOver(e) {
+    this.setState({
+      isHover: true
+    });
+  }
+
+  onMouseOut(e) {
+    this.setState({
+      isHover: false
+    });
+  }
   render() {
     const { data, storeID } = this.props;
 
@@ -33,8 +45,6 @@ class Test extends Component {
         <div
           className="booking-text"
           style={{ backgroundColor: data.staffColor }}
-          // onMouseEnter={this.onMouseOver.bind(this)}
-          // onMouseLeave={this.onMouseOut.bind(this)}
           onClick={this.onMouseOver.bind(this)}
         >
           {data.time}
@@ -88,19 +98,6 @@ class Test extends Component {
         )}
       </React.Fragment>
     );
-  }
-  onMouseOver(e) {
-    console.log("click");
-    this.setState({
-      isHover: true
-    });
-  }
-
-  onMouseOut(e) {
-    console.log("click");
-    this.setState({
-      isHover: false
-    });
   }
 }
 const mapDispatchToProps = dispatch => {

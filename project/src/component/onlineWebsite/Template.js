@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../style/template.css";
-import Service from "./service";
+import Service from "./Service";
 import Staff from "./Staff";
 import AvailableTime from "./AvailableTime";
 import { BookingProcess } from "./BookingProcess";
@@ -375,7 +375,7 @@ class Template extends React.Component {
                     <React.Fragment>
                       <div className="step-header-wrapper">
                         <img src={work} />
-                        <h5> 選擇服務</h5>
+                        <h5>選擇服務</h5>
                       </div>
 
                       <div className="service-wrapper">

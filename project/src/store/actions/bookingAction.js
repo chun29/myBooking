@@ -2,7 +2,6 @@ export const createBooking = (booking, store) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const { id } = store;
     const storeName = store.online ? store.online.storeName : "";
-    console.log(id, storeName);
     const {
       bookedDay,
       desc,
@@ -44,7 +43,6 @@ export const createBooking = (booking, store) => {
         createdAt: new Date()
       })
       .then(docRef => {
-        console.log(docRef.id);
         booking.id = docRef.id;
         dispatch({ type: "CREATE_BOOKING", booking });
       })
@@ -64,7 +62,6 @@ export const deleteBooking = (bookingId, storeId) => {
       .doc(bookingId)
       .delete()
       .then(() => {
-        console.log("Document successfully deleted!");
         dispatch({ type: "DELETE_BOOKING", bookingId });
       })
       .catch(() => {
