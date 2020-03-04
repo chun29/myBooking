@@ -57,7 +57,9 @@ class Service extends Component {
                         <p>還沒有服務項目，請先新增</p>
                         <div className="button-wrapper">
                           <Link to="/createservice">
-                            <button>新建服務項目</button>
+                            <button className="add-staff green-btn">
+                              新建服務項目
+                            </button>
                           </Link>
                         </div>
                       </div>
