@@ -149,6 +149,7 @@ class StaffList extends Component {
     }
   };
   render() {
+    console.log(this.props);
     const { staffs, storeId } = this.props;
     const colors = ["#bbc1e8", "#a5dff8", "#ffbf69", "#ff9cbb", "#a6e5bd"];
     if (this.state.edit === true) {
@@ -292,17 +293,16 @@ class StaffList extends Component {
     }
 
     return (
-      <div className="staff-table-container">
-        <table className="staff-table-wrapper">
+      <div className="table-container">
+        <table className="table-wrapper">
           <thead>
             <tr>
-              <th className="icon-width">刪除</th>
-              <th className="staff-img-th icon-width">編輯</th>
-              <th>照片</th>
-              <th>姓名</th>
-              <th>電話</th>
-              <th>Email</th>
+              <th colSpan="2">服務人員</th>
               <th className="desc-width">描述</th>
+              <th>電話</th>
+              <th>信箱</th>
+              <th className="icon-width">刪除</th>
+              <th className="icon-width">編輯</th>
             </tr>
           </thead>
           <tbody>
@@ -317,7 +317,15 @@ class StaffList extends Component {
 
                 return (
                   <tr key={staff.id}>
-                    <td className="icon-edit">
+                    <th className="staff-avatar staff-img">
+                      <img className="staff-avatar-img" src={url} />
+                    </th>
+                    <td className="title">{staff.name}</td>
+                    <td datatitle="描述">{staff.desc}</td>
+                    <td datatitle="電話">{staff.phone}</td>
+                    <td datatitle="信箱">{staff.email}</td>
+
+                    <td datatitle="編輯" className="icon-edit">
                       <img
                         onClick={() => {
                           this.deleteStaff(storeId, staff.id);
@@ -326,7 +334,7 @@ class StaffList extends Component {
                         src={deleteImg}
                       ></img>
                     </td>
-                    <td className="icon-edit">
+                    <td datatitle="刪除" className="icon-edit">
                       <img
                         onClick={() => {
                           this.editStaffShow(staff);
@@ -335,13 +343,6 @@ class StaffList extends Component {
                         src={edit}
                       ></img>
                     </td>
-                    <td className="staff-avatar">
-                      <img className="staff-avatar-img" src={url} />
-                    </td>
-                    <td className="staff-name">{staff.name}</td>
-                    <td className="staff-phone">{staff.phone}</td>
-                    <td className="staff-email">{staff.email}</td>
-                    <td className="staff-desc">{staff.desc}</td>
                   </tr>
                 );
               })}

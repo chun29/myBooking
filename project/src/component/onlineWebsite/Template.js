@@ -259,7 +259,7 @@ class Template extends React.Component {
     let storeCloseDay = [];
     if (storeInfo && storeInfo[0].online) {
       const text = storeInfo[0].online.storeDesc;
-      const ntext = (
+      const wrapText = (
         <div>
           {text.split("\n").map((i, key) => {
             return <div key={key}>{i}</div>;
@@ -271,7 +271,7 @@ class Template extends React.Component {
         name: storeInfo[0].online.storeName,
         address: storeInfo[0].online.storeAddress,
         phone: storeInfo[0].online.storePhone,
-        desc: ntext,
+        desc: wrapText,
         note: storeInfo[0].online.bookingNote,
         startDay: Number(storeInfo[0].online.bookOpenDay),
         closeDay: Number(storeInfo[0].online.bookCloseDay),

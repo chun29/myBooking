@@ -106,7 +106,6 @@ class ServiceList extends Component {
     }
 
     if (serviceInfo.item.length > 0 && serviceInfo.price.length > 0) {
-      console.log("submit", this.state);
       this.props.editService(this.props.storeId, serviceInfo.id, serviceInfo);
       this.setState({
         edit: false
@@ -122,7 +121,6 @@ class ServiceList extends Component {
   };
   render() {
     const { services, storeId } = this.props;
-    console.log(services);
     if (this.state.edit === true) {
       const serviceInfo = this.state.service;
       return (
@@ -240,17 +238,16 @@ class ServiceList extends Component {
     }
 
     return (
-      <div className="staff-table-container">
-        <table className="staff-table-wrapper">
+      <div className="table-container">
+        <table className="table-wrapper">
           <thead>
             <tr>
-              <th className="icon-width">刪除</th>
-              <th className="icon-width">編輯</th>
-              <th>照片</th>
-              <th>項目</th>
-              <th>時間</th>
-              <th>價格</th>
+              <th colSpan="2">服務項目</th>
               <th className="desc-width">描述</th>
+              <th className="icon-width">時間</th>
+              <th className="icon-width">價格</th>
+              <th className="icon-width">編輯</th>
+              <th className="icon-width">刪除</th>
             </tr>
           </thead>
           <tbody>
@@ -264,16 +261,21 @@ class ServiceList extends Component {
                 }
                 return (
                   <tr key={service.id}>
-                    <td className="icon-edit">
-                      <img
-                        onClick={() => {
-                          this.deleteService(storeId, service.id);
-                        }}
-                        className="edit-img"
-                        src={deleteImg}
-                      ></img>
+                    <th className="img">
+                      <img src={url} />
+                    </th>
+                    <th className="title">{service.item}</th>
+                    <td datatitle="描述" className="staff-desc">
+                      {service.desc}
                     </td>
-                    <td className="icon-edit">
+                    <td datatitle="時間" className="icon-width">
+                      {service.duration / 60} 小時
+                    </td>
+                    <td datatitle="價格" className="icon-width">
+                      {service.price}
+                    </td>
+
+                    <td datatitle="編輯" className="icon-width">
                       <img
                         className="edit-img"
                         onClick={() => {
@@ -282,15 +284,15 @@ class ServiceList extends Component {
                         src={edit}
                       ></img>
                     </td>
-                    <td className="service-avatar">
-                      <img className="service-avatar-img" src={url} />
+                    <td datatitle="刪除" className="icon-width">
+                      <img
+                        onClick={() => {
+                          this.deleteService(storeId, service.id);
+                        }}
+                        className="edit-img"
+                        src={deleteImg}
+                      ></img>
                     </td>
-                    <td className="staff-name">{service.item}</td>
-                    <td className="staff-phone">
-                      {service.duration / 60} 小時
-                    </td>
-                    <td className="staff-email">{service.price}</td>
-                    <td className="staff-desc">{service.desc}</td>
                   </tr>
                 );
               })}
