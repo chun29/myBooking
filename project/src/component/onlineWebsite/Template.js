@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { createRef } from "react";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
@@ -29,6 +29,7 @@ class Template extends React.Component {
   constructor(props) {
     super(props);
     this.scrollDiv = createRef();
+    this.scrollDiv2 = createRef();
     this.state = {
       step: "",
       bookingShow: false,
@@ -78,6 +79,7 @@ class Template extends React.Component {
       });
     }
   };
+
   showBooking = () => {
     if (this.state.bookingShow == true || this.state.resultShow == true) {
       window.location.reload(true);
@@ -217,20 +219,25 @@ class Template extends React.Component {
   };
 
   render() {
-    const data = this.props;
-    if (data.store == null) {
+    const { staffs, services, storeInfo } = this.props;
+    const id = this.props.match.params && this.props.match.params;
+
+    //Loading
+    if (storeInfo == null) {
       return (
         <div>
           <Loading />
         </div>
       );
     }
+
+    //Store Close
     if (
-      data.store.length < 1 ||
-      data.store[0].online.bookingIsOpen == false ||
-      (data.store && data.store[0] && data.store[0].workday === null) ||
-      (data.staff && data.staff.length < 1) ||
-      (data.service && data.service.length < 1)
+      storeInfo.length < 1 ||
+      storeInfo[0].online.bookingIsOpen == false ||
+      (storeInfo && storeInfo[0] && storeInfo[0].workday === null) ||
+      (staffs && staffs.length < 1) ||
+      (services && services.length < 1)
     ) {
       return (
         <div className="online-container">
@@ -246,26 +253,12 @@ class Template extends React.Component {
         </div>
       );
     }
-    const id = this.props.match.params && this.props.match.params;
-
-    if (data.store && data.store[0]) {
-      if (data.store[0].online) {
-        onlineSetup = data.store[0].online.bookingIsOpen;
-      }
-    }
-
-    let onlineSetup = false;
-
-    if (data.store && data.store[0]) {
-      if (data.store[0].online) {
-        onlineSetup = data.store[0].online.bookingIsOpen;
-      }
-    }
-
+    //Store Open
+    //Get Close Day
     let store;
     let storeCloseDay = [];
-    if (data.store && data.store[0].online) {
-      const text = data.store[0].online.storeDesc;
+    if (storeInfo && storeInfo[0].online) {
+      const text = storeInfo[0].online.storeDesc;
       const ntext = (
         <div>
           {text.split("\n").map((i, key) => {
@@ -274,20 +267,20 @@ class Template extends React.Component {
         </div>
       );
       store = {
-        bookingIsOpen: data.store[0].online.storeName.bookingIsOpen,
-        name: data.store[0].online.storeName,
-        address: data.store[0].online.storeAddress,
-        phone: data.store[0].online.storePhone,
+        bookingIsOpen: storeInfo[0].online.storeName.bookingIsOpen,
+        name: storeInfo[0].online.storeName,
+        address: storeInfo[0].online.storeAddress,
+        phone: storeInfo[0].online.storePhone,
         desc: ntext,
-        note: data.store[0].online.bookingNote,
-        startDay: Number(data.store[0].online.bookOpenDay),
-        closeDay: Number(data.store[0].online.bookCloseDay),
-        logoImg: data.store[0].online.logoSrc,
-        bannerImg: data.store[0].online.bannerSrc,
-        close: data.store[0].online.storeIsClose,
-        isOpen: Object.values(data.store[0].workday.isOpen),
-        openTime: data.store[0].workday.openTime,
-        closeTime: data.store[0].workday.closeTime
+        note: storeInfo[0].online.bookingNote,
+        startDay: Number(storeInfo[0].online.bookOpenDay),
+        closeDay: Number(storeInfo[0].online.bookCloseDay),
+        logoImg: storeInfo[0].online.logoSrc,
+        bannerImg: storeInfo[0].online.bannerSrc,
+        close: storeInfo[0].online.storeIsClose,
+        isOpen: Object.values(storeInfo[0].workday.isOpen),
+        openTime: storeInfo[0].workday.openTime,
+        closeTime: storeInfo[0].workday.closeTime
       };
 
       for (let i = 0; i < store.isOpen.length; i++) {
@@ -306,17 +299,6 @@ class Template extends React.Component {
       }
       return true;
     };
-
-    const staffArr = this.props.staff ? this.props.staff : "";
-    const serviceArr = this.props.service ? this.props.service : "";
-
-    if (onlineSetup === null) {
-      return (
-        <div>
-          <Loading />
-        </div>
-      );
-    }
 
     return (
       <div className="online-container">
@@ -346,24 +328,21 @@ class Template extends React.Component {
               </div>
               <StoreMap address={store.address} />
               <div className="basic-container">
-                {store && (
-                  <div className="info">
-                    <img className="info-icon" src={phoneImg} />
-                    {store.phone}
-                  </div>
-                )}
-                {store && (
-                  <div className="info">
-                    <img className="info-icon" src={addressImg} />
-                    {store.address}
-                  </div>
-                )}
+                <div className="info">
+                  <img className="info-icon" src={phoneImg} />
+                  {store.phone}
+                </div>
+
+                <div className="info">
+                  <img className="info-icon" src={addressImg} />
+                  {store.address}
+                </div>
               </div>
 
               <hr className="infohr" />
 
               <div className="store-desc">
-                {store && <div>{store.desc}</div>}
+                <div>{store.desc}</div>
               </div>
             </div>
 
@@ -371,13 +350,15 @@ class Template extends React.Component {
               <h5>店家圖片</h5>
               <div className="store-photo-wrapper">
                 <div className="store-photo">
-                  {store && <img src={store.logoImg} alt="" />}
+                  <img src={store.logoImg} alt="" />
                 </div>
               </div>
             </div>
             <div className="info-section">
               <h5>預約須知</h5>
-              <div className="store-desc">{store && <p>{store.note}</p>}</div>
+              <div className="store-desc">
+                <p>{store.note}</p>
+              </div>
             </div>
 
             {this.state.bookingShow && (
@@ -398,7 +379,7 @@ class Template extends React.Component {
                       </div>
 
                       <div className="service-wrapper">
-                        {serviceArr.map((service, i) => {
+                        {services.map((service, i) => {
                           return (
                             <Service
                               key={i}
@@ -411,6 +392,7 @@ class Template extends React.Component {
                       </div>
                     </React.Fragment>
                   )}
+
                   {this.state.staffShow && (
                     <div className="booking-step-item">
                       <div className="step-header-wrapper">
@@ -419,7 +401,7 @@ class Template extends React.Component {
                       </div>
 
                       <div className="service-wrapper">
-                        {staffArr.map((staff, i) => {
+                        {staffs.map((staff, i) => {
                           return (
                             <Staff
                               key={i}
@@ -472,6 +454,7 @@ class Template extends React.Component {
                     )}
                   </div>
                 )}
+
                 {this.state.confirmShow && (
                   <div className="booking-step-item-2">
                     <div className="step-header-wrapper">
@@ -504,9 +487,9 @@ class Template extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    staff: state.firestore.ordered.staff,
-    service: state.firestore.ordered.service,
-    store: state.firestore.ordered.store
+    staffs: state.firestore.ordered.staff,
+    services: state.firestore.ordered.service,
+    storeInfo: state.firestore.ordered.store
   };
 };
 

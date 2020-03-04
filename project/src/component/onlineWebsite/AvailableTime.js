@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import setOpeningHours from "../../store/actions/openingHoursAction";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -60,17 +59,11 @@ class AvailableTime extends Component {
     }
 
     const timeArea = bookedTime => {
-      //Book time fake data
-
-      // 由 open time and close time 生成全部時段 array
-
-      let times = []; // time array
-      let start = openTime; //Number(store.openTime.friday); // start time
+      let times = [];
+      let start = openTime;
       let close = closeTime;
-
       let length = (close - start) * 2;
 
-      // 全部時間 array 格式 [[開始時間],[結束時間],...]
       for (let i = 0; i < length; i++) {
         let t = [];
         t[0] = start;
@@ -79,7 +72,6 @@ class AvailableTime extends Component {
         start = start + 0.5;
       }
 
-      //篩出全部時間-已預定的時間
       function arr_diff(a1, a2) {
         var a = [],
           diff = [];
@@ -128,9 +120,9 @@ class AvailableTime extends Component {
           time[0] = "12:30 PM";
           time[1] = 12.5;
         } else {
-          let hh = Math.floor(finalArr[i]); // getting hours of day in 0-24 format
-          let mm = (finalArr[i] * 60) % 60; // getting minutes of the hour in 0-55 format
-          let ap = ["AM", "PM"]; // AM-PM
+          let hh = Math.floor(finalArr[i]);
+          let mm = (finalArr[i] * 60) % 60;
+          let ap = ["AM", "PM"];
           time[0] =
             ("0" + (hh % 12)).slice(-2) +
             ":" +
@@ -179,15 +171,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setOpeningHours: (weekday, id) => dispatch(setOpeningHours(weekday, id))
-  };
-};
-
 export default withRouter(
   compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps),
     firestoreConnect(props => {
       const uid = props.match.params.id;
 

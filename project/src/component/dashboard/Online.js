@@ -15,6 +15,7 @@ import alert from "../../img/alert.png";
 import mail from "../../img/mail.png";
 import user from "../../img/user.png";
 import www from "../../img/www.png";
+import "../../style/online.css";
 
 class Online extends Component {
   state = {
@@ -42,10 +43,10 @@ class Online extends Component {
   }
 
   render() {
-    const onlineMsg = this.state.onlineMsg;
     if (this.props.profile.name == null) {
       return <Loading />;
     }
+    const { onlineMsg } = this.state;
     const { store, auth, profile, staff, service } = this.props;
     let onlineSetup = false;
     if (store && store[0]) {
@@ -101,7 +102,7 @@ class Online extends Component {
       showSetup = (
         <div className="button-wrapper">
           <Link to="/onlinebooking">
-            <button className="add-staff">上線資料設定</button>
+            <button className="add-staff blue-btn">上線資料設定</button>
           </Link>
         </div>
       );
@@ -117,7 +118,7 @@ class Online extends Component {
             <DashboardHeader />
           </div>
           <div className="main main-online">
-            <div className="main-wrapper">
+            <div className="main-wrapper onlineSet-container">
               <div className="all-right-container-online">
                 <div className="online-step-info">
                   <div className="online-info-header">
@@ -128,28 +129,28 @@ class Online extends Component {
                   <div className="online-step-wrap">
                     <div className="online-step">
                       <img className="step-img" src={step_1} />
-                      <h4>1. 設定服務項目</h4>
+                      <h5>1. 設定服務項目</h5>
                       <Link to="/service">
                         <p className="go-to-link">前往連結</p>
                       </Link>
                     </div>
                     <div className="online-step">
                       <img className="step-img" src={step_2} />
-                      <h4>2. 設定服務人員</h4>
+                      <h5>2. 設定服務人員</h5>
                       <Link to="/staff">
                         <p className="go-to-link">前往連結</p>
                       </Link>
                     </div>
                     <div className="online-step">
                       <img className="step-img" src={step_3} />
-                      <h4>3. 設定營業時間</h4>
+                      <h5>3. 設定營業時間</h5>
                       <Link to="/openinghours">
                         <p className="go-to-link">前往連結</p>
                       </Link>
                     </div>
                     <div className="online-step">
                       <img className="step-img" src={step_4} />
-                      <h4>4. 上線設定</h4>
+                      <h5>4. 上線設定</h5>
                       <Link to="/onlinebooking">
                         <p className="go-to-link">前往連結</p>
                       </Link>
@@ -200,7 +201,6 @@ class Online extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     staff: state.firestore.ordered.staff,
     store: state.firestore.ordered.store,

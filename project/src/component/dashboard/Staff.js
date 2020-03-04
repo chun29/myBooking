@@ -58,7 +58,9 @@ class Staff extends Component {
                         <p>還沒有服務人員，請先新增</p>
                         <div className="button-wrapper">
                           <Link to="/createstaff">
-                            <button>新建服務人員</button>
+                            <button className="green-btn add-staff">
+                              新建服務人員
+                            </button>
                           </Link>
                         </div>
                       </div>
@@ -76,7 +78,6 @@ class Staff extends Component {
           </div>
         </div>
       );
-    } else {
     }
     const staffs = this.props.staff && (
       <StaffList staffs={this.props.staff} storeId={this.props.auth.uid} />
@@ -100,7 +101,9 @@ class Staff extends Component {
                   <div className="staff-main-wrapper">
                     <div className="button-wrapper">
                       <Link to="/createstaff">
-                        <button className="add-staff">新建服務人員</button>
+                        <button className="add-staff green-btn">
+                          新建服務人員
+                        </button>
                       </Link>
                     </div>
                     {staffs}

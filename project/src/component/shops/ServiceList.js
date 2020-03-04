@@ -244,13 +244,13 @@ class ServiceList extends Component {
         <table className="staff-table-wrapper">
           <thead>
             <tr>
-              <th>刪除</th>
-              <th>編輯</th>
+              <th className="icon-width">刪除</th>
+              <th className="icon-width">編輯</th>
               <th>照片</th>
               <th>項目</th>
               <th>時間</th>
               <th>價格</th>
-              <th>描述</th>
+              <th className="desc-width">描述</th>
             </tr>
           </thead>
           <tbody>

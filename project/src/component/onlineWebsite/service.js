@@ -4,7 +4,6 @@ import Timer from "../../img/clock.png";
 
 const Service = ({ service, selectService, selectedService }) => {
   let style;
-
   if (service.id == selectedService.id) {
     style = {
       border: "2px solid #3d5afe",

@@ -64,10 +64,10 @@ export const TodayBookings = props => {
 
         return {
           time,
-          staff: staff[0].name,
-          service: service[0].item,
-          staffColor: staff[0].color,
-          price: service[0].price
+          staff: staff[0] && staff[0].name,
+          service: service[0] && service[0].item,
+          staffColor: staff[0] && staff[0].color,
+          price: service[0] && service[0].price
         };
       });
     let allPrice = 0;

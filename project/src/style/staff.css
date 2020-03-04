@@ -17,6 +17,21 @@
   display: flex;
   flex-direction: column;
 }
+.add-staff {
+  float: right;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 10px;
+  line-height: 20px;
+  padding: 15px 20px;
+  border: 1px solid #00bfa5;
+  background-color: #fff;
+  color: #00bfa5;
+  font-weight: 600;
+  outline: none;
+}
+
+/* service */
 .all-right-container-service {
   width: 100%;
 }
@@ -65,6 +80,7 @@
   border-bottom: 1px solid rgba(229, 229, 229, 0.7);
   border-top: 0px;
   padding: 15px;
+  word-break: break-all;
 }
 
 /* logo upload*/
@@ -226,14 +242,6 @@
   box-shadow: 2px 3px rgba(229, 229, 229, 0.7);
 }
 
-.all-right-container-online {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 .online-step-info {
   padding: 15px;
   box-shadow: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
@@ -338,7 +346,7 @@
   height: 22px;
   margin-right: 15px;
 }
-.content {
+.member-info .content {
   padding: 10px;
   margin: 10px;
 }
@@ -404,7 +412,10 @@
 .go-to-link {
   margin-top: 10px;
 }
-@media (max-width: 1200px) {
+.online-step-wrap .online-step {
+  flex: 0 0 40%;
+}
+@media (max-width: 1300px) {
   .step-img {
     width: 130px;
     height: 110px;
@@ -431,10 +442,7 @@
     margin: 0 20px;
   }
 }
-@media (max-width: 1000px) {
-  .all-right-container-online {
-    flex-direction: column-reverse;
-  }
+@media (max-width: 1050px) {
   .alert-wrapper,
   .member-content-alert {
     width: 100%;
@@ -500,24 +508,6 @@
     .member-title {
       font-size: 18px;
     }
-    .online-step-info h1 {
-      font-size: 15px;
-      line-height: 30px;
-    }
-    .online-step-info,
-    .member-content-alert,
-    .member-content {
-      margin-bottom: 10px;
-    }
-    .set-alert-msg,
-    .member-cap,
-    .member-text,
-    .online-step {
-      font-size: 13px;
-    }
-    .online-step {
-      margin: 0 10px;
-    }
     .alert-img,
     .member-icon {
       width: 24px;
@@ -532,6 +522,7 @@
     }
     .online-step-info {
       height: auto;
+      padding: 10px 5px;
     }
     .member-icon {
       margin-right: 10px;
@@ -590,3 +581,5 @@
     }
   }
 }
+
+/* new */

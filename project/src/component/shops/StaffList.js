@@ -296,13 +296,13 @@ class StaffList extends Component {
         <table className="staff-table-wrapper">
           <thead>
             <tr>
-              <th>刪除</th>
-              <th className="staff-img-th">編輯</th>
+              <th className="icon-width">刪除</th>
+              <th className="staff-img-th icon-width">編輯</th>
               <th>照片</th>
               <th>姓名</th>
               <th>電話</th>
               <th>Email</th>
-              <th>描述</th>
+              <th className="desc-width">描述</th>
             </tr>
           </thead>
           <tbody>
