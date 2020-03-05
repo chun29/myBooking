@@ -154,6 +154,32 @@
   margin: 0 auto;
   width: 80%;
 }
+.confirm-email-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 100px;
+  text-align: center;
+  letter-spacing: 1.2px;
+}
+
+.confirm-email-container .logo-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.confirm-email-container .logo-container .nav-logo {
+  margin: 0;
+}
+.confirm-email-container button {
+  width: 120px;
+  padding: 15px 20px;
+  font-size: 17px;
+  margin: 30px;
+}
+
 @media (max-width: 1000px) {
   .signin-left {
     flex: 1;

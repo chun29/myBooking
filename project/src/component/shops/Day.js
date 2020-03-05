@@ -77,10 +77,14 @@ class Test extends Component {
                 <b>顧客姓名</b>：{data.name}
               </div>
               <div>
-                <b>顧客電話</b>：{data.phone}
+                <b>顧客電話</b>
+                <a href={`tel:+${data.phone}`}>：{data.phone}</a>
               </div>
               <div>
-                <b>顧客信箱</b>：{data.email}
+                <b>顧客信箱</b>
+                <a href={`mailto:${data.email}?subject=預約通知`}>
+                  ：{data.email}
+                </a>
               </div>
               <div>
                 <b>備註</b>：{ntext}

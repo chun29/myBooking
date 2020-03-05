@@ -1,5 +1,6 @@
 const initState = {
-  authError: null
+  authError: null,
+  sendEmail: false
 };
 const authReducer = (state = initState, action) => {
   switch (action.type) {
@@ -20,7 +21,7 @@ const authReducer = (state = initState, action) => {
       return state;
     case "SIGNUP_SUCCESS":
       console.log("註冊成功");
-      return { ...state, authError: null };
+      return { ...state, authError: null, sendEmail: true };
     case "SIGNUP_ERROR":
       console.log(action);
       if (

@@ -47,52 +47,52 @@ class App extends Component {
             <Route path="/signup" component={Signup} />
             <ProtectedRoute
               path="/dashboard"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={Dashboard}
             />
             <ProtectedRoute
               path="/calendar"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={Calendar}
             />
             <ProtectedRoute
               path="/staff"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={Staff}
             />
             <ProtectedRoute
               path="/service"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={Service}
             />
             <ProtectedRoute
               path="/openingHours"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={OpeningHours}
             />
             <ProtectedRoute
               path="/online"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={Online}
             />
             <ProtectedRoute
               path="/onlinebooking"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={BookingWebSetup}
             />
             <ProtectedRoute
               path="/createstaff"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={CreateStaff}
             />
             <ProtectedRoute
               path="/createbooking"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={CreateBooking}
             />
             <ProtectedRoute
               path="/createservice"
-              loggedIn={this.props.auth.uid}
+              loggedIn={this.props.auth.uid && this.props.emailVerified}
               component={CreateService}
             />
             <Route path="/booking/:id" component={Template} />
@@ -105,8 +105,10 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.firebase.auth.emailVerified);
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    emailVerified: state.firebase.auth.emailVerified
   };
 };
 

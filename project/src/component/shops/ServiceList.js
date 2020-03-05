@@ -3,25 +3,20 @@ import { connect } from "react-redux";
 import edit from "../../img/edit.png";
 import deleteImg from "../../img/delete.png";
 import Case from "../../img/case.png";
-import { deleteService, editService } from "../../store/actions/serviceAction";
-import uploader from "../../img/upload.png";
-import camera from "../../img/camera.png";
+import { deleteService } from "../../store/actions/serviceAction";
+import ServiceForm from "./ServiceForm";
 
 class ServiceList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      edit: false,
-      error: {
-        item: false,
-        price: false
-      }
+      edit: false
     };
   }
 
-  editServiceShow = service => {
+  editServiceShow = (service, boolean) => {
     this.setState({
-      edit: true,
+      edit: boolean,
       service
     });
   };
@@ -122,118 +117,12 @@ class ServiceList extends Component {
   render() {
     const { services, storeId } = this.props;
     if (this.state.edit === true) {
-      const serviceInfo = this.state.service;
       return (
-        <div className="edit-staff-wrapper">
-          <div className="createstaff-header">
-            <h1>編輯服務項目</h1>
-          </div>
-          <form
-            autoComplete="off"
-            className="staff-form"
-            onSubmit={this.handleSubmit}
-          >
-            <div className="input-wrapper">
-              <div className="form-section">
-                <div className="form-item">
-                  <label className="required" htmlFor="name">
-                    服務名稱
-                    {this.state.error.item && (
-                      <span className="alert-msg">請填入服務名稱</span>
-                    )}
-                  </label>
-                  <input
-                    id="item"
-                    value={serviceInfo.item}
-                    onChange={this.handleChange}
-                  ></input>
-                </div>
-                <div className="form-item">
-                  <label className="required" htmlFor="time">
-                    服務所需時間
-                  </label>
-                  <select
-                    className="all-select"
-                    value={serviceInfo.duration}
-                    onChange={this.handleChange}
-                    id="duration"
-                  >
-                    <option value="30">30 分鐘</option>
-                    <option value="60">1 小時</option>
-                    <option value="90">1.5 小時</option>
-                    <option value="120">2 小時</option>
-                    <option value="150">2.5 小時</option>
-                    <option value="180">3 小時</option>
-                    <option value="210">3.5 小時</option>
-                    <option value="240">4 小時</option>
-                    <option value="270">4.5 小時</option>
-                    <option value="300">5 小時</option>
-                    <option value="330">5.5 小時</option>
-                    <option value="360">6 小時</option>
-                  </select>
-                </div>
-                <div className="form-item">
-                  <label className="required" htmlFor="price">
-                    價格
-                    {this.state.error.price && (
-                      <span className="alert-msg">請檢查填入價格</span>
-                    )}
-                  </label>
-                  <span className="currencyinput">
-                    <span className="dollarsign">$</span>
-                    <input
-                      id="price"
-                      value={serviceInfo.price}
-                      onChange={this.handleChange}
-                    ></input>
-                  </span>
-                </div>
-                <div className="form-item logo-wrapper">
-                  <div className="form-item-title">服務項目照片</div>
-                  <label htmlFor="pic">
-                    <div className="service-pic-circle">
-                      <img
-                        className="service-pic"
-                        src={serviceInfo.url ? serviceInfo.url : uploader}
-                        alt=""
-                      />
-                      <div className="img-description-square">
-                        <img src={camera} />
-                        新增
-                      </div>
-                    </div>
-                  </label>
-                  <p>建議尺寸 300 x 240</p>
-                  <input
-                    onChange={this.handleImgChange}
-                    type="file"
-                    name="pic"
-                    id="pic"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                  />
-                </div>
-              </div>
-              <div className="form-section">
-                <div className="form-item">
-                  <label htmlFor="desc">服務說明</label>
-                  <textarea
-                    rows="11"
-                    id="desc"
-                    onChange={this.handleChange}
-                    value={serviceInfo.desc}
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-            <div className="form-button-wrapper">
-              <button onClick={this.cancelForm} className="cancel-staff-button">
-                取消
-              </button>
-              <button className="create-staff-button">儲存</button>
-            </div>
-          </form>
-        </div>
+        <ServiceForm
+          serviceInfo={this.state.service}
+          storeId={storeId}
+          toggleForm={this.editServiceShow}
+        />
       );
     }
 
@@ -279,7 +168,7 @@ class ServiceList extends Component {
                       <img
                         className="edit-img"
                         onClick={() => {
-                          this.editServiceShow(service);
+                          this.editServiceShow(service, true);
                         }}
                         src={edit}
                       ></img>
@@ -306,9 +195,7 @@ class ServiceList extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     deleteService: (storeId, serviceId) =>
-      dispatch(deleteService(storeId, serviceId)),
-    editService: (storeId, serviceId, serviceInfo) =>
-      dispatch(editService(storeId, serviceId, serviceInfo))
+      dispatch(deleteService(storeId, serviceId))
   };
 };
 

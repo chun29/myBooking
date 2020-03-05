@@ -29,7 +29,11 @@ export default function Footer() {
         <div className="footer-section">
           <h6>MyBooking 客服</h6>
           <ul>
-            <li>客服信箱 mybookingtw@gmail.com</li>
+            <li>
+              <a href={`mailto:mybookingtw@gmail.com`}>
+                客服信箱 mybookingtw@gmail.com
+              </a>
+            </li>
             <li>週一至週日 10:00 - 21:00</li>
           </ul>
         </div>

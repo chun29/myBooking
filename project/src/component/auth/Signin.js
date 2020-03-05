@@ -33,17 +33,14 @@ class SignIn extends Component {
       this.props.authMsg("請檢查輸入的密碼");
       return;
     }
-    // if (this.props.auth.uid && this.props.auth.emailVerified == false) {
-    //   this.props.authMsg("此信箱尚未驗證，請先去做信箱驗證");
-    //   return;
-    // }
+
     this.props.signIn(this.state);
     this.props.authMsg("登入中");
   };
   render() {
     const { authError, auth } = this.props;
 
-    if (auth.uid /*&& auth.emailVerified*/) {
+    if (auth.uid && auth.emailVerified) {
       return <Redirect to="dashboard" />;
     }
 

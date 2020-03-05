@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { signUp, authMsg } from "../../store/actions/authAction";
 import { Link } from "react-router-dom";
 import { Logo } from "../layout/Layout";
+import ConfirmEmail from "./ConfirmEmail";
 
 class Signup extends Component {
   state = {
@@ -44,9 +45,13 @@ class Signup extends Component {
   };
 
   render() {
-    const { authError, auth } = this.props;
-    if (auth.uid /*&& auth.emailVerified*/) {
+    const { authError, auth, sendEmail } = this.props;
+
+    if (auth.uid && auth.emailVerified) {
       return <Redirect to="dashboard" />;
+    }
+    if (sendEmail === true) {
+      return <ConfirmEmail />;
     }
     return (
       <div className="signin-wrapper">
@@ -107,7 +112,8 @@ class Signup extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    authError: state.auth.authError
+    authError: state.auth.authError,
+    sendEmail: state.auth.sendEmail
   };
 };
 

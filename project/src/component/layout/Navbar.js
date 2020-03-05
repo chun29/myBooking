@@ -23,11 +23,12 @@ class Navbar extends Component {
         showMenu: !prevState.showMenu
       }));
     };
-    const links = auth.uid /*&& auth.emailVerified*/ ? (
-      <SignInLinks profile={profile} />
-    ) : (
-      <SignedOutLinks />
-    );
+    const links =
+      auth.uid && auth.emailVerified ? (
+        <SignInLinks profile={profile} />
+      ) : (
+        <SignedOutLinks />
+      );
     return (
       <React.Fragment>
         <header className="nav-container">

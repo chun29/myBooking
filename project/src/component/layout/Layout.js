@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import "../../style/Layout.css";
+import "../../style/layout.css";
 
 export const Logo = () => {
   return (
@@ -17,7 +17,6 @@ export const UserAvatar = userName => {
   return (
     <NavLink to="/online">
       <div className="home-user-avatar">{userName.userName}</div>
-      {/* <div className="dropdown">TEST</div> */}
     </NavLink>
   );
 };
