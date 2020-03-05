@@ -632,7 +632,6 @@
   }
   .table-wrapper .img img {
     height: 100px;
-    object-fit: contain;
     padding: 0;
     margin: 0;
   }
@@ -646,8 +645,9 @@
   .table-wrapper .title {
     width: 100%;
     text-align: center;
-    color: rgba(44, 44, 44, 0.35);
+    color: rgba(44, 44, 44, 0.5);
     background-color: rgb(247, 247, 248);
+    line-height: 30px;
   }
   .table-wrapper .icon-width {
     width: auto;
