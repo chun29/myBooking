@@ -328,20 +328,20 @@ class StaffList extends Component {
                     <td datatitle="編輯" className="icon-edit">
                       <img
                         onClick={() => {
-                          this.deleteStaff(storeId, staff.id);
-                        }}
-                        className="edit-img"
-                        src={deleteImg}
-                      ></img>
-                    </td>
-                    <td datatitle="刪除" className="icon-edit">
-                      <img
-                        onClick={() => {
                           this.editStaffShow(staff);
                         }}
                         className="edit-img"
                         src={edit}
-                      ></img>
+                      />
+                    </td>
+                    <td datatitle="刪除" className="icon-edit">
+                      <img
+                        onClick={() => {
+                          this.deleteStaff(storeId, staff.id);
+                        }}
+                        className="edit-img"
+                        src={deleteImg}
+                      />
                     </td>
                   </tr>
                 );

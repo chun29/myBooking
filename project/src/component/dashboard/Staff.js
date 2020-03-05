@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { compose } from "redux";
 import { connect } from "react-redux";
-import { firestoreConnect } from "react-redux-firebase";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
 import "../../style/staff.css";
-import { Link } from "react-router-dom";
-import StaffList from "../shops/StaffList";
-import { NoData } from "./NoData";
+import StaffService from "./StaffService";
 
 class Staff extends Component {
   constructor(props) {
@@ -38,10 +34,6 @@ class Staff extends Component {
   render() {
     const staffMsg = this.state.staffMsg;
 
-    if (this.props.staff && this.props.staff.length < 1) {
-      return <NoData type={"staff"} />;
-    }
-
     return (
       <div className="layout">
         <div className="left">
@@ -54,31 +46,12 @@ class Staff extends Component {
           <div className="main">
             <div className="main-wrapper">
               <div className="all-right-container-service">
-                <div className="staff-wrapper">
-                  <div className="staff-header">
-                    <h1>服務人員</h1>
+                {this.state.showMsg && (
+                  <div className="dashboard-msg">
+                    {staffMsg ? <p>{staffMsg}</p> : null}
                   </div>
-                  <div className="staff-main-wrapper">
-                    <div className="button-wrapper">
-                      <Link to="/createstaff">
-                        <button className="add-staff green-btn">
-                          新建服務人員
-                        </button>
-                      </Link>
-                    </div>
-                    {this.props.staff && (
-                      <StaffList
-                        staffs={this.props.staff}
-                        storeId={this.props.auth.uid}
-                      />
-                    )}
-                    {this.state.showMsg && (
-                      <div className="dashboard-msg">
-                        {staffMsg ? <p>{staffMsg}</p> : null}
-                      </div>
-                    )}
-                  </div>
-                </div>
+                )}
+                <StaffService type={"staff"} />
               </div>
             </div>
           </div>
@@ -90,22 +63,8 @@ class Staff extends Component {
 
 const mapStateToProps = state => {
   return {
-    staff: state.firestore.ordered.staff,
-    auth: state.firebase.auth,
     staffMsg: state.staff
   };
 };
 
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect(props => {
-    return [
-      {
-        collection: "store",
-        doc: props.auth.uid,
-        subcollections: [{ collection: "staff" }],
-        storeAs: "staff"
-      }
-    ];
-  })
-)(Staff);
+export default connect(mapStateToProps)(Staff);

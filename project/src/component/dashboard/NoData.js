@@ -1,6 +1,4 @@
 import React from "react";
-import DashboardNav from "./DashboardNav";
-import DashboardHeader from "./DashboardHeader";
 import addstaff from "../../img/addstaff.png";
 import addservice from "../../img/addservice.png";
 import { Link } from "react-router-dom";
@@ -30,37 +28,21 @@ export const NoData = props => {
     layoutData = serviceLayout;
   }
   return (
-    <div className="layout">
-      <div className="left">
-        <DashboardNav index={layoutData.index} />
+    <div className="staff-wrapper">
+      <div className="staff-header">
+        <h1>{layoutData.h1}</h1>
       </div>
-      <div className="right">
-        <div className="header">
-          <DashboardHeader />
-        </div>
-        <div className="main">
-          <div className="main-wrapper">
-            <div className="all-right-container-service">
-              <div className="staff-wrapper">
-                <div className="staff-header">
-                  <h1>{layoutData.h1}</h1>
-                </div>
-                <div className="staff-main-wrapper">
-                  <div className="empty-wrapper">
-                    <img src={layoutData.img} className="addservice" />
-                    <h3>{layoutData.h3}</h3>
-                    <p>{layoutData.p}</p>
-                    <div className="button-wrapper">
-                      <Link to={layoutData.link}>
-                        <button className="green-btn add-staff">
-                          {layoutData.button}
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className="staff-main-wrapper">
+        <div className="empty-wrapper">
+          <img src={layoutData.img} className="addservice" />
+          <h3>{layoutData.h3}</h3>
+          <p>{layoutData.p}</p>
+          <div className="button-wrapper">
+            <Link to={layoutData.link}>
+              <button className="green-btn add-staff">
+                {layoutData.button}
+              </button>
+            </Link>
           </div>
         </div>
       </div>
