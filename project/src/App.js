@@ -105,7 +105,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.firebase.auth.emailVerified);
   return {
     auth: state.firebase.auth,
     emailVerified: state.firebase.auth.emailVerified

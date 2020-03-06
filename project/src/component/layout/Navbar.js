@@ -59,7 +59,7 @@ class Navbar extends Component {
         </header>
         {this.state.showMenu && (
           <div className="s-menu">
-            {auth.uid ? (
+            {auth.uid && auth.emailVerified ? (
               <React.Fragment>
                 <ul className="s-menu-one">
                   <Link to="/dashboard">

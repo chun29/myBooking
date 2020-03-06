@@ -21,15 +21,9 @@
   }
 }
 
-@media (max-width: 800px) {
-  .onlineSet-container .online-step-info h1 {
-    font-size: 18px;
-  }
-}
-
 @media (max-width: 500px) {
   .online-step-info h1 {
-    font-size: 15px;
+    font-size: 18px;
     line-height: 30px;
   }
   .online-step-info,

@@ -1,13 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Logo } from "../layout/Layout";
 import { withRouter } from "react-router";
 
 const ConfirmEmail = props => {
-  console.log(props);
-  const goHome = () => {
-    props.history.push("/");
-  };
   return (
     <div className="confirm-email-container">
       <Logo className="logo" />

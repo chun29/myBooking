@@ -82,6 +82,10 @@ class SignIn extends Component {
                   onChange={this.handleChange}
                   autoComplete="off"
                 />
+                <div className="test-account">
+                  <p>測試信箱：testmybookingtw＠gmail.com</p>
+                  <p>密碼：123456</p>
+                </div>
                 <div className="sign-alert">
                   <p>{authError}</p>
                 </div>

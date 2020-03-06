@@ -7,9 +7,12 @@ export const signIn = credential => {
       .then(data => {
         if (data.user.emailVerified) {
           dispatch({ type: "LOGIN_SUCCESS" });
+        } else if (!data.user.emailVerified) {
+          dispatch({ type: "LOGIN_EMAIL_NOT_VERIFIED" });
         }
       })
       .catch(err => {
+        console.log("signin not ok");
         dispatch({ type: "LOGIN_ERROR", err });
       });
   };
@@ -48,8 +51,6 @@ export const signUp = (newUser, callback) => {
         firebase.auth().onAuthStateChanged(function(user) {
           user.sendEmailVerification();
         });
-        // alert("已寄發驗證信，請先確認信箱再登入");
-        // callback();
         dispatch({
           type: "SIGNUP_SUCCESS"
         });

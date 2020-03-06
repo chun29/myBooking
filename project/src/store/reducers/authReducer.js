@@ -5,25 +5,25 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case "LOGIN_ERROR":
-      console.log(action);
       return {
         ...state,
-        authError: "登入失敗"
+        authError: "信箱或密碼有錯誤"
+      };
+    case "LOGIN_EMAIL_NOT_VERIFIED":
+      return {
+        ...state,
+        authError: "此信箱尚未被驗證"
       };
     case "LOGIN_SUCCESS":
-      console.log("登入成功");
       return {
         ...state,
         authError: null
       };
     case "SIGNOUT_SUCCESS":
-      console.log("sign out success");
       return state;
     case "SIGNUP_SUCCESS":
-      console.log("註冊成功");
       return { ...state, authError: null, sendEmail: true };
     case "SIGNUP_ERROR":
-      console.log(action);
       if (
         action.err.message ===
         "The email address is already in use by another account."
@@ -32,7 +32,6 @@ const authReducer = (state = initState, action) => {
       }
       return { ...state, authError: action.err.message };
     case "ADD_AUTHMSG":
-      console.log("ADD_AUTHMSG", action.msg);
       return { ...state, authError: action.msg };
     case "SHOW_GUIDE":
       return { ...state, showGuide: false };
