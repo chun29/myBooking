@@ -3,14 +3,18 @@ import "../../style/login.css";
 import { connect } from "react-redux";
 import { signIn, authMsg } from "../../store/actions/authAction";
 import { Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { Logo } from "../layout/Layout";
+import { validateEmail } from "../../lib";
 
 class SignIn extends Component {
-  state = {
-    email: "",
-    password: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
+
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -19,21 +23,16 @@ class SignIn extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    const validateEmail = email => {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    };
-    const email = this.state.email;
-    const validate = validateEmail(email);
+
+    const validate = validateEmail(this.state.email);
     if (validate === false) {
-      this.props.authMsg("請檢查輸入的信箱");
+      this.props.authMsg("請輸入有效的信箱格式");
       return;
     }
     if (this.state.password.length < 6) {
-      this.props.authMsg("請檢查輸入的密碼");
+      this.props.authMsg("輸入的密碼需超過 6 位數");
       return;
     }
-
     this.props.signIn(this.state);
     this.props.authMsg("登入中");
   };
@@ -48,12 +47,16 @@ class SignIn extends Component {
       <div className="signin-wrapper">
         <div className="signin-header">
           <Logo />
-          <Link to="/signup">
-            <div className="signup-btn-wrapper">
-              <div className="plus-img"></div>
-              <button className="signup-btn">註冊</button>
-            </div>
-          </Link>
+
+          <div className="signup-btn-wrapper">
+            <div className="plus-img"></div>
+            <button
+              onClick={() => (window.location = "/signup")}
+              className="signup-btn"
+            >
+              註冊
+            </button>
+          </div>
         </div>
         <div className="signin-down">
           <div className="signin-left"></div>
@@ -63,9 +66,12 @@ class SignIn extends Component {
               <h1>預約管理系統</h1>
               <p>
                 第一次使用嗎？
-                <Link to="/signup">
-                  <span className="signin-text">註冊</span>
-                </Link>
+                <span
+                  onClick={() => (window.location = "/signup")}
+                  className="signin-text"
+                >
+                  註冊
+                </span>
               </p>
               <form onSubmit={this.handleSubmit} className="signin-input">
                 <input
@@ -78,12 +84,11 @@ class SignIn extends Component {
                   placeholder="密碼"
                   type="password"
                   id="password"
-                  autoComplete="on"
                   onChange={this.handleChange}
                   autoComplete="off"
                 />
                 <div className="test-account">
-                  <p>測試信箱：testmybookingtw＠gmail.com</p>
+                  <p>測試信箱：testmybookingtw@gmail.com</p>
                   <p>密碼：123456</p>
                 </div>
                 <div className="sign-alert">

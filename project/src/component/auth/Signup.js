@@ -1,18 +1,22 @@
-import React, { Component } from "react";
-import "../../style/login.css";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { signUp, authMsg } from "../../store/actions/authAction";
-import { Link } from "react-router-dom";
 import { Logo } from "../layout/Layout";
 import ConfirmEmail from "./ConfirmEmail";
+import { signUp, authMsg } from "../../store/actions/authAction";
+import { validateEmail } from "../../lib";
+import "../../style/login.css";
 
-class Signup extends Component {
-  state = {
-    name: "",
-    email: "",
-    password: ""
-  };
+class Signup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: ""
+    };
+  }
+
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -22,26 +26,21 @@ class Signup extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const validateEmail = email => {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    };
-    const email = this.state.email;
-    const validate = validateEmail(email);
+    const validate = validateEmail(this.state.email);
     if (this.state.name.length < 1) {
       this.props.authMsg("請檢查輸入的姓名");
       return;
     }
     if (validate === false) {
-      this.props.authMsg("請檢查輸入的信箱");
+      this.props.authMsg("請輸入有效的信箱格式");
       return;
     }
     if (this.state.password.length < 6) {
-      this.props.authMsg("請檢查輸入的密碼");
+      this.props.authMsg("輸入的密碼需超過 6 位數");
       return;
     }
     this.props.authMsg("註冊中");
-    this.props.signUp(this.state, () => this.props.history.push("/signIn"));
+    this.props.signUp(this.state);
   };
 
   render() {
@@ -57,12 +56,16 @@ class Signup extends Component {
       <div className="signin-wrapper">
         <div className="signin-header">
           <Logo />
-          <Link to="/signin">
-            <div className="signup-btn-wrapper">
-              <div className="left-arrow-img"></div>
-              <button className="signup-btn">登入</button>
-            </div>
-          </Link>
+
+          <div className="signup-btn-wrapper">
+            <div className="left-arrow-img"></div>
+            <button
+              onClick={() => (window.location = "/signin")}
+              className="signup-btn"
+            >
+              登入
+            </button>
+          </div>
         </div>
         <div className="signin-down">
           <div className="signin-left"></div>
@@ -72,9 +75,7 @@ class Signup extends Component {
               <h1>預約管理系統</h1>
               <p>
                 我已經有帳號
-                <Link to="/signin">
-                  <span> 登入</span>
-                </Link>
+                <span onClick={() => (window.location = "/signin")}> 登入</span>
               </p>
               <form className="signin-input" onSubmit={this.handleSubmit}>
                 <input
@@ -119,7 +120,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signUp: (newUser, callback) => dispatch(signUp(newUser, callback)),
+    signUp: newUser => dispatch(signUp(newUser)),
     authMsg: msg => dispatch(authMsg(msg))
   };
 };

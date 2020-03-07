@@ -12,7 +12,6 @@ export const signIn = credential => {
         }
       })
       .catch(err => {
-        console.log("signin not ok");
         dispatch({ type: "LOGIN_ERROR", err });
       });
   };
@@ -30,7 +29,7 @@ export const signOut = () => {
   };
 };
 
-export const signUp = (newUser, callback) => {
+export const signUp = newUser => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();

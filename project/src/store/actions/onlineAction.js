@@ -18,9 +18,6 @@ export const onlineSetup = (online, id) => {
           return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
         .then(downloadURL => {
-          console.log(
-            `Successfully uploaded file and got download link - ${downloadURL}`
-          );
           return downloadURL;
         })
         .then(url => {
@@ -36,9 +33,6 @@ export const onlineSetup = (online, id) => {
           return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
         .then(downloadURL => {
-          console.log(
-            `Successfully uploaded file and got download link - ${downloadURL}`
-          );
           return downloadURL;
         })
         .then(url => {
@@ -66,9 +60,6 @@ export const onlineSetup = (online, id) => {
           return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
         .then(downloadURL => {
-          console.log(
-            `Successfully uploaded file and got download link - ${downloadURL}`
-          );
           return downloadURL;
         })
         .then(url => {
@@ -95,9 +86,6 @@ export const onlineSetup = (online, id) => {
           return uploadFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
         .then(downloadURL => {
-          console.log(
-            `Successfully uploaded file and got download link - ${downloadURL}`
-          );
           return downloadURL;
         })
         .then(url => {

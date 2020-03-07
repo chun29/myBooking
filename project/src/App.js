@@ -33,9 +33,10 @@ const ProtectedRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
 };
 
 class App extends Component {
-  state = {
-    loggedIn: false
-  };
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <Router>

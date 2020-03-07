@@ -1,8 +1,7 @@
 import React from "react";
 import { Logo } from "../layout/Layout";
-import { withRouter } from "react-router";
 
-const ConfirmEmail = props => {
+function ConfirmEmail() {
   return (
     <div className="confirm-email-container">
       <Logo className="logo" />
@@ -24,6 +23,6 @@ const ConfirmEmail = props => {
       </div>
     </div>
   );
-};
+}
 
-export default withRouter(ConfirmEmail);
+export default ConfirmEmail;

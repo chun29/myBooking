@@ -24,9 +24,6 @@ export const createStaff = (staff, id) => {
           return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
         .then(downloadURL => {
-          console.log(
-            `Successfully uploaded file and got download link - ${downloadURL}`
-          );
           return downloadURL;
         })
         .then(url => {
@@ -73,7 +70,6 @@ export const deleteStaff = (storeId, staffId) => {
       .doc(staffId)
       .delete()
       .then(() => {
-        console.log("服務人員刪除成功!");
         dispatch({ type: "DELETE_STAFF", staffId });
       })
       .catch(() => {
@@ -109,9 +105,6 @@ export const editStaff = (storeId, staffId, staffInfo) => {
           return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
         .then(downloadURL => {
-          console.log(
-            `Successfully uploaded file and got download link - ${downloadURL}`
-          );
           return downloadURL;
         })
         .then(url => {

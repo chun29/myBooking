@@ -7,7 +7,6 @@ const initState = {
 const openingHoursReducer = (state = initState, action) => {
   switch (action.type) {
     case "ADD_WORKDAY":
-      console.log("add workday", action.weekday);
       return {
         ...state,
         openingHoursMsg: "營業時間設定成功",
@@ -15,7 +14,6 @@ const openingHoursReducer = (state = initState, action) => {
         time: Date.now()
       };
     case "ADD_WORKDAY_ERROR":
-      console.log("add workday error", action.err);
       return {
         ...state,
         openingHoursMsg: "營業時間設定失敗",

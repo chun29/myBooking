@@ -23,9 +23,6 @@ export const createService = (service, id) => {
           return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
         .then(downloadURL => {
-          console.log(
-            `Successfully uploaded file and got download link - ${downloadURL}`
-          );
           return downloadURL;
         })
         .then(url => {
@@ -71,7 +68,6 @@ export const deleteService = (storeId, serviceId) => {
       .doc(serviceId)
       .delete()
       .then(() => {
-        console.log("服務刪除成功!");
         dispatch({ type: "DELETE_SERVICE", serviceId });
       })
       .catch(() => {
@@ -105,9 +101,6 @@ export const editService = (storeId, serviceId, serviceInfo) => {
           return uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
         })
         .then(downloadURL => {
-          console.log(
-            `Successfully uploaded file and got download link - ${downloadURL}`
-          );
           return downloadURL;
         })
         .then(url => {

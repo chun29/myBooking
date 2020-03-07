@@ -175,7 +175,6 @@ class BookingWebSetup extends Component {
       this.props.store[0] &&
       this.props.store[0].online !== undefined
     ) {
-      console.log("test", this.props.store[0].online);
       this.setState({ store: this.props.store[0].online });
     }
   }

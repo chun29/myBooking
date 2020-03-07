@@ -366,7 +366,7 @@
   margin-top: 10px;
 }
 .online-step-wrap .online-step {
-  flex: 0 0 40%;
+  flex: 0 0 30%;
 }
 @media (max-width: 1300px) {
   .step-img {

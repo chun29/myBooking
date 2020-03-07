@@ -13,7 +13,6 @@ class StoreMap extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props.address);
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.address}&key=AIzaSyDKRzpW8lLmF3O1eHMjgx1E6DAmCCFG4zc`
     )

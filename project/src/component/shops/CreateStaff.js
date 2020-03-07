@@ -132,7 +132,6 @@ class CreateStaff extends Component {
       this.state.phone.length > 0 &&
       !isNaN(this.state.phone)
     ) {
-      console.log("submit", this.state);
       this.props.createStaff(this.state, this.props.auth.uid);
       this.props.history.push("/staff");
     }

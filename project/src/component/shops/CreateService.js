@@ -91,7 +91,6 @@ class CreateService extends Component {
     }
 
     if (this.state.item.length > 0 && this.state.price.length > 0) {
-      console.log("submit", this.state);
       this.props.createService(this.state, this.props.auth.uid);
       this.props.history.push("/service");
     }
