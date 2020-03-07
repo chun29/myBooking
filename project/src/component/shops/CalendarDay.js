@@ -1,59 +1,51 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { deleteBooking } from "../../store/actions/bookingAction";
 import close from "../../img/close.png";
 import event from "../../img/event.png";
 
-class Test extends Component {
+class CalendarDay extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isHover: false
+      showDetail: false
     };
+  }
+
+  toggleDetail(e, boolean) {
+    e.preventDefault();
+    this.setState({
+      showDetail: boolean
+    });
   }
   deleteBooking = (id, storeID) => {
     this.props.deleteBooking(id, storeID);
   };
 
-  onMouseOver(e) {
-    this.setState({
-      isHover: true
-    });
-  }
-
-  onMouseOut(e) {
-    this.setState({
-      isHover: false
-    });
-  }
   render() {
-    const { data, storeID } = this.props;
+    const { bookingInfo, storeID } = this.props;
 
-    const text = data.desc;
-    const ntext = text ? (
-      <span>
-        {text.split("\n").map((i, key) => {
-          return <span key={key}>{i}</span>;
-        })}
-      </span>
-    ) : (
-      ""
-    );
     return (
       <React.Fragment>
         <div
           className="booking-text"
-          style={{ backgroundColor: data.staffColor }}
-          onClick={this.onMouseOver.bind(this)}
+          style={{ backgroundColor: bookingInfo.staffColor }}
+          onClick={e => {
+            this.toggleDetail(e, true);
+          }}
         >
-          {data.time}
-          {data.service}
+          {bookingInfo.time}
+          {bookingInfo.service}
         </div>
-        {this.state.isHover && (
+        {this.state.showDetail && (
           <div className="toolTip-bg">
             <span className="toolTip">
-              <div onClick={this.onMouseOut.bind(this)}>
+              <div
+                onClick={e => {
+                  this.toggleDetail(e, false);
+                }}
+              >
                 <img className="close-img" src={close} />
               </div>
               <div className="toolTip-header-container">
@@ -62,37 +54,37 @@ class Test extends Component {
               </div>
 
               <div>
-                <b>預約編號</b>：{data.id}
+                <b>預約編號</b>：{bookingInfo.id}
               </div>
               <div>
-                <b>開始時間</b>：{data.time}
+                <b>預約時間</b>：{bookingInfo.timeText}
               </div>
               <div>
-                <b>服務時間</b>：{data.duration}
+                <b>服務時間</b>：{bookingInfo.duration}
               </div>
               <div>
-                <b>服務人員</b>：{data.staff}
+                <b>服務人員</b>：{bookingInfo.staff}
               </div>
               <div>
-                <b>顧客姓名</b>：{data.name}
+                <b>顧客姓名</b>：{bookingInfo.name}
               </div>
               <div>
                 <b>顧客電話</b>
-                <a href={`tel:+${data.phone}`}>：{data.phone}</a>
+                <a href={`tel:+${bookingInfo.phone}`}>：{bookingInfo.phone}</a>
               </div>
               <div>
                 <b>顧客信箱</b>
-                <a href={`mailto:${data.email}?subject=預約通知`}>
-                  ：{data.email}
+                <a href={`mailto:${bookingInfo.email}?subject=預約通知`}>
+                  ：{bookingInfo.email}
                 </a>
               </div>
               <div>
-                <b>備註</b>：{ntext}
+                <b>備註</b>：{bookingInfo.desc}
               </div>
               <button
                 className="booking-delete-btn"
                 onClick={() => {
-                  this.deleteBooking(data.id, storeID);
+                  this.deleteBooking(bookingInfo.id, storeID);
                 }}
               >
                 刪除預約
@@ -110,4 +102,4 @@ const mapDispatchToProps = dispatch => {
       dispatch(deleteBooking(bookingID, storeId))
   };
 };
-export default connect(null, mapDispatchToProps)(Test);
+export default connect(null, mapDispatchToProps)(CalendarDay);

@@ -28,7 +28,6 @@ function TodayBookings({ todayBookings, staffs, services }) {
       staffs &&
       services &&
       sortBookingList.map(booking => {
-        const time = getFormatTime(booking.startTime);
         const staff = staffs.filter(
           staff => staff.id === booking.selectedStaff
         );
@@ -37,7 +36,7 @@ function TodayBookings({ todayBookings, staffs, services }) {
         );
 
         return {
-          time,
+          time: booking.timeText,
           staff: staff[0] && staff[0].name,
           service: service[0] && service[0].item,
           staffColor: staff[0] && staff[0].color,

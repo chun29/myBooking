@@ -1,18 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
-import "../../style/staff.css";
-import { Link } from "react-router-dom";
 import CalendarPart from "./CalendarPart";
+import "../../style/staff.css";
 
-class Calendar extends Component {
-  state = {
-    showMsg: false,
-    bookingMsg: null
-  };
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMsg: false,
+      bookingMsg: null
+    };
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.bookingMsg.time !== prevProps.bookingMsg.time) {
       this.setState({
@@ -31,7 +35,7 @@ class Calendar extends Component {
   }
   render() {
     const { bookings } = this.props;
-    const bookingMsg = this.state.bookingMsg;
+    const { bookingMsg } = this.state;
 
     return (
       <div className="layout">
@@ -46,10 +50,6 @@ class Calendar extends Component {
             <div className="main-wrapper">
               <div className="all-right-container-calendar">
                 <div className="staff-wrapper">
-                  {/* <div className="staff-header">
-                    <h1>行事曆</h1>
-                  </div> */}
-
                   <div className="staff-main-wrapper">
                     <div className="booking-button-wrapper">
                       <Link to="/createbooking">
