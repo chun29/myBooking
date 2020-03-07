@@ -727,11 +727,10 @@
   }
   .toolTip {
     height: 300px;
-    width: 90%;
     font-size: 12px;
     padding: 10px;
-    width: 200px;
-    left: calc(50% - 100px);
+    width: 300px;
+    left: calc(50% - 150px);
   }
   .close-img {
     width: 14px;

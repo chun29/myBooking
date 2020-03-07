@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../style/dashboardnav.css";
 import nav from "../../img/nav.png";
 import home from "../../img/home.png";
@@ -9,10 +9,12 @@ import staff from "../../img/staff.png";
 import online from "../../img/online.png";
 import { Link } from "react-router-dom";
 
-class DashboardNav extends Component {
+class DashboardNav extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showMenu: false };
+    this.state = {
+      showMenu: false
+    };
   }
   showMenu = () => {
     this.setState(prevState => ({
