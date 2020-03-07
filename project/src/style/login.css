@@ -220,12 +220,12 @@
   }
   .signin-container p {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .signin-container input {
-    height: 35px;
-    line-height: 35px;
-    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
     margin-bottom: 0px;
   }
   .signin-container .signin-btn {
