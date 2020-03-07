@@ -10,70 +10,73 @@ import uploader from "../../img/upload.png";
 import camera from "../../img/camera.png";
 
 class BookingWebSetup extends Component {
-  state = {
-    store: {
-      storeName: "",
-      storeAddress: "",
-      storePhone: "",
-      bookOpenDay: "365",
-      bookCloseDay: "0",
-      storeDesc: "",
-      bookingNote: "",
-      bookingIsOpen: true,
-      logoImage: "",
-      logoSrc: null,
-      bannerImage: "",
-      bannerSrc: null
-    },
-    error: {
-      storePhone: false,
-      storeName: false,
-      storeAddress: false,
-      storeDesc: false
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      store: {
+        storeName: "",
+        storeAddress: "",
+        storePhone: "",
+        bookOpenDay: "365",
+        bookCloseDay: "0",
+        storeDesc: "",
+        bookingNote: "",
+        bookingIsOpen: true,
+        logoImage: "",
+        logoSrc: null,
+        bannerImage: "",
+        bannerSrc: null
+      },
+      error: {
+        storePhone: false,
+        storeName: false,
+        storeAddress: false,
+        storeDesc: false
+      }
+    };
+  }
 
   handleChange = e => {
     if (e.target.id == "storePhone") {
       if (isNaN(e.target.value)) {
-        this.setState(prevState => ({
+        this.setState({
           error: {
-            ...prevState.error,
+            ...this.state.error,
             storePhone: true
           }
-        }));
+        });
       } else {
-        this.setState(prevState => ({
+        this.setState({
           error: {
-            ...prevState.error,
+            ...this.state.error,
             storePhone: false
           }
-        }));
+        });
       }
     }
     if (e.target.id == "storeName") {
-      this.setState(prevState => ({
+      this.setState({
         error: {
-          ...prevState.error,
+          ...this.state.error,
           storeName: false
         }
-      }));
+      });
     }
     if (e.target.id == "storeAddress") {
-      this.setState(prevState => ({
+      this.setState({
         error: {
-          ...prevState.error,
+          ...this.state.error,
           storeAddress: false
         }
-      }));
+      });
     }
     if (e.target.id == "storeDesc") {
-      this.setState(prevState => ({
+      this.setState({
         error: {
-          ...prevState.error,
+          ...this.state.error,
           storeDesc: false
         }
-      }));
+      });
     }
     this.setState({
       store: {

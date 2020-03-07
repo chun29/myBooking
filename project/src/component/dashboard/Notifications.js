@@ -1,35 +1,9 @@
 import React from "react";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import notFound from "../../img/notfound.png";
+import { todayFormat, getFormatYMD, getFormatTime } from "../../lib";
 
-const today = new Date();
-function getFormatDate(date) {
-  return moment(date).format("YYYY-MM-DD");
-}
-const todayFormat = getFormatDate(today);
-
-function getFormatTime(time) {
-  if (time == 12) {
-    return "12:00 PM";
-  } else if (time == 12.5) {
-    return "12:30 PM";
-  } else {
-    let hh = Math.floor(time);
-    let mm = (time * 60) % 60;
-    let ap = ["AM", "PM"];
-    return (
-      ("0" + (hh % 12)).slice(-2) +
-      ":" +
-      ("0" + mm).slice(-2) +
-      " " +
-      ap[Math.floor(hh / 12)]
-    );
-  }
-}
-
-export const TodayBookings = props => {
-  const { todayBookings, staffs, services } = props;
+function TodayBookings({ todayBookings, staffs, services }) {
   const bookingNum = todayBookings.length;
   if (bookingNum < 1) {
     return (
@@ -121,10 +95,9 @@ export const TodayBookings = props => {
       </div>
     );
   }
-};
+}
 
-export const Notifications = props => {
-  let { notifications } = props;
+function Notifications({ notifications }) {
   const sortNotificationsList =
     notifications &&
     notifications.sort(function(a, b) {
@@ -133,7 +106,7 @@ export const Notifications = props => {
   notifications =
     sortNotificationsList &&
     sortNotificationsList.map(notification => {
-      const notificationFormatDate = getFormatDate(
+      const notificationFormatDate = getFormatYMD(
         notification.createdAt.seconds * 1000
       );
       const formatTime = getFormatTime(notification.startTime);
@@ -146,7 +119,7 @@ export const Notifications = props => {
         };
       }
 
-      const bookingDateFormat = getFormatDate(
+      const bookingDateFormat = getFormatYMD(
         notification.selectedDate.seconds * 1000
       );
 
@@ -184,4 +157,6 @@ export const Notifications = props => {
       </Link>
     </div>
   );
-};
+}
+
+export { TodayBookings, Notifications };

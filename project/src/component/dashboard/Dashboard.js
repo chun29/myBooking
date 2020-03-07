@@ -1,73 +1,53 @@
-import React, { Component } from "react";
-import { Notifications, TodayBookings } from "./Notifications";
+import React from "react";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux";
+import { Notifications, TodayBookings } from "./Notifications";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
+import { todayStoreFormat } from "../../lib";
 import "../../style/dashboard.css";
 
-class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      guideOpen: false
-    };
+function Dashboard({ notifications, bookings, service, staff }) {
+  function getTodayBookings(allBookings) {
+    let todayBookings = [];
+    if (allBookings) {
+      allBookings.map(booking => {
+        if (booking.bookedDay === todayStoreFormat) {
+          todayBookings.push(booking);
+        }
+      });
+    }
+    return todayBookings;
   }
-  render() {
-    const { notifications, bookings } = this.props;
-    function bookedDay() {
-      const date = new Date();
-      const mm = date.getMonth() + 1;
-      const dd = date.getDate();
+  const todayBookings = getTodayBookings(bookings);
 
-      return [
-        date.getFullYear(),
-        (mm > 9 ? "" : "0") + mm,
-        (dd > 9 ? "" : "0") + dd
-      ].join("");
-    }
-
-    function getTodayBookings(allBookings) {
-      let todayBookings = [];
-      if (allBookings) {
-        allBookings.map(booking => {
-          if (booking.bookedDay === bookedDay()) {
-            todayBookings.push(booking);
-          }
-        });
-      }
-      return todayBookings;
-    }
-    const todayBookings = getTodayBookings(bookings);
-
-    return (
-      <div className="layout">
-        <div className="left">
-          <DashboardNav index={0} />
+  return (
+    <div className="layout">
+      <div className="left">
+        <DashboardNav index={0} />
+      </div>
+      <div className="right">
+        <div className="header">
+          <DashboardHeader />
         </div>
-        <div className="right">
-          <div className="header">
-            <DashboardHeader />
-          </div>
-          <div className="main">
-            <div className="main-wrapper">
-              <div className="dashboard-item-container dashboard-item1">
-                <TodayBookings
-                  todayBookings={todayBookings}
-                  staffs={this.props.staff}
-                  services={this.props.service}
-                />
-              </div>
-              <div className="dashboard-item-container  dashboard-item2">
-                <Notifications notifications={notifications} />
-              </div>
+        <div className="main">
+          <div className="main-wrapper">
+            <div className="dashboard-item-container dashboard-item1">
+              <TodayBookings
+                todayBookings={todayBookings}
+                staffs={staff}
+                services={service}
+              />
+            </div>
+            <div className="dashboard-item-container  dashboard-item2">
+              <Notifications notifications={notifications} />
             </div>
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 const mapStateToProps = state => {
@@ -89,10 +69,6 @@ export default compose(
         doc: props.auth.uid,
         subcollections: [{ collection: "notifications" }],
         storeAs: "notifications"
-      },
-      {
-        collection: "owners",
-        doc: props.auth.uid
       },
       {
         collection: "store",
