@@ -121,7 +121,7 @@
   display: none;
 }
 @media (max-width: 1030px) {
-  .logo-container h1 {
+  .nav-container .logo-container h1 {
     font-size: 20px;
     margin: 0 10px;
   }
@@ -135,7 +135,7 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 780px) {
   .nav-container .right-container {
     display: flex;
     align-items: center;

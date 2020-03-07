@@ -58,7 +58,6 @@
 .main-desc-section-2-container img {
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto;
   margin: 80px 0;
 }
 
@@ -238,7 +237,13 @@
     max-width: 90%;
     padding-top: 50px;
   }
+  .main-desc-section-2 h2 {
+    font-size: 36px;
+  }
   .desc p {
+    font-size: 16px;
+  }
+  .main-desc-section-2 p {
     font-size: 16px;
   }
   .main-image-wrapper {
@@ -296,10 +301,12 @@
     .desc h2 {
       font-size: 32px;
     }
-    .desc p {
+    .desc p,
+    .main-desc-section-2 p {
       font-size: 14px;
     }
-    .main-desc-section h2 {
+    .main-desc-section h2,
+    .main-desc-section-2 h2 {
       font-size: 28px;
     }
     .main-desc-section .container .desc-image-wrapper {
@@ -311,6 +318,17 @@
     }
     .main-desc-section .container p {
       font-size: 12px;
+    }
+    .main-desc-section-2-container {
+      width: 80%;
+      margin-bottom: 50px;
+    }
+
+    .main-desc-section-2-btn {
+      padding: 8px 25px;
+    }
+    .main-desc-section-2-container img {
+      display: none;
     }
   }
 }

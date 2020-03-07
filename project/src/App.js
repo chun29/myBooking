@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
-import Home from "./component/home/home";
+import Home from "./component/home/Home";
 import Dashboard from "./component/dashboard/Dashboard";
 import SignIn from "./component/auth/Signin";
 import Signup from "./component/auth/Signup";
