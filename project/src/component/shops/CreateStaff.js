@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { createStaff } from "../../store/actions/staffsAction";
 import camera from "../../img/camera.png";
 import "..//../style/createstaff.css";
 import uploader from "../../img/upload.png";
 
-class CreateStaff extends Component {
+class CreateStaff extends React.Component {
   state = {
     name: "",
     phone: "",

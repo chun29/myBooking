@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { NoData } from "./NoData";
+import NoData from "./NoData";
 import Loading from "../layout/loading";
 
 const StaffService = props => {

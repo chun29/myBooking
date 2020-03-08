@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
-class Msg extends Component {
+class Msg extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

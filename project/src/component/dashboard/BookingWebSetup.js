@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -9,7 +9,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import uploader from "../../img/upload.png";
 import camera from "../../img/camera.png";
 
-class BookingWebSetup extends Component {
+class BookingWebSetup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

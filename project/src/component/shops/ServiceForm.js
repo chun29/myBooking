@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { editService } from "../../store/actions/serviceAction";
 import uploader from "../../img/upload.png";
 import camera from "../../img/camera.png";
 
-class ServiceList extends Component {
+class ServiceList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

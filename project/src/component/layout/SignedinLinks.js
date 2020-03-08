@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { signOut } from "../../store/actions/authAction";
 
-class SignedInLinks extends Component {
+class SignedInLinks extends React.Component {
   render() {
     const { profile } = this.props;
-    let user = "";
-
-    if (profile.name) {
-      user = profile.name.charAt(0).toUpperCase();
+    function getName(name) {
+      return name.charAt(0).toUpperCase();
     }
+
+    const userName = profile.name && getName(profile.name);
 
     return (
       <React.Fragment>
@@ -32,7 +32,7 @@ class SignedInLinks extends Component {
           </li>
           <li>
             <NavLink to="/online">
-              <div className="home-user-avatar">{user}</div>
+              <div className="home-user-avatar">{userName}</div>
             </NavLink>
           </li>
         </ul>

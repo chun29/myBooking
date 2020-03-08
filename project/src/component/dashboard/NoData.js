@@ -20,9 +20,10 @@ const serviceLayout = {
   button: "新建服務項目",
   link: "/createservice"
 };
-export const NoData = props => {
+
+const NoData = ({ type }) => {
   let layoutData;
-  if (props.type === "staff") {
+  if (type === "staff") {
     layoutData = staffLayout;
   } else {
     layoutData = serviceLayout;
@@ -49,3 +50,5 @@ export const NoData = props => {
     </div>
   );
 };
+
+export default NoData;

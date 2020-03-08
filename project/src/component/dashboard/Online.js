@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -17,13 +17,16 @@ import user from "../../img/user.png";
 import www from "../../img/www.png";
 import "../../style/online.css";
 
-class Online extends Component {
-  state = {
-    store: "",
-    showSetup: true,
-    showMsg: false,
-    onlineMsg: null
-  };
+class Online extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      store: "",
+      showSetup: true,
+      showMsg: false,
+      onlineMsg: null
+    };
+  }
 
   componentDidUpdate(prevProps) {
     if (this.props.onlineMsg.time !== prevProps.onlineMsg.time) {

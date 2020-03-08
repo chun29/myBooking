@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./DashboardHeader";
 import "../../style/staff.css";
 import StaffService from "./StaffService";
 
-class Staff extends Component {
+class Staff extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +32,7 @@ class Staff extends Component {
   }
 
   render() {
-    const staffMsg = this.state.staffMsg;
+    const { staffMsg } = this.state;
 
     return (
       <div className="layout">

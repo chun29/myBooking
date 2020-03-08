@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import result from "../../img/result.png";
 import contact from "../../img/contact.png";
 import confirm from "../../img/confirm.png";
-class BookingConfirm extends Component {
+class BookingConfirm extends React.Component {
   render() {
     const {
       selectedService,

@@ -206,7 +206,7 @@ class Template extends React.Component {
       this.state.phone.length > 0 &&
       this.state.email.length > 0
     ) {
-      this.props.createBooking(this.state, this.props.store[0]);
+      this.props.createBooking(this.state, this.props.storeInfo[0]);
 
       this.setState({
         confirmShow: false,
@@ -222,7 +222,6 @@ class Template extends React.Component {
     const { staffs, services, storeInfo } = this.props;
     const id = this.props.match.params && this.props.match.params;
 
-    //Loading
     if (storeInfo == null) {
       return (
         <div>
@@ -231,10 +230,12 @@ class Template extends React.Component {
       );
     }
 
-    //Store Close
     if (
       storeInfo.length < 1 ||
-      storeInfo[0].online.bookingIsOpen == false ||
+      (storeInfo &&
+        storeInfo[0] &&
+        storeInfo[0].online &&
+        storeInfo[0].online.bookingIsOpen == false) ||
       (storeInfo && storeInfo[0] && storeInfo[0].workday === null) ||
       (staffs && staffs.length < 1) ||
       (services && services.length < 1)
@@ -253,11 +254,10 @@ class Template extends React.Component {
         </div>
       );
     }
-    //Store Open
-    //Get Close Day
+
     let store;
     let storeCloseDay = [];
-    if (storeInfo && storeInfo[0].online) {
+    if (storeInfo && storeInfo[0] && storeInfo[0].online) {
       const text = storeInfo[0].online.storeDesc;
       const wrapText = (
         <div>
@@ -300,6 +300,9 @@ class Template extends React.Component {
       return true;
     };
 
+    if (store == undefined) {
+      return <Loading />;
+    }
     return (
       <div className="online-container">
         <nav className="online-header">
@@ -309,18 +312,16 @@ class Template extends React.Component {
         </nav>
         <div className="banner-wrapper">
           <div className="banner">
-            {store && (
-              <img
-                className="banner"
-                src={store.bannerImg ? store.bannerImg : storeBanner}
-              />
-            )}
+            <img
+              className="banner"
+              src={store.bannerImg ? store.bannerImg : storeBanner}
+            />
           </div>
         </div>
         <div className="content">
           <div className="store-info">
             <div className="info-section">
-              {store && <h3>{store.name}</h3>}
+              <h3>{store.name}</h3>
               <div className="button-wrapper">
                 <button className="blue-btn" onClick={this.showBooking}>
                   我要預訂

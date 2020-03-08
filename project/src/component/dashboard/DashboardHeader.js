@@ -1,18 +1,19 @@
 import React from "react";
-import "../../style/dashboardheader.css";
-import { Logo, UserAvatar } from "../layout/Layout";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
-import weblink from "../../img/link.png";
+import { Logo, UserAvatar } from "../layout/Layout";
 import Guide from "../../component/layout/Guide";
+import linkImg from "../../img/link.png";
+import "../../style/dashboardheader.css";
 
-const DashboardHeader = ({ auth, profile, store, staff, service }) => {
-  let user = "";
-  if (profile.name) {
-    user = profile.name.charAt(0).toUpperCase();
+function DashboardHeader({ auth, profile, store, staff, service }) {
+  function getName(name) {
+    return name.charAt(0).toUpperCase();
   }
+  const user = profile.name && getName(profile.name);
+
   const userName = auth.uid ? user : "";
 
   let onlineSetup = false;
@@ -38,9 +39,9 @@ const DashboardHeader = ({ auth, profile, store, staff, service }) => {
   const link = "/booking/" + auth.uid;
   const newClass = onlineSetup ? "blue" : "red";
   const text = onlineSetup ? "已上線" : "關閉中";
-  const weblinkimg = onlineSetup ? (
+  const webLinkImg = onlineSetup ? (
     <Link to={link}>
-      <img className="weblinkimg" src={weblink} alt=""></img>
+      <img className="link-img" src={linkImg} alt=""></img>
     </Link>
   ) : (
     ""
@@ -57,7 +58,7 @@ const DashboardHeader = ({ auth, profile, store, staff, service }) => {
               <p>線上預約網站</p>
               <p className="online-setup">{text}</p>
             </div>
-            {weblinkimg}
+            {webLinkImg}
           </div>
 
           <UserAvatar userName={userName} />
@@ -66,7 +67,7 @@ const DashboardHeader = ({ auth, profile, store, staff, service }) => {
       <Guide />
     </React.Fragment>
   );
-};
+}
 
 const mapStateToProps = state => {
   return {

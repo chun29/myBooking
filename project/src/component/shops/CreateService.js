@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { createService } from "../../store/actions/serviceAction";
 import "..//../style/createstaff.css";
 import uploader from "../../img/upload.png";
 import camera from "../../img/camera.png";
 
-class CreateService extends Component {
+class CreateService extends React.Component {
   state = {
     item: "",
     duration: "30",

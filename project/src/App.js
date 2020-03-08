@@ -1,5 +1,5 @@
 // /src/App.js
-import React, { Component } from "react";
+import React from "react";
 import { Route } from "react-router";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import Home from "./component/home/Home";
@@ -32,7 +32,7 @@ const ProtectedRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
   );
 };
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
   }

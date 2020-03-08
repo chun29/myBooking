@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { guideBanned } from "../../store/actions/authAction";
 import stick from "../../img/stick-man.png";
 
-class Guide extends Component {
+class Guide extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

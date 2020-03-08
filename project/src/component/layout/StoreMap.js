@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./Marker";
 
-class StoreMap extends Component {
+class StoreMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import edit from "../../img/edit.png";
 import deleteImg from "../../img/delete.png";
@@ -6,7 +6,7 @@ import Case from "../../img/case.png";
 import { deleteService } from "../../store/actions/serviceAction";
 import ServiceForm from "./ServiceForm";
 
-class ServiceList extends Component {
+class ServiceList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -11,7 +11,7 @@ import SelectCloseTime from "./SelectOpenTime";
 import setOpeningHours from "../../store/actions/openingHoursAction";
 import Msg from "../../component/layout/Msg";
 
-const WEEK = [
+const week = [
   [1, "星期一"],
   [2, "星期二"],
   [3, "星期三"],
@@ -21,28 +21,28 @@ const WEEK = [
   [0, "星期日"]
 ];
 
-class OpeningHours extends Component {
+class OpeningHours extends React.Component {
   constructor(props) {
     super(props);
     this.state =
       props.store && props.store[0] && props.store[0].workday
         ? props.store[0].workday
         : {
-            isOpen: WEEK.reduce(
+            isOpen: week.reduce(
               (options, option) => ({
                 ...options,
                 [option[0]]: true
               }),
               {}
             ),
-            openTime: WEEK.reduce(
+            openTime: week.reduce(
               (options, option) => ({
                 ...options,
                 [option[0]]: "8"
               }),
               {}
             ),
-            closeTime: WEEK.reduce(
+            closeTime: week.reduce(
               (options, option) => ({
                 ...options,
                 [option[0]]: "18"
@@ -133,9 +133,9 @@ class OpeningHours extends Component {
     />
   );
 
-  createCheckboxes = () => WEEK.map(this.createCheckbox);
-  createOpenTimes = () => WEEK.map(this.createOpenTime);
-  createCloseTimes = () => WEEK.map(this.createCloseTime);
+  createCheckboxes = () => week.map(this.createCheckbox);
+  createOpenTimes = () => week.map(this.createOpenTime);
+  createCloseTimes = () => week.map(this.createCloseTime);
 
   handleSubmit = () => {
     this.props.setOpeningHours(this.state, this.props.auth.uid);

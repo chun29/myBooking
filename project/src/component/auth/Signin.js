@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../style/login.css";
 import { connect } from "react-redux";
 import { signIn, authMsg } from "../../store/actions/authAction";
@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 import { Logo } from "../layout/Layout";
 import { validateEmail } from "../../lib";
 
-class SignIn extends Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

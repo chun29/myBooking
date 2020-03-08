@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
@@ -7,7 +7,7 @@ import DatePicker from "react-datepicker";
 import "..//../style/createstaff.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-class CreateBooking extends Component {
+class CreateBooking extends React.Component {
   state = {
     selectedService: { item: "", id: "0" },
     selectedStaff: { name: "", id: "0", nickname: "" },

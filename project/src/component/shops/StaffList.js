@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import staffAvatar from "../../img/staff-avatar.png";
 import edit from "../../img/edit.png";
 import deleteImg from "../../img/delete.png";
-import { deleteStaff, editStaff } from "../../store/actions/staffsAction";
+import { deleteStaff } from "../../store/actions/staffsAction";
 import StaffForm from "../shops/StaffForm";
 
-class StaffList extends Component {
+class StaffList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

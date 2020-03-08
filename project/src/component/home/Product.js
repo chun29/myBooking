@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Navbar from "../layout/Navbar";
 import "../../style/home.css";
 import Footer from "../layout/Footer.js";
@@ -7,7 +7,7 @@ import desc1 from "../../img/desc1.png";
 import desc2 from "../../img/desc2.png";
 import desc3 from "../../img/desc3.png";
 
-export default class home extends Component {
+export default class home extends React.Component {
   render() {
     return (
       <React.Fragment>

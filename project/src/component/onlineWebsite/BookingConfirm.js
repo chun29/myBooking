@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import forms from "../../img/form.png";
 import moment from "moment";
 import { connect } from "react-redux";
@@ -6,7 +6,7 @@ import calendarImg from "../../img/calendar-2.png";
 import timeImg from "../../img/clock.png";
 import staffImg from "../../img/staff-avatar.png";
 import serviceImg from "../../img/bag.png";
-class BookingConfirm extends Component {
+class BookingConfirm extends React.Component {
   render() {
     const {
       selectedService,
@@ -90,7 +90,5 @@ const mapStateToProps = state => {
     bookingMsg: state.booking.bookingMsg
   };
 };
-
-// export default BookingConfirm;
 
 export default connect(mapStateToProps)(BookingConfirm);

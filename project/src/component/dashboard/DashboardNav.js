@@ -22,17 +22,12 @@ class DashboardNav extends React.Component {
       showMenu: !prevState.showMenu
     }));
   };
-  onMouseOver(e) {
+  toggleMenu = (e, boolean) => {
     this.setState({
-      showMenu: true
+      showMenu: boolean
     });
-  }
+  };
 
-  onMouseOut(e) {
-    this.setState({
-      showMenu: false
-    });
-  }
   render() {
     const menuList = [
       { name: "管理介面首頁", img: home, url: "/dashboard" },
@@ -48,7 +43,9 @@ class DashboardNav extends React.Component {
         <React.Fragment>
           <div
             className="dashboard-nav"
-            onMouseLeave={this.onMouseOut.bind(this)}
+            onMouseLeave={e => {
+              this.toggleMenu(e, false);
+            }}
           >
             <ul>
               <li>
@@ -85,7 +82,9 @@ class DashboardNav extends React.Component {
         <React.Fragment>
           <div
             className="s-dashboard-nav"
-            onMouseEnter={this.onMouseOver.bind(this)}
+            onMouseEnter={e => {
+              this.toggleMenu(e, true);
+            }}
           >
             <ul>
               <li>

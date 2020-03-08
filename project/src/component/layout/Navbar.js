@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import SignInLinks from "./SignedinLinks";
 import SignedOutLinks from "./SignedOutLinks";
@@ -8,7 +8,7 @@ import { Logo } from "../layout/Layout";
 import hamburger from "../../img/hamburger.png";
 import { signOut } from "../../store/actions/authAction";
 
-class Navbar extends Component {
+class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +40,7 @@ class Navbar extends Component {
                 <Link to="product">
                   <li>功能介紹</li>
                 </Link>
-                <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
+                <Link to="/booking/2j5bTxHyhRPj7YP92tWJCdoxbdq2">
                   <li>預約網站範例</li>
                 </Link>
               </ul>
@@ -65,7 +65,7 @@ class Navbar extends Component {
                   <Link to="/dashboard">
                     <li>前往管理介面</li>
                   </Link>
-                  <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
+                  <Link to="/booking/2j5bTxHyhRPj7YP92tWJCdoxbdq2">
                     <li>預約網站範例</li>
                   </Link>
                   <Link to="product">

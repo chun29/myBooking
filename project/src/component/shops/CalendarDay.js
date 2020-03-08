@@ -21,6 +21,9 @@ class CalendarDay extends React.Component {
   }
   deleteBooking = (id, storeID) => {
     this.props.deleteBooking(id, storeID);
+    this.setState({
+      showDetail: false
+    });
   };
 
   render() {

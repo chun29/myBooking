@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -6,7 +6,7 @@ import { withRouter } from "react-router";
 import "../../style/template.css";
 import optionsImg from "../../img/options.png";
 
-class AvailableTime extends Component {
+class AvailableTime extends React.Component {
   render() {
     const {
       booking,
@@ -73,14 +73,14 @@ class AvailableTime extends Component {
       }
 
       function arr_diff(a1, a2) {
-        var a = [],
+        let a = [],
           diff = [];
 
-        for (var i = 0; i < a1.length; i++) {
+        for (let i = 0; i < a1.length; i++) {
           a[a1[i]] = true;
         }
 
-        for (var i = 0; i < a2.length; i++) {
+        for (let i = 0; i < a2.length; i++) {
           if (a[a2[i]]) {
             delete a[a2[i]];
           } else {
@@ -88,7 +88,7 @@ class AvailableTime extends Component {
           }
         }
 
-        for (var k in a) {
+        for (let k in a) {
           diff.push(k);
         }
 
