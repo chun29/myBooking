@@ -6,54 +6,51 @@ import { createBooking } from "../../store/actions/bookingAction";
 import DatePicker from "react-datepicker";
 import "..//../style/createstaff.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { validation } from "../../lib";
 
 class CreateBooking extends React.Component {
-  state = {
-    selectedService: { item: "", id: "0" },
-    selectedStaff: { name: "", id: "0", nickname: "" },
-    selectedDate: "",
-    bookedDay: "",
-    duration: "",
-    startTime: { num: "", text: "" },
-    name: "",
-    phone: "",
-    email: "",
-    desc: "",
-    error: {
-      name: false,
-      phone: false,
-      selectedDate: false,
-      selectedService: false,
-      selectedStaff: false
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedService: { item: "", id: "0" },
+      selectedStaff: { name: "", id: "0", nickname: "" },
+      selectedDate: "",
+      bookedDay: "",
+      duration: "",
+      startTime: { num: "", text: "" },
+      name: "",
+      phone: "",
+      email: "",
+      desc: "",
+      error: {
+        name: false,
+        phone: false,
+        selectedDate: false,
+        selectedService: false,
+        selectedStaff: false
+      }
+    };
+  }
 
   handleChange = e => {
-    if (e.target.id === "phone") {
-      if (isNaN(e.target.value)) {
-        this.setState(prevState => ({
-          error: {
-            ...prevState.error,
-            phone: true
-          }
-        }));
-      } else {
-        this.setState(prevState => ({
-          error: {
-            ...prevState.error,
-            phone: false
-          }
-        }));
-      }
+    const id = e.target.id;
+    const result = validation(id, e.target.value);
+    if (id == "phone") {
+      this.setState({
+        error: {
+          ...this.state.error,
+          [id]: result
+        }
+      });
     }
 
-    if (e.target.id === "name") {
-      this.setState(prevState => ({
+    if (id === "name") {
+      this.setState({
         error: {
-          ...prevState.error,
-          name: false
+          ...this.state.error,
+          [id]: false
         }
-      }));
+      });
     }
     this.setState({
       [e.target.id]: e.target.value
@@ -154,6 +151,7 @@ class CreateBooking extends React.Component {
     });
   };
   handleCancel = e => {
+    e.preventDefault();
     this.props.history.push("/calendar");
   };
   handleSubmit = e => {
@@ -161,7 +159,7 @@ class CreateBooking extends React.Component {
     if (this.state.name.length < 1) {
       this.setState(prevState => ({
         error: {
-          ...prevState.error,
+          ...this.state.error,
           name: true
         }
       }));

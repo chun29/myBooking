@@ -4,58 +4,49 @@ import { createStaff } from "../../store/actions/staffsAction";
 import camera from "../../img/camera.png";
 import "..//../style/createstaff.css";
 import uploader from "../../img/upload.png";
+import { validation } from "../../lib";
 
 class CreateStaff extends React.Component {
-  state = {
-    name: "",
-    phone: "",
-    email: "",
-    nickname: "",
-    desc: "",
-    color: "#bbc1e8",
-    image: "",
-    url: null,
-    error: {
-      name: false,
-      phone: false,
-      nickname: false
-    }
-  };
-  handleChange = e => {
-    if (e.target.id == "phone") {
-      if (isNaN(e.target.value)) {
-        this.setState(prevState => ({
-          error: {
-            ...prevState.error,
-            phone: true
-          }
-        }));
-      } else {
-        this.setState(prevState => ({
-          error: {
-            ...prevState.error,
-            phone: false
-          }
-        }));
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      phone: "",
+      email: "",
+      nickname: "",
+      desc: "",
+      color: "#bbc1e8",
+      image: "",
+      url: null,
+      error: {
+        name: false,
+        phone: false,
+        nickname: false
       }
-    }
-    if (e.target.id == "name") {
+    };
+  }
+
+  handleChange = e => {
+    const id = e.target.id;
+    const result = validation(id, e.target.value);
+    if (id == "phone") {
       this.setState(prevState => ({
         error: {
           ...prevState.error,
-          name: false
+          [id]: result
         }
       }));
     }
 
-    if (e.target.id == "nickname") {
+    if (id === "name" || id === "nickname") {
       this.setState(prevState => ({
         error: {
           ...prevState.error,
-          nickname: false
+          [id]: false
         }
       }));
     }
+
     this.setState({
       [e.target.id]: e.target.value
     });

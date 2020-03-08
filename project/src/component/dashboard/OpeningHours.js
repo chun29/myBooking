@@ -85,23 +85,23 @@ class OpeningHours extends React.Component {
   handleSelectOpenValue = changeEvent => {
     const time = changeEvent.target.value;
     const { name } = changeEvent.target;
-    this.setState(prevState => ({
+    this.setState({
       openTime: {
-        ...prevState.openTime,
+        ...this.state.openTime,
         [name[0]]: time
       }
-    }));
+    });
   };
 
   handleSelectCloseValue = changeEvent => {
     const time = changeEvent.target.value;
     const { name } = changeEvent.target;
-    this.setState(prevState => ({
+    this.setState({
       closeTime: {
-        ...prevState.closeTime,
+        ...this.state.closeTime,
         [name[0]]: time
       }
-    }));
+    });
   };
 
   createCheckbox = option => (

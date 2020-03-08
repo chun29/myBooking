@@ -15,7 +15,6 @@ class BookingConfirm extends React.Component {
 
     const day = moment(selectedDate).format("YYYY-MM-DD");
     const { bookingResult } = this.props;
-    let view;
 
     if (bookingResult == 0) {
       return (

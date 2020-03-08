@@ -8,6 +8,7 @@ import storeBanner from "../../img/store-banner.png";
 import Checkbox from "@material-ui/core/Checkbox";
 import uploader from "../../img/upload.png";
 import camera from "../../img/camera.png";
+import { validation } from "../../lib";
 
 class BookingWebSetup extends React.Component {
   constructor(props) {
@@ -37,51 +38,29 @@ class BookingWebSetup extends React.Component {
   }
 
   handleChange = e => {
-    if (e.target.id == "storePhone") {
-      if (isNaN(e.target.value)) {
-        this.setState({
-          error: {
-            ...this.state.error,
-            storePhone: true
-          }
-        });
-      } else {
-        this.setState({
-          error: {
-            ...this.state.error,
-            storePhone: false
-          }
-        });
-      }
-    }
-    if (e.target.id == "storeName") {
+    const id = e.target.id;
+    const result = validation(id, e.target.value);
+    if (id == "storePhone") {
       this.setState({
         error: {
           ...this.state.error,
-          storeName: false
+          [id]: result
         }
       });
     }
-    if (e.target.id == "storeAddress") {
+    if (id == "storeName" || id == "storeAddress" || id == "storeDesc") {
       this.setState({
         error: {
           ...this.state.error,
-          storeAddress: false
+          [id]: false
         }
       });
     }
-    if (e.target.id == "storeDesc") {
-      this.setState({
-        error: {
-          ...this.state.error,
-          storeDesc: false
-        }
-      });
-    }
+
     this.setState({
       store: {
         ...this.state.store,
-        [e.target.id]: e.target.value
+        [id]: e.target.value
       }
     });
   };
@@ -122,12 +101,13 @@ class BookingWebSetup extends React.Component {
     }
   };
   handleClick = e => {
-    this.setState(prevState => ({
+    e.preventDefault();
+    this.setState({
       store: {
-        ...prevState.store,
+        ...this.state.store,
         bookingIsOpen: !prevState.store.bookingIsOpen
       }
-    }));
+    });
   };
 
   handleSubmit = e => {
@@ -149,7 +129,14 @@ class BookingWebSetup extends React.Component {
         }
       }));
     }
-
+    if (onlineInfo.storePhone.length < 1) {
+      this.setState(prevState => ({
+        error: {
+          ...prevState.error,
+          storePhone: true
+        }
+      }));
+    }
     if (onlineInfo.storeDesc.length < 1) {
       this.setState(prevState => ({
         error: {
@@ -163,13 +150,15 @@ class BookingWebSetup extends React.Component {
       onlineInfo.storeName.length > 0 &&
       onlineInfo.storeAddress.length > 0 &&
       onlineInfo.storePhone.length > 0 &&
-      onlineInfo.storeDesc.length > 0
+      onlineInfo.storeDesc.length > 0 &&
+      !isNaN(onlineInfo.storePhone)
     ) {
       this.props.onlineSetup(onlineInfo, this.props.auth.uid);
       this.props.history.push("/online");
     }
   };
   handleCancel = e => {
+    e.preventDefault();
     this.props.history.push("/online");
   };
   componentDidMount() {
@@ -207,7 +196,7 @@ class BookingWebSetup extends React.Component {
                 <label className="required" htmlFor="name">
                   店家名稱
                   {this.state.error.storeName && (
-                    <span className="alert-msg">名稱請填寫完整</span>
+                    <span className="alert-msg">請檢查填入店家名稱</span>
                   )}
                 </label>
                 <input
@@ -221,7 +210,7 @@ class BookingWebSetup extends React.Component {
                 <label className="required" htmlFor="date">
                   店家住址
                   {this.state.error.storeAddress && (
-                    <span className="alert-msg">地址請填寫完整</span>
+                    <span className="alert-msg">請檢查填入地址</span>
                   )}
                 </label>
                 <input
@@ -235,7 +224,7 @@ class BookingWebSetup extends React.Component {
                 <label className="required" htmlFor="time">
                   聯絡電話
                   {this.state.error.storePhone && (
-                    <span className="alert-msg">請填入完整電話</span>
+                    <span className="alert-msg">請檢查填入電話</span>
                   )}
                 </label>
                 <input

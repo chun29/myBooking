@@ -4,46 +4,45 @@ import { createService } from "../../store/actions/serviceAction";
 import "..//../style/createstaff.css";
 import uploader from "../../img/upload.png";
 import camera from "../../img/camera.png";
+import { validation } from "../../lib";
 
 class CreateService extends React.Component {
-  state = {
-    item: "",
-    duration: "30",
-    price: "",
-    desc: "",
-    image: "",
-    url: null,
-    error: {
-      item: false,
-      price: false,
-      image: false
-    }
-  };
-  handleChange = e => {
-    if (e.target.id == "price") {
-      if (isNaN(e.target.value)) {
-        this.setState(prevState => ({
-          error: {
-            ...prevState.error,
-            price: true
-          }
-        }));
-      } else {
-        this.setState(prevState => ({
-          error: {
-            ...prevState.error,
-            price: false
-          }
-        }));
+  constructor(props) {
+    super(props);
+    this.state = {
+      item: "",
+      duration: "30",
+      price: "",
+      desc: "",
+      image: "",
+      url: null,
+      error: {
+        item: false,
+        price: false,
+        image: false
       }
-    }
-    if (e.target.id == "item") {
-      this.setState(prevState => ({
+    };
+  }
+
+  handleChange = e => {
+    const id = e.target.id;
+    const result = validation(id, e.target.value);
+    if (id == "price") {
+      this.setState({
         error: {
-          ...prevState.error,
-          item: false
+          ...this.state.error,
+          [id]: result
         }
-      }));
+      });
+    }
+
+    if (id == "item") {
+      this.setState({
+        error: {
+          ...this.state.error,
+          [id]: false
+        }
+      });
     }
     this.setState({
       [e.target.id]: e.target.value
@@ -68,6 +67,7 @@ class CreateService extends React.Component {
     e.preventDefault();
     this.props.history.push("/service");
   };
+
   handleSubmit = e => {
     e.preventDefault();
 

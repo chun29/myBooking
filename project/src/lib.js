@@ -1,15 +1,5 @@
 import moment from "moment";
 
-function add(n1, n2) {
-  return Number(n1) + Number(n2);
-}
-function avg(data) {
-  let total = data.reduce((total, item) => {
-    return total + item.price;
-  }, 0);
-  return total / data.length;
-}
-
 function validateEmail(email) {
   let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
@@ -55,13 +45,22 @@ function getFormatTime(time) {
   }
 }
 
+function validation(type, value) {
+  if (type === "price" || type === "phone" || type === "storePhone") {
+    if (isNaN(value)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
 export {
-  add,
-  avg,
   validateEmail,
   getStoreFormatYMD,
   todayStoreFormat,
   getFormatYMD,
   todayFormat,
-  getFormatTime
+  getFormatTime,
+  validation
 };
