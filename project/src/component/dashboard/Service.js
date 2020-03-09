@@ -20,15 +20,17 @@ class Service extends React.Component {
         showMsg: true,
         serviceMsg: this.props.serviceMsg.serviceMsg
       }),
-        setTimeout(
-          function() {
+        (this.timerID = setTimeout(
+          () =>
             this.setState({
               showMsg: false
-            });
-          }.bind(this),
+            }),
           3000
-        );
+        ));
     }
+  }
+  componentWillUnmount() {
+    clearTimeout(this.timerID);
   }
 
   render() {

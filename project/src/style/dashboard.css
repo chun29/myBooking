@@ -318,6 +318,8 @@
 }
 .booking-text:hover {
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  background-color: #1a237e;
 }
 .booking-text span {
   font-size: 12px;
@@ -444,15 +446,8 @@
 }
 .add-booking {
   font-size: 14px;
-  cursor: pointer;
-  border-radius: 10px;
-  line-height: 20px;
   padding: 15px 20px;
-  border: 1px solid #00bfa5;
-  background-color: #fff;
-  color: #00bfa5;
   font-weight: 600;
-  outline: none;
 }
 .getting-started {
   bottom: 1.5rem;
