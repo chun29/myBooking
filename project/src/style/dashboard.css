@@ -43,7 +43,7 @@
 .dashboard-item2 {
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
-  height: 613px;
+  height: 610px;
   width: 450px;
   margin: 0 10px;
 }
@@ -73,7 +73,7 @@
 .notification-section {
   display: flex;
   flex-direction: column;
-  height: 540px;
+  height: 100%;
 }
 .notification-wrapper-2 {
   display: flex;
@@ -666,10 +666,13 @@
   .today-booking-info-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 10px 0;
   }
   .today-booking-info {
     margin: 0 5px;
+    width: 100px;
+    overflow: hidden;
   }
   .notification-wrapper h1 {
     font-size: 16px;
@@ -688,6 +691,7 @@
     line-height: 12px;
   }
   .today-booking-price {
+    width: 50px;
     overflow: hidden;
     white-space: nowrap;
   }

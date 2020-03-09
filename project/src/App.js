@@ -18,6 +18,7 @@ import Online from "./component/dashboard/Online";
 import NoMatchPage from "../../project/src/component/layout/404";
 import Product from "../../project/src/component/home/Product";
 import { connect } from "react-redux";
+import ScrollToTop from "./ScrollToTop";
 
 const ProtectedRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
   return (
@@ -39,6 +40,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
+        <ScrollToTop />
         <div className="App">
           <Switch>
             <Route exact path="/" component={Home} />

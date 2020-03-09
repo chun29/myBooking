@@ -528,12 +528,7 @@
     margin-top: -100px;
     padding: 0px 5%;
   }
-  .timeButton {
-    width: 120px;
-    height: 40px;
-    line-height: 40px;
-    margin: 5px 10px;
-  }
+
   .formimg {
     width: 260px;
     height: 150px;
@@ -627,13 +622,7 @@
   .datePicker {
     font-size: 14px;
   }
-  .timeButton {
-    font-size: 12px;
-    width: 100px;
-    height: 30px;
-    line-height: 30px;
-    margin: 5px 10px;
-  }
+
   .step4-wrapper {
     flex-direction: column;
   }
@@ -804,5 +793,12 @@
   }
   .step4-wrapper {
     margin-bottom: 15px;
+  }
+  .timeButton {
+    font-size: 12px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px;
   }
 }
