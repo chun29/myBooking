@@ -1,1 +1,3 @@
-# myBooking
+# MyBooking
+## Technologies
+## Features
