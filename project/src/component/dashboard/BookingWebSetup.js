@@ -102,12 +102,12 @@ class BookingWebSetup extends React.Component {
   };
   handleClick = e => {
     e.preventDefault();
-    this.setState({
+    this.setState(prevState => ({
       store: {
         ...this.state.store,
         bookingIsOpen: !prevState.store.bookingIsOpen
       }
-    });
+    }));
   };
 
   handleSubmit = e => {

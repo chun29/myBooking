@@ -304,7 +304,7 @@ class Template extends React.Component {
         note: storeInfo[0].online.bookingNote,
         startDay: Number(storeInfo[0].online.bookOpenDay),
         closeDay: Number(storeInfo[0].online.bookCloseDay),
-        logoImg: storeInfo[0].online.logoSrc,
+        logoImg: storeInfo[0].online.logoSrc ? storeInfo[0].online.logoSrc : "",
         bannerImg: storeInfo[0].online.bannerSrc,
         close: storeInfo[0].online.storeIsClose,
         isOpen: Object.values(storeInfo[0].workday.isOpen),
@@ -332,6 +332,7 @@ class Template extends React.Component {
     if (store == undefined) {
       return <Loading />;
     }
+
     return (
       <div className="online-container">
         <nav className="online-header">
@@ -380,7 +381,7 @@ class Template extends React.Component {
               <h5>店家圖片</h5>
               <div className="store-photo-wrapper">
                 <div className="store-photo">
-                  <img src={store.logoImg} alt="" />
+                  {store.logoImg && <img src={store.logoImg} alt="" />}
                 </div>
               </div>
             </div>

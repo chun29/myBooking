@@ -10,8 +10,8 @@ class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: ""
+      email: "testmybookingtw@gmail.com",
+      password: "123456"
     };
   }
 
@@ -79,6 +79,7 @@ class SignIn extends React.Component {
                   id="email"
                   onChange={this.handleChange}
                   autoComplete="off"
+                  value={this.state.email}
                 />
                 <input
                   placeholder="密碼"
@@ -86,11 +87,8 @@ class SignIn extends React.Component {
                   id="password"
                   onChange={this.handleChange}
                   autoComplete="off"
+                  value={this.state.password}
                 />
-                <div className="test-account">
-                  <p>測試信箱：testmybookingtw@gmail.com</p>
-                  <p>密碼：123456</p>
-                </div>
                 <div className="sign-alert">
                   <p>{authError}</p>
                 </div>
