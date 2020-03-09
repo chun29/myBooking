@@ -1,0 +1,238 @@
+.signin-wrapper {
+  width: 100%;
+}
+.signin-header {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  line-height: 80px;
+  width: 100%;
+  align-items: center;
+}
+
+.signin-header h1 {
+  font-size: 26px;
+  margin: 0 30px 0 10px;
+  cursor: pointer;
+  color: #1a237e;
+}
+.signin-logo {
+  background-image: url(../img/logo.png);
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+/* signup page btn wrapper */
+
+.signup-btn-wrapper {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.signup-btn {
+  font-size: 15px;
+  color: #1a237e;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  outline: none;
+}
+.plus-img {
+  width: 20px;
+  height: 20px;
+  background-image: url(../img//signup-img.png);
+  background-size: cover;
+  margin-right: 5px;
+}
+.left-arrow-img {
+  width: 20px;
+  height: 20px;
+  background-image: url(../img//login-img.png);
+  background-size: cover;
+  margin-right: 5px;
+}
+.signup-btn-wrapper:hover > .plus-img {
+  background-image: url(../img//signup-img-2.png);
+}
+.signup-btn-wrapper:hover > .left-arrow-img {
+  background-image: url(../img//login-img-2.png);
+}
+
+.signup-btn-wrapper:hover > .signup-btn {
+  color: #3d5afe;
+}
+
+.signin-container {
+  max-width: 500px;
+  margin: 0 auto;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.signin-container h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #1a237e;
+}
+
+.signin-container span {
+  color: #00bfa5;
+  font-weight: 500;
+  cursor: pointer;
+}
+.signin-container .signin-input {
+  display: flex;
+  flex-direction: column;
+}
+.signin-container input {
+  border: 1px solid #cbd5ff;
+  margin: 25px 30px 10px 30px;
+  border-radius: 10px;
+  font-size: 17px;
+  height: 50px;
+  line-height: 40px;
+  padding: 10px 0px 8px 15px;
+  outline: none;
+}
+
+.signin-container input:focus {
+  border: 1px solid #1a237e;
+}
+.signin-container .signin-btn {
+  margin: 20px 0 10px 0;
+  padding: 10px 22px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  font-weight: 400;
+  font-size: 16px;
+  align-self: center;
+}
+
+/* 新調整css */
+
+.signin-down {
+  display: flex;
+  height: calc(100vh - 50px);
+}
+
+.signin-left {
+  flex: 2;
+  background-image: url(../img/signin-bg.jpg);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+}
+
+.signin-right {
+  flex: 1.2;
+  height: 100%;
+}
+
+.signin-text {
+  font-weight: 500;
+}
+/* alert msg */
+.sign-alert {
+  color: #f03478;
+  font-size: 13px;
+}
+
+.social-login {
+  margin: 0 auto;
+  width: 80%;
+}
+.confirm-email-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 100px;
+  text-align: center;
+  letter-spacing: 1.2px;
+}
+
+.confirm-email-container .logo-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.confirm-email-container .logo-container .nav-logo {
+  margin: 0;
+}
+.confirm-email-container button {
+  width: 120px;
+  padding: 15px 20px;
+  font-size: 17px;
+  margin: 30px;
+}
+.test-account {
+  font-size: 12px;
+  text-align: left;
+  margin: 10px 30px 10px 30px;
+}
+
+@media (max-width: 1000px) {
+  .signin-left {
+    flex: 1;
+  }
+}
+@media (max-width: 700px) {
+  .signin-header {
+    height: 60px;
+  }
+  .nav-logo {
+    height: 40px;
+    width: 40px;
+  }
+  .signup-btn {
+    font-size: 14px;
+  }
+  .signin-down {
+    display: flex;
+    flex-direction: column;
+  }
+  .signin-left {
+    display: none;
+  }
+  .signin-header h1 {
+    display: none;
+  }
+  .signin-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .signin-container h1 {
+    font-size: 22px;
+  }
+  .signin-container p {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .signin-container input {
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    margin-bottom: 0px;
+  }
+  .signin-container .signin-btn {
+    margin-top: 10px;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 22px;
+    font-size: 14px;
+  }
+}

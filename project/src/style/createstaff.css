@@ -1,0 +1,248 @@
+.createstaff-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: rgb(98, 98, 98);
+}
+
+.createstaff-wrapper h1 {
+  text-align: center;
+  font-size: 24px;
+  margin: 45px 0;
+  color: #1a237e;
+}
+
+.staff-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.form-section {
+  flex: 1;
+  margin: 0 30px 0 30px;
+}
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.form-item {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-item label {
+  font-size: 14px;
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.form-item input {
+  padding: 11px 13px;
+  background-color: #fff;
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.7);
+  color: #3c444a;
+  border: 1px solid #cbd5ff;
+  -webkit-appearance: none;
+  color: #2c2c2c;
+  outline: none;
+  height: 40px;
+  font-size: 15px;
+  vertical-align: middle;
+  min-height: 40px;
+  border-radius: 8px;
+  letter-spacing: 1.5px;
+}
+.form-item input:focus,
+.input-wrapper textarea:focus {
+  outline: none;
+  border-color: #3c5afa;
+  box-shadow: 0 0 3px rgba(45, 135, 210, 0.5),
+    inset 0 1px 1px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.1s linear, color 0.1s linear;
+  color: #3c5afa;
+}
+
+.input-wrapper textarea {
+  height: auto;
+  border: 1px solid #cbd5ff;
+  outline: none;
+  padding: 11px 13px;
+  resize: none;
+  font-size: 14px;
+  color: #2c2c2c;
+  border-radius: 8px;
+  letter-spacing: 1.5px;
+}
+
+.form-button-wrapper {
+  text-align: right;
+  margin-bottom: 50px;
+}
+.form-button-wrapper button {
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 10px;
+  line-height: 20px;
+  padding: 15px 40px;
+  font-weight: 600;
+  margin: 15px 10px;
+  outline: none;
+}
+
+.create-staff-button {
+  background-color: #3d5afe;
+  color: #fff;
+}
+
+.cancel-staff-button {
+  background-color: #fff;
+  color: #00bfa5;
+  border: 1px solid#00bfa5;
+}
+.create-staff-button:hover {
+  background-color: #1a237e;
+}
+.cancel-staff-button:hover {
+  color: #fff;
+  background-color: #00bfa5;
+}
+.storeCloseBtn {
+  appearance: none;
+}
+
+.color-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.color-area .color {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ffbf69;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.color-area .selected {
+  background-image: url(../img/check.png);
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.switch-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.staff-avatar-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.service-avatar {
+  width: 100px;
+  height: 65px;
+  border-radius: 10px;
+}
+.service-avatar-img {
+  width: 100px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.booking-open-btn {
+  width: 10px;
+}
+
+.alert-msg {
+  font-size: 12px;
+  padding-left: 5px;
+  color: #ff9d9d;
+}
+
+.required:after {
+  color: #ff9d9d;
+  content: " *";
+  display: inline;
+}
+.dollarsign {
+  margin-right: 5px;
+}
+
+.edit-staff-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 100;
+  margin-top: -150px;
+  background-color: #fff;
+  padding-top: 10px;
+}
+
+.edit-staff-wrapper .createstaff-header h1 {
+  text-align: center;
+  font-size: 24px;
+  margin: 45px 0;
+  color: #1a237e;
+}
+@media (max-width: 1000px) {
+  .form-item input {
+    height: 30px;
+    font-size: 13px;
+  }
+  .form-item {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 800px) {
+  .createstaff-wrapper h1 {
+    margin: 20px;
+  }
+  .input-wrapper {
+    flex-direction: column;
+  }
+  .form-item {
+    max-width: 100%;
+  }
+  .form-item input {
+    font-size: 12px;
+  }
+
+  .workingHours-form .set-container select,
+  .all-select {
+    font-size: 12px;
+    color: #2c2c2c;
+  }
+  .form-button-wrapper {
+    align-items: center;
+    text-align: center;
+  }
+  .form-button-wrapper button {
+    line-height: 18px;
+    padding: 10px 30px;
+    font-weight: 500;
+    margin: 10px 8px;
+  }
+  .input-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+  .edit-staff-wrapper {
+    margin-top: -120px;
+  }
+  .all-right-container-service {
+    width: 100%;
+  }
+}

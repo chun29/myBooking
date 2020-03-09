@@ -1,0 +1,808 @@
+/* Template */
+
+.online-container {
+  background-color: #f5f5f5;
+  color: rgb(51, 51, 51);
+}
+
+.online-container .content .store-info .info-section h5 {
+  margin-bottom: 20px;
+  letter-spacing: 1.2px;
+}
+
+.online-container .content .store-info .info-section h3 {
+  margin-bottom: 30px;
+}
+
+/* header */
+.online-container .online-header {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  line-height: 80px;
+  height: 80px;
+  padding: 0 10%;
+}
+
+.online-container .left-header {
+  font-size: 24px;
+  cursor: pointer;
+  align-self: center;
+  font-weight: 600;
+  color: #1a237e;
+}
+
+/* store info */
+.online-container .banner-wrapper {
+  position: relative;
+  height: 450px;
+  width: 100%;
+  cursor: default;
+}
+
+.online-container .banner-wrapper .banner {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.online-container .store-info {
+  margin-top: -260px;
+  padding: 0px 15%;
+  position: relative;
+}
+
+.online-container .info-section {
+  padding: 30px 5%;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  max-width: 1200px;
+}
+
+.online-container .content .store-info .info-section .button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.online-container .content .store-info .info-section .button-wrapper button {
+  width: 175px;
+  height: 60px;
+  font-size: 17px;
+  line-height: 60px;
+}
+.online-container .content .store-info .info-section .basic-container {
+  margin-top: 30px;
+}
+.online-container
+  .content
+  .store-info
+  .info-section
+  .basic-container
+  .info-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+.address-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+}
+.online-container .content .store-info .info-section .basic-container .info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  color: rgb(51, 51, 51);
+}
+.online-container .content .store-info .info-section .infohr {
+  margin: 25px 0;
+  border-top: 1px solid rgba(61, 90, 254, 0.2);
+  width: 100%;
+}
+
+.online-container .content .store-info .info-section .store-desc {
+  min-height: 50px;
+  text-align: left;
+  line-height: 30px;
+}
+
+.online-container .content .store-info .info-section .store-photo-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.online-container .content .store-info .info-section .store-photo img {
+  width: 170px;
+  height: 230px;
+  margin: 0 15px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* booking section */
+.online-container .booking-section {
+  flex-direction: column;
+  min-height: 650px;
+}
+
+.online-container .booking-section .service-header {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 23px;
+  height: 23px;
+  margin: 5px 0;
+}
+
+.online-container .booking-section .service-text {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.service-row-2 {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* step */
+.online-container .content .store-info .info-section .step-wrapper {
+  border-bottom: 4px solid #3d5afe;
+  margin-bottom: 35px;
+}
+
+.online-container .content .store-info .info-section .step-wrapper .step-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.online-container .content .store-info .info-section .step-wrapper .step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #f4f6fe;
+  font-weight: 500;
+  height: 60px;
+  line-height: 60px;
+  width: 25%;
+}
+.online-container
+  .content
+  .store-info
+  .info-section
+  .step-wrapper
+  .step
+  .step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  color: #2c2c2c;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.online-container .content .store-info .info-section .step-wrapper .step-msg {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.online-container
+  .content
+  .store-info
+  .info-section
+  .step-wrapper
+  .step-selected {
+  background-color: #00bfa5;
+  color: #fff;
+}
+
+.online-container
+  .content
+  .store-info
+  .info-section
+  .step-wrapper
+  .step-selected
+  .step-num {
+  color: #fff;
+}
+
+/* service */
+.booking-section .step-header-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.booking-section .step-header-wrapper img {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 20px 0;
+}
+
+.online-container .booking-section .booking-step-item .service-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.online-container
+  .booking-section
+  .booking-step-item
+  .service-wrapper
+  .service {
+  border-radius: 10px 10px 0 0;
+  width: 30%;
+  margin-bottom: 30px;
+  background-color: #fff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  margin: 20px 10px;
+  max-width: 270px;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.online-container
+  .booking-section
+  .booking-step-item
+  .service-wrapper
+  .service:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-right: black;
+}
+
+.online-container
+  .booking-section
+  .booking-step-item
+  .service-wrapper
+  .service
+  .service-img {
+  height: 200px;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+
+.online-container
+  .booking-section
+  .booking-step-item
+  .service-wrapper
+  .service-desc {
+  padding: 0 10px;
+  text-align: left;
+}
+
+.online-container
+  .booking-section
+  .booking-step-item
+  .service-wrapper
+  .service
+  button {
+  width: 175px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 17px;
+  margin: 30px 0 10px 0;
+  align-self: center;
+}
+
+/* staff */
+.online-container
+  .booking-section
+  .booking-step-item
+  .service-wrapper
+  .service
+  .online-staff-bg {
+  height: 180px;
+  position: relative;
+  display: block;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    url(../img/banner.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
+.online-container
+  .booking-section
+  .booking-step-item
+  .service-wrapper
+  .service
+  .staff-img {
+  align-self: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* date and time section */
+
+.no-time-img {
+  width: 250px;
+  margin-top: 30px;
+  object-fit: contain;
+}
+
+.time-btn-wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.timeButton {
+  text-align: center;
+  font-size: 14px;
+  width: 160px;
+  height: 45px;
+  line-height: 45px;
+  margin: 10px 15px;
+}
+
+.datePicker {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.timer {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+
+/* result */
+.booking-step-item-2 {
+  height: auto;
+}
+
+.step4-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  margin-bottom: 50px;
+}
+
+.booking-confirm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: left;
+  border: 1px solid #d5dbfe;
+  margin-right: 30px;
+  box-shadow: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
+  border-radius: 10px;
+  background-color: #f4f6fe;
+}
+.booking-confirm h2 {
+  text-align: center;
+  border-bottom: 1px solid #d4dbfe;
+  padding: 10px;
+  font-size: 18px;
+}
+.booking-confirm .icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.booking-confirm-btn {
+  width: 175px;
+  height: 60px;
+  font-size: 17px;
+  line-height: 60px;
+}
+
+.customer-info-wrapper {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-result-wrapper {
+  min-height: 300px;
+}
+.result-middle {
+  margin: 0 auto;
+}
+
+.result-img {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 50%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.text-wrapper {
+  font-size: 18px;
+  line-height: 35px;
+}
+
+.result-success {
+  margin: 0 auto;
+  width: 50%;
+  line-height: 25px;
+  font-size: 14px;
+  text-align: left;
+}
+.result-success-1 {
+  margin-bottom: 10px;
+}
+
+.result-h1 {
+  color: #1a237e;
+}
+.help-msg {
+  font-size: 14px;
+}
+
+.form-item {
+  text-align: left;
+}
+
+.online-container .form-item textarea {
+  height: auto;
+  border: 1px solid #cbd5ff;
+  outline: none;
+  padding: 11px 13px;
+  resize: none;
+  font-size: 14px;
+  color: #2c2c2c;
+  border-radius: 8px;
+  letter-spacing: 1.5px;
+}
+
+.online-container .form-item textarea:focus {
+  outline: none;
+  border-color: #3c5afa;
+  box-shadow: 0 0 3px rgba(45, 135, 210, 0.5),
+    inset 0 1px 1px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.1s linear, color 0.1s linear;
+  color: #3c5afa;
+}
+.booking-confirm-img {
+  text-align: center;
+}
+.booking-confirm-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.formimg {
+  width: 250px;
+  height: 150px;
+  flex: 1;
+  object-fit: contain;
+}
+.notfound-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding-top: 50px;
+}
+.notfound {
+  width: 50%;
+  margin-top: 50px;
+  object-fit: cover;
+  max-width: 500px;
+}
+
+.online-container .info-section .info {
+  margin-top: 10px;
+}
+
+@media (max-width: 1000px) {
+  .online-container .banner-wrapper {
+    height: 400px;
+  }
+  .online-container .store-info {
+    margin-top: -100px;
+    padding: 0px 5%;
+  }
+  .timeButton {
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px 10px;
+  }
+  .formimg {
+    width: 260px;
+    height: 150px;
+  }
+  .online-container .info-section h1 {
+    font-size: 16px;
+    margin: 10px;
+    margin-bottom: 20px;
+  }
+  .help-msg {
+    font-size: 12px;
+  }
+
+  .result-success {
+    width: 90%;
+    font-size: 13px;
+  }
+  .result-img {
+    width: 280px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 800px) {
+  .online-container .banner-wrapper {
+    height: 200px;
+  }
+  .online-container .store-info {
+    margin-top: 10px;
+    padding: 0;
+  }
+  .online-container .button-wrapper .red {
+    font-size: 14px;
+    width: 175px;
+    padding: 0px 15px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .online-container .info-section h1 {
+    margin: 10px 0;
+  }
+  .online-container .info-section .info,
+  .online-container .store-desc {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .online-container .info-section h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  .online-container .store-photo img {
+    width: 120px;
+    height: 160px;
+  }
+  .online-container .step-list {
+    margin: 10px 0 12px 0;
+  }
+  .step-wrapper .step-selected,
+  .step-wrapper .step {
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .step-wrapper .step-msg {
+    margin-top: 20px;
+  }
+
+  .online-container .service-wrapper .service {
+    margin: 10px 5px;
+  }
+  .online-container .service .service-img {
+    height: 160px;
+  }
+  .service-header {
+    font-size: 14px;
+    font-weight: 500;
+    height: 23px;
+  }
+  .service-text {
+    font-size: 12px;
+  }
+  .service-row-2,
+  .service-row-3 {
+    font-size: 10px;
+  }
+  .online-container .service-wrapper .service button {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .datePicker {
+    font-size: 14px;
+  }
+  .timeButton {
+    font-size: 12px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px 10px;
+  }
+  .step4-wrapper {
+    flex-direction: column;
+  }
+  .booking-confirm {
+    margin: 0;
+    font-size: 14px;
+  }
+  .customer-info-wrapper {
+    margin-top: 10px;
+  }
+  .form-item label {
+    font-weight: 500;
+  }
+  .form-item input {
+    height: 25px;
+  }
+  .formimg {
+    display: none;
+  }
+  .step4-wrapper {
+    height: auto;
+  }
+  .booking-confirm-btn {
+    font-size: 14px;
+    width: 175px;
+    padding: 0px 15px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .form-item {
+    margin-bottom: 10px;
+  }
+  .result-success {
+    width: 90%;
+  }
+  .online-container .info-section h1 {
+    font-size: 20px;
+  }
+  .result-success {
+    font-size: 14px;
+  }
+  .result-img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 160px;
+  }
+  .help-msg {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .content {
+    padding: 0;
+    margin: 0;
+  }
+  .online-container .info-section {
+    padding: 20px 5%;
+  }
+  .online-container .online-header {
+    line-height: 50px;
+    height: 50px;
+  }
+
+  .online-container .left-header {
+    font-size: 14px;
+  }
+  .online-container .store-info .info-section h3 {
+    margin-bottom: 10px;
+  }
+  .online-container .store-info .info-section .button-wrapper {
+    margin-bottom: 10px;
+  }
+  .online-container .content .store-info .info-section .button-wrapper button {
+    width: 100px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 40px;
+  }
+  .online-container .content .store-info .info-section .basic-container .info {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .online-container
+    .content
+    .store-info
+    .info-section
+    .basic-container
+    .info-icon {
+    width: 18px;
+    height: 18px;
+  }
+  .online-container .content .store-info .info-section .store-desc {
+    line-height: 20px;
+  }
+  .online-container .store-info .info-section h5 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .online-container .content .store-info .info-section .store-photo img {
+    width: 130px;
+    height: 180px;
+  }
+  .online-container
+    .store-info
+    .info-section
+    h3
+    .online-container
+    .booking-section {
+    padding: 20px 5px;
+  }
+  .online-container
+    .content
+    .store-info
+    .info-section
+    .step-wrapper
+    .step
+    .step-num {
+    margin-right: 5px;
+    width: auto;
+  }
+  .step-wrapper .step-selected,
+  .step-wrapper .step {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 0;
+  }
+  .step-wrapper .step-msg {
+    font-size: 10px;
+  }
+  .result-success {
+    font-size: 12px;
+  }
+  .online-container
+    .booking-section
+    .booking-step-item
+    .service-wrapper
+    .service {
+    min-width: 250px;
+  }
+  .datePicker {
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  .service-wrapper p {
+    font-size: 12px;
+  }
+  .no-time-img {
+    width: 200px;
+  }
+  .online-container .booking-section {
+    min-height: 450px;
+  }
+  .booking-confirm-item {
+    margin-bottom: 0px;
+  }
+
+  .booking-confirm .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .booking-confirm h2 {
+    font-size: 16px;
+  }
+  .booking-confirm {
+    margin-bottom: 15px;
+  }
+  .step4-wrapper {
+    margin-bottom: 15px;
+  }
+}

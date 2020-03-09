@@ -1,0 +1,155 @@
+/* Working Hours Set time css */
+
+.openingHours-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+}
+.workingHours-form h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+.openingHours-wrapper .workday h3 {
+  text-align: left;
+  margin-left: 45px;
+  color: white;
+}
+
+.openingHours-wrapper .workingHours-form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+
+.openingHours-wrapper .workingHours-form .workingHours-column {
+  width: 250px;
+}
+
+.workingHours-form label {
+  display: flex;
+  align-items: center;
+}
+
+.workingHours-form .set-container {
+  height: 50px;
+  font-size: 18px;
+  line-height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  margin-top: 20px;
+}
+
+.workingHours-form .set-container select,
+.all-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 200px;
+  height: 50px;
+  margin-right: 20px;
+  padding-left: 10px;
+  background-color: #f6f7f7;
+  font-size: 16px;
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.7);
+  border: 1px solid #cbd5ff;
+  border-radius: 8px;
+  outline: none;
+  background: url(../img/arrow.png) no-repeat 90% white;
+  color: #3c444a;
+}
+.workingHours-form .set-container select {
+  height: 40px;
+}
+.workingHours-form .set-container {
+  height: 40px;
+}
+.workingHours-form .set-container select:focus,
+.all-select:focus {
+  outline: none;
+  border-color: #3c5afa;
+  box-shadow: 0 0 3px rgba(45, 135, 210, 0.5),
+    inset 0 1px 1px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.1s linear, color 0.1s linear;
+  color: #3c5afa;
+}
+.workingHours-form .set-container select:disabled {
+  opacity: 0.4;
+  border: 1px solid #ddd;
+}
+
+.workingHours-next {
+  position: relative;
+  left: 75%;
+  outline: none;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  width: 120px;
+  height: 45px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 0 #a4adba;
+  border: 1px solid transparent;
+  margin-top: 50px;
+}
+
+.workingHours-form .set-container {
+  width: 220px;
+}
+
+.open-button-wrapper {
+  text-align: right;
+}
+
+.open-button-wrapper button {
+  font-size: 14px;
+  border-radius: 10px;
+  line-height: 20px;
+  padding: 15px 40px;
+  font-weight: 600;
+  margin: 25px 10px;
+}
+.openingHours-wrapper {
+  max-width: 1000px;
+  margin-top: 30px;
+}
+
+@media (max-width: 1000px) {
+  .workingHours-form label {
+    font-size: 14px;
+  }
+  .workingHours-form .set-container,
+  .workingHours-form .set-container select {
+    width: 130px;
+    height: 30px;
+  }
+  @media (max-width: 600px) {
+    .openingHours-wrapper .workingHours-form {
+      width: 95%;
+      justify-content: space-evenly;
+    }
+    .openingHours-wrapper .workingHours-form .workingHours-column {
+      width: 100px;
+    }
+    .workingHours-form .set-container,
+    .workingHours-form .set-container select {
+      width: 80px;
+    }
+    .workingHours-form label {
+      font-size: 12px;
+    }
+    .open-button-wrapper {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .open-button-wrapper button {
+      font-size: 14px;
+      padding: 10px 18px;
+      position: initial;
+    }
+  }
+}
