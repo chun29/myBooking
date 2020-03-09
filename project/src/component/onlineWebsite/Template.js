@@ -389,8 +389,9 @@ class Template extends React.Component {
               <div className="store-desc">
                 <p>{store.note}</p>
               </div>
+              <div ref={this.scrollDiv2}>{""}</div>
             </div>
-            <div ref={this.scrollDiv2}>{""}</div>
+
             {this.state.bookingShow && (
               <div
                 ref={this.scrollDiv}

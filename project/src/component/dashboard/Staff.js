@@ -20,17 +20,19 @@ class Staff extends React.Component {
         showMsg: true,
         staffMsg: this.props.staffMsg.staffMsg
       }),
-        setTimeout(
-          function() {
+        (this.timerID = setTimeout(
+          () =>
             this.setState({
               showMsg: false
-            });
-          }.bind(this),
+            }),
           3000
-        );
+        ));
     }
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timerID);
+  }
   render() {
     const { staffMsg } = this.state;
 
