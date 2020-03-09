@@ -32,7 +32,6 @@ export const createBooking = (booking, store) => {
       timeText: startTime.text
     };
 
-    // make async call to database
     const firestore = getFirestore();
     firestore
       .collection("store")

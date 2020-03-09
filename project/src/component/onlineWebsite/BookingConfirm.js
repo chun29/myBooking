@@ -1,11 +1,12 @@
 import React from "react";
 import forms from "../../img/form.png";
-import moment from "moment";
 import { connect } from "react-redux";
-import calendarImg from "../../img/calendar-2.png";
+import calendarImg from "../../img/calendar_img.png";
 import timeImg from "../../img/clock.png";
-import staffImg from "../../img/staff-avatar.png";
-import serviceImg from "../../img/bag.png";
+import staffImg from "../../img/user_img.png";
+import serviceImg from "../../img/work_img.png";
+import { getFormatYMD } from "../../lib";
+
 class BookingConfirm extends React.Component {
   render() {
     const {
@@ -15,7 +16,7 @@ class BookingConfirm extends React.Component {
       startTime
     } = this.props.allState;
     const { handleInfoChange, handleSubmit } = this.props;
-    const day = moment(selectedDate).format("YYYY-MM-DD");
+    const day = getFormatYMD(selectedDate);
 
     return (
       <React.Fragment>

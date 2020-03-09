@@ -1,6 +1,5 @@
 const setOpeningHours = (weekday, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // make async to database
     const firestore = getFirestore();
     firestore
       .collection("store")

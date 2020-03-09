@@ -1,4 +1,3 @@
-// /src/App.js
 import React from "react";
 import { Route } from "react-router";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";

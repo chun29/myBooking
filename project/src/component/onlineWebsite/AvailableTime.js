@@ -5,6 +5,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { withRouter } from "react-router";
 import "../../style/template.css";
 import optionsImg from "../../img/options.png";
+import { getFormatTime } from "../../lib";
 
 class AvailableTime extends React.Component {
   render() {
@@ -47,11 +48,9 @@ class AvailableTime extends React.Component {
                 if (bookedList[i][0] == startTime) {
                   return;
                 }
-                // bookedList.push(t);
               }
               bookedList.push(t);
             }
-            // bookedList.push(t);
             startTime = startTime + 0.5;
           }
         }
@@ -96,7 +95,7 @@ class AvailableTime extends React.Component {
       }
       let availableArr = arr_diff(bookedTime, times).map(e => e.split(","));
 
-      // 最終時間 Arr
+      // final time Arr
       let finalArr = [];
 
       for (let i = 0; i < availableArr.length - (duration / 30 - 1); i++) {
@@ -109,28 +108,13 @@ class AvailableTime extends React.Component {
         }
       }
 
-      // 生成btn
+      // btn Arr
       let finalBtn = [];
       for (let i = 0; i < finalArr.length; i++) {
+        console.log(finalArr[i]);
         let time = [];
-        if (finalArr[i] == 12) {
-          time[0] = "12:00 PM";
-          time[1] = 12;
-        } else if (finalArr[i] == 12.5) {
-          time[0] = "12:30 PM";
-          time[1] = 12.5;
-        } else {
-          let hh = Math.floor(finalArr[i]);
-          let mm = (finalArr[i] * 60) % 60;
-          let ap = ["AM", "PM"];
-          time[0] =
-            ("0" + (hh % 12)).slice(-2) +
-            ":" +
-            ("0" + mm).slice(-2) +
-            " " +
-            ap[Math.floor(hh / 12)];
-          time[1] = finalArr[i];
-        }
+        time[1] = finalArr[i];
+        time[0] = getFormatTime(finalArr[i]);
         finalBtn.push(time);
       }
       if (finalBtn.length < 1) {

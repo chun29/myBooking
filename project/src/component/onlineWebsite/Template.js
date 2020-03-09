@@ -99,44 +99,65 @@ class Template extends React.Component {
   };
 
   selectService = (item, id, duration) => {
-    this.setState({
-      selectedService: {
-        ...this.state.selectedService,
-        item,
-        id
+    this.setState(
+      {
+        selectedService: {
+          ...this.state.selectedService,
+          item,
+          id
+        },
+        duration: duration * 60,
+        serviceShow: false,
+        staffShow: true,
+        step: 2
       },
-      duration: duration * 60,
-      serviceShow: false,
-      staffShow: true,
-      step: 2
-    });
+      function() {
+        this.scrollDiv.current.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    );
   };
 
   selectStaff = (name, id, nickname) => {
-    this.setState({
-      selectedStaff: {
-        ...this.state.selectedStaff,
-        name,
-        id,
-        nickname
+    this.setState(
+      {
+        selectedStaff: {
+          ...this.state.selectedStaff,
+          name,
+          id,
+          nickname
+        },
+        serviceShow: false,
+        staffShow: false,
+        dateShow: true,
+        step: 3
       },
-      serviceShow: false,
-      staffShow: false,
-      dateShow: true,
-      step: 3
-    });
+      function() {
+        this.scrollDiv.current.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    );
   };
   selectStartTime = (num, text) => {
-    this.setState({
-      startTime: {
-        ...this.state.startTime,
-        num,
-        text
+    this.setState(
+      {
+        startTime: {
+          ...this.state.startTime,
+          num,
+          text
+        },
+        confirmShow: true,
+        dateShow: false,
+        step: 4
       },
-      confirmShow: true,
-      dateShow: false,
-      step: 4
-    });
+      function() {
+        this.scrollDiv.current.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    );
   };
 
   handleInfoChange = e => {
@@ -208,11 +229,18 @@ class Template extends React.Component {
     ) {
       this.props.createBooking(this.state, this.props.storeInfo[0]);
 
-      this.setState({
-        confirmShow: false,
-        resultShow: true,
-        bookingShow: false
-      });
+      this.setState(
+        {
+          confirmShow: false,
+          resultShow: true,
+          bookingShow: false
+        },
+        function() {
+          this.scrollDiv2.current.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      );
     } else {
       alert("資料請填完整");
     }
@@ -248,7 +276,8 @@ class Template extends React.Component {
             </Link>
           </nav>
           <div className="notfound-container">
-            <h1>很抱歉，此商店預約頁面關閉中</h1>
+            <h5>很抱歉，此商店預約頁面關閉中</h5>
+
             <img className="notfound" src={notFound} />
           </div>
         </div>
@@ -335,7 +364,7 @@ class Template extends React.Component {
                 </div>
 
                 <div className="info">
-                  <img className="info-icon" src={addressImg} />
+                  <img className="address-icon" src={addressImg} />
                   {store.address}
                 </div>
               </div>
@@ -361,7 +390,7 @@ class Template extends React.Component {
                 <p>{store.note}</p>
               </div>
             </div>
-
+            <div ref={this.scrollDiv2}>{""}</div>
             {this.state.bookingShow && (
               <div
                 ref={this.scrollDiv}

@@ -86,6 +86,11 @@
   height: 24px;
   margin-right: 10px;
 }
+.address-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+}
 .online-container .content .store-info .info-section .basic-container .info {
   display: flex;
   align-items: center;
@@ -508,6 +513,7 @@
   width: 50%;
   margin-top: 50px;
   object-fit: cover;
+  max-width: 500px;
 }
 
 .online-container .info-section .info {
@@ -617,7 +623,6 @@
   .online-container .service-wrapper .service button {
     margin-top: 10px;
     font-size: 14px;
-    padding: 5px 10px;
   }
   .datePicker {
     font-size: 14px;
@@ -773,7 +778,6 @@
   .datePicker {
     border: 1px solid #ddd;
     font-size: 14px;
-    padding: 8px 0px;
   }
   .service-wrapper p {
     font-size: 12px;
@@ -783,5 +787,22 @@
   }
   .online-container .booking-section {
     min-height: 450px;
+  }
+  .booking-confirm-item {
+    margin-bottom: 0px;
+  }
+
+  .booking-confirm .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .booking-confirm h2 {
+    font-size: 16px;
+  }
+  .booking-confirm {
+    margin-bottom: 15px;
+  }
+  .step4-wrapper {
+    margin-bottom: 15px;
   }
 }
