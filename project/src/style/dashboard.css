@@ -317,9 +317,8 @@
   cursor: pointer;
 }
 .booking-text:hover {
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(16, 25, 40, 0.16) 0px 5px 3px 0px;
   margin-top: 5px;
-  background-color: #1a237e;
 }
 .booking-text span {
   font-size: 12px;

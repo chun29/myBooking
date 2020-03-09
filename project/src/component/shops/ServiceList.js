@@ -153,7 +153,7 @@ class ServiceList extends React.Component {
                     <th className="img">
                       <img src={url} />
                     </th>
-                    <th className="title">{service.item}</th>
+                    <td className="title">{service.item}</td>
                     <td datatitle="描述" className="staff-desc">
                       {service.desc}
                     </td>
