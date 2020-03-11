@@ -275,10 +275,24 @@ class Template extends React.Component {
               <div className="left-header">My 線上預約</div>
             </Link>
           </nav>
-          <div className="notfound-container">
-            <h5>很抱歉，此商店預約頁面關閉中</h5>
+          <div className="notfound-container confirm-email-container">
+            <h5>很抱歉，此商店預約頁面關閉中，或商店網址錯誤，請聯繫客服</h5>
 
             <img className="notfound" src={notFound} />
+            <div className="button-wrapper">
+              <button
+                onClick={() => (window.location = "/")}
+                className="green-btn"
+              >
+                回頁首
+              </button>
+            </div>
+            <div className="help-msg">
+              需要協助嗎？ 聯絡 MyBooking 尋求支援與服務
+              <b>
+                <span> mybookingtw@gmail.com</span>
+              </b>
+            </div>
           </div>
         </div>
       );
@@ -518,6 +532,7 @@ class Template extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     staffs: state.firestore.ordered.staff,
     services: state.firestore.ordered.service,
