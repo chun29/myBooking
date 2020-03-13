@@ -37,9 +37,6 @@ class Navbar extends React.Component {
 
             <nav>
               <ul>
-                <Link to="product">
-                  <li>功能介紹</li>
-                </Link>
                 <Link to="/booking/2j5bTxHyhRPj7YP92tWJCdoxbdq2">
                   <li>預約網站範例</li>
                 </Link>
@@ -68,9 +65,6 @@ class Navbar extends React.Component {
                   <Link to="/booking/2j5bTxHyhRPj7YP92tWJCdoxbdq2">
                     <li>預約網站範例</li>
                   </Link>
-                  <Link to="product">
-                    <li>功能介紹</li>
-                  </Link>
                 </ul>
                 <div>
                   <div className="s-menu-login-btn-wrapper">
@@ -90,9 +84,8 @@ class Navbar extends React.Component {
                     <span className="ul-login green-btn">註冊</span>
                   </Link>
                 </li>
-                <li>預約網站範例</li>
-                <Link to="product">
-                  <li>功能介紹</li>
+                <Link to="/booking/2j5bTxHyhRPj7YP92tWJCdoxbdq2">
+                  <li>預約網站範例</li>
                 </Link>
               </ul>
             )}

@@ -40,6 +40,7 @@
   background-repeat: no-repeat;
   background-size: 140%;
 }
+
 .main-desc-section {
   background-color: #f4f6fe;
   padding-bottom: 100px;
@@ -325,6 +326,7 @@
     }
 
     .main-desc-section-2-btn {
+      margin-top: 20px;
       padding: 8px 25px;
     }
     .main-desc-section-2-container img {
