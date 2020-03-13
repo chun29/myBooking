@@ -16,16 +16,23 @@ https://mybooking-project.firebaseapp.com/booking/2j5bTxHyhRPj7YP92tWJCdoxbdq2
   * React Router
   * React Redux
 * Webpack
-* Firebase
-  * Firebase Firestore
-  * Firebase Functions
-  * Firebase Storage
-  * Firebase Hosting
-  * Firebase Authentication
+* Firebase Cloud Service
+  * Cloud Firestore
+  * Authentication
+  * Functions
+  * Storage
+  * Hosting
 * Google Maps API
   * Geocoding API
   * Maps JavaScript API
 * nodemailer
 
 ## Features
-### Features1
+### SPA
+### RWD
+### Member System + email verification
+### Data CRUD
+### Calendar
+### Sorting and Search
+### NOtifications
+### Google Map
