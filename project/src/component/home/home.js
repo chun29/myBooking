@@ -61,10 +61,9 @@ function Home() {
               <img className="desc-image" src={desc2} />
             </div>
             <div className="desc-text">
-              <h3>整合各大平台的專屬預約網站</h3>
+              <h3>完整的客製功能</h3>
               <p>
-                與Facebook 粉絲頁、Line
-                官方帳號等平台整合的專屬預約網頁，讓顧客不論用什麼平台，都能輕鬆完成預約
+                輕鬆設置您的業務，省去溝通時間，讓預約系統更流暢、效率更高，增加預約數
               </p>
             </div>
           </div>
@@ -76,9 +75,9 @@ function Home() {
           <p>
             輕鬆新增服務項目與服務人員。日期、金額、備註說明皆在彈指間秒速新增
           </p>
-          <Link to="/booking/EPosWGQJCMMgaY6lCB6sG0fV8ZA2">
+          <Link to="/signin">
             <button className="main-desc-section-2-btn blue-btn">
-              了解預約管理系統
+              進入預約管理系統
             </button>
           </Link>
 

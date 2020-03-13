@@ -593,7 +593,7 @@
     overflow-x: scroll;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .table-container {
     margin: 30px auto;
     padding-bottom: 40px;

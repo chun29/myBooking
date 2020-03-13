@@ -16,7 +16,6 @@ import BookingWebSetup from "./component/dashboard/BookingWebSetup";
 import Template from "./component/onlineWebsite/Template";
 import Online from "./component/dashboard/Online";
 import NoMatchPage from "../../project/src/component/layout/404";
-import Product from "../../project/src/component/home/Product";
 import { connect } from "react-redux";
 import ScrollToTop from "./ScrollToTop";
 
@@ -44,7 +43,6 @@ class App extends React.Component {
         <div className="App">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/product" component={Product} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={Signup} />
             <ProtectedRoute

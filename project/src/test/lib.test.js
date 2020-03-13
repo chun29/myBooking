@@ -1,4 +1,4 @@
-import { validateEmail, getFormatTime } from "./lib.js";
+import { validateEmail, getFormatTime } from "../lib";
 
 test("Test validateEmail Function", () => {
   expect(validateEmail("june296@gmail.com")).toBe(true);
