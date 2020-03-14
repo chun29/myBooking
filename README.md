@@ -43,14 +43,12 @@ Visit the service page as a **customer**, simply check out the website created b
 - Make the website responsive (RWD) for all sizes of screen
 
 <p align="center">
-   <kbd><img width="500" height="300" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/RWD1.png"/>
-</kbd> <kbd><img width="280" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/RWD2.png"/>
-</kbd>
+  <img width="550" height="350" src="https://media.giphy.com/media/h4ZmUX4CTEPCQK1mbN/giphy.gif">
 </p>
 
 ---
 
-### Member System + email verification
+### Member System and email verification
 
 - Create member system by Firebase Authentication
 - Implement email verification for sign up
