@@ -69,7 +69,7 @@ Visit the service page as a **customer**, simply check out the website created b
 
 - A red-alert notification button with numbers on it sits on the bottom right corner
 - If the button is clicked, a step-by-step guidance will be shown
-- Every step the admin finished will reduce the red-alert numbers by one
+- Every step the user finishes will reduce the red-alert numbers by one
 
 <p align="center">
   <img width="565" height="350" src="https://media.giphy.com/media/XBuZaTHylhuAYek5zj/giphy.gif">
@@ -80,7 +80,7 @@ Visit the service page as a **customer**, simply check out the website created b
 ### Dashboard (notifications and today’s page)
 
 - The detail information of today's appointment is shown on the dashboard
-- New appointments and new cancellation of service will be shown to inform admin
+- New appointments and new cancellation of service will be shown to inform user
 
 <p align="center">
    <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/dashboard.png"/>
