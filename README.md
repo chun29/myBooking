@@ -76,7 +76,7 @@ You can enter description, upload photos, and customize business information eas
   <img width="550" height="350" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/giphy.gif">
 </p>
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/website.gif">
+  <img width="550" height="450" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/website.png">
 </p>
 
 ---
@@ -86,7 +86,11 @@ You can enter description, upload photos, and customize business information eas
 Live and public booking page that can be accessed by all customers. An easy-to-use UI design allows the customer to finish booking within 20 seconds. If booked successfully, an email notification will be sent to the customer's inbox
 
 <p align="center">
-  <img width="550" height="350" src=https://raw.githubusercontent.com/chun29/myBooking/master/introImg/website.png"/>
+  <img width="550" height="350" src="https://media.giphy.com/media/XcSRlpiszi17roXmlb/giphy.gif">
+</p>
+
+<p align="center">
+  <img width="550" height="350" src="https://media.giphy.com/media/XcSRlpiszi17roXmlb/giphy.gif">
 </p>
 
 ---
@@ -123,7 +127,29 @@ Two types of 404 (Page Not Found) scenario
 
 ### RWD
 
+<p align="center">
+   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/RWD1.png"/>
+</kbd>
+<p>
+
+<p align="center">
+   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/RWD2.png"/>
+</kbd>
+<p>
+
+---
+
 ### Member System + email verification
+
+<p align="center">
+   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/sign.png"/>
+</kbd>
+<p>
+
+<p align="center">
+   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/verify.png"/>
+</kbd>
+<p>
 
 ### Calendar
 
