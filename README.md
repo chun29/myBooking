@@ -43,7 +43,7 @@ Visit the service page as a **customer**, simply check out the website created b
 - Make the website responsive (RWD) for all sizes of screen
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/h4ZmUX4CTEPCQK1mbN/giphy.gif">
+  <img width="565" height="350" src="https://media.giphy.com/media/h4ZmUX4CTEPCQK1mbN/giphy.gif">
 </p>
 
 ---
@@ -72,7 +72,7 @@ Visit the service page as a **customer**, simply check out the website created b
 - Every step the admin finished will reduce the red-alert numbers by one
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/XBuZaTHylhuAYek5zj/giphy.gif">
+  <img width="565" height="350" src="https://media.giphy.com/media/XBuZaTHylhuAYek5zj/giphy.gif">
 </p>
 
 ---
@@ -94,7 +94,7 @@ Visit the service page as a **customer**, simply check out the website created b
 Enter the service (provider) name and info with a click on the button, a new service (provider) will be created
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/TH79sRF5lBQ6G43KzO/giphy.gif">
+  <img width="565" height="350" src="https://media.giphy.com/media/TH79sRF5lBQ6G43KzO/giphy.gif">
 </p>
 
 ---
@@ -105,7 +105,7 @@ Enter the service (provider) name and info with a click on the button, a new ser
 - You can select the days and the time are you going to provide service
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/YpTxg23eQzJlwzwwpH/giphy.gif">
+  <img width="565" height="350" src="https://media.giphy.com/media/YpTxg23eQzJlwzwwpH/giphy.gif">
 </p>
 
 ---
@@ -117,10 +117,10 @@ Enter the service (provider) name and info with a click on the button, a new ser
 - Integrate with Google Map API to show the address of service providers on a map
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/giphy.gif">
+  <img width="565" height="350" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/giphy.gif">
 </p>
 <p align="center">
-  <img width="550" height="450" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/website.png">
+  <img width="565" height="450" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/website.png">
 </p>
 
 ---
@@ -133,7 +133,7 @@ Enter the service (provider) name and info with a click on the button, a new ser
 - If booked successfully, an email notification will be sent to the customer's inbox
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/Up1bgmrEvie9SGs9sW/giphy.gif">
+  <img width="565" height="350" src="https://media.giphy.com/media/Up1bgmrEvie9SGs9sW/giphy.gif">
 </p>
 
 ---
@@ -146,12 +146,12 @@ Enter the service (provider) name and info with a click on the button, a new ser
 - You can delete an appointment on the calendar directly
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/KbNCvMRSrYQtKkGPsw/giphy.gif">
+  <img width="565" height="350" src="https://media.giphy.com/media/KbNCvMRSrYQtKkGPsw/giphy.gif">
 </p>
 
 <p align="center">
   <kbd>
-   <img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/calendar.png"/>
+   <img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/calendarimg.png"/>
   </kbd>
 </p>
 
