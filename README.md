@@ -103,11 +103,15 @@ Two types of 404 (Page Not Found) scenario
 
 - If a user types a wrong URL or goes to a page that doesn’t exist, the user will be routed to a 404 page. On the 404 page, the user will be directed to go back to the homepage or contact the customer service
 
+<p align="center">
+<kbd>
+   <img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-1.png"/></kbd>
+<p>
+
 - If a service provider temporarily closes the service page, customers won’t be able to access the page. Instead, another type of 404 page will be shown, which notifies the user that the page is currently closing
 
 <p align="center">
-<kbd>
-   <img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-1.png"/></kbd> <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-2.png"/>
+   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-2.png"/>
 </kbd>
 <p>
 
