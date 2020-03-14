@@ -94,6 +94,7 @@ Set and change your weekly business opening hours with only a few clicks. Start 
 <p align="center">
   <img width="450" height="280" src="https://media.giphy.com/media/YpTxg23eQzJlwzwwpH/giphy.gif">
 </p>
+
 ---
 
 ### 404 Page
