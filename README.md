@@ -1,6 +1,6 @@
 # MyBooking
 
-An online booking SaaS management platform for service-based business and the customers they served. Simply create your services, define your availability, and you will have your customers easily signing up anytime and anywhere
+An online booking SaaS management platform for service-based business and the customers they served. Simply create your services, define your availability, and you will have your customers easily book your service anytime and anywhere
 
 <kbd>
    <img src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/home.png"/>
@@ -10,9 +10,9 @@ An online booking SaaS management platform for service-based business and the cu
 
 Website URL: <https://mybooking-project.firebaseapp.com>
 
-To experience the platform as a **service provider**, log in the test user account:
+To experience the platform as a **service provider**, log in the test admin account:
 
-- Test User: testmybookingtw@gmail.com
+- Test Admin: testmybookingtw@gmail.com
 - Password: 123456
 
 Visit the service page as a **customer**, simply check out the website created by MyBooking:
@@ -48,9 +48,9 @@ New to the platform? No worries! Just follow the step-by-step guidance on the bo
 
 ---
 
-### Create a new service provider
+### Create a new service and provider
 
-Enter the service provider name and info with a click on the button, a new provider will be created easier than ever before
+Enter the service (provider) name and info with a click on the button, a new service (provider) will be created
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/TH79sRF5lBQ6G43KzO/giphy.gif">
@@ -58,12 +58,12 @@ Enter the service provider name and info with a click on the button, a new provi
 
 ---
 
-### Easy for customers to book
+### Your business hours in your control
 
-Live and public booking page that can be accessed by all customers. An easy-to-use UI design allows the customer to finish booking within 20 seconds
+Set and change your weekly business opening hours with only a few clicks. Start early or stay late? Open more days or have some breaks? Everything is in your control
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/XcSRlpiszi17roXmlb/giphy.gif">
+  <img width="550" height="350" src="https://media.giphy.com/media/YpTxg23eQzJlwzwwpH/giphy.gif">
 </p>
 
 ---
@@ -75,6 +75,19 @@ You can enter description, upload photos, and customize business information eas
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/giphy.gif">
 </p>
+<p align="center">
+  <img width="550" height="350" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/website.gif">
+</p>
+
+---
+
+### Easy for customers to book
+
+Live and public booking page that can be accessed by all customers. An easy-to-use UI design allows the customer to finish booking within 20 seconds. If booked successfully, an email notification will be sent to the customer's inbox
+
+<p align="center">
+  <img width="550" height="350" src=https://raw.githubusercontent.com/chun29/myBooking/master/introImg/website.png"/>
+</p>
 
 ---
 
@@ -84,15 +97,6 @@ When a customer make a new appointment, the appointment will be synced and shown
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/KbNCvMRSrYQtKkGPsw/giphy.gif">
-</p>
----
-
-### Your business hours in your control
-
-Set and change your weekly business opening hours with only a few clicks. Start early or stay late? Open more days or have some breaks? Everything is in your control
-
-<p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/YpTxg23eQzJlwzwwpH/giphy.gif">
 </p>
 
 ---
@@ -117,8 +121,6 @@ Two types of 404 (Page Not Found) scenario
 
 ---
 
-### SPA
-
 ### RWD
 
 ### Member System + email verification
@@ -127,7 +129,7 @@ Two types of 404 (Page Not Found) scenario
 
 ### Sorting and Search
 
-### Notifications
+### Notifications and today appointment
 
 ### Google Map
 
