@@ -40,7 +40,9 @@ Visit the service page as a **customer**, simply check out the website created b
 
 ### Step-by-step guidance for new admin
 
-New to the platform? No worries! Just follow the step-by-step guidance on the bottom right corner, and you will be all set
+- A red-alert notification button with numbers on it sits on the bottom right corner
+- If the button is clicked, a step-by-step guidance will be shown
+- Every step the admin finished will reduce the red-alert numbers by one
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/XBuZaTHylhuAYek5zj/giphy.gif">
@@ -70,7 +72,8 @@ Set and change your weekly business opening hours with only a few clicks. Start 
 
 ### Customize service booking website
 
-You can enter description, upload photos, and customize business information easily. Make your appointment booking website online with one simple click. Want to have a break? Just check it off, and your page will go offline
+- You can enter description, upload photos, and customize business information easily
+- Make your appointment booking website online or offline with one simple click
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/giphy.gif">
@@ -83,7 +86,9 @@ You can enter description, upload photos, and customize business information eas
 
 ### Easy for customers to book
 
-Live and public booking page that can be accessed by all customers. An easy-to-use UI design allows the customer to finish booking within 20 seconds. If booked successfully, an email notification will be sent to the customer's inbox
+- Live and public booking page that can be accessed by all customers
+- An easy-to-use UI design allows the customer to finish booking within 20 seconds
+- If booked successfully, an email notification will be sent to the customer's inbox
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/XcSRlpiszi17roXmlb/giphy.gif">
