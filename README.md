@@ -38,6 +38,35 @@ Visit the service page as a **customer**, simply check out the website created b
 
 ## Features
 
+### RWD
+
+- Make the website responsive (RWD) for all sizes of screen
+
+<p align="center">
+   <kbd><img width="500" height="300" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/RWD1.png"/>
+</kbd> <kbd><img width="280" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/RWD2.png"/>
+</kbd>
+</p>
+
+---
+
+### Member System + email verification
+
+- Create member system by Firebase Authentication
+- Implement email verification for sign up
+
+<p align="center">
+   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/sign.png"/>
+</kbd>
+</p>
+
+<p align="center">
+   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/verify.png"/>
+</kbd>
+</p>
+
+---
+
 ### Step-by-step guidance for new admin
 
 - A red-alert notification button with numbers on it sits on the bottom right corner
@@ -46,6 +75,18 @@ Visit the service page as a **customer**, simply check out the website created b
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/XBuZaTHylhuAYek5zj/giphy.gif">
+</p>
+
+---
+
+### Dashboard (notifications and today’s page)
+
+- The detail information of today's appointment is shown on the dashboard
+- New appointments and new cancellation of service will be shown to inform admin
+
+<p align="center">
+   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/dashboard.png"/>
+</kbd>
 </p>
 
 ---
@@ -60,9 +101,10 @@ Enter the service (provider) name and info with a click on the button, a new ser
 
 ---
 
-### Your business hours in your control
+### Set and modify business hours flexibly
 
-Set and change your weekly business opening hours with only a few clicks. Start early or stay late? Open more days or have some breaks? Everything is in your control
+- Set and change your weekly business opening hours with only a few clicks
+- You can select the days and the time are you going to provide service
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/YpTxg23eQzJlwzwwpH/giphy.gif">
@@ -74,6 +116,7 @@ Set and change your weekly business opening hours with only a few clicks. Start 
 
 - You can enter description, upload photos, and customize business information easily
 - Make your appointment booking website online or offline with one simple click
+- Integrate with Google Map API to show the address of service providers on a map
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/giphy.gif">
@@ -87,25 +130,31 @@ Set and change your weekly business opening hours with only a few clicks. Start 
 ### Easy for customers to book
 
 - Live and public booking page that can be accessed by all customers
+- Sorting and searching algorithms are applied to filter the available time
 - An easy-to-use UI design allows the customer to finish booking within 20 seconds
 - If booked successfully, an email notification will be sent to the customer's inbox
 
 <p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/XcSRlpiszi17roXmlb/giphy.gif">
-</p>
-
-<p align="center">
-  <img width="550" height="350" src="https://media.giphy.com/media/XcSRlpiszi17roXmlb/giphy.gif">
+  <img width="550" height="350" src="https://media.giphy.com/media/Up1bgmrEvie9SGs9sW/giphy.gif">
 </p>
 
 ---
 
 ### All-in-one appointment calendar
 
-When a customer make a new appointment, the appointment will be synced and shown on the calendar. You can see every appointment on the calendar. Managing your schedule will never be complex and difficult
+- When a customer make a new appointment, the appointment will be synced and shown on the calendar
+- Different colors on the calendar are synced with different service providers
+- You can see every appointment on the all-in-one calendar
+- You can delete an appointment on the calendar directly
 
 <p align="center">
   <img width="550" height="350" src="https://media.giphy.com/media/KbNCvMRSrYQtKkGPsw/giphy.gif">
+</p>
+
+<p align="center">
+  <kbd>
+   <img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/calendar.png"/>
+  </kbd>
 </p>
 
 ---
@@ -119,50 +168,14 @@ Two types of 404 (Page Not Found) scenario
 <p align="center">
 <kbd>
    <img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-1.png"/></kbd>
-<p>
+</p>
 
 - If a service provider temporarily closes the service page, customers won’t be able to access the page. Instead, another type of 404 page will be shown, which notifies the user that the page is currently closing
 
 <p align="center">
    <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-2.png"/>
 </kbd>
-<p>
-
----
-
-### RWD
-
-<p align="center">
-   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/RWD1.png"/>
-</kbd>
-<p>
-
-<p align="center">
-   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/RWD2.png"/>
-</kbd>
-<p>
-
----
-
-### Member System + email verification
-
-<p align="center">
-   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/sign.png"/>
-</kbd>
-<p>
-
-<p align="center">
-   <kbd><img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/verify.png"/>
-</kbd>
-<p>
-
-### Calendar
-
-### Sorting and Search
-
-### Notifications and today appointment
-
-### Google Map
+</p>
 
 ---
 
