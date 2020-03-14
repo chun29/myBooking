@@ -48,7 +48,7 @@ Visit the service page as a **customer**, simply check out the website created b
 
 ---
 
-### Member System and email verification
+### Member system and email verification
 
 - Create member system by Firebase Authentication
 - Implement email verification for sign up
@@ -65,7 +65,7 @@ Visit the service page as a **customer**, simply check out the website created b
 
 ---
 
-### Step-by-step guidance for new admin
+### Step-by-step guidance for new users
 
 - A red-alert notification button with numbers on it sits on the bottom right corner
 - If the button is clicked, a step-by-step guidance will be shown
@@ -77,7 +77,7 @@ Visit the service page as a **customer**, simply check out the website created b
 
 ---
 
-### Dashboard (notifications and today’s page)
+### Dashboard (notifications and today’s appointment)
 
 - The detail information of today's appointment is shown on the dashboard
 - New appointments and new cancellation of service will be shown to inform user
@@ -91,7 +91,7 @@ Visit the service page as a **customer**, simply check out the website created b
 
 ### Create a new service and provider
 
-Enter the service (provider) name and info with a click on the button, a new service (provider) will be created
+- Enter the service (provider) name and info with a click on the button, a new service (provider) will be created
 
 <p align="center">
   <img width="565" height="350" src="https://media.giphy.com/media/TH79sRF5lBQ6G43KzO/giphy.gif">
@@ -159,7 +159,7 @@ Enter the service (provider) name and info with a click on the button, a new ser
 
 ### 404 Page
 
-Two types of 404 (Page Not Found) scenario
+Two types of 404 (Page Not Found) scenarios
 
 - If a user types a wrong URL or goes to a page that doesn’t exist, the user will be routed to a 404 page. On the 404 page, the user will be directed to go back to the homepage or contact the customer service
 
