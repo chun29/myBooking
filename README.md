@@ -45,6 +45,7 @@ New to the platform? No worries! Just follow the step-by-step guidance on the bo
 <p align="center">
   <img width="450" height="280" src="https://media.giphy.com/media/XBuZaTHylhuAYek5zj/giphy.gif">
 </p>
+
 ---
 
 ### Create a new service provider
@@ -67,6 +68,34 @@ Live and public booking page that can be accessed by all customers. An easy-to-u
 
 ---
 
+### Customize service booking website
+
+You can enter description, upload photos, and customize business information easily. Make your appointment booking website online with one simple click. Want to have a break? Just check it off, and your page will go offline
+
+<p align="center">
+  <img width="450" height="280" src="https://media.giphy.com/media/ZG14jwKvK5ZX1gjR4X/giphy.gif">
+</p>
+
+---
+
+### All-in-one appointment calendar
+
+When a customer make a new appointment, the appointment will be synced and shown on the calendar. You can see every appointment on the calendar. Managing your schedule will never be complex and difficult
+
+<p align="center">
+  <img width="450" height="280" src="https://media.giphy.com/media/KbNCvMRSrYQtKkGPsw/giphy.gif">
+</p>
+---
+
+### Your business hours in your control
+
+Set and change your weekly business opening hours with only a few clicks. Start early or stay late? Open more days or have some breaks? Everything is in your control
+
+<p align="center">
+  <img width="450" height="280" src="https://media.giphy.com/media/YpTxg23eQzJlwzwwpH/giphy.gif">
+</p>
+---
+
 ### 404 Page
 
 Two types of 404 (Page Not Found) scenario
@@ -82,6 +111,7 @@ Two types of 404 (Page Not Found) scenario
 <kbd>
    <img src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-2.png"/>
 </kbd>
+
 ---
 
 ### SPA
