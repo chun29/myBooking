@@ -55,17 +55,29 @@ Enter the service provider name and info with a click on the button, a new provi
 
 ---
 
+### Easy for customers to book
+
+Live and public booking page that can be accessed by all customers. An easy-to-use UI design allows the customer to finish booking within 20 seconds
+
+<p align="center">
+  <img width="450" height="280" src="https://media.giphy.com/media/XcSRlpiszi17roXmlb/giphy.gif">
+</p>
+
+---
+
 ### 404 Page
 
 Two types of 404 (Page Not Found) scenario
 
 - If a user types a wrong URL or goes to a page that doesn’t exist, the user will be routed to a 404 page. On the 404 page, the user will be directed to go back to the homepage or contact the customer service
 
-![image](https://github.com/chun29/myBooking/blob/master/introImg/home.png?raw=true)
+![image](https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-1.png)
 
 - If a service provider temporarily closes the service page, customers won’t be able to access the page. Instead, another type of 404 page will be shown, which notifies the user that the page is currently closing
 
-![image](https://github.com/chun29/myBooking/blob/master/introImg/home.png?raw=true)
+![image](https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-2.png)
+
+---
 
 ### SPA
 
