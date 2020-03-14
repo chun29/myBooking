@@ -102,7 +102,7 @@ Enter the service (provider) name and info with a click on the button, a new ser
 ### Set and modify business hours flexibly
 
 - Set and change your weekly business opening hours with only a few clicks
-- You can select the days and the time are you going to provide service
+- Select the days and the time are you going to provide service
 
 <p align="center">
   <img width="565" height="350" src="https://media.giphy.com/media/YpTxg23eQzJlwzwwpH/giphy.gif">
@@ -112,7 +112,7 @@ Enter the service (provider) name and info with a click on the button, a new ser
 
 ### Customize service booking website
 
-- You can enter description, upload photos, and customize business information easily
+- Enter description, upload photos, and customize business information easily
 - Make your appointment booking website online or offline with one simple click
 - Integrate with Google Map API to show the address of service providers on a map
 
@@ -142,8 +142,8 @@ Enter the service (provider) name and info with a click on the button, a new ser
 
 - When a customer make a new appointment, the appointment will be synced and shown on the calendar
 - Different colors on the calendar are synced with different service providers
-- You can see every appointment on the all-in-one calendar
-- You can delete an appointment on the calendar directly
+- See every appointment on the all-in-one calendar
+- Delete an appointment on the calendar directly
 
 <p align="center">
   <img width="565" height="350" src="https://media.giphy.com/media/KbNCvMRSrYQtKkGPsw/giphy.gif">
@@ -151,7 +151,7 @@ Enter the service (provider) name and info with a click on the button, a new ser
 
 <p align="center">
   <kbd>
-   <img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/calendarimg.png"/>
+   <img width="700" height="420" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/cal.png"/>
   </kbd>
 </p>
 
