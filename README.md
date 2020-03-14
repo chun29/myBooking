@@ -2,7 +2,9 @@
 
 An online booking SaaS management platform for service-based business and the customers they served. Simply create your services, define your availability, and you will have your customers easily signing up anytime and anywhere
 
+<kbd>
 ![image](https://github.com/chun29/myBooking/blob/master/introImg/home.png?raw=true)
+</kbd>
 
 ## Demo
 
@@ -71,12 +73,15 @@ Two types of 404 (Page Not Found) scenario
 
 - If a user types a wrong URL or goes to a page that doesn’t exist, the user will be routed to a 404 page. On the 404 page, the user will be directed to go back to the homepage or contact the customer service
 
+<kbd>
 ![image](https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-1.png)
+</kbd>
 
 - If a service provider temporarily closes the service page, customers won’t be able to access the page. Instead, another type of 404 page will be shown, which notifies the user that the page is currently closing
 
+<kbd>
 ![image](https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-2.png)
-
+</kbd>
 ---
 
 ### SPA
@@ -85,13 +90,11 @@ Two types of 404 (Page Not Found) scenario
 
 ### Member System + email verification
 
-### Data CRUD
-
 ### Calendar
 
 ### Sorting and Search
 
-### NOtifications
+### Notifications
 
 ### Google Map
 
