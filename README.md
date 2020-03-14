@@ -107,7 +107,7 @@ Two types of 404 (Page Not Found) scenario
 
 <p align="center">
 <kbd>
-   <img width="350" height="200" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-1.png"/></kbd> <kbd><img width="350" height="200" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-2.png"/>
+   <img width="450" height="300" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-1.png"/></kbd> <kbd><img width="450" height="300" src="https://raw.githubusercontent.com/chun29/myBooking/master/introImg/404page-2.png"/>
 </kbd>
 <p>
 
